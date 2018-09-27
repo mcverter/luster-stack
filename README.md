@@ -19,5 +19,4 @@
 
 **TAKE HOME QUIZ**
 ======================
-- [Quiz Questions](./QuizQuestions.md) I am fairly comfortable using it)
-
+- [Quiz Questions](./QuizQuestions.md)
