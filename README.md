@@ -1,7 +1,7 @@
 **LUSTER TECH STACK**
 ======================
 - Vagrant (I have used it)
-- Supervisor (I just googled it)
+- [Supervisor](./stack/supervisor/index.md)
 - Django (I am fairly comfortable using it)
 - PostgreSQL (I am fairly comfortable using it)
 - [tmux](./stack/tmux/index.md) (***notes***)
