@@ -13,7 +13,7 @@
 - S3 (I am fairly comfortable using it)
 - Bithub (I just googled it)
 - Redis (I have used it)
-- Celery (***notes***)
+- [Celery](./stack/celery/index.md) (***notes***)
 - CAP (Theorem (I just googled it)
 - Database (Normalization I am fairly comfortable using it)
 
