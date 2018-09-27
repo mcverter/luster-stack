@@ -10,7 +10,8 @@ Resources
 
 Continuous Integration
 ----------------------
-* Continuous integration (CI) is the practice of merging all developer working copies to a shared mainline several times a day.[
+* Continuous integration (CI) is the practice of merging all developer working copies to a shared mainline several times a day.
+* Automated tests, builds, and other quality control measures are triggered on each code commit.
 
 
 Continuous Delivery
