@@ -7,7 +7,7 @@
 - [tmux](./stack/tmux/index.md) (***notes***)
 - CI/CD I just googled it)
 - Ansible (I just googled it)
-- Fabric (I just googled it)
+- [Fabric](./stack/fabric/index.md)
 - Jenkins (I have used it)
 - EC2 (I am fairly comfortable using it)
 - S3 (I am fairly comfortable using it)
