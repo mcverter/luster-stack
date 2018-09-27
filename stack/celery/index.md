@@ -100,10 +100,47 @@ is
 ```
 
 
-* Canvas Primitives
--- group
--- chain
--- chord
--- map
--- starmap
--- chunks
+Canvas Primitives
+=================
+* group
+A group calls a list of tasks in parallel, and it returns a special result instance that lets you inspect the results as a group, and retrieve the return values in order.
+* chain
+Tasks can be linked together so that after one task returns the other is called:
+* chord
+A chord is a group with a callback:
+* map
+* starmap
+* chunks
+
+
+Routing
+=======
+Celery supports all of the routing facilities provided by AMQP, but it also supports simple routing where messages are sent to named queues.
+
+```
+app.conf.update(
+    task_routes = {
+        'proj.tasks.add': {'queue': 'hipri'},
+    },
+)
+
+>>> add.apply_async((2, 2), queue='hipri')
+
+$ celery -A proj worker -Q hipri
+
+```
+
+Remote Control
+==============
+If you’re using RabbitMQ (AMQP), Redis, or Qpid as the broker then you can control and inspect the worker at runtime.
+
+```
+$ celery -A proj inspect
+$ celery -A proj control
+$ celery -A proj events
+$ celery -A proj status
+
+```
+
+
+
