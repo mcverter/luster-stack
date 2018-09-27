@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Introduction to Vagrant Triggers">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon-fcccc581.png">
+    <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-32x32-5b069c0f.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-16x16-68af4fd2.png" sizes="16x16">
+    <link rel="manifest" href="/android-manifest.json">
+    <link rel="mask-icon" href="/assets/images/favicons/safari-pinned-tab-75a57410.svg" color="#5BBAD5">
+    <meta name="msapplication-config" content="/microsoft-tile.xml" />
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@HashiCorp" />
+    <meta name="twitter:creator" content="@HashiCorp" />
+    <meta property="og:url" content="https://www.vagrantup.com/docs/triggers/index.html" />
+    <meta property="og:title" content="Vagrant Triggers - Vagrant by HashiCorp" />
+    <meta property="og:site_name" content="Vagrant by HashiCorp"/>
+    <meta property="og:image" content="https://www.vagrantup.com/assets/images/og-image-32e5f237.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="1200"/>
+    <meta property="og:description" content="Introduction to Vagrant Triggers" />
+
+    <title>Vagrant Triggers - Vagrant by HashiCorp</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://use.typekit.net/wxf7mfi.css">
+    <link href="/assets/stylesheets/application-b1a3f340.css" rel="stylesheet" />
+
+    <!-- Site scripts -->
+    <!--[if lt IE 9]><script src="/assets/javascripts/ie-compat-c141a02d.js" defer="defer"></script><![endif]-->
+    <script src="/assets/javascripts/application-225dda18.js" defer="defer"></script>
+
+    <!-- Analytics scrpts -->
+    <script defer>
+      !function(){var e=window.analytics=window.analytics||[];if(!e.initialize)if(e.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{e.invoked=!0,e.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"],e.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),e.push(a),e}};for(var t=0;t<e.methods.length;t++){var a=e.methods[t];e[a]=e.factory(a)}e.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+e+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(t,a)},e.SNIPPET_VERSION="4.0.0",e.load("wFMyBE4PJCZttWfu0pNhYdWr7ygW0io4")}}();var om597a24292a958,om597a24292a958_poll=function(){var e=0;return function(t,a){clearInterval(e),e=setInterval(t,a)}}();!function(e,t,a){if(e.getElementById(a))om597a24292a958_poll(function(){if(window.om_loaded&&!om597a24292a958)return(om597a24292a958=new OptinMonsterApp).init({s:"35109.597a24292a958",staging:0,dev:0,beta:0})},25);else{var n=!1,o=e.createElement("script");o.id=a,o.src="//a.optnmstr.com/app/js/api.min.js",o.async=!0,o.onload=o.onreadystatechange=function(){if(!(n||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState))try{n=om_loaded=!0,(om597a24292a958=new OptinMonsterApp).init({s:"35109.597a24292a958",staging:0,dev:0,beta:0}),o.onload=o.onreadystatechange=null}catch(e){}},(document.getElementsByTagName("head")[0]||document.documentElement).appendChild(o)}}(document,0,"omapi-script");
+    </script>
+
+    
+  </head>
+
+  <body id="page-triggers" class="layout-docs page-vagrant-triggers">
+
+    <svg class="hidden-print" aria-hidden="true" style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <symbol id="mega-nav-icon-angle" viewBox="0 0 13 7">
+      <polygon points="6.5,6.5 0.7,1.6 1.3,0.8 6.5,5.2 11.7,0.8 12.3,1.6 "/>
+    </symbol>
+    <symbol id="mega-nav-icon-close" viewBox="0 0 13 15">
+      <path vector-effect="non-scaling-stroke" d="M1.1 14L11.9 1M11.9 14L1.1 1"/>
+    </symbol>
+  </defs>
+</svg>
+<div class="hidden-print mega-nav-sandbox">
+  <div class="mega-nav-banner">
+    <div class="container">
+      <div class="mega-nav-banner-item">
+        <a class="mega-nav-banner-logo" href="https://www.hashicorp.com"><img src="/assets/images/mega-nav/logo-hashicorp-wordmark-bbed0e8a.svg" alt="HashiCorp Logo" /></a>
+      </div>
+      <div class="mega-nav-banner-item">
+        <p class="mega-nav-tagline"><span class="visible-xs text-muted">Learn the</span><span class="hidden-xs text-muted">Learn how Vagrant fits into the</span></p>
+        <div id="#mega-nav" class="mega-nav">
+          <button type="button" id="mega-nav-ctrl" class="mega-nav-ctrl">
+            <div class="mega-nav-ctrl-items">
+              <img src="/assets/images/mega-nav/logo-hashicorp-a66fda95.svg" alt="HashiCorp Logo" />
+              <strong>HashiCorp Suite</strong>
+              <span class="mega-nav-icon-outline">
+                <svg class="mega-nav-icon mega-nav-icon-angle-right" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mega-nav-icon-angle"></use></svg><span class="visuallyhidden">Open</span>
+              </span>
+            </div>
+          </button>
+          <div id="mega-nav-body-ct" class="mega-nav-body-ct" aria-labelledby="mega-nav-ctrl">
+            <div class="mega-nav-body">
+              <button type="button" id="mega-nav-close" class="mega-nav-close"><svg class="mega-nav-icon mega-nav-icon-close" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mega-nav-icon-close"></use></svg><span class="visuallyhidden">Close</span></button>
+              <div class="mega-nav-body-header">
+                <div class="mega-nav-body-header-item">
+                  <h2 class="mega-nav-h1">Provision, Secure, Connect, and&nbsp;Run</h2>
+                  <p class="mega-nav-h2">Any infrastructure for any&nbsp;application</p>
+                </div>
+                <div class="mega-nav-body-header-item">
+                  <a href="https://www.hashicorp.com/" class="mega-nav-btn"><img src="/assets/images/mega-nav/logo-hashicorp-a66fda95.svg" alt="HashiCorp Logo" /> Learn the HashiCorp Enterprise&nbsp;Suite <svg class="mega-nav-icon mega-nav-icon-angle-right" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mega-nav-icon-angle"></use></svg></a>
+                </div>
+              </div>
+              <div class="mega-nav-body-grid">
+                <div class="mega-nav-body-grid-item">
+                  <h3 class="mega-nav-h3">Provision</h3>
+                  <ul class="mega-nav-grid">
+                    <li>
+                      <a href="https://www.vagrantup.com" class="mega-nav-grid-item mega-nav-grid-item-vagrant">
+                        <div class="mega-nav-grid-item-img">
+                          <img src="/assets/images/mega-nav/logo-vagrant-a7ab5898.svg" alt="Vagrant Logo" />
+                        </div>
+                        <b>Vagrant</b>
+                        <ul>
+                          <li><span class="mega-nav-tag">Build</span></li>
+                          <li><span class="mega-nav-tag">Test</span></li>
+                        </ul>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://www.packer.io" class="mega-nav-grid-item mega-nav-grid-item-packer">
+                        <div class="mega-nav-grid-item-img">
+                          <img src="/assets/images/mega-nav/logo-packer-cb3b9b94.svg" alt="Packer Logo" />
+                        </div>
+                        <b>Packer</b>
+                        <ul>
+                          <li><span class="mega-nav-tag">Package</span></li>
+                        </ul>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://www.terraform.io" class="mega-nav-grid-item mega-nav-grid-item-terraform">
+                        <div class="mega-nav-grid-item-img">
+                          <img src="/assets/images/mega-nav/logo-terraform-ff69eaae.svg" alt="Terraform Logo" />
+                        </div>
+                        <b>Terraform</b>
+                        <ul>
+                          <li><span class="mega-nav-tag">Provision</span></li>
+                        </ul>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mega-nav-body-grid-item">
+                  <h3 class="mega-nav-h3">Secure</h3>
+                  <ul class="mega-nav-grid">
+                    <li>
+                      <a href="https://www.vaultproject.io" class="mega-nav-grid-item mega-nav-grid-item-vault">
+                        <div class="mega-nav-grid-item-img">
+                          <img src="/assets/images/mega-nav/logo-vault-0f83e3d2.svg" alt="Vault Logo" />
+                        </div>
+                        <b>Vault</b>
+                        <ul>
+                          <li><span class="mega-nav-tag">Secure</span></li>
+                        </ul>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mega-nav-body-grid-item">
+                  <h3 class="mega-nav-h3">Connect</h3>
+                  <ul class="mega-nav-grid">
+                    <li>
+                      <a href="https://www.consul.io" class="mega-nav-grid-item mega-nav-grid-item-consul">
+                        <div class="mega-nav-grid-item-img">
+                          <img src="/assets/images/mega-nav/logo-consul-c77f6844.svg" alt="Consul Logo" />
+                        </div>
+                        <b>Consul</b>
+                        <ul>
+                          <li><span class="mega-nav-tag">Connect</span></li>
+                        </ul>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mega-nav-body-grid-item">
+                  <h3 class="mega-nav-h3">Run</h3>
+                  <ul class="mega-nav-grid">
+                    <li>
+                      <a href="https://www.nomadproject.io" class="mega-nav-grid-item mega-nav-grid-item-nomad">
+                        <div class="mega-nav-grid-item-img">
+                          <img src="/assets/images/mega-nav/logo-nomad-c4c148be.svg" alt="Nomad Logo" />
+                        </div>
+                        <b>Nomad</b>
+                        <ul>
+                          <li><span class="mega-nav-tag">Run</span></li>
+                        </ul>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mega-nav-body-footer">
+                <p>Seven elements of the modern Application Lifecycle</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div id="header" class="navigation navbar-static-top hidden-print">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="navbar-header">
+              <div class="navbar-brand">
+                <a href="/">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 223 60" class="logo" height="50">
+  <path class="text" fill="#000000" d="M99.88 14.1h6.29l-9.56 32h-8.93l-9.56-32h6.29l7.73 26.66 7.74-26.66zm23.78 32h-4.8l-.43-1.59c-2.083 1.355-4.515 2.074-7 2.07-4.28 0-6.1-2.93-6.1-7 0-4.76 2.07-6.58 6.82-6.58h5.62v-2.42c0-2.59-.72-3.51-4.47-3.51-2.182.023-4.356.264-6.49.72l-.72-4.47c2.606-.723 5.296-1.096 8-1.11 7.35 0 9.51 2.59 9.51 8.46l.06 15.43zm-5.86-8.84h-4.32c-1.92 0-2.45.53-2.45 2.31s.53 2.35 2.35 2.35c1.55-.022 3.07-.435 4.42-1.2v-3.46zm17.05 2.54c-.74.36-1.26 1.057-1.39 1.87 0 .62.38.91 1.3 1 2.59.29 4 .43 6.77.72 3.8.43 5 2.31 5 5.67 0 5-1.83 7-10.57 7-3.04.003-6.067-.4-9-1.2l.72-4.37c2.576.654 5.222.99 7.88 1 4.66 0 5.57-.34 5.57-1.87s-.43-1.68-2.21-1.87c-2.69-.29-3.8-.43-6.77-.77-3.31-.38-4.61-1.49-4.61-4.47.102-1.657 1.02-3.156 2.45-4-2.16-1.3-3.17-3.46-3.17-6.29V30c.1-4.85 2.64-7.78 9.42-7.78 1.348-.01 2.692.15 4 .48h7.21v2.93c-.82.24-1.78.48-2.59.72.558 1.135.84 2.386.82 3.65v2.21c0 4.76-2.88 7.64-9.42 7.64-.47.01-.94-.006-1.41-.05zm1.34-12.88c-2.88 0-3.89 1.06-3.89 3.27V32c0 2.31 1.15 3.17 3.89 3.17s3.94-.91 3.94-3.17v-1.81c.01-2.19-1-3.26-3.93-3.26l-.01-.01zm25.9.68c-2.148.973-4.217 2.11-6.19 3.4v15.1H150V22.7h5l.38 2.59c1.906-1.29 3.974-2.32 6.15-3.07l.56 5.38zm19.6 18.5h-4.8l-.43-1.59c-2.083 1.355-4.515 2.074-7 2.07-4.28 0-6.1-2.93-6.1-7 0-4.76 2.07-6.58 6.82-6.58h5.62v-2.42c0-2.59-.72-3.51-4.47-3.51-2.182.023-4.356.264-6.49.72l-.72-4.47c2.606-.723 5.296-1.096 8-1.11 7.35 0 9.51 2.59 9.51 8.46l.06 15.43zm-5.86-8.84h-4.32c-1.92 0-2.45.53-2.45 2.31s.53 2.35 2.35 2.35c1.55-.022 3.07-.435 4.42-1.2v-3.46zm23.3 8.84V29.76c0-1.25-.53-1.87-1.87-1.87-2.147.252-4.22.932-6.1 2V46.1h-5.86V22.7h4.47l.58 2c2.92-1.46 6.11-2.295 9.37-2.45 3.89 0 5.28 2.74 5.28 6.92v17l-5.87-.07zm23.11-.44c-1.653.578-3.39.886-5.14.91-4.28 0-6.44-2-6.44-6.2v-13h-3.51V22.7h3.51v-5.81l5.86-.82v6.63h6l-.38 4.66h-5.62v12.25c-.076.576.124 1.154.54 1.56.414.408.995.597 1.57.51.994-.03 1.98-.19 2.93-.48l.68 4.46z"></path>
+  <path class="front" fill="#1563FF" d="M58.03 10.12V4.63L44.84 12.3v4.64L34.29 39.7l-5.28 3.64v16.67l11.31-6.52 17.71-43.37zM29.01 31.47L21.1 13V7.78l-.05-.02-7.86 4.54v4.64L23.74 40.7l5.27-2.61v-6.62z"></path>
+  <path class="shadow" fill="#104EB2" d="M50.12.01L36.94 7.73h-.01V13l-7.92 18.47v6.17l-5.27 3.06-10.55-23.76v-4.65l7.92-4.55L7.91.01 0 4.63v5.66l17.81 43.25 11.2 6.47V43.76l5.28-3.06-.07-.04 10.62-23.72v-4.65l13.19-7.66"></path>
+</svg>
+
+                </a>
+              </div>
+              <button class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="buttons hidden-xs">
+              <nav class="navigation-links" role="navigation">
+                <ul class="main-links nav navbar-nav navbar-right">
+                  <li><a href="/intro/index.html">Intro</a></li>
+                  <li><a href="/docs/index.html">Docs</a></li>
+                  <li><a href="https://www.amazon.com/gp/product/1449335837/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1449335837&linkCode=as2&tag=vagrant-20" target="_TOP">Book</a></li>
+                  <li><a href="/vmware/index.html">VMware</a></li>
+                  <li><a href="/community.html">Community</a></li>
+                  <li>
+                    <a href="/downloads.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 28 28" enable-background="new 0 0 28 28" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+  <path d="M28 0H0v28h28V0zM13.8 22.9L7 17.3l2-2.4 3.2 2.6V7h3.2v10.5l3.2-2.6 2 2.4L13.8 22.9z"></path>
+</svg>
+ Download
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/hashicorp/vagrant">
+                      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 28 28" enable-background="new 0 0 28 28" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+  <path d="M28 0H0v28h11.4c0 0 0-1.3 0-2.4C7.7 26.4 7 23.9 7 23.9 6.4 22.4 5.5 22 5.5 22c-1.2-0.8 0.1-0.8 0.1-0.8 1.3 0.1 2 1.4 2 1.4 1.2 2 3 1.4 3.8 1.1 0.1-0.8 0.5-1.4 0.9-1.8 -2.9-0.3-6-1.5-6-6.5 0-1.4 0.5-2.6 1.3-3.5C7.5 11.5 7 10.2 7.8 8.4c0 0 1.1-0.4 3.6 1.3 1-0.3 2.2-0.4 3.3-0.4 1.1 0 2.2 0.2 3.3 0.4 2.5-1.7 3.6-1.3 3.6-1.3 0.7 1.8 0.3 3.1 0.1 3.5 0.8 0.9 1.3 2.1 1.3 3.5 0 5-3.1 6.1-6 6.5 0.5 0.4 0.9 1.2 0.9 2.4 0 1.8 0 3.7 0 3.7H28V0z"></path>
+</svg>
+ GitHub
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-overlay"></div>
+
+<aside class="sidebar" role="navigation">
+  <div class="sidebar-header">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 223 60" class="logo" height="42">
+  <path class="text" fill="#000000" d="M99.88 14.1h6.29l-9.56 32h-8.93l-9.56-32h6.29l7.73 26.66 7.74-26.66zm23.78 32h-4.8l-.43-1.59c-2.083 1.355-4.515 2.074-7 2.07-4.28 0-6.1-2.93-6.1-7 0-4.76 2.07-6.58 6.82-6.58h5.62v-2.42c0-2.59-.72-3.51-4.47-3.51-2.182.023-4.356.264-6.49.72l-.72-4.47c2.606-.723 5.296-1.096 8-1.11 7.35 0 9.51 2.59 9.51 8.46l.06 15.43zm-5.86-8.84h-4.32c-1.92 0-2.45.53-2.45 2.31s.53 2.35 2.35 2.35c1.55-.022 3.07-.435 4.42-1.2v-3.46zm17.05 2.54c-.74.36-1.26 1.057-1.39 1.87 0 .62.38.91 1.3 1 2.59.29 4 .43 6.77.72 3.8.43 5 2.31 5 5.67 0 5-1.83 7-10.57 7-3.04.003-6.067-.4-9-1.2l.72-4.37c2.576.654 5.222.99 7.88 1 4.66 0 5.57-.34 5.57-1.87s-.43-1.68-2.21-1.87c-2.69-.29-3.8-.43-6.77-.77-3.31-.38-4.61-1.49-4.61-4.47.102-1.657 1.02-3.156 2.45-4-2.16-1.3-3.17-3.46-3.17-6.29V30c.1-4.85 2.64-7.78 9.42-7.78 1.348-.01 2.692.15 4 .48h7.21v2.93c-.82.24-1.78.48-2.59.72.558 1.135.84 2.386.82 3.65v2.21c0 4.76-2.88 7.64-9.42 7.64-.47.01-.94-.006-1.41-.05zm1.34-12.88c-2.88 0-3.89 1.06-3.89 3.27V32c0 2.31 1.15 3.17 3.89 3.17s3.94-.91 3.94-3.17v-1.81c.01-2.19-1-3.26-3.93-3.26l-.01-.01zm25.9.68c-2.148.973-4.217 2.11-6.19 3.4v15.1H150V22.7h5l.38 2.59c1.906-1.29 3.974-2.32 6.15-3.07l.56 5.38zm19.6 18.5h-4.8l-.43-1.59c-2.083 1.355-4.515 2.074-7 2.07-4.28 0-6.1-2.93-6.1-7 0-4.76 2.07-6.58 6.82-6.58h5.62v-2.42c0-2.59-.72-3.51-4.47-3.51-2.182.023-4.356.264-6.49.72l-.72-4.47c2.606-.723 5.296-1.096 8-1.11 7.35 0 9.51 2.59 9.51 8.46l.06 15.43zm-5.86-8.84h-4.32c-1.92 0-2.45.53-2.45 2.31s.53 2.35 2.35 2.35c1.55-.022 3.07-.435 4.42-1.2v-3.46zm23.3 8.84V29.76c0-1.25-.53-1.87-1.87-1.87-2.147.252-4.22.932-6.1 2V46.1h-5.86V22.7h4.47l.58 2c2.92-1.46 6.11-2.295 9.37-2.45 3.89 0 5.28 2.74 5.28 6.92v17l-5.87-.07zm23.11-.44c-1.653.578-3.39.886-5.14.91-4.28 0-6.44-2-6.44-6.2v-13h-3.51V22.7h3.51v-5.81l5.86-.82v6.63h6l-.38 4.66h-5.62v12.25c-.076.576.124 1.154.54 1.56.414.408.995.597 1.57.51.994-.03 1.98-.19 2.93-.48l.68 4.46z"></path>
+  <path class="front" fill="#1563FF" d="M58.03 10.12V4.63L44.84 12.3v4.64L34.29 39.7l-5.28 3.64v16.67l11.31-6.52 17.71-43.37zM29.01 31.47L21.1 13V7.78l-.05-.02-7.86 4.54v4.64L23.74 40.7l5.27-2.61v-6.62z"></path>
+  <path class="shadow" fill="#104EB2" d="M50.12.01L36.94 7.73h-.01V13l-7.92 18.47v6.17l-5.27 3.06-10.55-23.76v-4.65l7.92-4.55L7.91.01 0 4.63v5.66l17.81 43.25 11.2 6.47V43.76l5.28-3.06-.07-.04 10.62-23.72v-4.65l13.19-7.66"></path>
+</svg>
+
+  </div>
+
+  <ul class="nav sidebar-nav">
+    <li><a href="/intro/index.html">Intro</a></li>
+    <li><a href="/docs/index.html">Docs</a></li>
+    <li><a href="https://www.amazon.com/gp/product/1449335837/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1449335837&linkCode=as2&tag=vagrant-20" target="_TOP">Book</a></li>
+    <li><a href="/vmware/index.html">VMware</a></li>
+    <li><a href="/community.html">Community</a></li>
+    <li><a href="/assets/files/press-kit.zip">Press Kit</a></li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <ul class="external nav sidebar-nav">
+    <li>
+      <a href="/downloads.html">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 28 28" enable-background="new 0 0 28 28" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+  <path d="M28 0H0v28h28V0zM13.8 22.9L7 17.3l2-2.4 3.2 2.6V7h3.2v10.5l3.2-2.6 2 2.4L13.8 22.9z"></path>
+</svg>
+ Download
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/hashicorp/vagrant">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 28 28" enable-background="new 0 0 28 28" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+  <path d="M28 0H0v28h11.4c0 0 0-1.3 0-2.4C7.7 26.4 7 23.9 7 23.9 6.4 22.4 5.5 22 5.5 22c-1.2-0.8 0.1-0.8 0.1-0.8 1.3 0.1 2 1.4 2 1.4 1.2 2 3 1.4 3.8 1.1 0.1-0.8 0.5-1.4 0.9-1.8 -2.9-0.3-6-1.5-6-6.5 0-1.4 0.5-2.6 1.3-3.5C7.5 11.5 7 10.2 7.8 8.4c0 0 1.1-0.4 3.6 1.3 1-0.3 2.2-0.4 3.3-0.4 1.1 0 2.2 0.2 3.3 0.4 2.5-1.7 3.6-1.3 3.6-1.3 0.7 1.8 0.3 3.1 0.1 3.5 0.8 0.9 1.3 2.1 1.3 3.5 0 5-3.1 6.1-6 6.5 0.5 0.4 0.9 1.2 0.9 2.4 0 1.8 0 3.7 0 3.7H28V0z"></path>
+</svg>
+ GitHub
+      </a>
+    </li>
+  </ul>
+</aside>
+
+
+    <div class="container">
+  <div class="row">
+    <div id="docs-sidebar" class="col-sm-3 col-md-3 col-xs-12 hidden-print" role="complementary">
+          <ul class="nav docs-sidenav">
+      <li>
+        <a href="/docs/">Overview</a>
+      </li>
+
+      <li>
+        <a href="/docs/installation/">Installation</a>
+        <ul class="nav">
+          <li><a href="/docs/installation/backwards-compatibility.html">Backwards Compatibility</a></li>
+          <li><a href="/docs/installation/upgrading.html">Upgrading</a></li>
+          <li><a href="/docs/installation/upgrading-from-1-0.html">Upgrading from 1.0.x</a></li>
+          <li><a href="/docs/installation/source.html">From Source</a></li>
+          <li><a href="/docs/installation/uninstallation.html">Uninstallation</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/cli/">Commands (CLI)</a>
+        <ul class="nav">
+          <li><a href="/docs/cli/box.html">box</a></li>
+          <li><a href="/docs/cli/connect.html">connect</a></li>
+          <li><a href="/docs/cli/destroy.html">destroy</a></li>
+          <li><a href="/docs/cli/global-status.html">global-status</a></li>
+          <li><a href="/docs/cli/halt.html">halt</a></li>
+          <li><a href="/docs/cli/init.html">init</a></li>
+          <li><a href="/docs/cli/login.html">login</a></li>
+          <li><a href="/docs/cli/package.html">package</a></li>
+          <li><a href="/docs/cli/plugin.html">plugin</a></li>
+          <li><a href="/docs/cli/port.html">port</a></li>
+          <li><a href="/docs/cli/powershell.html">powershell</a></li>
+          <li><a href="/docs/cli/provision.html">provision</a></li>
+          <li><a href="/docs/cli/rdp.html">rdp</a></li>
+          <li><a href="/docs/cli/reload.html">reload</a></li>
+          <li><a href="/docs/cli/resume.html">resume</a></li>
+          <li><a href="/docs/cli/share.html">share</a></li>
+          <li><a href="/docs/cli/snapshot.html">snapshot</a></li>
+          <li><a href="/docs/cli/ssh.html">ssh</a></li>
+          <li><a href="/docs/cli/ssh_config.html">ssh-config</a></li>
+          <li><a href="/docs/cli/status.html">status</a></li>
+          <li><a href="/docs/cli/suspend.html">suspend</a></li>
+          <li><a href="/docs/cli/up.html">up</a></li>
+          <li><a href="/docs/cli/validate.html">validate</a></li>
+          <li><a href="/docs/cli/version.html">version</a></li>
+          <li><a href="/docs/cli/non-primary.html">More Commands</a></li>
+          <li><a href="/docs/cli/aliases.html">Aliases</a></li>
+          <li><a href="/docs/cli/machine-readable.html">Machine Readable Output</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/share/">Vagrant Share</a>
+        <ul class="nav">
+          <li><a href="/docs/share/http.html">HTTP Sharing</a></li>
+          <li><a href="/docs/share/ssh.html">SSH Sharing</a></li>
+          <li><a href="/docs/share/connect.html">Connect</a></li>
+          <li><a href="/docs/share/security.html">Security</a></li>
+          <li><a href="/docs/share/provider.html">Custom Provider</a></li>
+        </ul>
+      </li>
+
+      <li >
+        <a href="/docs/vagrantfile/">Vagrantfile</a>
+        <ul class="nav">
+          <li><a href="/docs/vagrantfile/version.html">Configuration Version</a></li>
+          <li><a href="/docs/vagrantfile/vagrant_version.html">Minimum Vagrant Version</a></li>
+          <li><a href="/docs/vagrantfile/tips.html">Tips &amp; Tricks</a></li>
+          <li><a href="/docs/vagrantfile/machine_settings.html"><tt>config.vm</tt></a></li>
+          <li><a href="/docs/vagrantfile/ssh_settings.html"><tt>config.ssh</tt></a></li>
+          <li><a href="/docs/vagrantfile/winrm_settings.html"><tt>config.winrm</tt></a></li>
+          <li><a href="/docs/vagrantfile/winssh_settings.html"><tt>config.winssh</tt></a></li>
+          <li><a href="/docs/vagrantfile/vagrant_settings.html"><tt>config.vagrant</tt></a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/boxes.html">Boxes</a>
+        <ul class="nav">
+          <li><a href="/docs/boxes/versioning.html">Box Versioning</a></li>
+          <li><a href="/docs/boxes/base.html">Creating a Base Box</a></li>
+          <li><a href="/docs/boxes/format.html">Box File Format</a></li>
+          <li><a href="/docs/boxes/info.html">Box Info Format</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/provisioning/">Provisioning</a>
+        <ul class="nav">
+          <li><a href="/docs/provisioning/basic_usage.html">Basic Usage</a></li>
+          <li><a href="/docs/provisioning/file.html">File</a></li>
+          <li><a href="/docs/provisioning/shell.html">Shell</a></li>
+          <li><a href="/docs/provisioning/ansible.html">Ansible</a></li>
+          <li><a href="/docs/provisioning/ansible_local.html">Ansible Local</a></li>
+          <li><a href="/docs/provisioning/cfengine.html">CFEngine</a></li>
+          <li><a href="/docs/provisioning/chef_solo.html">Chef Solo</a></li>
+          <li><a href="/docs/provisioning/chef_zero.html">Chef Zero</a></li>
+          <li><a href="/docs/provisioning/chef_client.html">Chef Client</a></li>
+          <li><a href="/docs/provisioning/chef_apply.html">Chef Apply</a></li>
+          <li><a href="/docs/provisioning/docker.html">Docker</a></li>
+          <li><a href="/docs/provisioning/puppet_apply.html">Puppet Apply</a></li>
+          <li><a href="/docs/provisioning/puppet_agent.html">Puppet Agent</a></li>
+          <li><a href="/docs/provisioning/salt.html">Salt</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/networking/">Networking</a>
+        <ul class="nav">
+          <li><a href="/docs/networking/basic_usage.html">Basic Usage</a></li>
+          <li><a href="/docs/networking/forwarded_ports.html">Forwarded Ports</a></li>
+          <li><a href="/docs/networking/private_network.html">Private Network</a></li>
+          <li><a href="/docs/networking/public_network.html">Public Network</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/synced-folders/">Synced Folders</a>
+        <ul class="nav">
+          <li><a href="/docs/synced-folders/basic_usage.html">Basic Usage</a></li>
+          <li><a href="/docs/synced-folders/nfs.html">NFS</a></li>
+          <li><a href="/docs/synced-folders/rsync.html">RSync</a></li>
+          <li><a href="/docs/synced-folders/smb.html">SMB</a></li>
+          <li><a href="/docs/synced-folders/virtualbox.html">VirtualBox</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/multi-machine/">Multi-Machine</a>
+      </li>
+
+      <li>
+        <a href="/docs/providers/">Providers</a>
+        <ul class="nav">
+          <li><a href="/docs/providers/installation.html">Installation</a></li>
+          <li><a href="/docs/providers/basic_usage.html">Basic Usage</a></li>
+          <li><a href="/docs/providers/configuration.html">Configuration</a></li>
+          <li><a href="/docs/providers/default.html">Default Provider</a></li>
+          <li>
+            <a href="/docs/virtualbox/">VirtualBox</a>
+            <ul class="nav">
+              <li><a href="/docs/virtualbox/usage.html">Usage</a></li>
+              <li><a href="/docs/virtualbox/boxes.html">Creating a Base Box</a></li>
+              <li><a href="/docs/virtualbox/configuration.html">Configuration</a></li>
+              <li><a href="/docs/virtualbox/networking.html">Networking</a></li>
+              <li><a href="/docs/virtualbox/common-issues.html">Common Issues</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/docs/vmware/">VMware</a>
+            <ul class="nav">
+              <li><a href="/docs/vmware/installation.html">Installation</a></li>
+              <li><a href="/docs/vmware/vagrant-vmware-utility.html">VMware Utility</a></li>
+              <li><a href="/docs/vmware/usage.html">Usage</a></li>
+              <li><a href="/docs/vmware/boxes.html">Boxes</a></li>
+              <li><a href="/docs/vmware/configuration.html">Configuration</a></li>
+              <li><a href="/docs/vmware/known-issues.html">Known Issues</a></li>
+              <li><a href="/docs/vmware/kernel-upgrade.html">Kernel Upgrade</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/docs/docker/">Docker</a>
+            <ul class="nav">
+              <li><a href="/docs/docker/basics.html">Basic Usage</a></li>
+              <li><a href="/docs/docker/commands.html">Commands</a></li>
+              <li><a href="/docs/docker/boxes.html">Boxes</a></li>
+              <li><a href="/docs/docker/configuration.html">Configuration</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/docs/hyperv/">Hyper-V</a>
+            <ul class="nav">
+              <li><a href="/docs/hyperv/usage.html">Usage</a></li>
+              <li><a href="/docs/hyperv/boxes.html">Creating a Base Box</a></li>
+              <li><a href="/docs/hyperv/configuration.html">Configuration</a></li>
+              <li><a href="/docs/hyperv/limitations.html">Limitations</a></li>
+            </ul>
+          </li>
+          <li><a href="/docs/providers/custom.html">Custom Provider</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/plugins/">Plugins</a>
+        <ul class="nav">
+          <li><a href="/docs/plugins/usage.html">Usage</a></li>
+          <li><a href="/docs/plugins/development-basics.html">Plugin Development Basics</a></li>
+          <li><a href="/docs/plugins/action-hooks.html">Action Hooks</a></li>
+          <li><a href="/docs/plugins/commands.html">Commands</a></li>
+          <li><a href="/docs/plugins/configuration.html">Configuration</a></li>
+          <li><a href="/docs/plugins/guests.html">Guests</a></li>
+          <li><a href="/docs/plugins/guest-capabilities.html">Guest Capabilities</a></li>
+          <li><a href="/docs/plugins/hosts.html">Hosts</a></li>
+          <li><a href="/docs/plugins/host-capabilities.html">Host Capabilities</a></li>
+          <li><a href="/docs/plugins/providers.html">Providers</a></li>
+          <li><a href="/docs/plugins/provisioners.html">Provisioners</a></li>
+          <li><a href="/docs/plugins/packaging.html">Packaging &amp; Distribution</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/push/">Push</a>
+        <ul class="nav">
+          <li><a href="/docs/push/ftp.html">FTP / SFTP</a></li>
+          <li><a href="/docs/push/heroku.html">Heroku</a></li>
+          <li><a href="/docs/push/local-exec.html">Local Exec</a></li>
+        </ul>
+      </li>
+
+      <li class="active">
+        <a href="/docs/triggers/">Triggers</a>
+        <ul class="nav">
+          <li><a href="/docs/triggers/configuration.html">Configuration</a></li>
+          <li><a href="/docs/triggers/usage.html">Usage</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/other/">Other</a>
+        <ul class="nav">
+          <li><a href="/docs/other/debugging.html">Debugging</a></li>
+          <li><a href="/docs/other/environmental-variables.html">Environmental Variables</a></li>
+          <li><a href="/docs/other/wsl.html">WSL</a></li>
+        </ul>
+      </li>
+
+      <hr />
+
+      <li>
+        <a href="/docs/vagrant-cloud/">Vagrant Cloud</a>
+      </li>
+    </ul>
+
+    </div>
+
+    <div id="inner" class="col-sm-9 col-md-9 col-xs-12" role="main">
+      
+  <h1 id="vagrant-triggers">
+  <a name="vagrant-triggers" class="anchor" href="#vagrant-triggers">&raquo;</a>
+  Vagrant Triggers
+</h1>
+<p>As of version 2.1.0, Vagrant is capable of executing machine triggers <em>before</em> or
+<em>after</em> Vagrant commands.</p>
+<p>Each trigger is expected to be given a command key for when it should be fired
+during the Vagrant command lifecycle. These could be defined as a single key or
+an array which acts like a <em>whitelist</em> for the defined trigger.</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># single command trigger</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">trigger</span><span class="p">.</span><span class="nf">after</span> <span class="ss">:up</span> <span class="k">do</span> <span class="o">|</span><span class="n">trigger</span><span class="o">|</span>
+<span class="o">...</span>
+<span class="k">end</span>
+
+<span class="c1"># multiple commands for this trigger</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">trigger</span><span class="p">.</span><span class="nf">before</span> <span class="p">[</span><span class="ss">:up</span><span class="p">,</span> <span class="ss">:destroy</span><span class="p">,</span> <span class="ss">:halt</span><span class="p">,</span> <span class="ss">:package</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">trigger</span><span class="o">|</span>
+<span class="o">...</span>
+<span class="k">end</span>
+
+<span class="c1"># or defined as a splat list</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">trigger</span><span class="p">.</span><span class="nf">before</span> <span class="ss">:up</span><span class="p">,</span> <span class="ss">:destroy</span><span class="p">,</span> <span class="ss">:halt</span><span class="p">,</span> <span class="ss">:package</span> <span class="k">do</span> <span class="o">|</span><span class="n">trigger</span><span class="o">|</span>
+<span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div><p>Alternatively, the key <code>:all</code> could be given which would run the trigger before
+or after every Vagrant command. If there is a command you don&#39;t want the trigger
+to run on, you can ignore that command with the <code>ignore</code> option.</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># single command trigger</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">trigger</span><span class="p">.</span><span class="nf">before</span> <span class="ss">:all</span> <span class="k">do</span> <span class="o">|</span><span class="n">trigger</span><span class="o">|</span>
+  <span class="n">trigger</span><span class="p">.</span><span class="nf">info</span> <span class="o">=</span> <span class="s2">"Running a before trigger!"</span>
+  <span class="n">trigger</span><span class="p">.</span><span class="nf">ignore</span> <span class="o">=</span> <span class="p">[</span><span class="ss">:destroy</span><span class="p">,</span> <span class="ss">:halt</span><span class="p">]</span>
+<span class="k">end</span>
+</code></pre></div><p><strong>Note:</strong> <em>If a trigger is defined on a command that does not exist, a warning
+will be displayed.</em></p>
+<p>Triggers can be defined as a block or hash in a Vagrantfile. The example below
+will result in the same trigger:</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">config</span><span class="p">.</span><span class="nf">trigger</span><span class="p">.</span><span class="nf">after</span> <span class="ss">:up</span> <span class="k">do</span> <span class="o">|</span><span class="n">trigger</span><span class="o">|</span>
+  <span class="n">trigger</span><span class="p">.</span><span class="nf">name</span> <span class="o">=</span> <span class="s2">"Finished Message"</span>
+  <span class="n">trigger</span><span class="p">.</span><span class="nf">info</span> <span class="o">=</span> <span class="s2">"Machine is up!"</span>
+<span class="k">end</span>
+
+<span class="n">config</span><span class="p">.</span><span class="nf">trigger</span><span class="p">.</span><span class="nf">after</span> <span class="ss">:up</span><span class="p">,</span>
+  <span class="ss">name: </span><span class="s2">"Finished Message"</span><span class="p">,</span>
+  <span class="ss">info: </span><span class="s2">"Machine is up!"</span>
+</code></pre></div><p>Triggers can also be defined within the scope of guests in a Vagrantfile. These
+triggers will only run on the configured guest. An example of a guest only trigger:</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">config</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">define</span> <span class="s2">"ubuntu"</span> <span class="k">do</span> <span class="o">|</span><span class="n">ubuntu</span><span class="o">|</span>
+  <span class="n">ubuntu</span><span class="p">.</span><span class="nf">vm</span><span class="p">.</span><span class="nf">box</span> <span class="o">=</span> <span class="s2">"ubuntu"</span>
+  <span class="n">ubuntu</span><span class="p">.</span><span class="nf">trigger</span><span class="p">.</span><span class="nf">before</span> <span class="ss">:destroy</span> <span class="k">do</span> <span class="o">|</span><span class="n">trigger</span><span class="o">|</span>
+    <span class="n">trigger</span><span class="p">.</span><span class="nf">warn</span> <span class="o">=</span> <span class="s2">"Dumping database to /vagrant/outfile"</span>
+    <span class="n">trigger</span><span class="p">.</span><span class="nf">run_remote</span> <span class="o">=</span> <span class="p">{</span><span class="ss">inline: </span><span class="s2">"pg_dump dbname &gt; /vagrant/outfile"</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><p>Global and machine-scoped triggers will execute in the order that they are
+defined within a Vagrantfile. Take for example an abstracted Vagrantfile:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Vagrantfile
+  global trigger 1
+  global trigger 2
+  machine defined
+    machine trigger 3
+  global trigger 4
+end
+</code></pre></div><p>In this generic case, the triggers would fire in the order: 1 -&gt; 2 -&gt; 3 -&gt; 4</p>
+<p>For more information about what options are available for triggers, see the
+<a href="/docs/triggers/configuration.html">configuration section</a>.</p>
+
+
+    </div>
+  </div>
+</div>
+
+
+    <div id="footer" class="navigation hidden-print">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul class="footer-links nav navbar-nav">
+              <li><a href="/intro/index.html">Intro</a></li>
+              <li><a href="/docs/index.html">Docs</a></li>
+              <li><a href="https://www.amazon.com/gp/product/1449335837/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1449335837&linkCode=as2&tag=vagrant-20" target="_TOP">Book</a></li>
+              <li><a href="/vmware/index.html">VMware</a></li>
+              <li><a href="/community.html">Community</a></li>
+              <li><a href="https://www.hashicorp.com/privacy">Privacy</a></li>
+              <li><a href="/security.html">Security</a></li>
+              <li><a href="/assets/files/press-kit.zip">Press Kit</a></li>
+            </ul>
+            <ul class="footer-links nav navbar-nav navbar-right">
+              <li><a href="https://github.com/hashicorp/vagrant/blob/master/website/source/docs/triggers/index.html.md">Edit this page</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "Vagrant",
+        "alternateName": "Vagrant by HashiCorp",
+        "manufacturer": "HashiCorp",
+        "url": "https://www.vagrantup.com",
+        "logo": "https://www.vagrantup.com/assets/images/logo-hashicorp-e1aea9d4.svg",
+        "sameAs": [
+          "https://github.com/hashicorp/vagrant"
+        ]
+      }
+    </script>
+  </body>
+</html>

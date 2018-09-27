@@ -1,0 +1,18 @@
+{
+  "name": "Vagrant by HashiCorp",
+  "icons": [
+    {
+      "src": "/assets/images/favicons/android-chrome-192x192-42201cb2.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/favicons/android-chrome-512x512-a5e1eec7.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
