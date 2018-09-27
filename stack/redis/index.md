@@ -1,10 +1,13 @@
-REDIS
+***REDIS***
 =====
+
+Resources
+=========
 * [Try Redis -- Hands On](https://try.redis.io/)
 * [Redis Summary](https://www.tutorialspoint.com/redis/)
 
-NOTES
-=====
+Summary
+=======
 
 * In memory KV store with rich data types (string, hash, list, set, etc)
 ```

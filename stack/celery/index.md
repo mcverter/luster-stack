@@ -1,6 +1,12 @@
 ***CELERY***
+===========
+
+Resources
+=========
 [Celery Docs](http://docs.celeryproject.org/en/latest/index.html)
 
+Summary
+=======
 - Distributes work across threads or machines.
 - A task queue’s input is a unit of work called a task
 - Celery communicates via messages, usually using a broker to mediate between clients and workers.

@@ -1,7 +1,12 @@
 ***TMUX***
+==========
 
+Resources
+=========
 [A gentle guide to TMUX](https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340)
 
+Summary
+=======
 * A screen multiplexer
 * Allows you to divide the screen into several regions in which you can run several shells
 * Most useful for monitoring processes
