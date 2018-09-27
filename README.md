@@ -14,7 +14,7 @@
 - Bithub (I just googled it)
 - Redis (I have used it)
 - [Celery](./stack/celery/index.md) (***notes***)
-- CAP (Theorem (I just googled it)
+- [CAP Theorem](./stack/cap-theorem/index.md) (***notes***)
 - Database (Normalization I am fairly comfortable using it)
 
 **TAKE HOME QUIZ**
