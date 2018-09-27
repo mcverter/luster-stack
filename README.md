@@ -1,73 +1,23 @@
-**On your Linux distribution...**
+**LUSTER TECH STACK**
+======================
+- [Vagrant](./stack/vagrant/index.md) (I have used it)
+- [Supervisor](./stack/supervisor/index.md) I just googled it)
+- [Django](./stack/django/index.md) I am fairly comfortable using it)
+- [PostgreSQL](./stack/postgres/index.md) I am fairly comfortable using it)
+- [tmux](./stack/tmux/index.md) I just googled it)
+- [CI/CD](./stack/cicd/index.md) I just googled it)
+- [Ansible](./stack/ansible/index.md) I just googled it)
+- [Fabric](./stack/fabric/index.md) I just googled it)
+- [Jenkins](./stack/jenkins/index.md) I have used it)
+- [EC2](./stack/ec2/index.md) I am fairly comfortable using it)
+- [S3](./stack/s3/index.md) I am fairly comfortable using it)
+- [Bithub](./stack/bithub/index.md) I just googled it)
+- [Redis](./stack/redis/index.md) I have used it)
+- [Celery](./stack/celery/index.md) I just googled it)
+- [CAP Theorem](./stack/cp-theorem/index.md) (I just googled it)
+- [Database Normalization](./stack/db-normalization/index.md) I am fairly comfortable using it)
 
-How would you know if your program/process is running?
+**TAKE HOME QUIZ**
+======================
+- [Quiz Questions](./QuizQuestions.md) I am fairly comfortable using it)
 
-How would you know the system summary information - load and memory usage?
-
-Where would you look for logs of a running program/process (multiple answers are ok)?
-
-How would you look at realtime updates to a log file?
-
-Where would you look for scheduled programs/processes?
-
-Where would you look for daemons?
-
-How would you copy a file from your laptop to a server?
-
-
-**Database**
-
-What SQL table(s) would you create to hold Employees? We are interested in knowing what department they work in and how long they have been in with the company.
-
-From your table(s), how would you query number of employees per department?
-
-How would you query the Employee who has spent the most time in the company?
-
-**Python(Preferably) Or Javascript**
-
-FizzBuzz - Write a function that prints out numbers 1 though 50 except:
-- For multiples of 3 it prints out Fizz
-- For multiples of 5 it prints out Buzz
-- For multiples of 3 and 5 it prints out FizzBuzz
-
-If a second requirement comes up that we would like to print out Duck, Goose and DuckGoose instead of Fizz, Buzz and FizzBuzz and for numbers (2), (7) and (2,7) how would you handle it? Please answer with code.
-
-**For the following technologies/buzzwords, please fill one of these answers:**
-- Never Heard of It
-- I just googled it
-- Heard of it but never used it
-- I have used it
-- I am fairly comfortable using it
-- I am kind of an expert
-
-Vagrant
-
-Supervisor
-
-Django
-
-PostgreSQL
-
-tmux
-
-CI/CD
-
-Ansible
-
-Fabric
-
-Jenkins
-
-EC2
-
-S3
-
-Bithub
-
-Redis
-
-Celery
-
-CAP Theorem
-
-Database Normalization
