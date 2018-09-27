@@ -12,7 +12,7 @@
 - EC2 (I am fairly comfortable using it)
 - S3 (I am fairly comfortable using it)
 - Bithub (I just googled it)
-- Redis (I have used it)
+- [Redis](./stack/redis/index.md) (***notes***)
 - [Celery](./stack/celery/index.md) (***notes***)
 - [CAP Theorem](./stack/cap-theorem/index.md) (***notes***)
 - Database (Normalization I am fairly comfortable using it)
