@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Installing SpatiaLite | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/ref/contrib/gis/install/spatialite/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/ref/contrib/gis/install/spatialite/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/ref/contrib/gis/install/spatialite/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/ref/contrib/gis/install/spatialite/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/ref/contrib/gis/install/spatialite/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/ref/contrib/gis/install/spatialite/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/ref/contrib/gis/install/spatialite/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/ref/contrib/gis/install/spatialite/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/ref/contrib/gis/install/spatialite/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/ref/contrib/gis/install/spatialite/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/ref/contrib/gis/install/spatialite/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/ref/contrib/gis/install/spatialite/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/ref/contrib/gis/install/spatialite/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/ref/contrib/gis/install/spatialite/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/ref/contrib/gis/install/spatialite/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/ref/contrib/gis/install/spatialite/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/ref/contrib/gis/install/spatialite/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/ref/contrib/gis/install/spatialite/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/ref/contrib/gis/install/spatialite/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/ref/contrib/gis/install/spatialite/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/ref/contrib/gis/install/spatialite/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/ref/contrib/gis/install/spatialite/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/ref/contrib/gis/install/spatialite/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/ref/contrib/gis/install/spatialite/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/ref/contrib/gis/install/spatialite/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/ref/contrib/gis/install/spatialite/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/ref/contrib/gis/install/spatialite/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/ref/contrib/gis/install/spatialite/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-installing-spatialite">
+<span id="installing-spatialite"></span><h1>Installing SpatiaLite<a class="headerlink" href="#installing-spatialite" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.gaia-gis.it/fossil/libspatialite">SpatiaLite</a> adds spatial support to SQLite, turning it into a full-featured
+spatial database.</p>
+<p>First, check if you can install SpatiaLite from system packages or binaries.</p>
+<p>For example, on Debian-based distributions, try to install the
+<code class="docutils literal notranslate"><span class="pre">spatialite-bin</span></code> package. For distributions that package SpatiaLite 4.2+,
+install <code class="docutils literal notranslate"><span class="pre">libsqlite3-mod-spatialite</span></code>.</p>
+<p>For macOS, follow the <a class="reference internal" href="#spatialite-macos"><span class="std std-ref">instructions below</span></a>.</p>
+<p>For Windows, you may find binaries on the <a class="reference external" href="https://www.gaia-gis.it/gaia-sins/">Gaia-SINS</a> home page.</p>
+<p>In any case, you should always be able to <a class="reference internal" href="#spatialite-source"><span class="std std-ref">install from source</span></a>.</p>
+<div class="admonition-spatialite-library-path-setting-required-for-spatialite-4-2 admonition">
+<p class="first admonition-title"><code class="docutils literal notranslate"><span class="pre">SPATIALITE_LIBRARY_PATH</span></code> setting required for SpatiaLite 4.2+</p>
+<p>If you’re using SpatiaLite 4.2+, you must put this in your <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SPATIALITE_LIBRARY_PATH</span> <span class="o">=</span> <span class="s1">&#39;mod_spatialite&#39;</span>
+</pre></div>
+</div>
+<p class="last">Your operating system may require a different variant such as
+<code class="docutils literal notranslate"><span class="pre">mod_spatialite.so</span></code> (observed with Debian Buster and Ubuntu 18.04).</p>
+</div>
+<div class="section" id="s-installing-from-source">
+<span id="s-spatialite-source"></span><span id="installing-from-source"></span><span id="spatialite-source"></span><h2>Installing from source<a class="headerlink" href="#installing-from-source" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../geolibs/"><span class="doc">GEOS and PROJ.4</span></a> should be installed
+prior to building SpatiaLite.</p>
+<div class="section" id="s-sqlite">
+<span id="sqlite"></span><h3>SQLite<a class="headerlink" href="#sqlite" title="Permalink to this headline">¶</a></h3>
+<p>Check first if SQLite is compiled with the <a class="reference external" href="https://www.sqlite.org/rtree.html">R*Tree module</a>. Run the sqlite3
+command line interface and enter the following query:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="n">CREATE</span> <span class="n">VIRTUAL</span> <span class="n">TABLE</span> <span class="n">testrtree</span> <span class="n">USING</span> <span class="n">rtree</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span><span class="n">minX</span><span class="p">,</span><span class="n">maxX</span><span class="p">,</span><span class="n">minY</span><span class="p">,</span><span class="n">maxY</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If you obtain an error, you will have to recompile SQLite from source. Otherwise,
+just skip this section.</p>
+<p>To install from sources, download the latest amalgamation source archive from
+the <a class="reference external" href="https://www.sqlite.org/download.html">SQLite download page</a>, and extract:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://www.sqlite.org/YYYY/sqlite-amalgamation-XXX0000.zip
+$ unzip sqlite-amalgamation-XXX0000.zip
+$ cd sqlite-amalgamation-XXX0000
+</pre></div>
+</div>
+<p>Next, run the <code class="docutils literal notranslate"><span class="pre">configure</span></code> script – however the <code class="docutils literal notranslate"><span class="pre">CFLAGS</span></code> environment variable
+needs to be customized so that SQLite knows to build the R*Tree module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ CFLAGS=&quot;-DSQLITE_ENABLE_RTREE=1&quot; ./configure
+$ make
+$ sudo make install
+$ cd ..
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-spatialite-library-libspatialite">
+<span id="s-spatialitebuild"></span><span id="spatialite-library-libspatialite"></span><span id="spatialitebuild"></span><h3>SpatiaLite library (<code class="docutils literal notranslate"><span class="pre">libspatialite</span></code>)<a class="headerlink" href="#spatialite-library-libspatialite" title="Permalink to this headline">¶</a></h3>
+<p>Get the latest SpatiaLite library source bundle from the
+<a class="reference external" href="http://www.gaia-gis.it/gaia-sins/libspatialite-sources/">download page</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-X.Y.Z.tar.gz
+$ tar xaf libspatialite-X.Y.Z.tar.gz
+$ cd libspatialite-X.Y.Z
+$ ./configure
+$ make
+$ sudo make install
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For macOS users building from source, the SpatiaLite library <em>and</em> tools
+need to have their <code class="docutils literal notranslate"><span class="pre">target</span></code> configured:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./configure --target=macosx
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="s-macos-specific-instructions">
+<span id="s-spatialite-macos"></span><span id="macos-specific-instructions"></span><span id="spatialite-macos"></span><h2>macOS-specific instructions<a class="headerlink" href="#macos-specific-instructions" title="Permalink to this headline">¶</a></h2>
+<p>To install the SpatiaLite library and tools, macOS users can choose between
+<a class="reference internal" href="../#kyngchaos"><span class="std std-ref">KyngChaos packages</span></a> and <a class="reference external" href="https://brew.sh/">Homebrew</a>.</p>
+<div class="section" id="s-kyngchaos">
+<span id="kyngchaos"></span><h3>KyngChaos<a class="headerlink" href="#kyngchaos" title="Permalink to this headline">¶</a></h3>
+<p>First, follow the instructions in the <a class="reference internal" href="../#kyngchaos"><span class="std std-ref">KyngChaos packages</span></a> section.</p>
+<p>When creating a SpatiaLite database, the <code class="docutils literal notranslate"><span class="pre">spatialite</span></code> program is required.
+However, instead of attempting to compile the SpatiaLite tools from source,
+download the <a class="reference external" href="https://www.gaia-gis.it/spatialite-2.3.1/binaries.html">SpatiaLite Binaries</a> for macOS, and install <code class="docutils literal notranslate"><span class="pre">spatialite</span></code> in a
+location available in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -O https://www.gaia-gis.it/spatialite/spatialite-tools-osx-x86-2.3.1.tar.gz
+$ tar xzf spatialite-tools-osx-x86-2.3.1.tar.gz
+$ cd spatialite-tools-osx-x86-2.3.1/bin
+$ sudo cp spatialite /Library/Frameworks/SQLite3.framework/Programs
+</pre></div>
+</div>
+<p>Finally, for GeoDjango to be able to find the KyngChaos SpatiaLite library,
+add the following to your <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SPATIALITE_LIBRARY_PATH</span><span class="o">=</span><span class="s1">&#39;/Library/Frameworks/SQLite3.framework/SQLite3&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-homebrew">
+<span id="homebrew"></span><h3>Homebrew<a class="headerlink" href="#homebrew" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://brew.sh/">Homebrew</a> handles all the SpatiaLite related packages on your behalf,
+including SQLite3, SpatiaLite, PROJ, and GEOS. Install them like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ brew update
+$ brew install spatialite-tools
+$ brew install gdal
+</pre></div>
+</div>
+<p>Finally, for GeoDjango to be able to find the SpatiaLite library, add the
+following to your <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SPATIALITE_LIBRARY_PATH</span><span class="o">=</span><span class="s1">&#39;/usr/local/lib/mod_spatialite.dylib&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../postgis/"><i class="icon icon-chevron-left"></i> Installing PostGIS</a></div>
+  
+  
+  <div class="right"><a href="../../model-api/">GeoDjango Model API <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Thomas Kwon donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Installing SpatiaLite</a><ul>
+<li><a class="reference internal" href="#installing-from-source">Installing from source</a><ul>
+<li><a class="reference internal" href="#sqlite">SQLite</a></li>
+<li><a class="reference internal" href="#spatialite-library-libspatialite">SpatiaLite library (<code class="docutils literal notranslate"><span class="pre">libspatialite</span></code>)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#macos-specific-instructions">macOS-specific instructions</a><ul>
+<li><a class="reference internal" href="#kyngchaos">KyngChaos</a></li>
+<li><a class="reference internal" href="#homebrew">Homebrew</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../postgis/">Installing PostGIS</a></li>
+    
+    
+    <li>Next: <a href="../../model-api/">GeoDjango Model API</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../../../">API Reference</a>
+      
+      <ul><li><a href="../../../"><code class="docutils literal notranslate"><span class="pre">contrib</span></code> packages</a>
+      
+      <ul><li><a href="../../">GeoDjango</a>
+      
+      <ul><li><a href="../">GeoDjango Installation</a>
+      
+      <ul><li>Installing SpatiaLite</li></ul>
+      </li></ul></li></ul></li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

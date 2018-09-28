@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Confluence Publisher
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Confluence Publisher' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Confluence Publisher' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Confluence Publisher' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/pipeline/steps/confluence-publisher/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Confluence Publisher' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<p>
+<a href="https://jenkins.io/doc" class="">Jenkins User Documentation Home</a>
+</p>
+<h4>
+Guided Tour
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/getting-started" class="">Getting started</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/hello-world" class="">Creating your first Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps" class="">Running multiple steps</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/agents" class="">Defining execution environments</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/environment" class="">Using environment variables</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/tests-and-artifacts" class="">Recording test results and artifacts</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/post" class="">Cleaning up and notifications</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/deployment" class="">Deployment</a>
+</li>
+</ul>
+<h4>
+Tutorials
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/tutorials" class="">Overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-java-app-with-maven" class="">Build a Java app with Maven</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm" class="">Build a Node.js and React app with npm</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller" class="">Build a Python app with PyInstaller</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean" class="">Create a Pipeline in Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project" class="">End-to-End Multibranch Pipeline Project Creation</a>
+</li>
+</ul>
+<h4>
+User Handbook
+<span style='font-size: 0.6rem; vertical-align: middle;'>
+<a href='/user-handbook.pdf'>
+(PDF)
+</a>
+</span>
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/getting-started" class="">User Handbook overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/installing" class="">Installing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/using" class="">Using Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline" class="">Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean" class="">Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing" class="">Managing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/system-administration" class="">System Administration</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/scaling" class="">Scaling Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/appendix" class="">Appendix</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/glossary" class="">Glossary</a>
+</li>
+</ul>
+<h4>
+Resources
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/steps" class="">Pipeline Steps reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/upgrade-guide" class="">LTS Upgrade Guide</a>
+</li>
+</ul>
+<h5>
+Recent Tutorial Blog Posts
+</h5>
+<ul>
+<li>
+<a href='/blog/2017/11/27/tutorials-in-the-jenkins-user-documentation/'>
+Introducing Tutorials in the Jenkins User Documentation
+</a>
+</li>
+<li>
+<a href='/blog/2017/05/18/pipeline-dev-tools/'>
+Pipeline Development Tools
+</a>
+</li>
+<li>
+<a href='/blog/2017/04/12/welcome-to-blue-ocean-dashboard/'>
+Getting Started with the Blue Ocean Dashboard
+</a>
+</li>
+</ul>
+<div class='small'>
+<a href='/node/tags/tutorial'>
+View all tutorial blog posts
+</a>
+</div>
+<p></p>
+</div>
+</div>
+<div class='col-lg-9'>
+<p>
+The following plugin provides functionality available through
+Pipeline-compatible steps. Read more about how to integrate steps into your
+Pipeline in the
+<a href='https://jenkins.io/doc/book/pipeline/syntax/#declarative-steps'>Steps</a>
+section of the
+<a href='https://jenkins.io/doc/book/pipeline/syntax'>Pipeline Syntax</a>
+page.
+</p>
+<p>
+For a list of other such plugins, see the
+<a href='https://jenkins.io/doc/pipeline/steps/'>Pipeline Steps Reference</a>
+page.
+</p>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#confluence-publisher">Confluence Publisher</a>
+<ul class="sectlevel2">
+<li><a href="#publishconfluence-publish-to-confluence"><code>publishConfluence</code>: Publish to Confluence</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="confluence-publisher"><a class="anchor" href="#confluence-publisher"></a>Confluence Publisher</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://plugins.jenkins.io/confluence-publisher">View this plugin on the Plugins Index</a></p>
+</div>
+<div class="sect2">
+<h3 id="publishconfluence-publish-to-confluence"><a class="anchor" href="#publishconfluence-publish-to-confluence"></a><code>publishConfluence</code>: Publish to Confluence</h3>
+<ul><li><code>siteName</code>
+<div><div>
+  Choose the Confluence site to connect to. These sites are configured in the
+ <a rel="nofollow">Global Configuration</a>.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>spaceName</code>
+<div><div>
+  Enter the Space name of the wiki page. E.g., the string after "display" in the page's URL: http://confluence.example.com/display/
+ <u>Space</u>/Page
+ <p></p> If the Space name contains a build-time variable, the validity of the name cannot be verified until build-time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pageName</code>
+<div><div>
+  Enter the Space name of the wiki page. E.g., the string after the Space name in the page's URL: http://confluence.example.com/display/Space/
+ <u>Page</u>
+ <p></p> If the Space name or Page name contains a build-time variable, the validity of the page cannot be verified until build-time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>attachArchivedArtifacts</code> (optional)
+<div><div>
+  If checked, the plugin will automatically upload all of the archived artifacts (from the Artifact Archiver plugin). In that case, you don't need to reiterate the fileset pattern that is configured for the archiver.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>buildIfUnstable</code> (optional)
+<div><div>
+  If checked, the plugin will continue publishing, even if the build was not successful. In that case, you can use the ${BUILD_RESULT} build variable to indicate the current build result.
+ <p></p> If this box is
+ <b>not</b> checked, then ${BUILD_RESULT} can always only be "SUCCESS".
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>editorList</code> (optional)
+<div><div>
+  Configure wiki markup generation and replacement/insertion settings.
+ <p></p> Available markup generators:
+ <ul>
+  <p>You can get links of uploaded attachments. Variable like $LINK[n] will be replaced with link which match link of uploaded attachment on Confluence.Where <b>n</b> is position number of attached file(links in array LINK[] will be provided in uploading order on Confluence). Example of usage: </p>
+  <p> &lt;a href="$LINK[0]"&gt;$JOB_NAME build artifact&lt;/a&gt;</p>
+  <p></p>
+  <li><b>Plain text</b><br> Enter custom text for the replacement. Build variables in the replacement text will be expanded.</li>
+ </ul> Available editors:
+ <ul>
+  <li><b>Prepend</b><br> Content is added to the very beginning of the page</li>
+  <li><b>Append</b><br> Content is added to the very end of the page.</li>
+  <li><b>Before Token</b><br> Content is inserted before a configurable marker token.</li>
+  <li><b>After Token</b><br> Content is inserted after a configurable marker token.</li>
+  <li><b>Between Tokens</b><br> Content is inserted between two configurable start/end marker tokens. Existing content between the tokens is replaced.</li>
+ </ul>
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Choice of Objects</b>
+<li><code>confluenceAfterToken</code></li>
+<div><div>
+  The generated content will be inserted immediately after the marker token (with a newline separator).
+ <p></p> Example:
+ <ul>
+  <li>Token = "{jenkins-marker:after}"</li>
+  <li>Generated text = "2011-06-19"</li>
+  <li>Existing content:
+   <blockquote>
+    <pre>Lorem ipsum
+{jenkins-marker:after}
+Ipsum lorem</pre>
+   </blockquote></li>
+  <li>New content:
+   <blockquote>
+    <pre>Lorem ipsum
+{jenkins-marker:after}
+2011-06-19
+Ipsum lorem</pre>
+   </blockquote></li>
+ </ul>
+ <p></p> If you have administrative access to your Confluence installation, consider creating a custom user macro:
+ <ul>
+  <li>Name: jenkins-marker</li>
+  <li>[ ] Macro has a body (<i><b>uncheck</b> the box</i>)</li>
+  <li>"Macro generates HTML markup"</li>
+  <li>Template: <i>**blank**</i></li>
+ </ul> This will create a new macro ("{jenkins-marker}"), which you can use to mark the location after which content will be inserted. Using the confluence macro tag parameter capability, you can reuse this single tag configuration for several single-token (Before/After) editors, by simply making the string after the colon unique (e.g., "{jenkins-marker:build-url-inserted-after-this}").
+ <p></p> This token configuration does not render in the wiki output.
+</div></div>
+<ul><li><code>generator</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>confluenceFile</code></li>
+<ul><li><code>filename</code>
+<div><div>
+  Enter a filename relative to the workspace directory. The file's contents will be used as markup replacement for the editor. Note: the file should be in text format, and should contain text content that is already suitable for wiki rendering.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>confluenceText</code></li>
+<ul><li><code>text</code>
+<div><div>
+  Enter custom text for the replacement. Build variables in the replacement text will be expanded.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+<li><code>markerToken</code>
+<div><div>
+ <p>Enter the marker token where the content should be inserted. The replacement content will be inserted <b>after</b> this token.</p>
+ <p>The token should already exist in the configured Confluence page markup.</p>
+ <p>Example: "<i>{jenkins-marker:build-urls}</i>"</p>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>confluenceAppendPage</code></li>
+<div><div>
+  The generated content will be inserted at the end of the page content (e.g., "&lt;existing-content&gt; + &lt;newline&gt; + &lt;generated&gt;").
+</div></div>
+<ul><li><code>generator</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>confluenceFile</code></li>
+<ul><li><code>filename</code>
+<div><div>
+  Enter a filename relative to the workspace directory. The file's contents will be used as markup replacement for the editor. Note: the file should be in text format, and should contain text content that is already suitable for wiki rendering.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>confluenceText</code></li>
+<ul><li><code>text</code>
+<div><div>
+  Enter custom text for the replacement. Build variables in the replacement text will be expanded.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+</ul><li><code>confluenceBeforeToken</code></li>
+<div><div>
+  The generated content will be inserted immediately before the marker token (with a newline separator).
+ <p></p> Example:
+ <ul>
+  <li>Token = "{jenkins-marker:before}"</li>
+  <li>Generated text = "2011-06-19"</li>
+  <li>Existing content:
+   <blockquote>
+    <pre>Lorem ipsum
+{jenkins-marker:before}
+Ipsum lorem</pre>
+   </blockquote></li>
+  <li>New content:
+   <blockquote>
+    <pre>Lorem ipsum
+2011-06-19
+{jenkins-marker:before}
+Ipsum lorem</pre>
+   </blockquote></li>
+ </ul>
+ <p></p> If you have administrative access to your Confluence installation, consider creating a custom user macro:
+ <ul>
+  <li>Name: jenkins-marker</li>
+  <li>[ ] Macro has a body (<i><b>uncheck</b> the box</i>)</li>
+  <li>"Macro generates HTML markup"</li>
+  <li>Template: <i>**blank**</i></li>
+ </ul> This will create a new macro ("{jenkins-marker}"), which you can use to mark the location before which content will be inserted. Using the confluence macro tag parameter capability, you can reuse this single tag configuration for several single-token (Before/After) editors, by simply making the string after the colon unique (e.g., "{jenkins-marker:build-url-inserted-before-this}").
+ <p></p> This token configuration does not render in the wiki output.
+</div></div>
+<ul><li><code>generator</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>confluenceFile</code></li>
+<ul><li><code>filename</code>
+<div><div>
+  Enter a filename relative to the workspace directory. The file's contents will be used as markup replacement for the editor. Note: the file should be in text format, and should contain text content that is already suitable for wiki rendering.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>confluenceText</code></li>
+<ul><li><code>text</code>
+<div><div>
+  Enter custom text for the replacement. Build variables in the replacement text will be expanded.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+<li><code>markerToken</code>
+<div><div>
+ <p>Enter the marker token where the content should be inserted. The replacement content will be inserted <b>before</b> this token.</p>
+ <p>The token should already exist in the configured Confluence page markup.</p>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>confluenceBetweenTokens</code></li>
+<div><div>
+  The generated content will be inserted between the START and END markers. Both markers must exist in the page. Any existing content between the markers will be
+ <b>replaced</b>.
+ <p></p> Example:
+ <ul>
+  <li>Start Token = "{jenkins-between:start|token=replaced-section}"</li>
+  <li>End Token = "{jenkins-between:end|token=replaced-section}"</li>
+  <li>Generated text = "2011-06-19"</li>
+  <li>Existing content:
+   <blockquote>
+    <pre>Lorem ipsum
+{jenkins-between:start|token=replaced-section}
+previous content
+{jenkins-between:end|token=replaced-section}
+Ipsum lorem</pre>
+   </blockquote></li>
+  <li>New content:
+   <blockquote>
+    <pre>Lorem ipsum
+{jenkins-between:start|token=replaced-section}
+2011-06-19
+{jenkins-between:end|token=replaced-section}
+Ipsum lorem</pre>
+   </blockquote></li>
+ </ul>
+ <p></p> If you have administrative access to your Confluence installation, consider creating a custom user macro:
+ <ul>
+  <li>Name: jenkins-between</li>
+  <li>[X] Macro has a body</li>
+  <li>"Use unprocessed macro body"</li>
+  <li>"Macro generates wiki markup"</li>
+  <li>Template: <i>**blank**</i></li>
+ </ul> This will create a new macro ("{jenkins-between}"), which you can use to mark the start/end tokens. Using the Confluence macro tag parameter capability, you can use this single tag configuration for several "Between start/end token" edits, and simply make each individual editor configuration use a unique parameter (also remember to make the start/end tags unique as well).
+ <p></p> This token configuration maintains the Wiki rendering aspect of the replacement text, and the token does not render in the formatted wiki output.
+</div></div>
+<ul><li><code>generator</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>confluenceFile</code></li>
+<ul><li><code>filename</code>
+<div><div>
+  Enter a filename relative to the workspace directory. The file's contents will be used as markup replacement for the editor. Note: the file should be in text format, and should contain text content that is already suitable for wiki rendering.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>confluenceText</code></li>
+<ul><li><code>text</code>
+<div><div>
+  Enter custom text for the replacement. Build variables in the replacement text will be expanded.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+<li><code>startMarkerToken</code>
+<div><div>
+  Enter the token where the marked section should
+ <b>begin</b>. The replacement content will be inserted after this token.
+ <p></p> Both tokens should already exist in the configured Confluence page markup.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>endMarkerToken</code>
+<div><div>
+  Enter the token where the marked section should
+ <b>end</b>. The replacement content will be inserted before this token.
+ <p></p> Both tokens should already exist in the configured Confluence page markup.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>confluenceWritePage</code></li>
+<div><div>
+  The generated content will replace the entire page's content.
+ <b>Use with care</b>
+</div></div>
+<ul><li><code>generator</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>confluenceFile</code></li>
+<ul><li><code>filename</code>
+<div><div>
+  Enter a filename relative to the workspace directory. The file's contents will be used as markup replacement for the editor. Note: the file should be in text format, and should contain text content that is already suitable for wiki rendering.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>confluenceText</code></li>
+<ul><li><code>text</code>
+<div><div>
+  Enter custom text for the replacement. Build variables in the replacement text will be expanded.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+</ul><li><code>confluencePrependPage</code></li>
+<div><div>
+  The generated content will be inserted at the beginning of the page content (e.g., "&lt;generated&gt; + &lt;newline&gt; + &lt;existing-content&gt;").
+</div></div>
+<ul><li><code>generator</code>
+<ul><b>Nested Choice of Objects</b>
+<li><code>confluenceFile</code></li>
+<ul><li><code>filename</code>
+<div><div>
+  Enter a filename relative to the workspace directory. The file's contents will be used as markup replacement for the editor. Note: the file should be in text format, and should contain text content that is already suitable for wiki rendering.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul><li><code>confluenceText</code></li>
+<ul><li><code>text</code>
+<div><div>
+  Enter custom text for the replacement. Build variables in the replacement text will be expanded.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></ul></li>
+</ul></ul></li>
+<li><code>fileSet</code> (optional)
+<div><div>
+  Can use wildcards like 'module/dist/**/*.zip'. See
+ <a href="http://ant.apache.org/manual/Types/fileset.html" rel="nofollow"> the @includes of Ant fileset</a> for the exact format. The base directory is
+ <a rel="nofollow">the workspace</a>.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>labels</code> (optional)
+<div><div>
+  Comma, or space, separated list of labels to apply to the Confluence page.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>parentId</code> (optional)
+<div><div>
+  (Optional) Enter the page ID of the parent wiki page. You can find this identifier by accessing the parent page in question, and then selecting "Page Information" or "Page History" from the Confluence
+ <em>Tools</em> menu. The pageId will appear as a query parameter in the address bar. e.g. (
+ <code>pageId=1234567</code>)
+ <p></p> If a parent is not specified, the space home will be used as the parent.
+ <p></p> This field is used for creating new pages only. If the page already exists, then parentId is discarded.
+</div></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>replaceAttachments</code> (optional)
+<div><div>
+  If checked, the plugin will automatically replace the existing file with the new file with the same name. For correct work jenkins user should have permission to delete files from selected page.
+ <b>BE CAREFULE WITH THIS OPTION</b>
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'></div>
+<!-- starting partial _feedback-footer.html -->
+<!-- HTML inclusion for chapter and section layouts (i.e. as footers) as well as
+     for use in AsciiDoc file inclusions. -->
+
+<!--
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+-->
+
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(window.location.href);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<p><a href="#feedback" data-toggle="collapse">Was this page helpful?</a></p>
+
+<div id="feedback" class="collapse">
+
+<p>Please submit your feedback about this page through this
+<a href="/doc/feedback-form/">quick form</a>.</p>
+
+<p>Alternatively, if you don't wish to complete the quick form, you can simply
+indicate if you found this page helpful?</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the current URL into the form. -->
+<input type="hidden" name="entry.1246830226" id="current-url" value=""/>
+
+<!-- The answer bit -->
+<p><input type="radio" name="entry.790002525" id="h1" value="Yes" required/>
+<label for="h1">Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="entry.790002525" id="h2" value="No"/>
+<label for="h2">No</label></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+</form>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1IIdpVs39JDYKg0sLQIv-MNO928qcGApAIfdW5ohfD78" target="_blank">here</a>.</p>
+
+</div>
+
+<!-- ending partial _feedback-footer.html -->
+
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

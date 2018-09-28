@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Pipeline Utility Steps
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Pipeline Utility Steps' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Pipeline Utility Steps' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Pipeline Utility Steps' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/pipeline/steps/pipeline-utility-steps/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Pipeline Utility Steps' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<p>
+<a href="https://jenkins.io/doc" class="">Jenkins User Documentation Home</a>
+</p>
+<h4>
+Guided Tour
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/getting-started" class="">Getting started</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/hello-world" class="">Creating your first Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps" class="">Running multiple steps</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/agents" class="">Defining execution environments</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/environment" class="">Using environment variables</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/tests-and-artifacts" class="">Recording test results and artifacts</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/post" class="">Cleaning up and notifications</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/deployment" class="">Deployment</a>
+</li>
+</ul>
+<h4>
+Tutorials
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/tutorials" class="">Overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-java-app-with-maven" class="">Build a Java app with Maven</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm" class="">Build a Node.js and React app with npm</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller" class="">Build a Python app with PyInstaller</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean" class="">Create a Pipeline in Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project" class="">End-to-End Multibranch Pipeline Project Creation</a>
+</li>
+</ul>
+<h4>
+User Handbook
+<span style='font-size: 0.6rem; vertical-align: middle;'>
+<a href='/user-handbook.pdf'>
+(PDF)
+</a>
+</span>
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/getting-started" class="">User Handbook overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/installing" class="">Installing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/using" class="">Using Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline" class="">Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean" class="">Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing" class="">Managing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/system-administration" class="">System Administration</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/scaling" class="">Scaling Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/appendix" class="">Appendix</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/glossary" class="">Glossary</a>
+</li>
+</ul>
+<h4>
+Resources
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/steps" class="">Pipeline Steps reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/upgrade-guide" class="">LTS Upgrade Guide</a>
+</li>
+</ul>
+<h5>
+Recent Tutorial Blog Posts
+</h5>
+<ul>
+<li>
+<a href='/blog/2017/11/27/tutorials-in-the-jenkins-user-documentation/'>
+Introducing Tutorials in the Jenkins User Documentation
+</a>
+</li>
+<li>
+<a href='/blog/2017/05/18/pipeline-dev-tools/'>
+Pipeline Development Tools
+</a>
+</li>
+<li>
+<a href='/blog/2017/04/12/welcome-to-blue-ocean-dashboard/'>
+Getting Started with the Blue Ocean Dashboard
+</a>
+</li>
+</ul>
+<div class='small'>
+<a href='/node/tags/tutorial'>
+View all tutorial blog posts
+</a>
+</div>
+<p></p>
+</div>
+</div>
+<div class='col-lg-9'>
+<p>
+The following plugin provides functionality available through
+Pipeline-compatible steps. Read more about how to integrate steps into your
+Pipeline in the
+<a href='https://jenkins.io/doc/book/pipeline/syntax/#declarative-steps'>Steps</a>
+section of the
+<a href='https://jenkins.io/doc/book/pipeline/syntax'>Pipeline Syntax</a>
+page.
+</p>
+<p>
+For a list of other such plugins, see the
+<a href='https://jenkins.io/doc/pipeline/steps/'>Pipeline Steps Reference</a>
+page.
+</p>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#pipeline-utility-steps">Pipeline Utility Steps</a>
+<ul class="sectlevel2">
+<li><a href="#findfiles-find-files-in-the-workspace"><code>findFiles</code>: Find files in the workspace</a></li>
+<li><a href="#nodesbylabel-list-of-nodes-by-label-by-default-excludes-offline-nodes"><code>nodesByLabel</code>: List of nodes by Label, by default excludes offline nodes.</a></li>
+<li><a href="#readjson-read-json-from-files-in-the-workspace"><code>readJSON</code>: Read JSON from files in the workspace.</a></li>
+<li><a href="#readmanifest-read-a-jar-manifest"><code>readManifest</code>: Read a Jar Manifest</a></li>
+<li><a href="#readmavenpom-read-a-maven-project-file"><code>readMavenPom</code>: Read a maven project file.</a></li>
+<li><a href="#readproperties-read-properties-from-files-in-the-workspace-or-text"><code>readProperties</code>: Read properties from files in the workspace or text.</a></li>
+<li><a href="#readyaml-read-yaml-from-files-in-the-workspace-or-text"><code>readYaml</code>: Read yaml from files in the workspace or text.</a></li>
+<li><a href="#sha1-compute-the-sha1-of-a-given-file"><code>sha1</code>: Compute the SHA1 of a given file</a></li>
+<li><a href="#tee-tee-output-to-file"><code>tee</code>: Tee output to file</a></li>
+<li><a href="#touch-create-a-file-if-not-already-exist-in-the-workspace-and-set-the-timestamp"><code>touch</code>: Create a file (if not already exist) in the workspace, and set the timestamp</a></li>
+<li><a href="#unzip-extract-zip-file"><code>unzip</code>: Extract Zip file</a></li>
+<li><a href="#writejson-write-json-to-a-file-in-the-workspace"><code>writeJSON</code>: Write JSON to a file in the workspace.</a></li>
+<li><a href="#writemavenpom-write-a-maven-project-file"><code>writeMavenPom</code>: Write a maven project file.</a></li>
+<li><a href="#writeyaml-write-a-yaml-from-an-object"><code>writeYaml</code>: Write a yaml from an object.</a></li>
+<li><a href="#zip-create-zip-file"><code>zip</code>: Create Zip file</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="pipeline-utility-steps"><a class="anchor" href="#pipeline-utility-steps"></a>Pipeline Utility Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://plugins.jenkins.io/pipeline-utility-steps">View this plugin on the Plugins Index</a></p>
+</div>
+<div class="sect2">
+<h3 id="findfiles-find-files-in-the-workspace"><a class="anchor" href="#findfiles-find-files-in-the-workspace"></a><code>findFiles</code>: Find files in the workspace</h3>
+<div><p> Find files in the current working directory. The step returns an array of file info objects who's properties you can see in the below example.<br> <em>Ex: </em> <code> def files = findFiles(glob: '**/TEST-*.xml') echo """${files[0].name} ${files[0].path} ${files[0].directory} ${files[0].length} ${files[0].lastModified}""" </code> </p></div>
+<ul><li><code>glob</code> (optional)
+<div><p> <a href="https://ant.apache.org/manual/dirtasks.html#patterns" rel="nofollow">Ant style pattern</a> of file paths that should match. If this property is set all descendants of the current working directory will be searched for a match and returned, if it is omitted only the direct descendants of the directory will be returned. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="nodesbylabel-list-of-nodes-by-label-by-default-excludes-offline-nodes"><a class="anchor" href="#nodesbylabel-list-of-nodes-by-label-by-default-excludes-offline-nodes"></a><code>nodesByLabel</code>: List of nodes by Label, by default excludes offline nodes.</h3>
+<div><div>
+  Returns an array of
+ <code>node</code> names with the given label.
+</div></div>
+<ul><li><code>label</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>offline</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="readjson-read-json-from-files-in-the-workspace"><a class="anchor" href="#readjson-read-json-from-files-in-the-workspace"></a><code>readJSON</code>: Read JSON from files in the workspace.</h3>
+<div><p> Reads a file in the current working directory or a String as a plain text <a href="http://www.json.org/json-it.html" rel="nofollow">JSON</a> file. The returned object is a normal Map with String keys or a List of primitives or Map. </p>
+<p> <strong>Example:</strong><br> <code></code></p>
+<pre><code>
+def props = readJSON file: 'dir/input.json'
+assert props['attr1'] == 'One'
+assert props.attr1 == 'One'
+
+def props = readJSON text: '{ "key": "value" }'
+assert props['key'] == 'value'
+assert props.key == 'value'
+
+def props = readJSON text: '[ "a", "b"]'
+assert props[0] == 'a'
+assert props[1] == 'b'
+	</code></pre>
+<p></p></div>
+<ul><li><code>file</code> (optional)
+<div><p> Path to a file in the workspace from which to read the JSON data. <em>Data could be access as an array or a map.</em> </p>
+<p> You can only specify <code>file</code> <strong>or</strong> <code>text</code>, not both in the same invocation. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>text</code> (optional)
+<div><p> A string containing the JSON formatted data. <em>Data could be access as an array or a map.</em> </p>
+<p> You can only specify <code>file</code> <strong>or</strong> <code>text</code>, not both in the same invocation. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="readmanifest-read-a-jar-manifest"><a class="anchor" href="#readmanifest-read-a-jar-manifest"></a><code>readManifest</code>: Read a Jar Manifest</h3>
+<div><p> Reads a <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/jar/jar.html#JAR_Manifest" rel="nofollow">Jar Manifest</a> file or text and parses it into a set of Maps. The returned data structure has two properties: <code>main</code> for the main attributes, and <code>entries</code> containing each individual section (except for main). </p>
+<p> <strong>Example:</strong><br> <code> </code></p>
+<pre><code>
+            def man = readManifest file: 'target/my.jar'
+            assert man.main['Version'] == '6.15.8'
+            assert man.main['Application-Name'] == 'My App'
+            assert man.entries['Section1']['Key1'] == 'value1-1'
+            assert man.entries['Section2']['Key2'] == 'value2-2'
+        </code></pre>
+<code> </code>
+<p></p></div>
+<ul><li><code>file</code> (optional)
+<div><p> Optional path to a file to read. It could be a plain text, <code>.jar</code>, <code>.war</code> or <code>.ear</code>. In the latter cases the manifest will be extracted from the archive and then read. </p>
+<p> You can only specify <code>file</code> <strong>or</strong> <code>text</code>, not both in the same invocation. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>text</code> (optional)
+<div><p> Optional text containing the manifest data. </p>
+<p> You can only specify <code>file</code> <strong>or</strong> <code>text</code>, not both in the same invocation. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="readmavenpom-read-a-maven-project-file"><a class="anchor" href="#readmavenpom-read-a-maven-project-file"></a><code>readMavenPom</code>: Read a maven project file.</h3>
+<div><p> Reads a <a href="https://maven.apache.org/pom.html" rel="nofollow">Maven project</a> file. The returned object is a <a href="http://maven.apache.org/components/ref/3.3.9/maven-model/apidocs/org/apache/maven/model/Model.html" rel="nofollow">Model</a> . </p></div>
+<ul><li><code>file</code> (optional)
+<div><p> Optional path to the file to read. <em>If left empty the step will try to read <code>pom.xml</code> in the current working directory</em>. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="readproperties-read-properties-from-files-in-the-workspace-or-text"><a class="anchor" href="#readproperties-read-properties-from-files-in-the-workspace-or-text"></a><code>readProperties</code>: Read properties from files in the workspace or text.</h3>
+<div><p> Reads a file in the current working directory or a String as a plain text <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Properties.html" rel="nofollow">Java Properties</a> file. The returned object is a normal Map with String keys. The map can also be pre loaded with default values before reading/parsing the data. </p>
+<strong>Fields:</strong>
+<ul>
+ <li> <code>file</code>: Optional path to a file in the workspace to read the properties from. <em>These are added to the resulting map after the defaults and so will overwrite any key/value pairs already present.</em> </li>
+ <li> <code>text</code>: An Optional String containing properties formatted data. <em>These are added to the resulting map after <code>file</code> and so will overwrite any key/value pairs already present.</em> </li>
+ <li> <code>defaults</code>: An Optional Map containing default key/values. <em>These are added to the resulting map first.</em> </li>
+ <li> <code>interpolate</code>: Flag to indicate if the properties should be interpolated or not. In case of error or cycling dependencies, the original properties will be returned. </li>
+</ul>
+<p> <strong>Example:</strong><br> <code> </code></p>
+<pre><code>
+        def d = [test: 'Default', something: 'Default', other: 'Default']
+        def props = readProperties defaults: d, file: 'dir/my.properties', text: 'other=Override'
+        assert props['test'] == 'One'
+        assert props['something'] == 'Default'
+        assert props.something == 'Default'
+        assert props.other == 'Override'
+        </code></pre>
+<code> </code>
+<strong>Example with interpolation:</strong>
+<code> <pre>
+        def props = readProperties interpolate: true, file: 'test.properties'
+        assert props.url = 'http://localhost'
+        assert props.resource = 'README.txt'
+        // if fullUrl is defined to ${url}/${resource} then it should evaluate to http://localhost/README.txt
+        assert props.fullUrl = 'http://localhost/README.txt'
+        </pre> </code>
+<p></p></div>
+<ul><li><code>defaults</code> (optional)
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>file</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>interpolate</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>text</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="readyaml-read-yaml-from-files-in-the-workspace-or-text"><a class="anchor" href="#readyaml-read-yaml-from-files-in-the-workspace-or-text"></a><code>readYaml</code>: Read yaml from files in the workspace or text.</h3>
+<div><p> Reads a file in the current working directory or a String as a plain text <a href="http://yaml.org" rel="nofollow">YAML</a> file. It uses <a href="https://bitbucket.org/asomov/snakeyaml" rel="nofollow">SnakeYAML</a> as YAML processor. The returned objects are standard Java objects like List, Long, String, ...: bool: [true, false, on, off] int: 42 float: 3.14159 list: ['LITE', 'RES_ACID', 'SUS_DEXT'] map: {hp: 13, sp: 5} </p>
+<strong>Fields:</strong>
+<ul>
+ <li> <code>file</code>: Optional path to a file in the workspace to read the YAML datas from. </li>
+ <li> <code>text</code>: An Optional String containing YAML formatted datas. <em>These are added to the resulting object after <code>file</code> and so will overwrite any value already present if not a new YAML document</em> </li>
+</ul>
+<p> <strong>Examples:</strong><br> With only one YAML document : <code> </code></p>
+<pre><code>
+        def datas = readYaml text: """
+something: 'my datas'
+size: 3
+isEmpty: false
+"""
+        assert datas.something == 'my datas'
+        assert datas.size == 3
+        assert datas.isEmpty == false
+        </code></pre>
+<code> </code> With several YAML documents :
+<code> <pre>
+        def datas = readYaml text: """
+---
+something: 'my first document'
+---
+something: 'my second document'
+"""
+        assert datas.size() == 2
+        assert datas[0].something == 'my first document'
+        assert datas[1].something == 'my second document'
+        </pre> </code> With file dir/my.yml containing
+<code>something: 'my datas'</code> :
+<code> <pre>
+        def datas = readYaml file: 'dir/my.yml', text: "something: 'Override'"
+        assert datas.something == 'Override'
+        </pre> </code>
+<p></p></div>
+<ul><li><code>file</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>text</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="sha1-compute-the-sha1-of-a-given-file"><a class="anchor" href="#sha1-compute-the-sha1-of-a-given-file"></a><code>sha1</code>: Compute the SHA1 of a given file</h3>
+<div><p> Computes the SHA1 of a given file. </p></div>
+<ul><li><code>file</code>
+<div><p> The path to the file to hash. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="tee-tee-output-to-file"><a class="anchor" href="#tee-tee-output-to-file"></a><code>tee</code>: Tee output to file</h3>
+<ul><li><code>file</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="touch-create-a-file-if-not-already-exist-in-the-workspace-and-set-the-timestamp"><a class="anchor" href="#touch-create-a-file-if-not-already-exist-in-the-workspace-and-set-the-timestamp"></a><code>touch</code>: Create a file (if not already exist) in the workspace, and set the timestamp</h3>
+<div><p> Creates a file if it does not already exist, and updates the timestamp. </p></div>
+<ul><li><code>file</code>
+<div><p> The path to the file to touch. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timestamp</code> (optional)
+<div><p> The timestamp to set (number of ms since the epoc), leave empty for current system time. </p></div>
+
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="unzip-extract-zip-file"><a class="anchor" href="#unzip-extract-zip-file"></a><code>unzip</code>: Extract Zip file</h3>
+<div><p> Extract a zip file in the workspace. </p></div>
+<ul><li><code>zipFile</code>
+<div><p> The name/path of the zip file to extract. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>charset</code> (optional)
+<div><p> Specify which Charset you wish to use eg. UTF-8 </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>dir</code> (optional)
+<div><p> The path of the base directory to extract the zip to. Leave empty to extract in the current working directory. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>glob</code> (optional)
+<div><p> <a href="https://ant.apache.org/manual/dirtasks.html#patterns" rel="nofollow">Ant style pattern</a> of files to extract from the zip. Leave empty to include all files and directories. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>quiet</code> (optional)
+<div><p> Suppress the verbose output that logs every single file that is dealt with. <em>E.g.</em> <code> unzip zipFile: 'example.zip', quiet: true </code> </p></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>read</code> (optional)
+<div><p> Read the content of the files into a Map instead of writing them to the workspace. The keys of the map will be the path of the files read. <em>E.g.</em> <code> def v = unzip zipFile: 'example.zip', glob: '*.txt', read: true String version = v['version.txt'] </code> </p></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>test</code> (optional)
+<div><p> Test the integrity of the archive instead of extracting it. When this parameter is enabled, all other parameters <em>(except for zipFile)</em> will be ignored. The step will return <code>true</code> or <code>false</code> depending on the result instead of throwing an exception. </p></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="writejson-write-json-to-a-file-in-the-workspace"><a class="anchor" href="#writejson-write-json-to-a-file-in-the-workspace"></a><code>writeJSON</code>: Write JSON to a file in the workspace.</h3>
+<div><p> Write a <a href="http://www.json.org/json-it.html" rel="nofollow">JSON</a> file in the current working directory. That for example was previously read by <code>readJSON</code>. </p>
+<strong>Fields:</strong>
+<ul>
+ <li> <code>json</code>: The <a href="http://json-lib.sourceforge.net/apidocs/jdk15/net/sf/json/JSON.html" rel="nofollow">JSON</a> object to write. </li>
+ <li> <code>file</code>: Path to a file in the workspace to write to. </li>
+ <li> <code>pretty</code> <i>(optional)</i>: Prettify the output with this number of spaces added to each level of indentation. </li>
+</ul>
+<p> <strong>Example:</strong><br> <code></code></p>
+<pre><code>
+def input = readJSON file: 'myfile.json'
+//Do some manipulation
+writeJSON file: 'output.json', json: input
+// or pretty print it, indented with a configurable number of spaces
+writeJSON file: 'output.json', json: input, pretty: 4
+	</code></pre>
+<p></p></div>
+<ul><li><code>file</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>json</code>
+<ul><b>Nested Choice of Objects</b>
+</ul></li>
+<li><code>pretty</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="writemavenpom-write-a-maven-project-file"><a class="anchor" href="#writemavenpom-write-a-maven-project-file"></a><code>writeMavenPom</code>: Write a maven project file.</h3>
+<div><p> Writes a <a href="https://maven.apache.org/pom.html" rel="nofollow">Maven project</a> file. That for example was previously read by <code>readMavenPom</code>. </p>
+<strong>Fields:</strong>
+<ul>
+ <li> <code>model</code>: The <a href="http://maven.apache.org/components/ref/3.3.9/maven-model/apidocs/org/apache/maven/model/Model.html" rel="nofollow">Model</a> object to write. </li>
+ <li> <code>file</code>: Optional path to a file in the workspace to write to. <em>If left empty the step will write to <code>pom.xml</code> in the current working directory.</em> </li>
+</ul>
+<p> <strong>Example:</strong><br> <code> </code></p>
+<pre><code>
+        def pom = readMavenPom file: 'pom.xml'
+        //Do some manipulation
+        writeMavenPom model: pom
+        </code></pre>
+<code> </code>
+<p></p></div>
+<ul><li><code>model</code>
+<ul><code>org.apache.maven.model.Model</code>
+</ul></li>
+<li><code>file</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="writeyaml-write-a-yaml-from-an-object"><a class="anchor" href="#writeyaml-write-a-yaml-from-an-object"></a><code>writeYaml</code>: Write a yaml from an object.</h3>
+<div><p> Writes a yaml file in the current working directory from an Object or a String. It uses <a href="https://bitbucket.org/asomov/snakeyaml" rel="nofollow">SnakeYAML</a> as YAML processor. The call will fail if the file already exists. </p>
+<strong>Fields:</strong>
+<ul>
+ <li> <code>file</code>: Mandatory path to a file in the workspace to write the YAML datas to. </li>
+ <li> <code>data</code>: A Mandatory Object containing the data to be serialized. </li>
+ <li> <code>charset</code>: Optionally specify the charset to use when writing the file. Defaults to UTF-8 if nothing else is specified. What charsets that are available depends on your Jenkins master system. The java specification tells us though that at least the following should be available:
+  <ul>
+   <li>US-ASCII</li>
+   <li>ISO-8859-1</li>
+   <li>UTF-8</li>
+   <li>UTF-16BE</li>
+   <li>UTF-16LE</li>
+   <li>UTF-16</li>
+  </ul> </li>
+</ul>
+<p> <strong>Examples:</strong><br> <code> </code></p>
+<pre><code>
+        def amap = ['something': 'my datas',
+                    'size': 3,
+                    'isEmpty': false]
+
+        writeYaml file: 'datas.yaml', data: amap
+        def read = readYaml file: 'datas.yaml'
+
+        assert read.something == 'my datas'
+        assert read.size == 3
+        assert read.isEmpty == false
+        </code></pre>
+<code> </code>
+<p></p></div>
+<ul><li><code>file</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>data</code>
+</div>
+<div class="sect2">
+<h3 id="zip-create-zip-file"><a class="anchor" href="#zip-create-zip-file"></a><code>zip</code>: Create Zip file</h3>
+<div><p> Create a zip file of content in the workspace. </p></div>
+<ul><li><code>zipFile</code>
+<div><p> The name/path of the zip file to create. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>archive</code> (optional)
+<div><p> If the zip file should be archived as an artifact of the current build. The file will still be kept in the workspace after archiving. </p></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>dir</code> (optional)
+<div><p> The path of the base directory to create the zip from. Leave empty to create from the current working directory. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>glob</code> (optional)
+<div><p> <a href="https://ant.apache.org/manual/dirtasks.html#patterns" rel="nofollow">Ant style pattern</a> of files to include in the zip. Leave empty to include all files and directories. </p></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'></div>
+<!-- starting partial _feedback-footer.html -->
+<!-- HTML inclusion for chapter and section layouts (i.e. as footers) as well as
+     for use in AsciiDoc file inclusions. -->
+
+<!--
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+-->
+
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(window.location.href);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<p><a href="#feedback" data-toggle="collapse">Was this page helpful?</a></p>
+
+<div id="feedback" class="collapse">
+
+<p>Please submit your feedback about this page through this
+<a href="/doc/feedback-form/">quick form</a>.</p>
+
+<p>Alternatively, if you don't wish to complete the quick form, you can simply
+indicate if you found this page helpful?</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the current URL into the form. -->
+<input type="hidden" name="entry.1246830226" id="current-url" value=""/>
+
+<!-- The answer bit -->
+<p><input type="radio" name="entry.790002525" id="h1" value="Yes" required/>
+<label for="h1">Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="entry.790002525" id="h2" value="No"/>
+<label for="h2">No</label></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+</form>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1IIdpVs39JDYKg0sLQIv-MNO928qcGApAIfdW5ohfD78" target="_blank">here</a>.</p>
+
+</div>
+
+<!-- ending partial _feedback-footer.html -->
+
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

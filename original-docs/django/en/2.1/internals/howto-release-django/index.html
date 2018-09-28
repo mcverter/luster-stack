@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>How is Django Formed? | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+     
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/dev/internals/howto-release-django/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/internals/howto-release-django/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/internals/howto-release-django/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/internals/howto-release-django/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/internals/howto-release-django/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/internals/howto-release-django/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/internals/howto-release-django/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/internals/howto-release-django/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/internals/howto-release-django/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/internals/howto-release-django/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/internals/howto-release-django/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/internals/howto-release-django/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/internals/howto-release-django/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/internals/howto-release-django/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/internals/howto-release-django/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/internals/howto-release-django/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/internals/howto-release-django/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/internals/howto-release-django/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/internals/howto-release-django/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/internals/howto-release-django/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/internals/howto-release-django/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/internals/howto-release-django/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/internals/howto-release-django/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/internals/howto-release-django/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/internals/howto-release-django/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/internals/howto-release-django/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/internals/howto-release-django/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/internals/howto-release-django/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-how-is-django-formed">
+<span id="how-is-django-formed"></span><h1>How is Django Formed?<a class="headerlink" href="#how-is-django-formed" title="Permalink to this headline">¶</a></h1>
+<p>This document explains how to release Django.</p>
+<p><strong>Please, keep these instructions up-to-date if you make changes!</strong> The point
+here is to be descriptive, not prescriptive, so feel free to streamline or
+otherwise make changes, but <strong>update this document accordingly!</strong></p>
+<div class="section" id="s-overview">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>There are three types of releases that you might need to make:</p>
+<ul class="simple">
+<li>Security releases: disclosing and fixing a vulnerability. This’ll
+generally involve two or three simultaneous releases – e.g.
+1.5.x, 1.6.x, and, depending on timing, perhaps a 1.7 alpha/beta/rc.</li>
+<li>Regular version releases: either a final release (e.g. 1.5) or a
+bugfix update (e.g. 1.5.1).</li>
+<li>Pre-releases: e.g. 1.6 alpha, beta, or rc.</li>
+</ul>
+<p>The short version of the steps involved is:</p>
+<ol class="arabic simple">
+<li>If this is a security release, pre-notify the security distribution list
+one week before the actual release.</li>
+<li>Proofread the release notes, looking for organization and writing errors.
+Draft a blog post and email announcement.</li>
+<li>Update version numbers and create the release package(s).</li>
+<li>Upload the package(s) to the <code class="docutils literal notranslate"><span class="pre">djangoproject.com</span></code> server.</li>
+<li>Upload the new version(s) to PyPI.</li>
+<li>Declare the new version in the admin on <code class="docutils literal notranslate"><span class="pre">djangoproject.com</span></code>.</li>
+<li>Post the blog entry and send out the email announcements.</li>
+<li>Update version numbers post-release.</li>
+</ol>
+<p>There are a lot of details, so please read on.</p>
+</div>
+<div class="section" id="s-prerequisites">
+<span id="prerequisites"></span><h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>You’ll need a few things before getting started:</p>
+<ul>
+<li><p class="first">A GPG key. If the key you want to use is not your default signing key, you’ll
+need to add <code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">you&#64;example.com</span></code> to every GPG signing command below, where
+<code class="docutils literal notranslate"><span class="pre">you&#64;example.com</span></code> is the email address associated with the key you want to
+use.</p>
+</li>
+<li><p class="first">An install of some required Python packages:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install wheel twine
+</pre></div>
+</div>
+</li>
+<li><p class="first">Access to Django’s record on PyPI. Create a file with your credentials:</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">~/.pypirc</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[pypi]</span>
+<span class="na">username:YourUsername</span>
+<span class="na">password:YourPassword</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first">Access to the <code class="docutils literal notranslate"><span class="pre">djangoproject.com</span></code> server to upload files.</p>
+</li>
+<li><p class="first">Access to the admin on <code class="docutils literal notranslate"><span class="pre">djangoproject.com</span></code> as a “Site maintainer”.</p>
+</li>
+<li><p class="first">Access to post to <code class="docutils literal notranslate"><span class="pre">django-announce</span></code>.</p>
+</li>
+<li><p class="first">If this is a security release, access to the pre-notification distribution
+list.</p>
+</li>
+</ul>
+<p>If this is your first release, you’ll need to coordinate with another releaser
+to get all these things lined up.</p>
+</div>
+<div class="section" id="s-pre-release-tasks">
+<span id="pre-release-tasks"></span><h2>Pre-release tasks<a class="headerlink" href="#pre-release-tasks" title="Permalink to this headline">¶</a></h2>
+<p>A few items need to be taken care of before even beginning the release process.
+This stuff starts about a week before the release; most of it can be done
+any time leading up to the actual release:</p>
+<ol class="arabic">
+<li><p class="first">If this is a security release, send out pre-notification <strong>one week</strong> before
+the release. We maintain a list of who gets these pre-notification emails in
+the private <code class="docutils literal notranslate"><span class="pre">django-core</span></code> repository. Send the mail to
+<code class="docutils literal notranslate"><span class="pre">security&#64;djangoproject.com</span></code> and BCC the pre-notification recipients.
+This email should be signed by the key you’ll use for the release and
+should include <a class="reference external" href="https://cveform.mitre.org/">CVE IDs</a> (requested with
+Vendor: djangoproject, Product: django) and patches for each issue being
+fixed. Also, <a class="reference internal" href="../security/#security-disclosure"><span class="std std-ref">notify django-announce</span></a> of the
+upcoming security release.</p>
+</li>
+<li><p class="first">As the release approaches, watch Trac to make sure no release blockers
+are left for the upcoming release.</p>
+</li>
+<li><p class="first">Check with the other committers to make sure they don’t have any
+uncommitted changes for the release.</p>
+</li>
+<li><p class="first">Proofread the release notes, including looking at the online
+version to catch any broken links or reST errors, and make sure the
+release notes contain the correct date.</p>
+</li>
+<li><p class="first">Double-check that the release notes mention deprecation timelines
+for any APIs noted as deprecated, and that they mention any changes
+in Python version support.</p>
+</li>
+<li><p class="first">Double-check that the release notes index has a link to the notes
+for the new release; this will be in <code class="docutils literal notranslate"><span class="pre">docs/releases/index.txt</span></code>.</p>
+</li>
+<li><p class="first">If this is a feature release, ensure translations from Transifex have been
+integrated. This is typically done by a separate translation’s manager
+rather than the releaser, but here are the steps. Provided you have an
+account on Transifex:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> python scripts/manage_translations.py fetch
+</pre></div>
+</div>
+<p>and then commit the changed/added files (both .po and .mo). Sometimes there
+are validation errors which need to be debugged, so avoid doing this task
+immediately before a release is needed.</p>
+</li>
+<li><p class="first"><a class="reference internal" href="../contributing/writing-documentation/#django-admin-manpage"><span class="std std-ref">Update the django-admin manual page</span></a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> docs
+<span class="gp">$</span> make man
+<span class="gp">$</span> man _build/man/django-admin.1  <span class="c1"># do a quick sanity check</span>
+<span class="gp">$</span> cp _build/man/django-admin.1 man/django-admin.1
+</pre></div>
+</div>
+<p>and then commit the changed man page.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="s-preparing-for-release">
+<span id="preparing-for-release"></span><h2>Preparing for release<a class="headerlink" href="#preparing-for-release" title="Permalink to this headline">¶</a></h2>
+<p>Write the announcement blog post for the release. You can enter it into the
+admin at any time and mark it as inactive. Here are a few examples: <a class="reference external" href="https://www.djangoproject.com/weblog/2013/feb/19/security/">example
+security release announcement</a>, <a class="reference external" href="https://www.djangoproject.com/weblog/2012/mar/23/14/">example regular release announcement</a>,
+<a class="reference external" href="https://www.djangoproject.com/weblog/2012/nov/27/15-beta-1/">example pre-release announcement</a>.</p>
+</div>
+<div class="section" id="s-actually-rolling-the-release">
+<span id="actually-rolling-the-release"></span><h2>Actually rolling the release<a class="headerlink" href="#actually-rolling-the-release" title="Permalink to this headline">¶</a></h2>
+<p>OK, this is the fun part, where we actually push out a release!</p>
+<ol class="arabic">
+<li><p class="first">Check <a class="reference external" href="https://djangoci.com">Jenkins</a> is green for the version(s) you’re putting out. You
+probably shouldn’t issue a release until it’s green.</p>
+</li>
+<li><p class="first">A release always begins from a release branch, so you should make sure
+you’re on a stable branch and up-to-date. For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout stable/1.5.x
+<span class="gp">$</span> git pull
+</pre></div>
+</div>
+</li>
+<li><p class="first">If this is a security release, merge the appropriate patches from
+<code class="docutils literal notranslate"><span class="pre">django-security</span></code>. Rebase these patches as necessary to make each one a
+simple commit on the release branch rather than a merge commit. To ensure
+this, merge them with the <code class="docutils literal notranslate"><span class="pre">--ff-only</span></code> flag; for example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout stable/1.5.x
+<span class="gp">$</span> git merge --ff-only security/1.5.x
+</pre></div>
+</div>
+<p>(This assumes <code class="docutils literal notranslate"><span class="pre">security/1.5.x</span></code> is a branch in the <code class="docutils literal notranslate"><span class="pre">django-security</span></code> repo
+containing the necessary security patches for the next release in the 1.5
+series.)</p>
+<p>If git refuses to merge with <code class="docutils literal notranslate"><span class="pre">--ff-only</span></code>, switch to the security-patch
+branch and rebase it on the branch you are about to merge it into (<code class="docutils literal notranslate"><span class="pre">git</span>
+<span class="pre">checkout</span> <span class="pre">security/1.5.x;</span> <span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">stable/1.5.x</span></code>) and then switch back and
+do the merge. Make sure the commit message for each security fix explains
+that the commit is a security fix and that an announcement will follow
+(<a class="reference external" href="https://github.com/django/django/commit/3ef4bbf495cc6c061789132e3d50a8231a89406b">example security commit</a>).</p>
+</li>
+<li><p class="first">For a feature release, remove the <code class="docutils literal notranslate"><span class="pre">UNDER</span> <span class="pre">DEVELOPMENT</span></code> header at the
+top of the release notes and add the release date on the next line. For a
+patch release, replace <code class="docutils literal notranslate"><span class="pre">*Under</span> <span class="pre">Development*</span></code> with the release date. Make
+this change on all branches where the release notes for a particular version
+are located.</p>
+</li>
+<li><p class="first">Update the version number in <code class="docutils literal notranslate"><span class="pre">django/__init__.py</span></code> for the release.
+Please see <a class="reference internal" href="#notes-on-setting-the-version-tuple">notes on setting the VERSION tuple</a> below for details
+on <code class="docutils literal notranslate"><span class="pre">VERSION</span></code>.</p>
+</li>
+<li><p class="first">If this is a pre-release package, update the “Development Status” trove
+classifier in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> to reflect this. Otherwise, make sure the
+classifier is set to <code class="docutils literal notranslate"><span class="pre">Development</span> <span class="pre">Status</span> <span class="pre">::</span> <span class="pre">5</span> <span class="pre">-</span> <span class="pre">Production/Stable</span></code>.</p>
+</li>
+<li><p class="first">Tag the release using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span></code>. For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git tag --sign --message<span class="o">=</span><span class="s2">&quot;Tag 1.5.1&quot;</span> <span class="m">1</span>.5.1
+</pre></div>
+</div>
+<p>You can check your work by running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span> <span class="pre">--verify</span> <span class="pre">&lt;tag&gt;</span></code>.</p>
+</li>
+<li><p class="first">Push your work, including the tag: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--tags</span></code>.</p>
+</li>
+<li><p class="first">Make sure you have an absolutely clean tree by running <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clean</span> <span class="pre">-dfx</span></code>.</p>
+</li>
+<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-f</span> <span class="pre">extras/Makefile</span></code> to generate the release packages. This will
+create the release packages in a <code class="docutils literal notranslate"><span class="pre">dist/</span></code> directory.</p>
+</li>
+<li><p class="first">Generate the hashes of the release packages:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> dist
+<span class="gp">$</span> md5sum *
+<span class="gp">$</span> sha1sum *
+<span class="gp">$</span> sha256sum *
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create a “checksums” file, <code class="docutils literal notranslate"><span class="pre">Django-&lt;&lt;VERSION&gt;&gt;.checksum.txt</span></code> containing
+the hashes and release information. Start with this template and insert the
+correct version, date, GPG key ID (from
+<code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">--list-keys</span> <span class="pre">--keyid-format</span> <span class="pre">LONG</span></code>), release URL, and checksums:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>This file contains MD5, SHA1, and SHA256 checksums for the source-code
+tarball and wheel files of Django &lt;&lt;VERSION&gt;&gt;, released &lt;&lt;DATE&gt;&gt;.
+
+To use this file, you will need a working install of PGP or other
+compatible public-key encryption software. You will also need to have
+the Django release manager&#39;s public key in your keyring; this key has
+the ID ``XXXXXXXXXXXXXXXX`` and can be imported from the MIT
+keyserver. For example, if using the open-source GNU Privacy Guard
+implementation of PGP:
+
+    gpg --keyserver pgp.mit.edu --recv-key XXXXXXXXXXXXXXXX
+
+Once the key is imported, verify this file::
+
+    gpg --verify &lt;&lt;THIS FILENAME&gt;&gt;
+
+Once you have verified this file, you can use normal MD5, SHA1, or SHA256
+checksumming applications to generate the checksums of the Django
+package and compare them to the checksums listed below.
+
+Release packages:
+=================
+
+https://www.djangoproject.com/m/releases/&lt;&lt;RELEASE TAR.GZ FILENAME&gt;&gt;
+https://www.djangoproject.com/m/releases/&lt;&lt;RELEASE WHL FILENAME&gt;&gt;
+
+MD5 checksums:
+==============
+
+&lt;&lt;MD5SUM&gt;&gt;  &lt;&lt;RELEASE TAR.GZ FILENAME&gt;&gt;
+&lt;&lt;MD5SUM&gt;&gt;  &lt;&lt;RELEASE WHL FILENAME&gt;&gt;
+
+SHA1 checksums:
+===============
+
+&lt;&lt;SHA1SUM&gt;&gt;  &lt;&lt;RELEASE TAR.GZ FILENAME&gt;&gt;
+&lt;&lt;SHA1SUM&gt;&gt;  &lt;&lt;RELEASE WHL FILENAME&gt;&gt;
+
+SHA256 checksums:
+=================
+
+&lt;&lt;SHA256SUM&gt;&gt;  &lt;&lt;RELEASE TAR.GZ FILENAME&gt;&gt;
+&lt;&lt;SHA256SUM&gt;&gt;  &lt;&lt;RELEASE WHL FILENAME&gt;&gt;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Sign the checksum file (<code class="docutils literal notranslate"><span class="pre">gpg</span> <span class="pre">--clearsign</span> <span class="pre">--digest-algo</span> <span class="pre">SHA256</span>
+<span class="pre">Django-&lt;version&gt;.checksum.txt</span></code>). This generates a signed document,
+<code class="docutils literal notranslate"><span class="pre">Django-&lt;version&gt;.checksum.txt.asc</span></code> which you can then verify using <code class="docutils literal notranslate"><span class="pre">gpg</span>
+<span class="pre">--verify</span> <span class="pre">Django-&lt;version&gt;.checksum.txt.asc</span></code>.</p>
+</li>
+</ol>
+<p>If you’re issuing multiple releases, repeat these steps for each release.</p>
+</div>
+<div class="section" id="s-making-the-release-s-available-to-the-public">
+<span id="making-the-release-s-available-to-the-public"></span><h2>Making the release(s) available to the public<a class="headerlink" href="#making-the-release-s-available-to-the-public" title="Permalink to this headline">¶</a></h2>
+<p>Now you’re ready to actually put the release out there. To do this:</p>
+<ol class="arabic">
+<li><p class="first">Upload the release package(s) to the djangoproject server, replacing
+A.B. with the appropriate version number, e.g. 1.5 for a 1.5.x release:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> scp Django-* djangoproject.com:/home/www/www/media/releases/A.B
+</pre></div>
+</div>
+</li>
+<li><p class="first">Upload the checksum file(s):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> scp Django-A.B.C.checksum.txt.asc djangoproject.com:/home/www/www/media/pgp/Django-A.B.C.checksum.txt
+</pre></div>
+</div>
+</li>
+<li><p class="first">Test that the release packages install correctly using <code class="docutils literal notranslate"><span class="pre">easy_install</span></code>
+and <code class="docutils literal notranslate"><span class="pre">pip</span></code>. Here’s one method (which requires <a class="reference external" href="https://pypi.org/project/virtualenvwrapper/">virtualenvwrapper</a>):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nv">RELEASE_VERSION</span><span class="o">=</span><span class="s1">&#39;1.7.2&#39;</span>
+<span class="gp">$</span> <span class="nv">MAJOR_VERSION</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$RELEASE_VERSION</span><span class="p">|</span> cut -c <span class="m">1</span>-3<span class="sb">`</span>
+
+<span class="gp">$</span> mktmpenv
+<span class="gp">$</span> easy_install https://www.djangoproject.com/m/releases/<span class="nv">$MAJOR_VERSION</span>/Django-<span class="nv">$RELEASE_VERSION</span>.tar.gz
+<span class="gp">$</span> deactivate
+<span class="gp">$</span> mktmpenv
+<span class="gp">$</span> pip install https://www.djangoproject.com/m/releases/<span class="nv">$MAJOR_VERSION</span>/Django-<span class="nv">$RELEASE_VERSION</span>.tar.gz
+<span class="gp">$</span> deactivate
+<span class="gp">$</span> mktmpenv
+<span class="gp">$</span> pip install https://www.djangoproject.com/m/releases/<span class="nv">$MAJOR_VERSION</span>/Django-<span class="nv">$RELEASE_VERSION</span>-py3-none-any.whl
+<span class="gp">$</span> deactivate
+</pre></div>
+</div>
+<p>This just tests that the tarballs are available (i.e. redirects are up) and
+that they install correctly, but it’ll catch silly mistakes.</p>
+</li>
+<li><p class="first">Ask a few people on IRC to verify the checksums by visiting the checksums
+file (e.g. <a class="reference external" href="https://www.djangoproject.com/m/pgp/Django-1.5b1.checksum.txt">https://www.djangoproject.com/m/pgp/Django-1.5b1.checksum.txt</a>)
+and following the instructions in it. For bonus points, they can also unpack
+the downloaded release tarball and verify that its contents appear to be
+correct (proper version numbers, no stray <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> or other undesirable
+files).</p>
+</li>
+<li><p class="first">Upload the release packages to PyPI (for pre-releases, only upload the wheel
+file):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> twine upload -s dist/*
+</pre></div>
+</div>
+</li>
+<li><p class="first">Go to the <a class="reference external" href="https://www.djangoproject.com/admin/releases/release/add/">Add release page in the admin</a>, enter the new release number
+exactly as it appears in the name of the tarball (Django-&lt;version&gt;.tar.gz).
+So for example enter “1.5.1” or “1.4c2”, etc. If the release is part of
+an LTS branch, mark it so.</p>
+</li>
+<li><p class="first">Make the blog post announcing the release live.</p>
+</li>
+<li><p class="first">For a new version release (e.g. 1.5, 1.6), update the default stable version
+of the docs by flipping the <code class="docutils literal notranslate"><span class="pre">is_default</span></code> flag to <code class="docutils literal notranslate"><span class="pre">True</span></code> on the
+appropriate <code class="docutils literal notranslate"><span class="pre">DocumentRelease</span></code> object in the <code class="docutils literal notranslate"><span class="pre">docs.djangoproject.com</span></code>
+database (this will automatically flip it to <code class="docutils literal notranslate"><span class="pre">False</span></code> for all
+others); you can do this using the site’s admin.</p>
+<p>Create new <code class="docutils literal notranslate"><span class="pre">DocumentRelease</span></code> objects for each language that has an entry
+for the previous release. Update djangoproject.com’s <a class="reference external" href="https://github.com/django/djangoproject.com/blob/master/djangoproject/static/robots.docs.txt">robots.docs.txt</a>
+file by copying entries from the previous release.</p>
+</li>
+<li><p class="first">Post the release announcement to the <a class="reference internal" href="../mailing-lists/#django-announce-mailing-list"><span class="std std-ref">django-announce</span></a>, <a class="reference internal" href="../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a>,
+and <a class="reference internal" href="../mailing-lists/#django-users-mailing-list"><span class="std std-ref">django-users</span></a> mailing lists. This should include a link to the
+announcement blog post. If this is a security release, also include
+<a class="reference external" href="mailto:oss-security&#37;&#52;&#48;lists&#46;openwall&#46;com">oss-security<span>&#64;</span>lists<span>&#46;</span>openwall<span>&#46;</span>com</a>.</p>
+</li>
+<li><p class="first">Add a link to the blog post in the topic of the <cite>#django</cite> IRC channel:
+<code class="docutils literal notranslate"><span class="pre">/msg</span> <span class="pre">chanserv</span> <span class="pre">TOPIC</span> <span class="pre">#django</span> <span class="pre">new</span> <span class="pre">topic</span> <span class="pre">goes</span> <span class="pre">here</span></code>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="s-post-release">
+<span id="post-release"></span><h2>Post-release<a class="headerlink" href="#post-release" title="Permalink to this headline">¶</a></h2>
+<p>You’re almost done! All that’s left to do now is:</p>
+<ol class="arabic simple">
+<li>Update the <code class="docutils literal notranslate"><span class="pre">VERSION</span></code> tuple in <code class="docutils literal notranslate"><span class="pre">django/__init__.py</span></code> again,
+incrementing to whatever the next expected release will be. For
+example, after releasing 1.5.1, update <code class="docutils literal notranslate"><span class="pre">VERSION</span></code> to
+<code class="docutils literal notranslate"><span class="pre">VERSION</span> <span class="pre">=</span> <span class="pre">(1,</span> <span class="pre">5,</span> <span class="pre">2,</span> <span class="pre">'alpha',</span> <span class="pre">0)</span></code>.</li>
+<li>Add the release in <a class="reference external" href="https://code.djangoproject.com/admin/ticket/versions">Trac’s versions list</a> if necessary (and make it the
+default if it’s a final release). Not all versions are declared;
+take example on previous releases.</li>
+<li>If this was a security release, update <a class="reference internal" href="../../releases/security/"><span class="doc">Archive of security issues</span></a> with
+details of the issues addressed.</li>
+</ol>
+</div>
+<div class="section" id="s-new-stable-branch-tasks">
+<span id="new-stable-branch-tasks"></span><h2>New stable branch tasks<a class="headerlink" href="#new-stable-branch-tasks" title="Permalink to this headline">¶</a></h2>
+<p>There are several items to do in the time following the creation of a new
+stable branch (often following an alpha release). Some of these tasks don’t
+need to be done by the releaser.</p>
+<ol class="arabic simple">
+<li>Create a new <code class="docutils literal notranslate"><span class="pre">DocumentRelease</span></code> object in the <code class="docutils literal notranslate"><span class="pre">docs.djangoproject.com</span></code>
+database for the new version’s docs, and update the
+<code class="docutils literal notranslate"><span class="pre">docs/fixtures/doc_releases.json</span></code> JSON fixture, so people without access
+to the production DB can still run an up-to-date copy of the docs site.</li>
+<li>Create a stub release note for the new feature version. Use the stub from
+the previous feature release version or copy the contents from the previous
+feature version and delete most of the contents leaving only the headings.</li>
+<li>Increase the default PBKDF2 iterations in
+<code class="docutils literal notranslate"><span class="pre">django.contrib.auth.hashers.PBKDF2PasswordHasher</span></code> by about 20%
+(pick a round number). Run the tests, and update the 3 failing
+hasher tests with the new values. Make sure this gets noted in the
+release notes (see the 1.8 release notes for an example).</li>
+<li>Remove features that have reached the end of their deprecation cycle. Each
+removal should be done in a separate commit for clarity. In the commit
+message, add a “refs #XXXX” to the original ticket where the deprecation
+began if possible.</li>
+<li>Remove <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">versionadded::</span></code>, <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">versionadded::</span></code>, and <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">deprecated::</span></code>
+annotations in the documentation from two releases ago. For example, in
+Django 1.9, notes for 1.7 will be removed.</li>
+<li>Add the new branch to <a class="reference external" href="https://readthedocs.org/projects/django/">Read the Docs</a>. Since the automatically
+generated version names (“stable-A.B.x”) differ from the version numbers
+we’ve used historically in Read the Docs (“A.B.x”), we currently ask Eric
+Holscher to add the version for us. Someday the alias functionality may be
+built-in to the Read the Docs UI.</li>
+</ol>
+</div>
+<div class="section" id="s-notes-on-setting-the-version-tuple">
+<span id="notes-on-setting-the-version-tuple"></span><h2>Notes on setting the VERSION tuple<a class="headerlink" href="#notes-on-setting-the-version-tuple" title="Permalink to this headline">¶</a></h2>
+<p>Django’s version reporting is controlled by the <code class="docutils literal notranslate"><span class="pre">VERSION</span></code> tuple in
+<code class="docutils literal notranslate"><span class="pre">django/__init__.py</span></code>. This is a five-element tuple, whose elements
+are:</p>
+<ol class="arabic simple">
+<li>Major version.</li>
+<li>Minor version.</li>
+<li>Micro version.</li>
+<li>Status – can be one of “alpha”, “beta”, “rc” or “final”.</li>
+<li>Series number, for alpha/beta/RC packages which run in sequence
+(allowing, for example, “beta 1”, “beta 2”, etc.).</li>
+</ol>
+<p>For a final release, the status is always “final” and the series
+number is always 0. A series number of 0 with an “alpha” status will
+be reported as “pre-alpha”.</p>
+<p>Some examples:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">1,</span> <span class="pre">'final',</span> <span class="pre">0)</span></code> → “1.2.1”</li>
+<li><code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">'alpha',</span> <span class="pre">0)</span></code> → “1.3 pre-alpha”</li>
+<li><code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">'beta',</span> <span class="pre">2)</span></code> → “1.3 beta 2”</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../git/"><i class="icon icon-chevron-left"></i> The Django source code repository</a></div>
+  
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          dryan donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">How is Django Formed?</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#pre-release-tasks">Pre-release tasks</a></li>
+<li><a class="reference internal" href="#preparing-for-release">Preparing for release</a></li>
+<li><a class="reference internal" href="#actually-rolling-the-release">Actually rolling the release</a></li>
+<li><a class="reference internal" href="#making-the-release-s-available-to-the-public">Making the release(s) available to the public</a></li>
+<li><a class="reference internal" href="#post-release">Post-release</a></li>
+<li><a class="reference internal" href="#new-stable-branch-tasks">New stable branch tasks</a></li>
+<li><a class="reference internal" href="#notes-on-setting-the-version-tuple">Notes on setting the VERSION tuple</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../git/">The Django source code repository</a></li>
+    
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../">Django internals</a>
+      
+      <ul><li>How is Django Formed?</li></ul>
+      </li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

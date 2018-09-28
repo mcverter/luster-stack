@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Installing Geospatial libraries | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/ref/contrib/gis/install/geolibs/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/ref/contrib/gis/install/geolibs/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/ref/contrib/gis/install/geolibs/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/ref/contrib/gis/install/geolibs/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/ref/contrib/gis/install/geolibs/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/ref/contrib/gis/install/geolibs/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/ref/contrib/gis/install/geolibs/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/ref/contrib/gis/install/geolibs/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/ref/contrib/gis/install/geolibs/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/ref/contrib/gis/install/geolibs/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/ref/contrib/gis/install/geolibs/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/ref/contrib/gis/install/geolibs/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/ref/contrib/gis/install/geolibs/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/ref/contrib/gis/install/geolibs/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/ref/contrib/gis/install/geolibs/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/ref/contrib/gis/install/geolibs/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/ref/contrib/gis/install/geolibs/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/ref/contrib/gis/install/geolibs/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/ref/contrib/gis/install/geolibs/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/ref/contrib/gis/install/geolibs/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/ref/contrib/gis/install/geolibs/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/ref/contrib/gis/install/geolibs/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/ref/contrib/gis/install/geolibs/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/ref/contrib/gis/install/geolibs/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/ref/contrib/gis/install/geolibs/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/ref/contrib/gis/install/geolibs/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/ref/contrib/gis/install/geolibs/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/ref/contrib/gis/install/geolibs/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-installing-geospatial-libraries">
+<span id="installing-geospatial-libraries"></span><h1>Installing Geospatial libraries<a class="headerlink" href="#installing-geospatial-libraries" title="Permalink to this headline">¶</a></h1>
+<p>GeoDjango uses and/or provides interfaces for the following open source
+geospatial libraries:</p>
+<table class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="28%" />
+<col width="25%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Program</th>
+<th class="head">Description</th>
+<th class="head">Required</th>
+<th class="head">Supported Versions</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="../../geos/"><span class="doc">GEOS</span></a></td>
+<td>Geometry Engine Open Source</td>
+<td>Yes</td>
+<td>3.6, 3.5, 3.4</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://github.com/OSGeo/proj.4/wiki/">PROJ.4</a></td>
+<td>Cartographic Projections library</td>
+<td>Yes (PostgreSQL and SQLite only)</td>
+<td>4.9, 4.8, 4.7, 4.6, 4.5, 4.4</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="../../gdal/"><span class="doc">GDAL</span></a></td>
+<td>Geospatial Data Abstraction Library</td>
+<td>Yes</td>
+<td>2.2, 2.1, 2.0, 1.11, 1.10, 1.9</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="../../geoip2/"><span class="doc">GeoIP</span></a></td>
+<td>IP-based geolocation library</td>
+<td>No</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="https://postgis.net/">PostGIS</a></td>
+<td>Spatial extensions for PostgreSQL</td>
+<td>Yes (PostgreSQL only)</td>
+<td>2.5, 2.4, 2.3, 2.2, 2.1</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://www.gaia-gis.it/gaia-sins/">SpatiaLite</a></td>
+<td>Spatial extensions for SQLite</td>
+<td>Yes (SQLite only)</td>
+<td>4.3, 4.2, 4.1</td>
+</tr>
+</tbody>
+</table>
+<p>Note that older or more recent versions of these libraries <em>may</em> also work
+totally fine with GeoDjango. Your mileage may vary.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The GeoDjango interfaces to GEOS, GDAL, and GeoIP may be used
+independently of Django.  In other words, no database or settings file
+required – just import them as normal from <a class="reference internal" href="../../#module-django.contrib.gis" title="django.contrib.gis: Geographic Information System (GIS) extensions for Django"><code class="xref py py-mod docutils literal notranslate"><span class="pre">django.contrib.gis</span></code></a>.</p>
+</div>
+<p>On Debian/Ubuntu, you are advised to install the following packages which will
+install, directly or by dependency, the required geospatial libraries:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install binutils libproj-dev gdal-bin
+</pre></div>
+</div>
+<p>Optional packages to consider:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">libgeoip1</span></code>: for <a class="reference internal" href="../../geoip2/"><span class="doc">GeoIP</span></a> support</li>
+<li><code class="docutils literal notranslate"><span class="pre">python-gdal</span></code> for GDAL’s own Python bindings – includes interfaces for raster manipulation</li>
+</ul>
+<p>Please also consult platform-specific instructions if you are on <a class="reference internal" href="../#macos"><span class="std std-ref">macOS</span></a>
+or <a class="reference internal" href="../#windows"><span class="std std-ref">Windows</span></a>.</p>
+<div class="section" id="s-building-from-source">
+<span id="s-build-from-source"></span><span id="building-from-source"></span><span id="build-from-source"></span><h2>Building from source<a class="headerlink" href="#building-from-source" title="Permalink to this headline">¶</a></h2>
+<p>When installing from source on UNIX and GNU/Linux systems, please follow
+the installation instructions carefully, and install the libraries in the
+given order.  If using MySQL or Oracle as the spatial database, only GEOS
+is required.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>On Linux platforms, it may be necessary to run the <code class="docutils literal notranslate"><span class="pre">ldconfig</span></code> command
+after installing each library. For example:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo make install
+$ sudo ldconfig
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">macOS users must install <a class="reference external" href="https://developer.apple.com/xcode/">Xcode</a> in order to compile software from source.</p>
+</div>
+<div class="section" id="s-geos">
+<span id="s-geosbuild"></span><span id="geos"></span><span id="geosbuild"></span><h3>GEOS<a class="headerlink" href="#geos" title="Permalink to this headline">¶</a></h3>
+<p>GEOS is a C++ library for performing geometric operations, and is the default
+internal geometry representation used by GeoDjango (it’s behind the “lazy”
+geometries).  Specifically, the C API library is called (e.g., <code class="docutils literal notranslate"><span class="pre">libgeos_c.so</span></code>)
+directly from Python using ctypes.</p>
+<p>First, download GEOS from the GEOS website and untar the source archive:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget http://download.osgeo.org/geos/geos-X.Y.Z.tar.bz2
+$ tar xjf geos-X.Y.Z.tar.bz2
+</pre></div>
+</div>
+<p>Next, change into the directory where GEOS was unpacked, run the configure
+script, compile, and install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd geos-X.Y.Z
+$ ./configure
+$ make
+$ sudo make install
+$ cd ..
+</pre></div>
+</div>
+<div class="section" id="s-troubleshooting">
+<span id="troubleshooting"></span><h4>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="s-can-t-find-geos-library">
+<span id="can-t-find-geos-library"></span><h5>Can’t find GEOS library<a class="headerlink" href="#can-t-find-geos-library" title="Permalink to this headline">¶</a></h5>
+<p>When GeoDjango can’t find GEOS, this error is raised:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ImportError: Could not find the GEOS library (tried &quot;geos_c&quot;). Try setting GEOS_LIBRARY_PATH in your settings.
+</pre></div>
+</div>
+<p>The most common solution is to properly configure your <a class="reference internal" href="../#libsettings"><span class="std std-ref">Library environment settings</span></a> <em>or</em> set
+<a class="reference internal" href="#geoslibrarypath"><span class="std std-ref">GEOS_LIBRARY_PATH</span></a> in your settings.</p>
+<p>If using a binary package of GEOS (e.g., on Ubuntu), you may need to <a class="reference internal" href="../#binutils"><span class="std std-ref">Install binutils</span></a>.</p>
+</div>
+<div class="section" id="s-geos-library-path">
+<span id="s-geoslibrarypath"></span><span id="geos-library-path"></span><span id="geoslibrarypath"></span><h5><code class="docutils literal notranslate"><span class="pre">GEOS_LIBRARY_PATH</span></code><a class="headerlink" href="#geos-library-path" title="Permalink to this headline">¶</a></h5>
+<p>If your GEOS library is in a non-standard location, or you don’t want to
+modify the system’s library path then the <a class="reference internal" href="../../geos/#std:setting-GEOS_LIBRARY_PATH"><code class="xref std std-setting docutils literal notranslate"><span class="pre">GEOS_LIBRARY_PATH</span></code></a>
+setting may be added to your Django settings file with the full path to the
+GEOS C library.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GEOS_LIBRARY_PATH</span> <span class="o">=</span> <span class="s1">&#39;/home/bob/local/lib/libgeos_c.so&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The setting must be the <em>full</em> path to the <strong>C</strong> shared library; in
+other words you want to use <code class="docutils literal notranslate"><span class="pre">libgeos_c.so</span></code>, not <code class="docutils literal notranslate"><span class="pre">libgeos.so</span></code>.</p>
+</div>
+<p>See also <a class="reference internal" href="../../geos/#geos-exceptions-in-logfile"><span class="std std-ref">My logs are filled with GEOS-related errors</span></a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="s-proj4">
+<span id="s-id3"></span><span id="proj4"></span><span id="id3"></span><h3>PROJ.4<a class="headerlink" href="#proj4" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://github.com/OSGeo/proj.4/wiki/">PROJ.4</a> is a library for converting geospatial data to different coordinate
+reference systems.</p>
+<p>First, download the PROJ.4 source code and datum shifting files <a class="footnote-reference" href="#id9" id="id4">[1]</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget http://download.osgeo.org/proj/proj-X.Y.Z.tar.gz
+$ wget http://download.osgeo.org/proj/proj-datumgrid-X.Y.tar.gz
+</pre></div>
+</div>
+<p>Next, untar the source code archive, and extract the datum shifting files in the
+<code class="docutils literal notranslate"><span class="pre">nad</span></code> subdirectory.  This must be done <em>prior</em> to configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tar xzf proj-X.Y.Z.tar.gz
+$ cd proj-X.Y.Z/nad
+$ tar xzf ../../proj-datumgrid-X.Y.tar.gz
+$ cd ..
+</pre></div>
+</div>
+<p>Finally, configure, make and install PROJ.4:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./configure
+$ make
+$ sudo make install
+$ cd ..
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-gdal">
+<span id="s-gdalbuild"></span><span id="gdal"></span><span id="gdalbuild"></span><h3>GDAL<a class="headerlink" href="#gdal" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://trac.osgeo.org/gdal/">GDAL</a> is an excellent open source geospatial library that has support for
+reading most vector and raster spatial data formats.  Currently, GeoDjango only
+supports <a class="reference internal" href="../../gdal/"><span class="doc">GDAL’s vector data</span></a> capabilities <a class="footnote-reference" href="#id10" id="id5">[2]</a>.
+<a class="reference internal" href="#geosbuild"><span class="std std-ref">GEOS</span></a> and <a class="reference internal" href="#proj4"><span class="std std-ref">PROJ.4</span></a> should be installed prior to building GDAL.</p>
+<p>First download the latest GDAL release version and untar the archive:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget http://download.osgeo.org/gdal/X.Y.Z/gdal-X.Y.Z.tar.gz
+$ tar xzf gdal-X.Y.Z.tar.gz
+$ cd gdal-X.Y.Z
+</pre></div>
+</div>
+<p>Configure, make and install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./configure
+$ make # Go get some coffee, this takes a while.
+$ sudo make install
+$ cd ..
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Because GeoDjango has its own Python interface, the preceding instructions
+do not build GDAL’s own Python bindings. The bindings may be built by
+adding the <code class="docutils literal notranslate"><span class="pre">--with-python</span></code> flag when running <code class="docutils literal notranslate"><span class="pre">configure</span></code>. See
+<a class="reference external" href="https://trac.osgeo.org/gdal/wiki/GdalOgrInPython">GDAL/OGR In Python</a> for more information on GDAL’s bindings.</p>
+</div>
+<p>If you have any problems, please see the troubleshooting section below for
+suggestions and solutions.</p>
+<div class="section" id="s-gdaltrouble">
+<span id="s-id8"></span><span id="gdaltrouble"></span><span id="id8"></span><h4>Troubleshooting<a class="headerlink" href="#gdaltrouble" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="s-can-t-find-gdal-library">
+<span id="can-t-find-gdal-library"></span><h5>Can’t find GDAL library<a class="headerlink" href="#can-t-find-gdal-library" title="Permalink to this headline">¶</a></h5>
+<p>When GeoDjango can’t find the GDAL library, configure your <a class="reference internal" href="../#libsettings"><span class="std std-ref">Library environment settings</span></a>
+<em>or</em> set <a class="reference internal" href="#gdallibrarypath"><span class="std std-ref">GDAL_LIBRARY_PATH</span></a> in your settings.</p>
+</div>
+<div class="section" id="s-gdal-library-path">
+<span id="s-gdallibrarypath"></span><span id="gdal-library-path"></span><span id="gdallibrarypath"></span><h5><code class="docutils literal notranslate"><span class="pre">GDAL_LIBRARY_PATH</span></code><a class="headerlink" href="#gdal-library-path" title="Permalink to this headline">¶</a></h5>
+<p>If your GDAL library is in a non-standard location, or you don’t want to
+modify the system’s library path then the <a class="reference internal" href="../../gdal/#std:setting-GDAL_LIBRARY_PATH"><code class="xref std std-setting docutils literal notranslate"><span class="pre">GDAL_LIBRARY_PATH</span></code></a>
+setting may be added to your Django settings file with the full path to
+the GDAL library.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GDAL_LIBRARY_PATH</span> <span class="o">=</span> <span class="s1">&#39;/home/sue/local/lib/libgdal.so&#39;</span>
+</pre></div>
+</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[1]</a></td><td>The datum shifting files are needed for converting data to and from
+certain projections.
+For example, the PROJ.4 string for the <a class="reference external" href="http://spatialreference.org/ref/sr-org/6864/prj/">Google projection (900913 or 3857)</a> requires the
+<code class="docutils literal notranslate"><span class="pre">null</span></code> grid file only included in the extra datum shifting files.
+It is easier to install the shifting files now, then to have debug a
+problem caused by their absence later.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[2]</a></td><td>Specifically, GeoDjango provides support for the <a class="reference external" href="http://gdal.org/ogr_arch.html">OGR</a> library, a component of GDAL.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../"><i class="icon icon-chevron-left"></i> GeoDjango Installation</a></div>
+  
+  
+  <div class="right"><a href="../postgis/">Installing PostGIS <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          10Clouds donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Installing Geospatial libraries</a><ul>
+<li><a class="reference internal" href="#building-from-source">Building from source</a><ul>
+<li><a class="reference internal" href="#geos">GEOS</a><ul>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li><a class="reference internal" href="#can-t-find-geos-library">Can’t find GEOS library</a></li>
+<li><a class="reference internal" href="#geos-library-path"><code class="docutils literal notranslate"><span class="pre">GEOS_LIBRARY_PATH</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#proj4">PROJ.4</a></li>
+<li><a class="reference internal" href="#gdal">GDAL</a><ul>
+<li><a class="reference internal" href="#gdaltrouble">Troubleshooting</a><ul>
+<li><a class="reference internal" href="#can-t-find-gdal-library">Can’t find GDAL library</a></li>
+<li><a class="reference internal" href="#gdal-library-path"><code class="docutils literal notranslate"><span class="pre">GDAL_LIBRARY_PATH</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../">GeoDjango Installation</a></li>
+    
+    
+    <li>Next: <a href="../postgis/">Installing PostGIS</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../../../">API Reference</a>
+      
+      <ul><li><a href="../../../"><code class="docutils literal notranslate"><span class="pre">contrib</span></code> packages</a>
+      
+      <ul><li><a href="../../">GeoDjango</a>
+      
+      <ul><li><a href="../">GeoDjango Installation</a>
+      
+      <ul><li>Installing Geospatial libraries</li></ul>
+      </li></ul></li></ul></li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

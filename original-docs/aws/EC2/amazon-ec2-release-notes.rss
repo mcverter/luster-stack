@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+   <channel>
+      <title>Amazon EC2 Release Notes</title>
+      <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/</link>
+      <description/>
+      <lastBuildDate>Fri, 28 Sep 2018 10:43:05 Z</lastBuildDate>
+      <item>
+         <title>High memory instances</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>These instances are purpose-built to run large in-memory databases.</description>
+         <pubDate>Thu, 27 Sep 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#High_memory_instances_2018-09-27</guid>
+      </item>
+      <item>
+         <title>f1.4xlarge instances</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>Expands the range of the accelerated-computing F1 instance family with the introduction of f1.4xlarge instances.</description>
+         <pubDate>Tue, 25 Sep 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#f1.4xlarge_instances_2018-09-25</guid>
+      </item>
+      <item>
+         <title>Console support for scheduled scaling for Spot Fleet</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>Increase or decrease the current capacity of a fleet based on the date and time.</description>
+         <pubDate>Thu, 20 Sep 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#Console_support_for_scheduled_scaling_for_Spot_Fleet_2018-09-20</guid>
+      </item>
+      <item>
+         <title>T3 instances</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>T3 instances are the next generation burstable general-purpose instance type that provide
+					a baseline level of CPU performance with the ability to burst CPU usage at any
+					time for as long as required.</description>
+         <pubDate>Mon, 6 Aug 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#T3_instances_2018-08-06</guid>
+      </item>
+      <item>
+         <title>Allocation strategies for EC2 Fleets and Spot Fleets</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>You can specify whether On-Demand capacity is fulfilled by price (lowest price first) 
+					or priority (highest priority first). You can specify the number of Spot pools across
+					which to allocate your target Spot capacity.</description>
+         <pubDate>Thu, 26 Jul 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#Allocation_strategies_for_EC2_Fleets_and_Spot_Fleets_2018-07-26</guid>
+      </item>
+      <item>
+         <title>R5, R5d, and z1d instances</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>These instances are ideal for running your memory-intensive applications.</description>
+         <pubDate>Wed, 25 Jul 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#R5,_R5d,_and_z1d_instances_2018-07-25</guid>
+      </item>
+      <item>
+         <title>Automate snapshot lifecycle</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>You can use Amazon Data Lifecycle Manager to automate creation and deletion of snapshots for your EBS volumes.</description>
+         <pubDate>Thu, 12 Jul 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#Automate_snapshot_lifecycle_2018-07-12</guid>
+      </item>
+      <item>
+         <title>Launch Template CPU Options</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>When you create a launch template using the command line tools, you can optimize 
+					the CPU options to suit specific workloads.</description>
+         <pubDate>Wed, 11 Jul 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#Launch_Template_CPU_Options_2018-07-11</guid>
+      </item>
+      <item>
+         <title>Dedicated Host Tagging</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>You can assign custom tags to your Dedicated Hosts to categorize them in different ways.</description>
+         <pubDate>Tue, 3 Jul 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#Dedicated_Host_Tagging_2018-07-03</guid>
+      </item>
+      <item>
+         <title>Bare Metal Instances (i3.metal)</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>Bare metal instances provide your applications with direct access to the physical resources 
+					of the host server, such as processors and memory.</description>
+         <pubDate>Thu, 17 May 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#Bare_Metal_Instances_(i3.metal)_2018-05-17</guid>
+      </item>
+      <item>
+         <title>Optimize CPU Options</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>When you launch an instance, you can optimize the CPU options to suit specific workloads 
+					or business needs.</description>
+         <pubDate>Tue, 8 May 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#Optimize_CPU_Options_2018-05-08</guid>
+      </item>
+      <item>
+         <title>On-Demand Instances in Spot Fleets</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>You can include a request for On-Demand capacity in your Spot Fleet request to ensure 
+					that you always have instance capacity.</description>
+         <pubDate>Wed, 2 May 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#On-Demand_Instances_in_Spot_Fleets_2018-05-02</guid>
+      </item>
+      <item>
+         <title>EC2 Fleet</title>
+         <link>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/DocumentHistory.html</link>
+         <description>You can use EC2 Fleet to launch a group of instances across different EC2 instance types 
+					and Availability Zones, and across On-Demand Instance, Reserved Instance, and Spot Instance 
+					purchasing models.</description>
+         <pubDate>Wed, 2 May 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/#EC2_Fleet_2018-05-02</guid>
+      </item>
+   </channel>
+</rss>

@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Micro Focus Application Automation Tools
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Micro Focus Application Automation Tools' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Micro Focus Application Automation Tools' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Micro Focus Application Automation Tools' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/pipeline/steps/hp-application-automation-tools-plugin/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Micro Focus Application Automation Tools' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<p>
+<a href="https://jenkins.io/doc" class="">Jenkins User Documentation Home</a>
+</p>
+<h4>
+Guided Tour
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/getting-started" class="">Getting started</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/hello-world" class="">Creating your first Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps" class="">Running multiple steps</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/agents" class="">Defining execution environments</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/environment" class="">Using environment variables</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/tests-and-artifacts" class="">Recording test results and artifacts</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/post" class="">Cleaning up and notifications</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/deployment" class="">Deployment</a>
+</li>
+</ul>
+<h4>
+Tutorials
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/tutorials" class="">Overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-java-app-with-maven" class="">Build a Java app with Maven</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm" class="">Build a Node.js and React app with npm</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller" class="">Build a Python app with PyInstaller</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean" class="">Create a Pipeline in Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project" class="">End-to-End Multibranch Pipeline Project Creation</a>
+</li>
+</ul>
+<h4>
+User Handbook
+<span style='font-size: 0.6rem; vertical-align: middle;'>
+<a href='/user-handbook.pdf'>
+(PDF)
+</a>
+</span>
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/getting-started" class="">User Handbook overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/installing" class="">Installing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/using" class="">Using Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline" class="">Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean" class="">Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing" class="">Managing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/system-administration" class="">System Administration</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/scaling" class="">Scaling Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/appendix" class="">Appendix</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/glossary" class="">Glossary</a>
+</li>
+</ul>
+<h4>
+Resources
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/steps" class="">Pipeline Steps reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/upgrade-guide" class="">LTS Upgrade Guide</a>
+</li>
+</ul>
+<h5>
+Recent Tutorial Blog Posts
+</h5>
+<ul>
+<li>
+<a href='/blog/2017/11/27/tutorials-in-the-jenkins-user-documentation/'>
+Introducing Tutorials in the Jenkins User Documentation
+</a>
+</li>
+<li>
+<a href='/blog/2017/05/18/pipeline-dev-tools/'>
+Pipeline Development Tools
+</a>
+</li>
+<li>
+<a href='/blog/2017/04/12/welcome-to-blue-ocean-dashboard/'>
+Getting Started with the Blue Ocean Dashboard
+</a>
+</li>
+</ul>
+<div class='small'>
+<a href='/node/tags/tutorial'>
+View all tutorial blog posts
+</a>
+</div>
+<p></p>
+</div>
+</div>
+<div class='col-lg-9'>
+<p>
+The following plugin provides functionality available through
+Pipeline-compatible steps. Read more about how to integrate steps into your
+Pipeline in the
+<a href='https://jenkins.io/doc/book/pipeline/syntax/#declarative-steps'>Steps</a>
+section of the
+<a href='https://jenkins.io/doc/book/pipeline/syntax'>Pipeline Syntax</a>
+page.
+</p>
+<p>
+For a list of other such plugins, see the
+<a href='https://jenkins.io/doc/pipeline/steps/'>Pipeline Steps Reference</a>
+page.
+</p>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#micro-focus-application-automation-tools">Micro Focus Application Automation Tools</a>
+<ul class="sectlevel2">
+<li><a href="#loadrunnertest-run-loadrunner-performance-scenario-tests"><code>loadRunnerTest</code>: Run LoadRunner performance scenario tests</a></li>
+<li><a href="#runloadrunnerscript-run-loadrunner-script"><code>runLoadRunnerScript</code>: Run LoadRunner script</a></li>
+<li><a href="#ssebuildandpublish-execute-tests-using-alm-lab-management-and-publish-tests-result"><code>sseBuildAndPublish</code>: Execute tests using ALM Lab Management and Publish tests result</a></li>
+<li><a href="#pcbuild-execute-performance-test-using-performance-center"><code>pcBuild</code>: Execute performance test using Performance Center</a></li>
+<li><a href="#runfromalmbuilder-execute-functional-tests-from-micro-focus-alm"><code>runFromAlmBuilder</code>: Execute functional tests from Micro Focus ALM</a></li>
+<li><a href="#ssebuild-execute-tests-using-alm-lab-management"><code>sseBuild</code>: Execute tests using ALM Lab Management</a></li>
+<li><a href="#svchangemodestep-sv-change-mode-of-virtual-service"><code>svChangeModeStep</code>: SV: Change Mode of Virtual Service</a></li>
+<li><a href="#svdeploystep-sv-deploy-virtual-service"><code>svDeployStep</code>: SV: Deploy Virtual Service</a></li>
+<li><a href="#svexportstep-sv-export-virtual-service"><code>svExportStep</code>: SV: Export Virtual Service</a></li>
+<li><a href="#svundeploystep-sv-undeploy-virtual-service"><code>svUndeployStep</code>: SV: Undeploy Virtual Service</a></li>
+<li><a href="#uftscenarioload-run-uft-scenario"><code>uftScenarioLoad</code>: Run UFT scenario</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="micro-focus-application-automation-tools"><a class="anchor" href="#micro-focus-application-automation-tools"></a>Micro Focus Application Automation Tools</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://plugins.jenkins.io/hp-application-automation-tools-plugin">View this plugin on the Plugins Index</a></p>
+</div>
+<div class="sect2">
+<h3 id="loadrunnertest-run-loadrunner-performance-scenario-tests"><a class="anchor" href="#loadrunnertest-run-loadrunner-performance-scenario-tests"></a><code>loadRunnerTest</code>: Run LoadRunner performance scenario tests</h3>
+<ul><li><code>testPaths</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>archiveTestResultsMode</code>
+<div><div>
+  To view the run results, do one of the following:
+ <br> 1) In the left pane, click the
+ <b>Report and Summary</b> link to display the report link and the link to the report folder. From this link, you can open the run results directly in your browser or open the artifacts
+ <br> 2) From the
+ <b>Build Artifacts:</b>
+ <br> • Open the run_results.html to view the run results.
+ <br> • Download the zipped report to your desired location and unzip it. In the
+ <b>Run Results Viewer</b>, select the Results.xml file found inside the unzipped folder.
+ <br> Note that this option is valid only when using the “Execute test from file system” build step.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>analysisTemplate</code> (optional)
+<div><div>
+  Apply a template for the build (path to a .tem file). Leave blank in order to use the default template.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>controllerPollingInterval</code> (optional)
+<div><div>
+  Polling interval for checking the scenario status, in seconds. The default is 30 seconds.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>displayController</code> (optional)
+<div><div>
+  Display the controller while the scenario is running.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fsTimeout</code> (optional)
+<div><div>
+  Timeout value in seconds. If left empty, there is no timeout.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>ignoreErrorStrings</code> (optional)
+<div><div>
+  Ignore errors during the scenario run containing any of the strings listed below. For example: "Error: CPU usage for this load generator has exceeded 80%"
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>perScenarioTimeOut</code> (optional)
+<div><div>
+  The maximum time allotted for scenario execution, in minutes.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="runloadrunnerscript-run-loadrunner-script"><a class="anchor" href="#runloadrunnerscript-run-loadrunner-script"></a><code>runLoadRunnerScript</code>: Run LoadRunner script</h3>
+<ul><li><code>scriptPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="ssebuildandpublish-execute-tests-using-alm-lab-management-and-publish-tests-result"><a class="anchor" href="#ssebuildandpublish-execute-tests-using-alm-lab-management-and-publish-tests-result"></a><code>sseBuildAndPublish</code>: Execute tests using ALM Lab Management and Publish tests result</h3>
+<ul><li><code>almServerName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almProject</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>clientType</code>
+<div><div>
+  Client type is required for some ALM above 12.60 in authentication.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almDomain</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>runType</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almEntityId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeslotDuration</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>archiveTestResultsMode</code>
+<div><div>
+  To view the run results, do one of the following:
+ <br> 1) In the left pane, click the
+ <b>Report and Summary</b> link to display the report link and the link to the report folder. From this link, you can open the run results directly in your browser or open the artifacts
+ <br> 2) From the
+ <b>Build Artifacts:</b>
+ <br> • Open the run_results.html to view the run results.
+ <br> • Download the zipped report to your desired location and unzip it. In the
+ <b>Run Results Viewer</b>, select the Results.xml file found inside the unzipped folder.
+ <br> Note that this option is valid only when using the “Execute test from file system” build step.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cdaDetails</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>deploymentAction</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deployedEnvironmentName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deprovisioningAction</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>description</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentConfigurationId</code> (optional)
+<div><div>
+  To find the ID of your environment configuration, right-click the entity, copy the URL, and paste it to a text editor. Use the number associated with the EntityID at the end of the URL.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>postRunAction</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="pcbuild-execute-performance-test-using-performance-center"><a class="anchor" href="#pcbuild-execute-performance-test-using-performance-center"></a><code>pcBuild</code>: Execute performance test using Performance Center</h3>
+<ul><li><code>serverAndPort</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pcServerName</code>
+<div><div>
+  Hostname or IP address
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almDomain</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almProject</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>testId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>testInstanceId</code>
+<div><div>
+  Represents an instance of a performance test within an ALM Test Set. In order to find the test instance id go to:
+ <b>PC Web UI &gt; Test Lab perspective &gt; Performance Test Set table</b> and look for the ID column
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>autoTestInstanceID</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeslotDurationHours</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeslotDurationMinutes</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>postRunAction</code>
+<ul><li><b>Values:</b> <code>COLLATE</code>, <code>COLLATE_AND_ANALYZE</code>, <code>DO_NOTHING</code></li></ul></li>
+<li><code>vudsMode</code>
+<div><div>
+  A
+ <b>Virtual User Day (VUD)</b> license provides you with a specified number of Vusers (VUDs) that you can run an unlimited number of times within a 24 hour period. Before using this option, make sure that VUDs licenses are applied in your Micro Focus Performance Center environment.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>statusBySLA</code>
+<div><div>
+  Check this option in order to set the build-step status according to a pre-defined
+ <b>SLA (Service Level Agreement)</b> configured within your performance test. Unless checked, the build-step will be labeled as
+ <i>Passed</i> as long as no failures occurred.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>description</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>addRunToTrendReport</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>trendReportId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>HTTPSProtocol</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>proxyOutURL</code>
+<div><div>
+  Add your local proxy as following:
+ <b>http(s)://host:port</b>
+ <br> or Leave empty if not using a local proxy. The following proxy configurations are not supported:
+ <ul>
+  <li>PAC (proxy auto-config). </li>
+  <li>Automatic configuration script.</li>
+ </ul>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsProxyId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>retry</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>retryDelay</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>retryOccurrences</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="runfromalmbuilder-execute-functional-tests-from-micro-focus-alm"><a class="anchor" href="#runfromalmbuilder-execute-functional-tests-from-micro-focus-alm"></a><code>runFromAlmBuilder</code>: Execute functional tests from Micro Focus ALM</h3>
+<ul><li><code>almServerName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almUserName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almDomain</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almProject</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almTestSets</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almRunResultsMode</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almTimeout</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almRunMode</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almRunHost</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="ssebuild-execute-tests-using-alm-lab-management"><a class="anchor" href="#ssebuild-execute-tests-using-alm-lab-management"></a><code>sseBuild</code>: Execute tests using ALM Lab Management</h3>
+<ul><li><code>almServerName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almProject</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>credentialsId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>clientType</code>
+<div><div>
+  Client type is required for some ALM above 12.60 in authentication.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almDomain</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>runType</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>almEntityId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>timeslotDuration</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cdaDetails</code> (optional)
+<ul><b>Nested Object</b>
+<li><code>deploymentAction</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deployedEnvironmentName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deprovisioningAction</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>description</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>environmentConfigurationId</code> (optional)
+<div><div>
+  To find the ID of your environment configuration, right-click the entity, copy the URL, and paste it to a text editor. Use the number associated with the EntityID at the end of the URL.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>postRunAction</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="svchangemodestep-sv-change-mode-of-virtual-service"><a class="anchor" href="#svchangemodestep-sv-change-mode-of-virtual-service"></a><code>svChangeModeStep</code>: SV: Change Mode of Virtual Service</h3>
+<ul><li><code>serverName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>force</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>mode</code>
+<ul><li><b>Values:</b> <code>OFFLINE</code>, <code>SIMULATING</code>, <code>STAND_BY</code>, <code>LEARNING</code></li></ul></li>
+<li><code>dataModel</code>
+<ul><b>Nested Object</b>
+<li><code>selectionType</code>
+<ul><li><b>Values:</b> <code>BY_NAME</code>, <code>NONE</code>, <code>DEFAULT</code></li></ul></li>
+<li><code>dataModel</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>performanceModel</code>
+<ul><b>Nested Object</b>
+<li><code>selectionType</code>
+<ul><li><b>Values:</b> <code>BY_NAME</code>, <code>NONE</code>, <code>OFFLINE</code>, <code>DEFAULT</code></li></ul></li>
+<li><code>performanceModel</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>serviceSelection</code>
+<ul><b>Nested Object</b>
+<li><code>selectionType</code>
+<ul><li><b>Values:</b> <code>SERVICE</code>, <code>PROJECT</code>, <code>ALL_DEPLOYED</code>, <code>DEPLOY</code></li></ul></li>
+<li><code>service</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="svdeploystep-sv-deploy-virtual-service"><a class="anchor" href="#svdeploystep-sv-deploy-virtual-service"></a><code>svDeployStep</code>: SV: Deploy Virtual Service</h3>
+<ul><li><code>serverName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>force</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>service</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>firstAgentFallback</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="svexportstep-sv-export-virtual-service"><a class="anchor" href="#svexportstep-sv-export-virtual-service"></a><code>svExportStep</code>: SV: Export Virtual Service</h3>
+<ul><li><code>serverName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>force</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>targetDirectory</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>cleanTargetDirectory</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>serviceSelection</code>
+<ul><b>Nested Object</b>
+<li><code>selectionType</code>
+<ul><li><b>Values:</b> <code>SERVICE</code>, <code>PROJECT</code>, <code>ALL_DEPLOYED</code>, <code>DEPLOY</code></li></ul></li>
+<li><code>service</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>switchToStandByFirst</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>archive</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="svundeploystep-sv-undeploy-virtual-service"><a class="anchor" href="#svundeploystep-sv-undeploy-virtual-service"></a><code>svUndeployStep</code>: SV: Undeploy Virtual Service</h3>
+<ul><li><code>serverName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>continueIfNotDeployed</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>force</code>
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>serviceSelection</code>
+<ul><b>Nested Object</b>
+<li><code>selectionType</code>
+<ul><li><b>Values:</b> <code>SERVICE</code>, <code>PROJECT</code>, <code>ALL_DEPLOYED</code>, <code>DEPLOY</code></li></ul></li>
+<li><code>service</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPath</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>projectPassword</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="uftscenarioload-run-uft-scenario"><a class="anchor" href="#uftscenarioload-run-uft-scenario"></a><code>uftScenarioLoad</code>: Run UFT scenario</h3>
+<ul><li><code>testPaths</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>archiveTestResultsMode</code>
+<div><div>
+  To view the run results, do one of the following:
+ <br> 1) In the left pane, click the
+ <b>Report and Summary</b> link to display the report link and the link to the report folder. From this link, you can open the run results directly in your browser or open the artifacts
+ <br> 2) From the
+ <b>Build Artifacts:</b>
+ <br> • Open the run_results.html to view the run results.
+ <br> • Download the zipped report to your desired location and unzip it. In the
+ <b>Run Results Viewer</b>, select the Results.xml file found inside the unzipped folder.
+ <br> Note that this option is valid only when using the “Execute test from file system” build step.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fsTimeout</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fsUftRunMode</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'></div>
+<!-- starting partial _feedback-footer.html -->
+<!-- HTML inclusion for chapter and section layouts (i.e. as footers) as well as
+     for use in AsciiDoc file inclusions. -->
+
+<!--
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+-->
+
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(window.location.href);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<p><a href="#feedback" data-toggle="collapse">Was this page helpful?</a></p>
+
+<div id="feedback" class="collapse">
+
+<p>Please submit your feedback about this page through this
+<a href="/doc/feedback-form/">quick form</a>.</p>
+
+<p>Alternatively, if you don't wish to complete the quick form, you can simply
+indicate if you found this page helpful?</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the current URL into the form. -->
+<input type="hidden" name="entry.1246830226" id="current-url" value=""/>
+
+<!-- The answer bit -->
+<p><input type="radio" name="entry.790002525" id="h1" value="Yes" required/>
+<label for="h1">Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="entry.790002525" id="h2" value="No"/>
+<label for="h2">No</label></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+</form>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1IIdpVs39JDYKg0sLQIv-MNO928qcGApAIfdW5ohfD78" target="_blank">here</a>.</p>
+
+</div>
+
+<!-- ending partial _feedback-footer.html -->
+
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

@@ -1,0 +1,1394 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Troubleshooting the Elastic Network Adapter (ENA) - Amazon Elastic Compute Cloud</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="home" href="#top" />
+      <link rel="up" href="enhanced-networking.html" title="Enhanced Networking on Linux" />
+      <link rel="prev" href="enhanced-networking-ena.html" title="Enabling Enhanced Networking with the Elastic&#xA;            Network Adapter (ENA) on Linux Instances" />
+      <link rel="next" href="placement-groups.html" title="Placement Groups" />
+      <meta name="description" content="Troubleshoot the Elastic Network Adapter (ENA) on supported Linux instances in a VPC." />
+      <meta name="keywords" content="EC2,Amazon EC2,EC2 instance,instance,VM,virtual machine" />
+      <meta name="deployment_region" content="IAD" />
+      <meta name="product" content="Amazon Elastic Compute Cloud" />
+      <meta name="guide" content="User Guide for Linux Instances" />
+      <meta name="guide-locale" content="en_us" />
+      <link rel="icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="canonical" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/troubleshooting-ena.html" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css" />
+      <link rel="stylesheet" type="text/css" href="/font/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="/css/google-font.css" />
+      <link id="code-style" rel="stylesheet" type="text/css" href="/css/code/light.css" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.theme.css" />
+      <link rel="stylesheet" type="text/css" href="/css/colorbox.css" />
+      <link rel="stylesheet" type="text/css" href="/css/awsdocs.css?v=20170615" /><script type="text/javascript" src="/js/highlight.pack.js"></script><script type="text/javascript" src="/js/jquery.min.js"></script><script type="text/javascript" src="/js/jquery-ui.min.js"></script><script type="text/javascript" src="/js/handlebars.js"></script><script type="text/javascript" src="/js/jquery.colorbox.js"></script><script type="text/javascript" src="/js/awsdocs.min.js?v=20170615"></script></head>
+   <body id="top">
+      <div xmlns:db="http://docbook.org/ns/docbook" id="aws-nav" class="aws-nav-header">
+         <div class="aws-nav-header-left">
+            <div id="aws-nav-flyout-trigger" class="aws-nav-flyout-trigger"><i class="fa fa-bars fa-2x"></i></div>
+            <div class="aws-nav-logo">
+               <!--aws_logo_105x39.png--><a href="http://aws.amazon.com"><img src="/images/aws_logo_105x39.png" alt="Amazon Web Services" /></a></div>
+         </div>
+         <div id="aws-nav-header-right" class="aws-nav-header-right">
+            <div class="aws-nav-cta-button-outer"><a id="aws-nav-cta-button" class="aws-nav-button" href="https://console.aws.amazon.com/console/home">Sign In to the Console</a></div>
+            <div class="aws-nav-popover-trigger" data-dropdown="aws-nav-dropdown-lang"><select id="languageSelection" onchange="SelectLanguage()">
+                  <option value="/de_de/AWSEC2/latest/UserGuide/troubleshooting-ena.html">Deutsch</option>
+                  <option value="/en_us/AWSEC2/latest/UserGuide/troubleshooting-ena.html" selected="selected">English</option>
+                  <option value="/es_es/AWSEC2/latest/UserGuide/troubleshooting-ena.html">Español</option>
+                  <option value="/fr_fr/AWSEC2/latest/UserGuide/troubleshooting-ena.html">Français</option>
+                  <option value="/it_it/AWSEC2/latest/UserGuide/troubleshooting-ena.html">Italiano</option>
+                  <option value="/ja_jp/AWSEC2/latest/UserGuide/troubleshooting-ena.html">日本語</option>
+                  <option value="/ko_kr/AWSEC2/latest/UserGuide/troubleshooting-ena.html">한국어</option>
+                  <option value="/pt_br/AWSEC2/latest/UserGuide/troubleshooting-ena.html">Português</option>
+                  <option value="/zh_cn/AWSEC2/latest/UserGuide/troubleshooting-ena.html">中文 (简体)</option>
+                  <option value="/zh_tw/AWSEC2/latest/UserGuide/troubleshooting-ena.html">中文 (繁體)</option></select></div><a class="btn btn-rss-link" id="rss-link-top" target="_blank" href="amazon-ec2-release-notes.rss" title="View RSS Feed"></a><a class="btn btn-kindle-link" id="kindle-link-top" target="_blank" href="http://www.amazon.com/dp/B076452RSZ" title="Open Kindle"></a><a class="btn btn-pdf-link" id="pdf-link-top" href="ec2-ug.pdf#troubleshooting-ena" target="_blank" title="Open PDF"></a><a class="btn btn-github-link" id="github-link-top" href="https://github.com/awsdocs/amazon-ec2-user-guide/tree/master/doc_source/troubleshooting-ena.md" target="_blank" title="Edit on GitHub"></a><div id="aws-nav-quicklinks-separator" class="aws-nav-quicklinks-separator">
+               <div class="aws-nav-left"></div>
+               <div class="aws-nav-right"></div>
+            </div>
+         </div>
+         <div xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" id="topnav-flyout-menu-container">
+            <ul id="topnav-flyout-menu"><script id="flyout-item-template" type="text/x-handlebars-template">
+                    {{#flyoutList}}
+
+                        {{#if topTarget}}
+                            <li class="awsdocs-flyout-link-wrapper"><a href="{{topTarget}}">{{listItem}}</a></li>
+                        {{else}}
+                            <li>{{listItem}}
+                                {{#if subList}}
+                                <ul>
+                                    {{#subList}}
+                                    <li class="awsdocs-flyout-link-wrapper"><a href="{{target}}">{{text}}</a></li>
+                                    {{/subList}}
+                                </ul>
+                                {{/if}}
+                            </li>
+                        {{/if}}
+
+                    {{/flyoutList}}
+                </script></ul>
+            <div id="topnav-flyout-menu-spacer"></div>
+         </div>
+      </div>
+      <div id="content-container">
+         <div id="left-column">
+            <div id="left-col-header">
+               <div xmlns:db="http://docbook.org/ns/docbook" id="left-col-top-content">
+                  <div id="service-name">Amazon Elastic Compute Cloud </div>
+                  <div id="search"><i id="search-icon" class="fa fa-search fa-2x"></i></div>
+                  <div id="guide-info">User Guide for Linux Instances
+                     <div id="content-button"><i id="toggle-contents" class="fa fa-bars"></i></div>
+                  </div>
+               </div>
+               <form id="finegrainedSearch" method="get" onsubmit="return searchFormSubmit(this);" action="/search/doc-search.html">
+                  <div id="search-form"><select id="search-select" name="searchPath">
+                        <option value="all">Entire Site</option>
+                        <option value="AWSMarketplace">AMIs from AWS Marketplace</option>
+                        <option value="amis">AMIs from All Sources</option>
+                        <option value="articles">Articles &amp; Tutorials</option>
+                        <option value="products_and_info">AWS Product Information</option>
+                        <option value="case_studies">Case Studies</option>
+                        <option value="customerapps">Customer Apps</option>
+                        <option value="documentation">Documentation</option>
+                        <option value="documentation-product">Documentation - This Product</option>
+                        <option value="documentation-guide" selected="selected">Documentation - This Guide</option>
+                        <option value="datasets">Public Data Sets</option>
+                        <option value="releasenotes">Release Notes</option>
+                        <option value="solution_providers">Partners</option>
+                        <option value="code">Sample Code &amp; Libraries</option></select><br /><input id="search-query" name="searchQuery" type="text" placeholder="Search" /><input id="search-button" src="/images/search-button.png" alt="Go" type="image" /></div><input type="hidden" name="this_doc_product" id="this_doc_product" value="Amazon Elastic Compute Cloud" /><input type="hidden" name="this_doc_guide" id="this_doc_guide" value="User Guide for Linux Instances" /><input type="hidden" name="doc_locale" value="en_us" /></form>
+            </div>
+            <div id="toc">
+               <ul class="awstoc">
+                  <li class="awstoc closed"><a class="awstoc" href="concepts.html">What Is Amazon EC2?</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-instances-and-amis.html">Instances and AMIs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-regions-availability-zones.html">Regions and Availability Zones</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="RootDeviceStorage.html">Root Device Volume</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="get-set-up-for-amazon-ec2.html">Setting Up</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="EC2_GetStarted.html">Getting Started</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="ec2-best-practices.html">Best Practices</a></li>
+                  <li class="awstoc closed"><a class="awstoc" href="ec2-tutorials.html">Tutorials</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-lamp-amazon-linux-2.html">Install a LAMP Server (Amazon Linux 2)</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="install-LAMP.html">Install a LAMP Server (Amazon Linux AMI)</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="hosting-wordpress.html">Tutorial: Hosting a WordPress Blog</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="SSL-on-an-instance.html">Tutorial: Configure Apache Web Server on Amazon Linux 2 to Use SSL/TLS</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-increase-availability.html">Tutorial: Increase the Availability of Your Application</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="tutorial_run_command.html">Tutorial: Remotely Manage Your Instances</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="AMIs.html">Amazon Machine Images</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ComponentsAMIs.html">AMI Types</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="virtualization_types.html">Virtualization Types</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="finding-an-ami.html">Finding a Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="sharing-amis.html">Shared AMIs</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="usingsharedamis-finding.html">Finding Shared AMIs</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="sharingamis-intro.html">Making an AMI Public</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="sharingamis-explicit.html">Sharing an AMI with Specific AWS Accounts</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="using-bookmarks.html">Using Bookmarks</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="building-shared-amis.html">Guidelines for Shared Linux AMIs</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="paid-amis.html">Paid AMIs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="creating-an-ami-ebs.html">Creating an Amazon EBS-Backed Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="creating-an-ami-instance-store.html">Creating an Instance Store-Backed Linux AMI</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="set-up-ami-tools.html">Setting Up the AMI Tools</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="create-instance-store-ami.html">Creating an AMI from an Instance Store-Backed Instance</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="Using_ConvertingS3toEBS.html">Converting to an Amazon EBS-Backed AMI</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ami-tools-commands.html">AMI Tools Reference</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AMIEncryption.html">AMIs with Encrypted Snapshots</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="CopyingAMIs.html">Copying an AMI</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="deregister-ami.html">Deregistering Your Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="amazon-linux-ami-basics.html">Amazon Linux</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="amazon-linux-2-virtual-machine.html">Running Amazon Linux 2 as a Virtual Machine On-Premises</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="UserProvidedKernels.html">User Provided Kernels</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Instances.html">Instances</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="instance-types.html">Instance Types</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances.html">Burstable Performance Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-credits-baseline-concepts.html">CPU Credits and Baseline Performance</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances-unlimited-mode.html">Unlimited Mode</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="unlimited-mode-examples.html">Examples</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances-standard-mode.html">Standard Mode</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="standard-mode-examples.html">Examples</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-performance-instances-how-to.html">Working with Burstable Performance Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-performance-instances-monitoring-cpu-credits.html">Monitoring Your CPU Credits</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="general-purpose-instances.html">General Purpose Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="compute-optimized-instances.html">Compute Optimized Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="memory-optimized-instances.html">Memory Optimized Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="storage-optimized-instances.html">Storage Optimized Instances</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="accelerated-computing-instances.html">Accelerated Computing Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-nvidia-driver.html">Installing the NVIDIA Driver on Linux Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="activate_grid.html">Activate NVIDIA GRID Virtual Applications (G3 Instances Only)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="optimize_gpu.html">Optimizing GPU Settings (P2, P3, and G3 Instances)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="fpga-getting-started.html">Getting Started with FPGA Development</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="concepts_micro_instances.html">T1 Micro Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-resize.html">Changing the Instance Type</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-optimize-cpu.html">Optimizing CPU Options</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="instance-purchasing-options.html">Instance Purchasing Options</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="ec2-reserved-instances.html">Reserved Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="reserved-instances-types.html">Types of Reserved Instances (Offering Classes)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="apply_ri.html">How Reserved Instances Are Applied</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="concepts-reserved-instances-application.html">How You Are Billed</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-market-concepts-buying.html">Buying Reserved Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-market-general.html">Selling on the Reserved Instance Marketplace</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-modifying.html">Modifying Reserved Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-convertible-exchange.html">Exchanging Convertible Reserved Instances</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-scheduled-instances.html">Scheduled Instances</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="using-spot-instances.html">Spot Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="how-spot-instances-work.html">How Spot Instances Work</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-fleet.html">How Spot Fleet Works</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="using-spot-instances-history.html">Spot Instance Pricing History</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-requests.html">Spot Instance Requests</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-request-examples.html">Example Launch Specifications</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-fleet-requests.html">Spot Fleet Requests</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-examples.html">Example Configurations</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-cloudwatch-metrics.html">CloudWatch Metrics for Spot Fleet</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-fleet-automatic-scaling.html">Automatic Scaling for Spot Fleet</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-target-tracking.html">Target Tracking Scaling Policies</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-step-scaling.html">Step Scaling Policies</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-scheduled-scaling.html">Scheduled Scaling</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-bid-status.html">Spot Request Status</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-interruptions.html">Spot Instance Interruptions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-data-feeds.html">Spot Instance Data Feed</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="using-spot-limits.html">Spot Instance Limits</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="dedicated-hosts-overview.html">Dedicated Hosts</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="how-dedicated-hosts-work.html">Working with Dedicated Hosts</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="dedicated-hosts-aws-config.html">Tracking Configuration Changes</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="dedicated-instance.html">Dedicated Instances</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="ec2-instance-lifecycle.html">Instance Lifecycle</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="LaunchingAndUsingInstances.html">Launch</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="launching-instance.html">Launching an Instance Using the Launch Instance Wizard</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ec2-launch-templates.html">Launching an Instance from a Launch Template</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="launch-more-like-this.html">Launching an Instance From an Existing Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="instance-launch-snapshot.html">Launching a Linux Instance from a Backup</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="launch-marketplace-console.html">Launching an AWS Marketplace Instance</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ec2-fleet.html">Launching an EC2 Fleet</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="ec2-fleet-configuration-strategies.html">EC2 Fleet Configuration Strategies</a></li>
+                                          <li class="awstoc closed"><a class="awstoc" href="manage-ec2-fleet.html">Managing an EC2 Fleet</a><ul class="awstoc">
+                                                <li class="awstoc leaf"><a class="awstoc" href="ec2-fleet-examples.html">Example Configurations</a></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="AccessingInstances.html">Connect</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="AccessingInstancesLinux.html">Connect Using SSH</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="putty.html">Connect Using PuTTY</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="WSL.html">Connect Using WSL</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="mindterm.html">Connect Using MindTerm</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="Stop_Start.html">Stop and Start</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-reboot.html">Reboot</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-retirement.html">Retire</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="terminating-instances.html">Terminate</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-recover.html">Recover</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="Configure_Instance.html">Configure Instances</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="managing-software.html">Managing Software</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-updates.html">Updating Instance Software</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="add-repositories.html">Adding Repositories</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="find-software.html">Finding Software Packages</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-software.html">Installing Software Packages</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="compile-software.html">Preparing to Compile Software</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="managing-users.html">Managing Users</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="processor_state_control.html">Processor State Control</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="set-time.html">Setting the Time</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="set-hostname.html">Changing the Hostname</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="dynamic-dns.html">Setting Up Dynamic DNS</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="user-data.html">Running Commands at Launch</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="ec2-instance-metadata.html">Instance Metadata and User Data</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="instance-identity-documents.html">Instance Identity Documents</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="identify_ec2_instances.html">Identify Instances</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="monitoring_ec2.html">Monitoring</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="monitoring_automated_manual.html">Automated and Manual Monitoring</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="monitoring_best_practices.html">Best Practices for Monitoring</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="monitoring-instances-status-check.html">Monitoring the Status of Your Instances</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="monitoring-system-instance-status-check.html">Instance Status Checks</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="monitoring-instances-status-check_sched.html">Scheduled Events</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-cloudwatch.html">Monitoring Your Instances Using CloudWatch</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="using-cloudwatch-new.html">Enable Detailed Monitoring</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="viewing_metrics_with_cloudwatch.html">List Available Metrics</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="monitoring_get_statistics.html">Get Statistics for Metrics</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="US_SingleMetricPerInstance.html">Get Statistics for a Specific Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="GetSingleMetricAllDimensions.html">Aggregate Statistics Across Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="GetMetricAutoScalingGroup.html">Aggregate Statistics by Auto Scaling Group</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="US_SingleMetricPerAMI.html">Aggregate Statistics by AMI</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="graphs-in-the-aws-management-console.html">Graph Metrics</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="using-cloudwatch-createalarm.html">Create an Alarm</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="UsingAlarmActions.html">Create Alarms That Stop, Terminate, Reboot, or Recover an Instance</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="automating_with_cloudwatch_events.html">Automating Amazon EC2 with CloudWatch Events</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="mon-scripts.html">Monitoring Memory and Disk Metrics</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc opened"><a class="awstoc" href="EC2_Network_and_Security.html">Network and Security</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-key-pairs.html">Key Pairs</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-network-security.html">Security Groups</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="security-group-rules-reference.html">Security Group Rules Reference</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="UsingIAM.html">Controlling Access</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="iam-policies-for-amazon-ec2.html">IAM Policies</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="iam-policy-structure.html">Policy Structure</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ec2-supported-iam-actions-resources.html">Supported Resource-Level Permissions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ExamplePolicies_EC2.html">Example Policies for CLI or SDK</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="iam-policies-ec2-console.html">Example Policies for the Console</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="iam-roles-for-amazon-ec2.html">IAM Roles</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="authorizing-access-to-an-instance.html">Network Access</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-instance-addressing.html">Instance IP Addressing</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="MultipleIP.html">Multiple IP Addresses</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="elastic-ip-addresses-eip.html">Elastic IP Addresses</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-eni.html">Network Interfaces</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="requester-managed-eni.html">Requester-Managed Network Interfaces</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc opened"><a class="awstoc" href="enhanced-networking.html">Enhanced Networking</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="sriov-networking.html">Enhanced Networking: Intel 82599 VF</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="enhanced-networking-ena.html">Enhanced Networking: ENA</a></li>
+                              <li class="awstoc leaf"><a class="awstoc selected" href="troubleshooting-ena.html">Troubleshooting ENA</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="placement-groups.html">Placement Groups</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="network_mtu.html">Network MTU</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-vpc.html">Virtual Private Clouds</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="ec2-classic-platform.html">EC2-Classic</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="vpc-classiclink.html">ClassicLink</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="vpc-migrate.html">Migrating from EC2-Classic to a VPC</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Storage.html">Storage</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="AmazonEBS.html">Amazon EBS</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="EBSVolumes.html">EBS Volumes</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="EBSVolumeTypes.html">EBS Volume Types</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-creating-volume.html">Creating a Volume</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-restoring-volume.html">Restoring from a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-attaching-volume.html">Attaching a Volume to an Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-using-volumes.html">Making a Volume Available for Use</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-describing-volumes.html">Volume Information</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="monitoring-volume-status.html">Monitoring the Status of Your Volumes</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-detaching-volume.html">Detaching a Volume from an Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-deleting-volume.html">Deleting a Volume</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ebs-modify-volume.html">Modifying a Volume</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="volume_constraints.html">Volume Size Constraints</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="console-modify.html">Using the Console</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="cli-modify.html">Using the CLI</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="monitoring_mods.html">Monitoring Progress</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="expand-linux-partition.html">Expanding a Linux Partition</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="recognize-expanded-volume-linux.html">Extending Linux File Systems</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="limitations.html">Limitations</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="stop-start.html">Appendix: Manual Stop/Start Modification</a></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="EBSSnapshots.html">EBS Snapshots</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-creating-snapshot.html">Creating a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-deleting-snapshot.html">Deleting a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-copy-snapshot.html">Copying a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-describing-snapshots.html">Viewing Snapshot Information</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-modifying-snapshot-permissions.html">Sharing a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="snapshot-lifecycle.html">Automating Snapshots</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="EBSOptimized.html">EBS Optimization</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="EBSEncryption.html">EBS Encryption</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="nvme-ebs-volumes.html">EBS Volumes and NVMe</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="EBSPerformance.html">EBS Performance</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-ec2-config.html">EC2 Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-io-characteristics.html">I/O Characteristics and Monitoring</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-initialize.html">Initialize Volumes</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="raid-config.html">RAID Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="benchmark_procedures.html">Benchmark EBS Volumes</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ebs-cloud-watch-events.html">EBS CloudWatch Events</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="InstanceStorage.html">Instance Store</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="add-instance-store-volumes.html">Add Instance Store Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ssd-instance-store.html">SSD Instance Store Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-store-swap-volumes.html">Instance Store Swap Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="disk-performance.html">Optimizing Disk Performance</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AmazonEFS.html">Amazon EFS</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AmazonS3.html">Amazon S3</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="volume_limits.html">Instance Volume Limits</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="device_naming.html">Device Naming</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="block-device-mapping-concepts.html">Block Device Mapping</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-public-data-sets.html">Using Public Data Sets</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="EC2_Resources.html">Resources and Tags</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="resources.html">Resource Locations</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="resource-ids.html">Resource IDs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="Using_Filtering.html">Listing and Filtering Your Resources</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="Using_Tags.html">Tagging Your Resources</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-resource-limits.html">Service Limits</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="usage-reports.html">Usage Reports</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Linux-Server-EC2Rescue.html">EC2Rescue for Linux</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_install.html">Installing EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_verify.html">(Optional) Verify the Signature of EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_working.html">Working with EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_moduledev.html">Developing EC2Rescue Modules</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="ec2-instance-troubleshoot.html">Troubleshooting</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="troubleshooting-launch.html">Troubleshooting Launch Issues</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesConnecting.html">Connecting to Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesStopping.html">Stopping Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesShuttingDown.html">Terminating Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstanceRecovery.html">Instance Recovery Failures</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstances.html">Failed Status Checks</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="instance-console.html">Getting Console Output and Rebooting Instances</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="instance-booting-from-wrong-volume.html">Booting from the Wrong Volume</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="DocumentHistory.html">Document History</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="glossary.html">AWS Glossary</a></li>
+                  <li id="toc-additional-links"><a class="btn btn-pdf-link" id="pdf-link-alt" href="ec2-ug.pdf#top" target="_blank" title="Open PDF"></a><a class="btn btn-kindle-link" id="kindle-link-alt" target="_blank" href="http://www.amazon.com/dp/B076452RSZ" title="Open Kindle"></a><a class="btn btn-rss-link" id="rss-link-alt" target="_blank" href="amazon-ec2-release-notes.rss" title="View RSS Feed"></a></li>
+               </ul>
+            </div>
+         </div>
+         <div id="main-column">
+            <div id="main">
+               <div id="main-content">
+                  <div id="main-col-body">
+                     <table summary="Breadcrumbs">
+                        <tr>
+                           <td>
+                              <div class="breadcrumb"><a href="/index.html">AWS Documentation</a> » <a href="/ec2/index.html">Amazon EC2</a> » <a href="index.html">User Guide for Linux Instances</a> » <a href="EC2_Network_and_Security.html">Network and Security</a> » <a href="enhanced-networking.html">Enhanced Networking on Linux</a> » <span class="breadcrumb">Troubleshooting the Elastic Network Adapter (ENA)</span></div>
+                           </td>
+                        </tr>
+                     </table>
+                     <div></div>
+                     <h1 class="topictitle" id="troubleshooting-ena">Troubleshooting the Elastic Network Adapter (ENA)</h1>
+                     <p>The Elastic Network Adapter (ENA) is designed to improve operating system health and
+                        reduce the chances of long-term disruption because of unexpected hardware behavior
+                        and or
+                        failures. The ENA architecture keeps device or driver failures as transparent to the
+                        system
+                        as possible. This topic provides troubleshooting information for ENA.
+                     </p>
+                     <p>If you are unable to connect to your instance, start with the <a href="troubleshooting-ena.html#ena-connectivity-issues">Troubleshooting Connectivity Issues</a> section. 
+                     </p>
+                     <p>If you are able to connect to your instance, you can gather diagnostic information
+                        by
+                        using the failure detection and recovery mechanisms that are covered in the later
+                        sections
+                        of this topic.
+                     </p>
+                     <div class="highlights" id="inline-topiclist">
+                        <p><strong>Contents</strong></p>
+                        <ul>
+                           <li><a href="#ena-connectivity-issues">Troubleshooting Connectivity Issues</a></li>
+                           <li><a href="#ena-keep-alive">Keep-Alive Mechanism</a></li>
+                           <li><a href="#register-read-timeout-ena">Register Read Timeout</a></li>
+                           <li><a href="#statistics-ena">Statistics</a></li>
+                           <li><a href="#driver-error-logs-ena">Driver Error Logs in
+                                 syslog</a></li>
+                        </ul>
+                     </div>
+                     <h2 id="ena-connectivity-issues">Troubleshooting Connectivity Issues</h2>
+                     
+                     
+                     <p>If you lose connectivity while enabling enhanced networking, the
+                        <code>ena</code> module might be incompatible with your instance's current
+                        running kernel. This can happen if you install the module for a specific kernel version
+                        (without <b>dkms</b>, or with an improperly configured
+                        <b>dkms.conf</b> file) and then your instance kernel is updated. If the
+                        instance kernel that is loaded at boot time does not have the <code>ena</code>
+                        module properly installed, your instance will not recognize the network adapter and
+                        your
+                        instance becomes unreachable.
+                     </p>
+                     
+                     <p>If you enable enhanced networking for a PV instance or AMI, this can also
+                        make your instance unreachable.
+                     </p>
+                     
+                     <p>If your instance becomes unreachable after enabling enhanced networking with ENA,
+                        you
+                        can disable the <code class="code">enaSupport</code> attribute for your instance and it will
+                        fall back to the stock network adapter.
+                     </p>
+                     
+                     <p class="title"><b>To disable enhanced networking with ENA (EBS-backed instances)</b></p>
+                     <ol>
+                        <li>
+                           
+                           <p>From your local computer, stop the instance using the Amazon EC2 console or one of
+                              the following commands: <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/stop-instances.html" target="_blank">stop-instances</a> (AWS CLI), <a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Stop-EC2Instance.html" target="_blank">Stop-EC2Instance</a>
+                              (AWS Tools for Windows PowerShell). If your instance is managed by AWS OpsWorks, you
+                              should stop the instance
+                              in the AWS OpsWorks console so that the instance state remains in sync.
+                           </p>
+                           
+                           <div class="aws-note">
+                              <p class="aws-note">Important</p>
+                              <p>If you are using an instance store-backed instance, you can't stop the
+                                 instance. Instead, proceed to <a href="troubleshooting-ena.html#disable-enhanced-networking-ena-instance-store">To disable enhanced
+                                    networking with ENA (instance store-backed instances)</a>.
+                              </p>
+                           </div>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>From your local computer, disable the enhanced networking attribute using the
+                              following command.
+                           </p>
+                           
+                           <div class="itemizedlist">
+                              
+                              
+                              <ul class="itemizedlist" type="disc">
+                                 <li class="listitem">
+                                    
+                                    <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-attribute.html" target="_blank">modify-instance-attribute</a> (AWS CLI)
+                                    </p>
+                                    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><span><code class="prompt" copy="false">$ </code></span><strong class="userinput"><code><b>aws ec2 modify-instance-attribute</b> --instance-id <em class="replaceable"><code>instance_id</code></em> --no-ena-support</code></strong></code></pre>
+                                    </li>
+                              </ul>
+                           </div>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>From your local computer, start the instance using the Amazon EC2 console or one of
+                              the following commands: <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/start-instances.html" target="_blank">start-instances</a> (AWS CLI), <a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Start-EC2Instance.html" target="_blank">Start-EC2Instance</a>
+                              (AWS Tools for Windows PowerShell). If your instance is managed by AWS OpsWorks, you
+                              should start the instance
+                              in the AWS OpsWorks console so that the instance state remains in sync.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>(Optional) Connect to your instance and try reinstalling the
+                              <code>ena</code> module with your current kernel version by following
+                              the steps in <a href="enhanced-networking-ena.html">Enabling Enhanced Networking with the Elastic
+                                 Network Adapter (ENA) on Linux Instances</a>.
+                           </p>
+                           
+                        </li>
+                     </ol>
+                     
+                     
+                     <p class="title"><b>To disable enhanced
+                           networking with ENA (instance store-backed instances)</b></p>
+                     
+                     <p>If your instance is an instance store-backed instance, create a new AMI as
+                        described in <a href="creating-an-ami-instance-store.html">Creating an Instance Store-Backed Linux AMI</a>. Be sure to disable the
+                        enhanced networking <code class="code">enaSupport</code> attribute when you register the
+                        AMI.
+                     </p>
+                     
+                     
+                     <div class="itemizedlist">
+                        
+                        
+                        
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              
+                              <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/register-image.html" target="_blank">register-image</a>
+                                 (AWS CLI)
+                              </p>
+                              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><span><code class="prompt" copy="false">$ </code></span><strong class="userinput"><code><b>aws ec2 register-image --no-ena-support ...</b></code></strong></code></pre>
+                              </li>
+                           <li class="listitem">
+                              
+                              <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Register-EC2Image.html" target="_blank">Register-EC2Image</a> (AWS Tools for Windows PowerShell)
+                              </p>
+                              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">C:\&gt; </code><strong class="userinput"><code><b>Register-EC2Image</b> -EnaSupport $false ...</code></strong></code></pre>
+                              </li>
+                        </ul>
+                     </div>
+                     
+                     <h2 id="ena-keep-alive">Keep-Alive Mechanism</h2>
+                     
+                     
+                     <p>The ENA device posts keep-alive events at a fixed rate (usually once every second).
+                        The ENA driver implements a watchdog mechanism, which checks for the presence of
+                        these keep-alive messages. If a message or messages are present, the watchdog is
+                        rearmed, otherwise the driver concludes that the device experienced a failure and
+                        then
+                        does the following:
+                     </p>
+                     
+                     <div class="itemizedlist">
+                        
+                        
+                        
+                        
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              
+                              <p>Dumps its current statistics to syslog</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Resets the ENA device</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Resets the ENA driver state</p>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     <p>The above reset procedure may result in some traffic loss for a short
+                        period of time (TCP connections should be able to recover), but should not otherwise
+                        affect the user.
+                     </p>
+                     
+                     <p>The ENA device may also indirectly request a device reset procedure, by not sending
+                        a
+                        keep-alive notification, for example, if the ENA device reaches an unknown state after
+                        loading an irrecoverable configuration.
+                     </p>
+                     
+                     <p>Below is an example of the reset procedure:</p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight">[18509.800135] ena 0000:00:07.0 eth1: Keep alive watchdog timeout. <em class="replaceable"><code>// The watchdog process initiates a reset</code></em>
+[18509.815244] ena 0000:00:07.0 eth1: Trigger reset is on		
+[18509.825589] ena 0000:00:07.0 eth1: tx_timeout: 0 <em class="replaceable"><code>// The driver logs the current statistics</code></em>
+[18509.834253] ena 0000:00:07.0 eth1: io_suspend: 0
+[18509.842674] ena 0000:00:07.0 eth1: io_resume: 0
+[18509.850275] ena 0000:00:07.0 eth1: wd_expired: 1
+[18509.857855] ena 0000:00:07.0 eth1: interface_up: 1
+[18509.865415] ena 0000:00:07.0 eth1: interface_down: 0
+[18509.873468] ena 0000:00:07.0 eth1: admin_q_pause: 0
+[18509.881075] ena 0000:00:07.0 eth1: queue_0_tx_cnt: 0
+[18509.888629] ena 0000:00:07.0 eth1: queue_0_tx_bytes: 0
+[18509.895286] ena 0000:00:07.0 eth1: queue_0_tx_queue_stop: 0
+.......
+........
+[18511.280972] ena 0000:00:07.0 eth1: free uncompleted tx skb qid 3 idx 0x7 <em class="replaceable"><code>// At the end of the down process, the driver discards incomplete packets.</code></em>
+[18511.420112] [ENA_COM: ena_com_validate_version] ena device version: 0.10 <em class="replaceable"><code>//The driver begins its up process</code></em>
+[18511.420119] [ENA_COM: ena_com_validate_version] ena controller version: 0.0.1 implementation version 1
+[18511.420127] [ENA_COM: ena_com_admin_init] ena_defs : Version:[b9692e8] Build date [Wed Apr  6 09:54:21 IDT 2016]
+[18512.252108] ena 0000:00:07.0: Device watchdog is Enabled
+[18512.674877] ena 0000:00:07.0: irq 46 for MSI/MSI-X
+[18512.674933] ena 0000:00:07.0: irq 47 for MSI/MSI-X
+[18512.674990] ena 0000:00:07.0: irq 48 for MSI/MSI-X
+[18512.675037] ena 0000:00:07.0: irq 49 for MSI/MSI-X
+[18512.675085] ena 0000:00:07.0: irq 50 for MSI/MSI-X
+[18512.675141] ena 0000:00:07.0: irq 51 for MSI/MSI-X
+[18512.675188] ena 0000:00:07.0: irq 52 for MSI/MSI-X
+[18512.675233] ena 0000:00:07.0: irq 53 for MSI/MSI-X
+[18512.675279] ena 0000:00:07.0: irq 54 for MSI/MSI-X
+[18512.772641] [ENA_COM: ena_com_set_hash_function] Feature 10 isn't supported
+[18512.772647] [ENA_COM: ena_com_set_hash_ctrl] Feature 18 isn't supported
+[18512.775945] ena 0000:00:07.0: Device reset completed successfully <em class="replaceable"><code>// The reset process is complete</code></em></code></pre>
+                     <h2 id="register-read-timeout-ena">Register Read Timeout</h2>
+                     
+                     
+                     <p>The ENA architecture suggests a limited usage of memory mapped I/O (MMIO) read
+                        operations. MMIO registers are accessed by the ENA device driver only during its
+                        initialization procedure. 
+                     </p>
+                     
+                     <p>If the driver logs (available in <b>dmesg</b> output) indicate failures of
+                        read operations, this may be caused by an incompatible or incorrectly compiled driver,
+                        a
+                        busy hardware device, or hardware failure.
+                     </p>
+                     
+                     <p>Intermittent log entries that indicate failures on read operations should not be
+                        considered an issue; the driver will retry them in this case. However, a sequence
+                        of log
+                        entries containing read failures indicate a driver or hardware problem.
+                     </p>
+                     
+                     <p>Below is an example of driver log entry indicating a read operation failure due to
+                        a
+                        timeout:
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">[ 47.113698] [ENA_COM: ena_com_reg_bar_read32] reading reg failed for timeout. expected: req id[1] offset[88] actual: req id[57006] offset[0] 
+[ 47.333715] [ENA_COM: ena_com_reg_bar_read32] reading reg failed for timeout. expected: req id[2] offset[8] actual: req id[57007] offset[0] 
+[ 47.346221] [ENA_COM: ena_com_dev_reset] Reg read32 timeout occurred</code></pre>
+                     <h2 id="statistics-ena">Statistics</h2>
+                     
+                     
+                     <p>If you experience insufficient network performance or latency issues, you should
+                        retrieve the device statistics and examine them. These statistics can be obtained
+                        using
+                        <b>ethtool</b>, as shown below:
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>ethtool –S eth<em class="replaceable"><code>N</code></em></code></strong><code class="computeroutput" copy="false">
+NIC statistics:
+     tx_timeout: 0
+     io_suspend: 0
+     io_resume: 0
+     wd_expired: 0
+     interface_up: 1
+     interface_down: 0
+     admin_q_pause: 0
+     queue_0_tx_cnt: 4329
+     queue_0_tx_bytes: 1075749
+     queue_0_tx_queue_stop: 0
+...</code></code></pre>
+                     <p>The following command output parameters are described below:</p>
+                     
+                     <div class="variablelist">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <dl>
+                           
+                           <dt><span class="term"><code class="code">tx_timeout: <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times that the Netdev watchdog was
+                                 activated.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">io_suspend: <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Unsupported. This value should always be zero.</p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">io_resume: <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Unsupported. This value should always be zero.</p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">wd_expired: <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times that the driver did not receive the keep-alive
+                                 event in the preceding 3 seconds.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">interface_up: <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times that the ENA interface was brought up.</p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">interface_down: <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times that the ENA interface was brought down.</p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">admin_q_pause: <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The admin queue is in an unstable state. This value should always be
+                                 zero.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_cnt:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of transmitted packets for queue
+                                 <em class="replaceable"><code>N</code></em>.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_bytes:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of transmitted bytes for queue
+                                 <em class="replaceable"><code>N</code></em>.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_queue_stop:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times that queue <em class="replaceable"><code>N</code></em> was full
+                                 and stopped.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_queue_wakeup:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times that queue <em class="replaceable"><code>N</code></em> resumed
+                                 after being stopped.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_dma_mapping_err:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Direct memory access error count. If this value is not 0, it indicates
+                                 low system resources.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_napi_comp:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times the <code class="code">napi</code> handler called
+                                 <code class="code">napi_complete</code> for queue
+                                 <em class="replaceable"><code>N</code></em>.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_poll:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times the <code class="code">napi</code> handler was scheduled
+                                 for queue <em class="replaceable"><code>N</code></em>.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_doorbells:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of transmission doorbells for queue
+                                 <em class="replaceable"><code>N</code></em>.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_linearize:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times SKB linearization was attempted for queue
+                                 <em class="replaceable"><code>N</code></em>.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_linearize_failed:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times SKB linearization failed for queue
+                                 <em class="replaceable"><code>N</code></em>.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_prepare_ctx_err:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times <code class="code">ena_com_prepare_tx</code> failed for
+                                 queue <em class="replaceable"><code>N</code></em>. This value should always be zero; if
+                                 not, see the driver logs.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_missing_tx_comp:
+                                    code<em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of packets that were left uncompleted for queue
+                                 <em class="replaceable"><code>N</code></em>. This value should always be
+                                 zero.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_tx_bad_req_id:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Invalid <code class="code">req_id</code> for queue
+                                 <em class="replaceable"><code>N</code></em>. The valid <code class="code">req_id</code> is
+                                 zero, minus the <code class="code">queue_size</code>, minus 1. 
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_rx_cnt:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of received packets for queue
+                                 <em class="replaceable"><code>N</code></em>.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_rx_bytes:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of received bytes for queue
+                                 <em class="replaceable"><code>N</code></em>.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_rx_refil_partial:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times the driver did not succeed in refilling the empty
+                                 portion of the <code class="code">rx</code> queue with the buffers for queue
+                                 <em class="replaceable"><code>N</code></em>. If this value is not zero, it
+                                 indicates low memory resources.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_rx_bad_csum:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times the <code class="code">rx</code> queue had a bad checksum
+                                 for queue <em class="replaceable"><code>N</code></em> (only if <code class="code">rx</code>
+                                 checksum offload is supported).
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_rx_page_alloc_fail:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of time that page allocation failed for queue
+                                 <em class="replaceable"><code>N</code></em>. If this value is not zero, it
+                                 indicates low memory resources.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_rx_skb_alloc_fail:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of time that SKB allocation failed for queue
+                                 <em class="replaceable"><code>N</code></em>. If this value is not zero, it
+                                 indicates low system resources.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_rx_dma_mapping_err:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Direct memory access error count. If this value is not 0, it indicates
+                                 low system resources.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_rx_bad_desc_num:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Too many buffers per packet. If this value is not 0, it indicates
+                                 usage of very small buffers.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">queue_<em class="replaceable"><code>N</code></em>_rx_small_copy_len_pkt:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Optimization: For packets smaller that this threshold, which is set by
+                                 <code class="code">sysfs</code>, the packet is copied directly to the stack
+                                 to avoid allocation of a new page.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">ena_admin_q_aborted_cmd:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of admin commands that were aborted. This usually happens
+                                 during the auto-recovery procedure.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">ena_admin_q_submitted_cmd: <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of admin queue doorbells.</p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">ena_admin_q_completed_cmd:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of admin queue completions.</p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">ena_admin_q_out_of_space:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times that the driver tried to submit new admin command,
+                                 but the queue was full.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">ena_admin_q_no_completion:
+                                    <em class="replaceable"><code>N</code></em></code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The number of times that the driver did not get an admin completion
+                                 for a command.
+                              </p>
+                              
+                           </dd>
+                           
+                        </dl>
+                     </div>
+                     
+                     <h2 id="driver-error-logs-ena">Driver Error Logs in
+                        syslog
+                     </h2>
+                     
+                     
+                     <p>The ENA driver writes log messages to <b>syslog</b> during system boot.
+                        You can examine these logs to look for errors if you are experiencing issues. Below
+                        is
+                        an example of information logged by the ENA driver in <b>syslog</b> during
+                        system boot, along with some annotations for select messages.
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight">Jun  3 22:37:46 ip-172-31-2-186 kernel: [  478.416939] [ENA_COM: ena_com_validate_version] ena device version: 0.10
+Jun  3 22:37:46 ip-172-31-2-186 kernel: [  478.420915] [ENA_COM: ena_com_validate_version] ena controller version: 0.0.1 implementation version 1
+Jun  3 22:37:46 ip-172-31-2-186 kernel: [  479.256831] ena 0000:00:03.0: Device watchdog is Enabled
+Jun  3 22:37:46 ip-172-31-2-186 kernel: [  479.672947] ena 0000:00:03.0: creating 8 io queues. queue size: 1024
+Jun  3 22:37:46 ip-172-31-2-186 kernel: [  479.680885] [ENA_COM: ena_com_init_interrupt_moderation] Feature 20 isn't supported  <em class="replaceable"><code>// Interrupt moderation is not supported by the device</code></em>
+Jun  3 22:37:46 ip-172-31-2-186 kernel: [  479.691609] [ENA_COM: ena_com_get_feature_ex] Feature 10 isn't supported <em class="replaceable"><code>// RSS HASH function configuration is not supported by the device
+</code></em>Jun  3 22:37:46 ip-172-31-2-186 kernel: [  479.694583] [ENA_COM: ena_com_get_feature_ex] Feature 18 isn't supported <em class="replaceable"><code>//RSS HASH input source configuration is not supported by the device</code></em> 
+Jun  3 22:37:46 ip-172-31-2-186 kernel: [  479.697433] [ENA_COM: ena_com_set_host_attributes] Set host attribute isn't supported
+Jun  3 22:37:46 ip-172-31-2-186 kernel: [  479.701064] ena 0000:00:03.0 (unnamed net_device) (uninitialized): Cannot set host attributes
+Jun  3 22:37:46 ip-172-31-2-186 kernel: [  479.704917] ena 0000:00:03.0: Elastic Network Adapter (ENA) found at mem f3000000, mac addr 02:8a:3c:1e:13:b5 Queues 8
+Jun  3 22:37:46 ip-172-31-2-186 kernel: [  480.805037] EXT4-fs (xvda1): re-mounted. Opts: (null)
+Jun  3 22:37:46 ip-172-31-2-186 kernel: [  481.025842] NET: Registered protocol family 10</code></pre>
+                     
+                     <p class="title"><b>Which errors can I ignore?</b></p>
+                     
+                     <p>The following warnings that may appear in your system's error logs can be ignored
+                        for the Elastic Network Adapter:
+                     </p>
+                     
+                     
+                     <div class="variablelist">
+                        
+                        
+                        
+                        
+                        
+                        
+                        <dl>
+                           
+                           <dt><span class="term"><strong class="errortext"><code>Set host attribute isn't supported</code></strong></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Host attributes are not supported for this device.</p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><strong class="errortext"><code>failed to alloc buffer for rx queue</code></strong></span></dt>
+                           
+                           <dd>
+                              
+                              <p>This is a recoverable error, and it indicates that there may have
+                                 been a memory pressure issue when the error was thrown.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><strong class="errortext"><code>Feature <em class="replaceable"><code>X</code></em> isn't
+                                       supported</code></strong></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The referenced feature is not supported by the Elastic Network
+                                 Adapter. Possible values for <em class="replaceable"><code>X</code></em> include:
+                              </p>
+                              
+                              <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+                                       
+                                       <p><strong class="userinput"><code>10</code></strong>: RSS Hash function configuration
+                                          is not supported for this device.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p><strong class="userinput"><code>12</code></strong>: RSS Indirection table
+                                          configuration is not supported for this device.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p><strong class="userinput"><code>18</code></strong>: RSS Hash Input configuration is
+                                          not supported for this device.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p><strong class="userinput"><code>20</code></strong>: Interrupt moderation is not
+                                          supported for this device.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p><strong class="userinput"><code>27</code></strong>: The Elastic Network Adapter driver 
+                                          does not support polling the Ethernet capabilities from snmpd.
+                                       </p>
+                                       
+                                    </li>
+                                 </ul>
+                              </div>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><strong class="errortext"><code>Failed to config AENQ</code></strong></span></dt>
+                           
+                           <dd>
+                              
+                              <p>The Elastic Network Adapter does not support AENQ
+                                 configuration.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><strong class="errortext"><code>Trying to set unsupported AENQ events</code></strong></span></dt>
+                           
+                           <dd>
+                              
+                              <p>This error indicates an attempt to set an AENQ events group that
+                                 is not supported by the Elastic Network Adapter.
+                              </p>
+                              
+                           </dd>
+                           
+                        </dl>
+                     </div>
+                     
+                  </div>
+                  <noscript>
+                     <div>
+                        <div>
+                           <div>
+                              <div id="js_error_message">
+                                 <p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p>
+                                 <p>To use the AWS Documentation, Javascript must be enabled. Please refer to your browser's
+                                    Help pages for instructions.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </noscript>
+                  <div id="main-col-footer">
+                     <div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div>
+                     <div id="next"><a class="awstoc" accesskey="p" href="enhanced-networking-ena.html">« Previous </a><a class="awstoc" accesskey="n" href="placement-groups.html">Next »</a></div>
+                     <div id="copyright-main-footer">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+                  </div>
+               </div>
+            </div>
+            <div id="right-expanded">
+               <div id="right-content-wrapper">
+                  <div id="pagetoc">
+                     <p>On this page:</p>
+                     <ul class="pagetoc">
+                        <li class="pagetoc" name="Troubleshooting Connectivity Issues"><a class="pagetoc" href="#ena-connectivity-issues">Troubleshooting Connectivity Issues</a></li>
+                        <li class="pagetoc" name="Keep-Alive Mechanism"><a class="pagetoc" href="#ena-keep-alive">Keep-Alive Mechanism</a></li>
+                        <li class="pagetoc" name="Register Read Timeout"><a class="pagetoc" href="#register-read-timeout-ena">Register Read Timeout</a></li>
+                        <li class="pagetoc" name="Statistics"><a class="pagetoc" href="#statistics-ena">Statistics</a></li>
+                        <li class="pagetoc" name="Driver Error Logs in&#xA;            syslog"><a class="pagetoc" href="#driver-error-logs-ena">Driver Error Logs in
+                              syslog</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="cookie-notice">
+         <div class="cookie-notice-text">We use cookies to provide and improve our services. By using our site, you consent
+            to cookies. <a href="http://aws.amazon.com/legal/cookies">Learn more</a></div>
+      </div>
+      <div id="footer">
+         <div id="footer_short_fb" class="hide" title="Feedback"><a target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2&amp;topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/troubleshooting-ena.html&amp;hidden_guide_name=User Guide for Linux Instances&amp;hidden_api_version=&amp;hidden_file_name=troubleshooting-ena"><i class="awsdocs-footer-text fa fa-envelope-o"></i></a></div>
+         <div id="footer_toggle" class="mediaobject">
+            <div id="footer_toggle_img" class="awsdocs-footer-text fa fa-caret-down"></div>
+            <div id="footer_toggle_img_collapse" class="hide awsdocs-footer-text fa fa-caret-right"></div>
+         </div>
+         <div id="footer-left"><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/terms">Terms of Use</a><span class="awsdocs-footer-text"> | </span><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/privacy">Privacy</a><span class="awsdocs-footer-text"> | </span><span class="awsdocs-footer-text">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</span></div>
+         <div id="footer-right">
+            <div id="feedback">
+               <div id="forums"><a id="forum_link" target="_blank" href="http://forums.aws.amazon.com/forum.jspa?forumID=30" class="awsdocs-footer-text">Have a question? Try the Forums.</a></div>
+               <div id="feedback-message" class="awsdocs-footer-text">Did this page help you?</div>
+               <div id="feedback-yesno-buttons"><a class="awstoc btn btn-default" target="_blank" href="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/troubleshooting-ena.html">Yes</a><a class="awstoc btn btn-default" target="_blank" href="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/troubleshooting-ena.html">No</a></div>
+               <div id="feedback-feedback-button"><a class="awstoc btn btn-default" target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2&amp;topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/troubleshooting-ena.html&amp;hidden_guide_name=User Guide for Linux Instances&amp;hidden_api_version=&amp;hidden_file_name=troubleshooting-ena">Feedback</a></div>
+            </div>
+         </div>
+      </div>
+      <!-- SiteCatalyst code version: H.25.2.
+            Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+            More info available at http://www.omniture.com --><script language="JavaScript" type="text/javascript" src="https://a0.awsstatic.com/s_code/js/1.0/awshome_s_code.js"></script><script language="JavaScript" type="text/javascript">
+         <!--
+
+            // Documentation Service Name
+            s.prop66='Amazon Elastic Compute Cloud';
+            s.eVar66='D=c66';
+  
+            // Documentation Guide Name                                                                 
+            s.prop65='User Guide for Linux Instances';
+            s.eVar65='D=c65';
+
+            var s_code=s.t();if(s_code)document.write(s_code)//--></script><script language="JavaScript" type="text/javascript">
+         <!--
+                if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+                //--></script><noscript><img src="https://amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.2--NS/0" height="1" width="1" border="0" alt="" /></noscript>
+      <!--/DO NOT REMOVE/-->
+      <!-- End SiteCatalyst code version: H.25.2. -->
+   </body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Extend the Plugin
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Extend the Plugin' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Extend the Plugin' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Extend the Plugin' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/developer/tutorial/extend/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Extend the Plugin' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<style>
+  .container .row.body {
+    margin-right: 5em;
+    margin-left: 5em;
+  }
+  .toc {
+      float: right;
+  }
+</style>
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row.body h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-12'>
+<h1>
+Extend the Plugin
+</h1>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../prepare">Step 1: Preparing for Plugin Development</a></p>
+</li>
+<li>
+<p><a href="../create">Step 2: Create a Plugin</a></p>
+</li>
+<li>
+<p><a href="../run">Step 3: Build and Run the Plugin</a></p>
+</li>
+<li>
+<p><a href="../extend"><strong>Step 4: Extend the Plugin</strong></a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+While possible to follow with a plain text editor, this section is much easier to follow along by using a Java IDE with Maven support.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It&#8217;s time to extend the sample plugin with new features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Record the name used in the greeting not just in the build log, but a proper data structure.</p>
+</li>
+<li>
+<p>Add a new page to the build that shows the name used in the greeting.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It is important that we store the name that was used when the build was run, rather than use the one in the configuration, as the configuration may change.</p>
+</div>
+<div class="sect1">
+<h2 id="record-the-name"><a class="anchor" href="#record-the-name"></a>Record the name</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, create a class called <code>HelloWorldAction</code> in the same package as <code>HelloWorldBuilder</code>. That class needs to implement <a href="http://javadoc.jenkins.io/byShortName/Action" title="Javadoc for Action">Action</a>. <em>Actions</em> are a basic building block for extensibility in Jenkins: They can be attached to many model objects, get stored with them, and optionally add to their UI.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="java"><span style="color:#080;font-weight:bold">package</span> <span style="color:#707;font-weight:bold">io.jenkins.plugins.sample</span>;
+
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">hudson.model.Action</span>;
+
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">HelloWorldAction</span> <span style="color:#088;font-weight:bold">implements</span> <span style="color:#0a8;font-weight:bold">Action</span> {
+
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#0a8;font-weight:bold">String</span> getIconFileName() {
+        <span style="color:#080;font-weight:bold">return</span> <span style="color:#069">null</span>;
+    }
+
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#0a8;font-weight:bold">String</span> getDisplayName() {
+        <span style="color:#080;font-weight:bold">return</span> <span style="color:#069">null</span>;
+    }
+
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#0a8;font-weight:bold">String</span> getUrlName() {
+        <span style="color:#080;font-weight:bold">return</span> <span style="color:#069">null</span>;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since we want to store the name used in the greeting, we&#8217;ll need to add a field with getter to this class. We&#8217;ll also add a constructor that takes the name as argument.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="java">(...)
+
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">HelloWorldAction</span> <span style="color:#088;font-weight:bold">implements</span> <span style="color:#0a8;font-weight:bold">Action</span> {
+
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#0a8;font-weight:bold">String</span> name;
+
+    <span style="color:#088;font-weight:bold">public</span> HelloWorldAction(<span style="color:#0a8;font-weight:bold">String</span> name) {
+        <span style="color:#950">this</span>.name = name;
+    }
+
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#0a8;font-weight:bold">String</span> getName() {
+        <span style="color:#080;font-weight:bold">return</span> name;
+    }
+
+    (...)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, we actually need to create an instance of this class when the build step is executed. We need to extend the <code>perform</code> method in the <code>HelloWorldBuilder</code> class to add an instance of the action we created to the build that&#8217;s being run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="java">(...)
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> perform(Run&lt;?, ?&gt; run, FilePath workspace, Launcher launcher, TaskListener listener) <span style="color:#088;font-weight:bold">throws</span> <span style="color:#C00;font-weight:bold">InterruptedException</span>, <span style="color:#C00;font-weight:bold">IOException</span> {
+        run.addAction(<span style="color:#080;font-weight:bold">new</span> HelloWorldAction(name)); <i class="conum" data-value="1"></i><b>(1)</b>
+        <span style="color:#080;font-weight:bold">if</span> (useFrench) {
+            listener.getLogger().println(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Bonjour, </span><span style="color:#710">&quot;</span></span> + name + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">!</span><span style="color:#710">&quot;</span></span>);
+        } <span style="color:#080;font-weight:bold">else</span> {
+            listener.getLogger().println(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Hello, </span><span style="color:#710">&quot;</span></span> + name + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">!</span><span style="color:#710">&quot;</span></span>);
+        }
+    }
+(...)</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This is the line that was added, everything else can remain as is.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Save these changes, and run the plugin again using <code>mvn hpi:run</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Whenever changing the Java source code or adding or removing resource files, you will need to restart the Jenkins instance for the changes to take effect. Only some resource files can be edited while Jenkins is running via <code>hpi:run</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now, when running a build with this build step, the action will be added to the build data. We can confirm this by looking at the <code>build.xml</code> file corresponding to the build in the <code>work/jobs/<em>JOBNAME</em>/builds/<em>BUILDNUMBER</em>/</code> directory.</p>
+</div>
+<div class="paragraph">
+<p>As we can see, there are two actions in this build:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;build&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;actions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;hudson.model.CauseAction&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+      <span style="color:#070;font-weight:bold">&lt;causes&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;hudson.model.Cause_-UserIdCause</span><span style="color:#070;font-weight:bold">/&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/causes&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/hudson.model.CauseAction&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;io.jenkins.plugins.sample.HelloWorldAction</span> <span style="color:#b48">plugin</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">demo@1.0-SNAPSHOT</span><span style="color:#710">&quot;</span></span><span style="color:#070;font-weight:bold">&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+      <span style="color:#070;font-weight:bold">&lt;name&gt;</span>Jenkins<span style="color:#070;font-weight:bold">&lt;/name&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span style="color:#070;font-weight:bold">&lt;/io.jenkins.plugins.sample.HelloWorldAction&gt;</span>
+  <span style="color:#070;font-weight:bold">&lt;/actions&gt;</span>
+  (...)
+<span style="color:#070;font-weight:bold">&lt;/build&gt;</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Build causes (how the build was triggered) are also stored as actions. In this case, the anonymous user started the build.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This is the action we created,</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>and this is the name that was used when the build was created.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="add-a-view-that-shows-the-name"><a class="anchor" href="#add-a-view-that-shows-the-name"></a>Add a view that shows the name</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Next, we need to make the action we&#8217;re storing with the build visible.</p>
+</div>
+<div class="paragraph">
+<p>First, we need to go back to the <code>HelloWorldAction</code> and define an icon, title, and URL name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="java">    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#0a8;font-weight:bold">String</span> getIconFileName() {
+        <span style="color:#080;font-weight:bold">return</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">document.png</span><span style="color:#710">&quot;</span></span>; <i class="conum" data-value="1"></i><b>(1)</b>
+    }
+
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#0a8;font-weight:bold">String</span> getDisplayName() {
+        <span style="color:#080;font-weight:bold">return</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Greeting</span><span style="color:#710">&quot;</span></span>; <i class="conum" data-value="2"></i><b>(2)</b>
+    }
+
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#0a8;font-weight:bold">String</span> getUrlName() {
+        <span style="color:#080;font-weight:bold">return</span> <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">greeting</span><span style="color:#710">&quot;</span></span>; <i class="conum" data-value="3"></i><b>(3)</b>
+    }</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This is the icon used for the side panel item. <code>document.png</code> is one of the predefined icons bundled with Jenkins.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This is the label used for the side panel item.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>This is the URL fragment used for this action.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>With these changes, the action will show in the build&#8217;s side panel, and link to the URL <code>\http://<em>JENKINS</em>/job/<em>JOBNAME</em>/<em>BUILDNUMBER</em>/greeting/</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/developer/tutorial/sidepanel-item.png" alt="sidepanel item">
+</div>
+</div>
+<div class="paragraph">
+<p>Next, the page appearing at that URL needs to be defined.
+To create such <em>views</em> in Jenkins, <a href="http://commons.apache.org/proper/commons-jelly/">Apache Commons Jelly</a> is typically used.
+Jelly allows defining XML and XHTML output in XML.
+It has many features useful for this purpose: It
+* supports conditions and loops
+* allows inclusion of <em>view fragments</em> defined elsewhere
+* can be used to define reusable UI components</p>
+</div>
+<div class="paragraph">
+<p>In the directory <code>src/main/resources/io/jenkins/plugins/sample/</code>, we need to create a new directory called <code>HelloWorldAction/</code>.
+This directory corresponds to the <code>HelloWorldAction</code> class and contains related resources.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is a directory in <code>src/main/resources</code>, not <code>src/main/java</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We can see that resources related to the build step <code>HelloWorldBuilder</code> are stored in the <code>src/main/resources/io/jenkins/plugins/sample/HelloWorldBuilder/</code> directory:
+<code>config.jelly</code> is the build step configuration form,
+the various <code>config*.properties</code> files contain the localizations for the build step configuration
+and the <code>help*.html</code> files provide the localized inline help for the configuration.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Create a file named <code>index.jelly</code> in <code>src/main/resources/io/jenkins/plugins/sample/HelloWorldAction/</code>.
+This will be what gets shown at the <code>\http://<em>JENKINS</em>/job/<em>JOBNAME</em>/<em>BUILDNUMBER</em>/greeting/</code> URL.
+Add the following content:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="xml"><span style="color:#777">&lt;?jelly escape-by-default='true'?&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;j:jelly</span> <span style="color:#b48">xmlns:j</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">jelly:core</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">xmlns:l</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">/lib/layout</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">xmlns:st</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">jelly:stapler</span><span style="color:#710">&quot;</span></span><span style="color:#070;font-weight:bold">&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;l:layout</span> <span style="color:#b48">title</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Greeting</span><span style="color:#710">&quot;</span></span><span style="color:#070;font-weight:bold">&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span style="color:#070;font-weight:bold">&lt;l:main-panel&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+            <span style="color:#070;font-weight:bold">&lt;h1&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+                Name: ${it.name} <i class="conum" data-value="4"></i><b>(4)</b>
+            <span style="color:#070;font-weight:bold">&lt;/h1&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;/l:main-panel&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/l:layout&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/j:jelly&gt;</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>layout</code> is a reusable <em>tag</em> defined in Jenkins core that provides the basic page layout with header, side panel, main content area, and footer.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>To make the name show up in the main content area (rather than e.g. the side panel), we need to wrap our output in a <code>main-panel</code> tag.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We can use any HTML tags and they will be used for the output.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This is a <a href="https://commons.apache.org/proper/commons-jexl/">JEXL</a> expression. <code>it</code> refers to the Java object the view belongs to (similar to <code>this</code> in Java), in this case the <code>HelloWorldAction</code> instance. <code>it.name</code> is equivalent to a getter call (<code>getName()</code>).</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The resulting page will look similar to this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/developer/tutorial/view1.png" alt="view1">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="add-the-side-panel-for-the-build-to-the-view"><a class="anchor" href="#add-the-side-panel-for-the-build-to-the-view"></a>Add the side panel for the build to the view</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the output above, there is no side panel. As this view is related to a specific build, that build&#8217;s side panel should be shown as well. To do that, we first need to obtain a reference to the corresponding build in our action, and then include the build&#8217;s side panel view <em>fragment</em> in the action&#8217;s view.</p>
+</div>
+<div class="paragraph">
+<p>To obtain a reference to the build (or, more generally, the <code><a href="http://javadoc.jenkins.io/byShortName/Run" title="Javadoc for Run">Run</a></code>) the <code>HelloWorldAction</code> belongs to, we need to change the existing class to make it implement <code><a href="http://javadoc.jenkins.io/byShortName/RunAction2" title="Javadoc for RunAction2">RunAction2</a></code>.
+This interface adds two methods that are called when the run is first attached to a build (<code>onAttached(Run)</code>), and when the action and run are loaded from disk (<code>onLoad(Run)</code>), respectively.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="java">(...)
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">hudson.model.Run</span>;
+<span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">jenkins.model.RunAction2</span>;
+
+<span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">HelloWorldAction</span> <span style="color:#088;font-weight:bold">implements</span> RunAction2 { <i class="conum" data-value="1"></i><b>(1)</b>
+
+    <span style="color:#088;font-weight:bold">private</span> <span style="color:#088;font-weight:bold">transient</span> Run run; <i class="conum" data-value="2"></i><b>(2)</b>
+
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> onAttached(Run&lt;?, ?&gt; run) {
+        <span style="color:#950">this</span>.run = run; <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+
+    <span style="color:#007">@Override</span>
+    <span style="color:#088;font-weight:bold">public</span> <span style="color:#339;font-weight:bold">void</span> onLoad(Run&lt;?, ?&gt; run) {
+        <span style="color:#950">this</span>.run = run; <i class="conum" data-value="4"></i><b>(4)</b>
+    }
+
+    <span style="color:#088;font-weight:bold">public</span> Run getRun() { <i class="conum" data-value="5"></i><b>(5)</b>
+        <span style="color:#080;font-weight:bold">return</span> run;
+    }
+(...)</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>RunAction2</code> is the interface to implement so that actions added to <code><a href="http://javadoc.jenkins.io/byShortName/Run" title="Javadoc for Run">Run</a>`s properly get references to the `Run</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>Run</code> is stored in a transient action so this field won&#8217;t be serialized to disk with the action.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Setting the field when first attaching this action to the <code>Run</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Setting the field when loading this action from disk.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>This will make the <code>Run</code> available for use in the Jelly view&#8201;&#8212;&#8201;it cannot access private fields.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once this is done, we need to extend the view to <em>include</em> the side panel view fragment of the <code>Run</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code data-lang="xml">(...)
+    <span style="color:#070;font-weight:bold">&lt;l:layout</span> <span style="color:#b48">title</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Greeting</span><span style="color:#710">&quot;</span></span><span style="color:#070;font-weight:bold">&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;l:side-panel&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+            <span style="color:#070;font-weight:bold">&lt;st:include</span> <span style="color:#b48">page</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">sidepanel.jelly</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">it</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">${it.run}</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">optional</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">true</span><span style="color:#710">&quot;</span></span> <span style="color:#070;font-weight:bold">/&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span style="color:#070;font-weight:bold">&lt;/l:side-panel&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;l:main-panel&gt;</span>
+          (...)
+        <span style="color:#070;font-weight:bold">&lt;/l:main-panel&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/l:layout&gt;</span>
+(...)</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Similar to <code>main-panel</code>, we want the contents to show up only in the side panel, so we need to wrap them in this element.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This <em>includes</em> a view fragment (<code>sidepanel.jelly</code>) of another object (the <code>Run</code>) at this location. We mark this as optional so no error is shown if this view fragment doesn&#8217;t exist, as the abstract class <code>Run</code> does not define such a view, only its subclass <code><a href="http://javadoc.jenkins.io/byShortName/AbstractBuild" title="Javadoc for AbstractBuild">AbstractBuild</a></code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>With these changes, the view we created properly integrates with the Jenkins UI, appearing no different from built-in pages related to a build:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/developer/tutorial/view2.png" alt="view2">
+</div>
+</div>
+<div class="paragraph">
+<p>Congratulations, you&#8217;ve successfully created and substantially extended a Jenkins plugin!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Anything not working for you? Ask for help in <a href="/chat">IRC</a> or <a href="/mailing-lists">on the jenkinsci-dev mailing list</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<p class='box'>
+<a href='https://github.com/jenkins-infra/jenkins.io/edit/master/content//doc/developer/tutorial/extend.adoc' title='Edit /doc/developer/tutorial/extend.adoc on GitHub'>
+Improve this page
+</a>
+|
+<a href='https://github.com/jenkins-infra/jenkins.io/commits/master/content//doc/developer/tutorial/extend.adoc' title='View /doc/developer/tutorial/extend.adoc history on GitHub'>
+Page history
+</a>
+</p>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

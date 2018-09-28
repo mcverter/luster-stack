@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Reporting bugs and requesting features | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+     
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/internals/contributing/bugs-and-features/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/internals/contributing/bugs-and-features/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/internals/contributing/bugs-and-features/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/internals/contributing/bugs-and-features/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/internals/contributing/bugs-and-features/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/internals/contributing/bugs-and-features/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/internals/contributing/bugs-and-features/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/internals/contributing/bugs-and-features/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/internals/contributing/bugs-and-features/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/internals/contributing/bugs-and-features/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/internals/contributing/bugs-and-features/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/internals/contributing/bugs-and-features/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/internals/contributing/bugs-and-features/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/internals/contributing/bugs-and-features/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/internals/contributing/bugs-and-features/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/internals/contributing/bugs-and-features/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/internals/contributing/bugs-and-features/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/internals/contributing/bugs-and-features/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/internals/contributing/bugs-and-features/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/internals/contributing/bugs-and-features/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/internals/contributing/bugs-and-features/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/internals/contributing/bugs-and-features/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/internals/contributing/bugs-and-features/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/internals/contributing/bugs-and-features/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/internals/contributing/bugs-and-features/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/internals/contributing/bugs-and-features/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-reporting-bugs-and-requesting-features">
+<span id="reporting-bugs-and-requesting-features"></span><h1>Reporting bugs and requesting features<a class="headerlink" href="#reporting-bugs-and-requesting-features" title="Permalink to this headline">¶</a></h1>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Please report security issues <strong>only</strong> to
+<a class="reference external" href="mailto:security&#37;&#52;&#48;djangoproject&#46;com">security<span>&#64;</span>djangoproject<span>&#46;</span>com</a>.  This is a private list only open to
+long-time, highly trusted Django developers, and its archives are
+not public. For further details, please see <a class="reference internal" href="../../security/"><span class="doc">our security
+policies</span></a>.</p>
+</div>
+<p>Otherwise, before reporting a bug or requesting a new feature on the
+<a class="reference external" href="https://code.djangoproject.com/">ticket tracker</a>, consider these points:</p>
+<ul class="simple">
+<li>Check that someone hasn’t already filed the bug or feature request by
+<a class="reference external" href="https://code.djangoproject.com/search">searching</a> or running <a class="reference external" href="https://code.djangoproject.com/query">custom queries</a> in the ticket tracker.</li>
+<li>Don’t use the ticket system to ask support questions. Use the
+<a class="reference internal" href="../../mailing-lists/#django-users-mailing-list"><span class="std std-ref">django-users</span></a> list or the <a class="reference external" href="irc://irc.freenode.net/django">#django</a> IRC channel for that.</li>
+<li>Don’t reopen issues that have been marked “wontfix” without finding consensus
+to do so on <a class="reference internal" href="../../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a>.</li>
+<li>Don’t use the ticket tracker for lengthy discussions, because they’re
+likely to get lost. If a particular ticket is controversial, please move the
+discussion to <a class="reference internal" href="../../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a>.</li>
+</ul>
+<div class="section" id="s-reporting-bugs">
+<span id="s-id1"></span><span id="reporting-bugs"></span><span id="id1"></span><h2>Reporting bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h2>
+<p>Well-written bug reports are <em>incredibly</em> helpful. However, there’s a certain
+amount of overhead involved in working with any bug tracking system so your
+help in keeping our ticket tracker as useful as possible is appreciated. In
+particular:</p>
+<ul class="simple">
+<li><strong>Do</strong> read the <a class="reference internal" href="../../../faq/"><span class="doc">FAQ</span></a> to see if your issue might
+be a well-known question.</li>
+<li><strong>Do</strong> ask on <a class="reference internal" href="../../mailing-lists/#django-users-mailing-list"><span class="std std-ref">django-users</span></a> or <a class="reference external" href="irc://irc.freenode.net/django">#django</a> <em>first</em> if you’re not sure if
+what you’re seeing is a bug.</li>
+<li><strong>Do</strong> write complete, reproducible, specific bug reports. You must
+include a clear, concise description of the problem, and a set of
+instructions for replicating it. Add as much debug information as you can:
+code snippets, test cases, exception backtraces, screenshots, etc. A nice
+small test case is the best way to report a bug, as it gives us an easy
+way to confirm the bug quickly.</li>
+<li><strong>Don’t</strong> post to <a class="reference internal" href="../../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a> just to announce that you have
+filed a bug report. All the tickets are mailed to another list,
+<a class="reference internal" href="../../mailing-lists/#django-updates-mailing-list"><span class="std std-ref">django-updates</span></a>, which is tracked by developers and interested
+community members; we see them as they are filed.</li>
+</ul>
+<p>To understand the lifecycle of your ticket once you have created it, refer to
+<a class="reference internal" href="../triaging-tickets/"><span class="doc">Triaging tickets</span></a>.</p>
+</div>
+<div class="section" id="s-reporting-user-interface-bugs-and-features">
+<span id="reporting-user-interface-bugs-and-features"></span><h2>Reporting user interface bugs and features<a class="headerlink" href="#reporting-user-interface-bugs-and-features" title="Permalink to this headline">¶</a></h2>
+<p>If your bug or feature request touches on anything visual in nature, there
+are a few additional guidelines to follow:</p>
+<ul class="simple">
+<li>Include screenshots in your ticket which are the visual equivalent of a
+minimal testcase. Show off the issue, not the crazy customizations
+you’ve made to your browser.</li>
+<li>If the issue is difficult to show off using a still image, consider
+capturing a <em>brief</em> screencast. If your software permits it, capture only
+the relevant area of the screen.</li>
+<li>If you’re offering a patch which changes the look or behavior of Django’s
+UI, you <strong>must</strong> attach before <em>and</em> after screenshots/screencasts.
+Tickets lacking these are difficult for triagers to assess quickly.</li>
+<li>Screenshots don’t absolve you of other good reporting practices. Make sure
+to include URLs, code snippets, and step-by-step instructions on how to
+reproduce the behavior visible in the screenshots.</li>
+<li>Make sure to set the UI/UX flag on the ticket so interested parties can
+find your ticket.</li>
+</ul>
+</div>
+<div class="section" id="s-requesting-features">
+<span id="requesting-features"></span><h2>Requesting features<a class="headerlink" href="#requesting-features" title="Permalink to this headline">¶</a></h2>
+<p>We’re always trying to make Django better, and your feature requests are a key
+part of that. Here are some tips on how to make a request most effectively:</p>
+<ul class="simple">
+<li>Make sure the feature actually requires changes in Django’s core. If your
+idea can be developed as an independent application or module — for
+instance, you want to support another database engine — we’ll probably
+suggest that you to develop it independently. Then, if your project
+gathers sufficient community support, we may consider it for inclusion in
+Django.</li>
+<li>First request the feature on the <a class="reference internal" href="../../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a> list, not in the
+ticket tracker. It’ll get read more closely if it’s on the mailing list.
+This is even more important for large-scale feature requests. We like to
+discuss any big changes to Django’s core on the mailing list before
+actually working on them.</li>
+<li>Describe clearly and concisely what the missing feature is and how you’d
+like to see it implemented. Include example code (non-functional is OK)
+if possible.</li>
+<li>Explain <em>why</em> you’d like the feature. In some cases this is obvious, but
+since Django is designed to help real developers get real work done,
+you’ll need to explain it, if it isn’t obvious why the feature would be
+useful.</li>
+</ul>
+<p>If there’s a consensus agreement on the feature, then it’s appropriate to
+create a ticket. Include a link the discussion on <a class="reference internal" href="../../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a> in the
+ticket description.</p>
+<p>As with most open-source projects, code talks. If you are willing to write the
+code for the feature yourself or, even better, if you’ve already written it,
+it’s much more likely to be accepted. Just fork Django on GitHub, create a
+feature branch, and show us your work!</p>
+<p>See also: <a class="reference internal" href="../writing-documentation/#documenting-new-features"><span class="std std-ref">Documenting new features</span></a>.</p>
+</div>
+<div class="section" id="s-how-we-make-decisions">
+<span id="s-id2"></span><span id="how-we-make-decisions"></span><span id="id2"></span><h2>How we make decisions<a class="headerlink" href="#how-we-make-decisions" title="Permalink to this headline">¶</a></h2>
+<p>Whenever possible, we strive for a rough consensus. To that end, we’ll often
+have informal votes on <a class="reference internal" href="../../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a> about a feature. In these votes we
+follow the voting style invented by Apache and used on Python itself, where
+votes are given as +1, +0, -0, or -1. Roughly translated, these votes mean:</p>
+<ul class="simple">
+<li>+1: “I love the idea and I’m strongly committed to it.”</li>
+<li>+0: “Sounds OK to me.”</li>
+<li>-0: “I’m not thrilled, but I won’t stand in the way.”</li>
+<li>-1: “I strongly disagree and would be very unhappy to see the idea turn
+into reality.”</li>
+</ul>
+<p>Although these votes on <a class="reference internal" href="../../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a> are informal, they’ll be taken very
+seriously. After a suitable voting period, if an obvious consensus arises we’ll
+follow the votes.</p>
+<p>However, consensus is not always possible. If consensus cannot be reached, or
+if the discussion towards a consensus fizzles out without a concrete decision,
+the decision may be deferred to the <a class="reference internal" href="../../organization/#technical-board"><span class="std std-ref">technical board</span></a>.</p>
+<p>Internally, the technical board will use the same voting mechanism. A
+proposition will be considered carried if:</p>
+<ul class="simple">
+<li>There are at least three “+1” votes from members of the technical board.</li>
+<li>There is no “-1” vote from any member of the technical board.</li>
+</ul>
+<p>Votes should be submitted within a week.</p>
+<p>Since this process allows any technical board member to veto a proposal, a
+“-1” vote should be accompanied by an explanation of what it would take to
+convert that “-1” into at least a “+0”.</p>
+<p>Votes on technical matters should be announced and held in public on the
+<a class="reference internal" href="../../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a> mailing list.</p>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../new-contributors/"><i class="icon icon-chevron-left"></i> Advice for new contributors</a></div>
+  
+  
+  <div class="right"><a href="../triaging-tickets/">Triaging tickets <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Stefan Foulis donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Reporting bugs and requesting features</a><ul>
+<li><a class="reference internal" href="#reporting-bugs">Reporting bugs</a></li>
+<li><a class="reference internal" href="#reporting-user-interface-bugs-and-features">Reporting user interface bugs and features</a></li>
+<li><a class="reference internal" href="#requesting-features">Requesting features</a></li>
+<li><a class="reference internal" href="#how-we-make-decisions">How we make decisions</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../new-contributors/">Advice for new contributors</a></li>
+    
+    
+    <li>Next: <a href="../triaging-tickets/">Triaging tickets</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../">Django internals</a>
+      
+      <ul><li><a href="../">Contributing to Django</a>
+      
+      <ul><li>Reporting bugs and requesting features</li></ul>
+      </li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

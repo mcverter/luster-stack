@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>SchemaEditor | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/ref/schema-editor/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/ref/schema-editor/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/ref/schema-editor/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/ref/schema-editor/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/ref/schema-editor/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/ref/schema-editor/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/ref/schema-editor/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/ref/schema-editor/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/ref/schema-editor/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/ref/schema-editor/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/ref/schema-editor/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/ref/schema-editor/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/ref/schema-editor/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/ref/schema-editor/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/ref/schema-editor/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/ref/schema-editor/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/ref/schema-editor/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/ref/schema-editor/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/ref/schema-editor/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/ref/schema-editor/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/ref/schema-editor/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/ref/schema-editor/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/ref/schema-editor/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/ref/schema-editor/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/ref/schema-editor/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/ref/schema-editor/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/ref/schema-editor/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/ref/schema-editor/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-module-django.db.backends.base.schema">
+<span id="s-schemaeditor"></span><span id="module-django.db.backends.base.schema"></span><span id="schemaeditor"></span><h1><code class="docutils literal notranslate"><span class="pre">SchemaEditor</span></code><a class="headerlink" href="#module-django.db.backends.base.schema" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor">
+<em class="property">class </em><code class="descname">BaseDatabaseSchemaEditor</code><a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Django’s migration system is split into two parts; the logic for calculating
+and storing what operations should be run (<code class="docutils literal notranslate"><span class="pre">django.db.migrations</span></code>), and the
+database abstraction layer that turns things like “create a model” or
+“delete a field” into SQL - which is the job of the <code class="docutils literal notranslate"><span class="pre">SchemaEditor</span></code>.</p>
+<p>It’s unlikely that you will want to interact directly with <code class="docutils literal notranslate"><span class="pre">SchemaEditor</span></code> as
+a normal developer using Django, but if you want to write your own migration
+system, or have more advanced needs, it’s a lot nicer than writing SQL.</p>
+<p>Each database backend in Django supplies its own version of <code class="docutils literal notranslate"><span class="pre">SchemaEditor</span></code>,
+and it’s always accessible via the <code class="docutils literal notranslate"><span class="pre">connection.schema_editor()</span></code> context
+manager:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">schema_editor</span><span class="p">()</span> <span class="k">as</span> <span class="n">schema_editor</span><span class="p">:</span>
+    <span class="n">schema_editor</span><span class="o">.</span><span class="n">delete_model</span><span class="p">(</span><span class="n">MyModel</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It must be used via the context manager as this allows it to manage things
+like transactions and deferred SQL (like creating <code class="docutils literal notranslate"><span class="pre">ForeignKey</span></code> constraints).</p>
+<p>It exposes all possible operations as methods, that should be called in
+the order you wish changes to be applied. Some possible operations or types
+of change are not possible on all databases - for example, MyISAM does not
+support foreign key constraints.</p>
+<p>If you are writing or maintaining a third-party database backend for Django,
+you will need to provide a <code class="docutils literal notranslate"><span class="pre">SchemaEditor</span></code> implementation in order to work with
+1.7’s migration functionality - however, as long as your database is relatively
+standard in its use of SQL and relational design, you should be able to
+subclass one of the built-in Django <code class="docutils literal notranslate"><span class="pre">SchemaEditor</span></code> classes and just tweak the
+syntax a little. Also note that there are a few new database features that
+migrations will look for: <code class="docutils literal notranslate"><span class="pre">can_rollback_ddl</span></code> and
+<code class="docutils literal notranslate"><span class="pre">supports_combined_alters</span></code> are the most important.</p>
+<div class="section" id="s-methods">
+<span id="methods"></span><h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="s-execute">
+<span id="execute"></span><h3><code class="docutils literal notranslate"><span class="pre">execute()</span></code><a class="headerlink" href="#execute" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.execute">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">execute</code>(<em>sql</em>, <em>params=[]</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.execute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.execute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Executes the SQL statement passed in, with parameters if supplied. This
+is a simple wrapper around the normal database cursors that allows
+capture of the SQL to a <code class="docutils literal notranslate"><span class="pre">.sql</span></code> file if the user wishes.</p>
+</div>
+<div class="section" id="s-create-model">
+<span id="create-model"></span><h3><code class="docutils literal notranslate"><span class="pre">create_model()</span></code><a class="headerlink" href="#create-model" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.create_model">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">create_model</code>(<em>model</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.create_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.create_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Creates a new table in the database for the provided model, along with any
+unique constraints or indexes it requires.</p>
+</div>
+<div class="section" id="s-delete-model">
+<span id="delete-model"></span><h3><code class="docutils literal notranslate"><span class="pre">delete_model()</span></code><a class="headerlink" href="#delete-model" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.delete_model">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">delete_model</code>(<em>model</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.delete_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.delete_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Drops the model’s table in the database along with any unique constraints
+or indexes it has.</p>
+</div>
+<div class="section" id="s-add-index">
+<span id="add-index"></span><h3><code class="docutils literal notranslate"><span class="pre">add_index()</span></code><a class="headerlink" href="#add-index" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.add_index">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">add_index</code>(<em>model</em>, <em>index</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.add_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.add_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Adds <code class="docutils literal notranslate"><span class="pre">index</span></code> to <code class="docutils literal notranslate"><span class="pre">model</span></code>’s table.</p>
+</div>
+<div class="section" id="s-remove-index">
+<span id="remove-index"></span><h3><code class="docutils literal notranslate"><span class="pre">remove_index()</span></code><a class="headerlink" href="#remove-index" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.remove_index">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">remove_index</code>(<em>model</em>, <em>index</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.remove_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.remove_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Removes <code class="docutils literal notranslate"><span class="pre">index</span></code> from <code class="docutils literal notranslate"><span class="pre">model</span></code>’s table.</p>
+</div>
+<div class="section" id="s-alter-unique-together">
+<span id="alter-unique-together"></span><h3><code class="docutils literal notranslate"><span class="pre">alter_unique_together()</span></code><a class="headerlink" href="#alter-unique-together" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.alter_unique_together">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">alter_unique_together</code>(<em>model</em>, <em>old_unique_together</em>, <em>new_unique_together</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.alter_unique_together"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.alter_unique_together" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Changes a model’s <a class="reference internal" href="../models/options/#django.db.models.Options.unique_together" title="django.db.models.Options.unique_together"><code class="xref py py-attr docutils literal notranslate"><span class="pre">unique_together</span></code></a> value; this
+will add or remove unique constraints from the model’s table until they match
+the new value.</p>
+</div>
+<div class="section" id="s-alter-index-together">
+<span id="alter-index-together"></span><h3><code class="docutils literal notranslate"><span class="pre">alter_index_together()</span></code><a class="headerlink" href="#alter-index-together" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.alter_index_together">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">alter_index_together</code>(<em>model</em>, <em>old_index_together</em>, <em>new_index_together</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.alter_index_together"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.alter_index_together" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Changes a model’s <a class="reference internal" href="../models/options/#django.db.models.Options.index_together" title="django.db.models.Options.index_together"><code class="xref py py-attr docutils literal notranslate"><span class="pre">index_together</span></code></a> value; this
+will add or remove indexes from the model’s table until they match the new
+value.</p>
+</div>
+<div class="section" id="s-alter-db-table">
+<span id="alter-db-table"></span><h3><code class="docutils literal notranslate"><span class="pre">alter_db_table()</span></code><a class="headerlink" href="#alter-db-table" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.alter_db_table">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">alter_db_table</code>(<em>model</em>, <em>old_db_table</em>, <em>new_db_table</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.alter_db_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.alter_db_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Renames the model’s table from <code class="docutils literal notranslate"><span class="pre">old_db_table</span></code> to <code class="docutils literal notranslate"><span class="pre">new_db_table</span></code>.</p>
+</div>
+<div class="section" id="s-alter-db-tablespace">
+<span id="alter-db-tablespace"></span><h3><code class="docutils literal notranslate"><span class="pre">alter_db_tablespace()</span></code><a class="headerlink" href="#alter-db-tablespace" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.alter_db_tablespace">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">alter_db_tablespace</code>(<em>model</em>, <em>old_db_tablespace</em>, <em>new_db_tablespace</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.alter_db_tablespace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.alter_db_tablespace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Moves the model’s table from one tablespace to another.</p>
+</div>
+<div class="section" id="s-add-field">
+<span id="add-field"></span><h3><code class="docutils literal notranslate"><span class="pre">add_field()</span></code><a class="headerlink" href="#add-field" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.add_field">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">add_field</code>(<em>model</em>, <em>field</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.add_field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.add_field" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Adds a column (or sometimes multiple) to the model’s table to represent the
+field. This will also add indexes or a unique constraint
+if the field has <code class="docutils literal notranslate"><span class="pre">db_index=True</span></code> or <code class="docutils literal notranslate"><span class="pre">unique=True</span></code>.</p>
+<p>If the field is a <code class="docutils literal notranslate"><span class="pre">ManyToManyField</span></code> without a value for <code class="docutils literal notranslate"><span class="pre">through</span></code>, instead
+of creating a column, it will make a table to represent the relationship. If
+<code class="docutils literal notranslate"><span class="pre">through</span></code> is provided, it is a no-op.</p>
+<p>If the field is a <code class="docutils literal notranslate"><span class="pre">ForeignKey</span></code>, this will also add the foreign key
+constraint to the column.</p>
+</div>
+<div class="section" id="s-remove-field">
+<span id="remove-field"></span><h3><code class="docutils literal notranslate"><span class="pre">remove_field()</span></code><a class="headerlink" href="#remove-field" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.remove_field">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">remove_field</code>(<em>model</em>, <em>field</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.remove_field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.remove_field" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Removes the column(s) representing the field from the model’s table, along
+with any unique constraints, foreign key constraints, or indexes caused by
+that field.</p>
+<p>If the field is a ManyToManyField without a value for <code class="docutils literal notranslate"><span class="pre">through</span></code>, it will
+remove the table created to track the relationship. If
+<code class="docutils literal notranslate"><span class="pre">through</span></code> is provided, it is a no-op.</p>
+</div>
+<div class="section" id="s-alter-field">
+<span id="alter-field"></span><h3><code class="docutils literal notranslate"><span class="pre">alter_field()</span></code><a class="headerlink" href="#alter-field" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.backends.base.schema.BaseDatabaseSchemaEditor.alter_field">
+<code class="descclassname">BaseDatabaseSchemaEditor.</code><code class="descname">alter_field</code>(<em>model</em>, <em>old_field</em>, <em>new_field</em>, <em>strict=False</em>)<a class="reference internal" href="../../_modules/django/db/backends/base/schema/#BaseDatabaseSchemaEditor.alter_field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.alter_field" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>This transforms the field on the model from the old field to the new one. This
+includes changing the name of the column (the
+<a class="reference internal" href="../models/fields/#django.db.models.Field.db_column" title="django.db.models.Field.db_column"><code class="xref py py-attr docutils literal notranslate"><span class="pre">db_column</span></code></a> attribute), changing the type of the
+field (if the field class changes), changing the <code class="docutils literal notranslate"><span class="pre">NULL</span></code> status of the field,
+adding or removing field-only unique constraints and indexes, changing primary
+key, and changing the destination of <code class="docutils literal notranslate"><span class="pre">ForeignKey</span></code> constraints.</p>
+<p>The most common transformation this cannot do is transforming a
+<code class="docutils literal notranslate"><span class="pre">ManyToManyField</span></code> into a normal Field or vice-versa; Django cannot do this
+without losing data, and so it will refuse to do it. Instead,
+<a class="reference internal" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.remove_field" title="django.db.backends.base.schema.BaseDatabaseSchemaEditor.remove_field"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_field()</span></code></a> and <a class="reference internal" href="#django.db.backends.base.schema.BaseDatabaseSchemaEditor.add_field" title="django.db.backends.base.schema.BaseDatabaseSchemaEditor.add_field"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_field()</span></code></a> should be called separately.</p>
+<p>If the database has the <code class="docutils literal notranslate"><span class="pre">supports_combined_alters</span></code>, Django will try and
+do as many of these in a single database call as possible; otherwise, it will
+issue a separate ALTER statement for each change, but will not issue ALTERs
+where no change is required (as South often did).</p>
+</div>
+</div>
+<div class="section" id="s-attributes">
+<span id="attributes"></span><h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h2>
+<p>All attributes should be considered read-only unless stated otherwise.</p>
+<div class="section" id="s-connection">
+<span id="connection"></span><h3><code class="docutils literal notranslate"><span class="pre">connection</span></code><a class="headerlink" href="#connection" title="Permalink to this headline">¶</a></h3>
+<dl class="attribute">
+<dt id="django.db.backends.base.schema.SchemaEditor.connection">
+<code class="descclassname">SchemaEditor.</code><code class="descname">connection</code><a class="headerlink" href="#django.db.backends.base.schema.SchemaEditor.connection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>A connection object to the database. A useful attribute of the connection is
+<code class="docutils literal notranslate"><span class="pre">alias</span></code> which can be used to determine the name of the database being
+accessed.</p>
+<p>This is useful when doing data migrations for <a class="reference internal" href="../../howto/writing-migrations/#data-migrations-and-multiple-databases"><span class="std std-ref">migrations with multiple
+databases</span></a>.</p>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../request-response/"><i class="icon icon-chevron-left"></i> Request and response objects</a></div>
+  
+  
+  <div class="right"><a href="../settings/">Settings <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          ikeikeikeike donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">SchemaEditor</span></code></a><ul>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#execute"><code class="docutils literal notranslate"><span class="pre">execute()</span></code></a></li>
+<li><a class="reference internal" href="#create-model"><code class="docutils literal notranslate"><span class="pre">create_model()</span></code></a></li>
+<li><a class="reference internal" href="#delete-model"><code class="docutils literal notranslate"><span class="pre">delete_model()</span></code></a></li>
+<li><a class="reference internal" href="#add-index"><code class="docutils literal notranslate"><span class="pre">add_index()</span></code></a></li>
+<li><a class="reference internal" href="#remove-index"><code class="docutils literal notranslate"><span class="pre">remove_index()</span></code></a></li>
+<li><a class="reference internal" href="#alter-unique-together"><code class="docutils literal notranslate"><span class="pre">alter_unique_together()</span></code></a></li>
+<li><a class="reference internal" href="#alter-index-together"><code class="docutils literal notranslate"><span class="pre">alter_index_together()</span></code></a></li>
+<li><a class="reference internal" href="#alter-db-table"><code class="docutils literal notranslate"><span class="pre">alter_db_table()</span></code></a></li>
+<li><a class="reference internal" href="#alter-db-tablespace"><code class="docutils literal notranslate"><span class="pre">alter_db_tablespace()</span></code></a></li>
+<li><a class="reference internal" href="#add-field"><code class="docutils literal notranslate"><span class="pre">add_field()</span></code></a></li>
+<li><a class="reference internal" href="#remove-field"><code class="docutils literal notranslate"><span class="pre">remove_field()</span></code></a></li>
+<li><a class="reference internal" href="#alter-field"><code class="docutils literal notranslate"><span class="pre">alter_field()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li><a class="reference internal" href="#connection"><code class="docutils literal notranslate"><span class="pre">connection</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../request-response/">Request and response objects</a></li>
+    
+    
+    <li>Next: <a href="../settings/">Settings</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../">API Reference</a>
+      
+      <ul><li><code class="docutils literal notranslate"><span class="pre">SchemaEditor</span></code></li></ul>
+      </li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Generic date views | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-date-based/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/ref/class-based-views/generic-date-based/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-date-based/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/ref/class-based-views/generic-date-based/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/ref/class-based-views/generic-date-based/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/ref/class-based-views/generic-date-based/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/ref/class-based-views/generic-date-based/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/ref/class-based-views/generic-date-based/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/ref/class-based-views/generic-date-based/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/ref/class-based-views/generic-date-based/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/ref/class-based-views/generic-date-based/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/ref/class-based-views/generic-date-based/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/ref/class-based-views/generic-date-based/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/ref/class-based-views/generic-date-based/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/ref/class-based-views/generic-date-based/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/ref/class-based-views/generic-date-based/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/ref/class-based-views/generic-date-based/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/ref/class-based-views/generic-date-based/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/ref/class-based-views/generic-date-based/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/ref/class-based-views/generic-date-based/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/ref/class-based-views/generic-date-based/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/ref/class-based-views/generic-date-based/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/ref/class-based-views/generic-date-based/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/ref/class-based-views/generic-date-based/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/ref/class-based-views/generic-date-based/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/ref/class-based-views/generic-date-based/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/ref/class-based-views/generic-date-based/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/ref/class-based-views/generic-date-based/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-module-django.views.generic.dates">
+<span id="s-generic-date-views"></span><span id="module-django.views.generic.dates"></span><span id="generic-date-views"></span><h1>Generic date views<a class="headerlink" href="#module-django.views.generic.dates" title="Permalink to this headline">¶</a></h1>
+<p>Date-based generic views, provided in <a class="reference internal" href="#module-django.views.generic.dates" title="django.views.generic.dates"><code class="xref py py-mod docutils literal notranslate"><span class="pre">django.views.generic.dates</span></code></a>, are
+views for displaying drilldown pages for date-based data.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Some of the examples on this page assume that an <code class="docutils literal notranslate"><span class="pre">Article</span></code> model has been
+defined as follows in <code class="docutils literal notranslate"><span class="pre">myapp/models.py</span></code>:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="k">import</span> <span class="n">reverse</span>
+
+<span class="k">class</span> <span class="nc">Article</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateField</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_absolute_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;article-detail&#39;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;pk&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">pk</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-archiveindexview">
+<span id="archiveindexview"></span><h2><code class="docutils literal notranslate"><span class="pre">ArchiveIndexView</span></code><a class="headerlink" href="#archiveindexview" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="django.views.generic.dates.ArchiveIndexView">
+<em class="property">class </em><code class="descname">ArchiveIndexView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#ArchiveIndexView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.ArchiveIndexView" title="Permalink to this definition">¶</a></dt>
+<dd><p>A top-level index page showing the “latest” objects, by date. Objects with
+a date in the <em>future</em> are not included unless you set <code class="docutils literal notranslate"><span class="pre">allow_future</span></code> to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p><strong>Ancestors (MRO)</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectTemplateResponseMixin" title="django.views.generic.list.MultipleObjectTemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectTemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-simple/#django.views.generic.base.TemplateResponseMixin" title="django.views.generic.base.TemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.TemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="#django.views.generic.dates.BaseArchiveIndexView" title="django.views.generic.dates.BaseArchiveIndexView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseArchiveIndexView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView" title="django.views.generic.dates.BaseDateListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseDateListView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin" title="django.views.generic.list.MultipleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin" title="django.views.generic.dates.DateMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.DateMixin</span></code></a></li>
+<li><a class="reference internal" href="../base/#django.views.generic.base.View" title="django.views.generic.base.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></a></li>
+</ul>
+<p><strong>Context</strong></p>
+<p>In addition to the context provided by
+<a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin" title="django.views.generic.list.MultipleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectMixin</span></code></a> (via
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView" title="django.views.generic.dates.BaseDateListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseDateListView</span></code></a>), the template’s
+context will be:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">date_list</span></code>: A <a class="reference internal" href="../../models/querysets/#django.db.models.query.QuerySet.dates" title="django.db.models.query.QuerySet.dates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">QuerySet</span></code></a>
+object containing all years that have objects available according to
+<code class="docutils literal notranslate"><span class="pre">queryset</span></code>, represented as <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> objects, in
+descending order.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li>Uses a default <code class="docutils literal notranslate"><span class="pre">context_object_name</span></code> of <code class="docutils literal notranslate"><span class="pre">latest</span></code>.</li>
+<li>Uses a default <code class="docutils literal notranslate"><span class="pre">template_name_suffix</span></code> of <code class="docutils literal notranslate"><span class="pre">_archive</span></code>.</li>
+<li>Defaults to providing <code class="docutils literal notranslate"><span class="pre">date_list</span></code> by year, but this can be altered to
+month or day using the attribute <code class="docutils literal notranslate"><span class="pre">date_list_period</span></code>. This also applies
+to all subclass views.</li>
+</ul>
+<p><strong>Example myapp/urls.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="k">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">django.views.generic.dates</span> <span class="k">import</span> <span class="n">ArchiveIndexView</span>
+
+<span class="kn">from</span> <span class="nn">myapp.models</span> <span class="k">import</span> <span class="n">Article</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;archive/&#39;</span><span class="p">,</span>
+         <span class="n">ArchiveIndexView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">Article</span><span class="p">,</span> <span class="n">date_field</span><span class="o">=</span><span class="s2">&quot;pub_date&quot;</span><span class="p">),</span>
+         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;article_archive&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Example myapp/article_archive.html</strong>:</p>
+<div class="highlight-html+django notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">for</span> <span class="nv">article</span> <span class="k">in</span> <span class="nv">latest</span> <span class="cp">%}</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">article.pub_date</span> <span class="cp">}}</span>: <span class="cp">{{</span> <span class="nv">article.title</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>This will output all articles.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="s-yeararchiveview">
+<span id="yeararchiveview"></span><h2><code class="docutils literal notranslate"><span class="pre">YearArchiveView</span></code><a class="headerlink" href="#yeararchiveview" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="django.views.generic.dates.YearArchiveView">
+<em class="property">class </em><code class="descname">YearArchiveView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#YearArchiveView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.YearArchiveView" title="Permalink to this definition">¶</a></dt>
+<dd><p>A yearly archive page showing all available months in a given year. Objects
+with a date in the <em>future</em> are not displayed unless you set
+<code class="docutils literal notranslate"><span class="pre">allow_future</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p><strong>Ancestors (MRO)</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectTemplateResponseMixin" title="django.views.generic.list.MultipleObjectTemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectTemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-simple/#django.views.generic.base.TemplateResponseMixin" title="django.views.generic.base.TemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.TemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="#django.views.generic.dates.BaseYearArchiveView" title="django.views.generic.dates.BaseYearArchiveView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseYearArchiveView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.YearMixin" title="django.views.generic.dates.YearMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.YearMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView" title="django.views.generic.dates.BaseDateListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseDateListView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin" title="django.views.generic.list.MultipleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin" title="django.views.generic.dates.DateMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.DateMixin</span></code></a></li>
+<li><a class="reference internal" href="../base/#django.views.generic.base.View" title="django.views.generic.base.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></a></li>
+</ul>
+<dl class="attribute">
+<dt id="django.views.generic.dates.YearArchiveView.make_object_list">
+<code class="descname">make_object_list</code><a class="headerlink" href="#django.views.generic.dates.YearArchiveView.make_object_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>A boolean specifying whether to retrieve the full list of objects for
+this year and pass those to the template. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the list of
+objects will be made available to the context. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, the
+<code class="docutils literal notranslate"><span class="pre">None</span></code> queryset will be used as the object list. By default, this is
+<code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="django.views.generic.dates.YearArchiveView.get_make_object_list">
+<code class="descname">get_make_object_list</code>()<a class="headerlink" href="#django.views.generic.dates.YearArchiveView.get_make_object_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if an object list will be returned as part of the context.
+Returns <a class="reference internal" href="#django.views.generic.dates.YearArchiveView.make_object_list" title="django.views.generic.dates.YearArchiveView.make_object_list"><code class="xref py py-attr docutils literal notranslate"><span class="pre">make_object_list</span></code></a> by default.</p>
+</dd></dl>
+
+<p><strong>Context</strong></p>
+<p>In addition to the context provided by
+<a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin" title="django.views.generic.list.MultipleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectMixin</span></code></a> (via
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView" title="django.views.generic.dates.BaseDateListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseDateListView</span></code></a>), the template’s
+context will be:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">date_list</span></code>: A <a class="reference internal" href="../../models/querysets/#django.db.models.query.QuerySet.dates" title="django.db.models.query.QuerySet.dates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">QuerySet</span></code></a>
+object containing all months that have objects available according to
+<code class="docutils literal notranslate"><span class="pre">queryset</span></code>, represented as <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> objects, in
+ascending order.</li>
+<li><code class="docutils literal notranslate"><span class="pre">year</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the given year.</li>
+<li><code class="docutils literal notranslate"><span class="pre">next_year</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the first day of the next year, according to
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView.allow_empty" title="django.views.generic.dates.BaseDateListView.allow_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_empty</span></code></a> and
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin.allow_future" title="django.views.generic.dates.DateMixin.allow_future"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_future</span></code></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">previous_year</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the first day of the previous year, according to
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView.allow_empty" title="django.views.generic.dates.BaseDateListView.allow_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_empty</span></code></a> and
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin.allow_future" title="django.views.generic.dates.DateMixin.allow_future"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_future</span></code></a>.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li>Uses a default <code class="docutils literal notranslate"><span class="pre">template_name_suffix</span></code> of <code class="docutils literal notranslate"><span class="pre">_archive_year</span></code>.</li>
+</ul>
+<p><strong>Example myapp/views.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.views.generic.dates</span> <span class="k">import</span> <span class="n">YearArchiveView</span>
+
+<span class="kn">from</span> <span class="nn">myapp.models</span> <span class="k">import</span> <span class="n">Article</span>
+
+<span class="k">class</span> <span class="nc">ArticleYearArchiveView</span><span class="p">(</span><span class="n">YearArchiveView</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">date_field</span> <span class="o">=</span> <span class="s2">&quot;pub_date&quot;</span>
+    <span class="n">make_object_list</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">allow_future</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p><strong>Example myapp/urls.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="k">import</span> <span class="n">path</span>
+
+<span class="kn">from</span> <span class="nn">myapp.views</span> <span class="k">import</span> <span class="n">ArticleYearArchiveView</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&lt;int:year&gt;/&#39;</span><span class="p">,</span>
+         <span class="n">ArticleYearArchiveView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span>
+         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;article_year_archive&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Example myapp/article_archive_year.html</strong>:</p>
+<div class="highlight-html+django notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">for</span> <span class="nv">date</span> <span class="k">in</span> <span class="nv">date_list</span> <span class="cp">%}</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">date</span><span class="o">|</span><span class="nf">date</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>All Articles for <span class="cp">{{</span> <span class="nv">year</span><span class="o">|</span><span class="nf">date</span><span class="s2">:&quot;Y&quot;</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+            <span class="cp">{{</span> <span class="nv">obj.title</span> <span class="cp">}}</span> - <span class="cp">{{</span> <span class="nv">obj.pub_date</span><span class="o">|</span><span class="nf">date</span><span class="s2">:&quot;F j, Y&quot;</span> <span class="cp">}}</span>
+        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="s-montharchiveview">
+<span id="montharchiveview"></span><h2><code class="docutils literal notranslate"><span class="pre">MonthArchiveView</span></code><a class="headerlink" href="#montharchiveview" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="django.views.generic.dates.MonthArchiveView">
+<em class="property">class </em><code class="descname">MonthArchiveView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#MonthArchiveView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.MonthArchiveView" title="Permalink to this definition">¶</a></dt>
+<dd><p>A monthly archive page showing all objects in a given month. Objects with a
+date in the <em>future</em> are not displayed unless you set <code class="docutils literal notranslate"><span class="pre">allow_future</span></code> to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p><strong>Ancestors (MRO)</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectTemplateResponseMixin" title="django.views.generic.list.MultipleObjectTemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectTemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-simple/#django.views.generic.base.TemplateResponseMixin" title="django.views.generic.base.TemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.TemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="#django.views.generic.dates.BaseMonthArchiveView" title="django.views.generic.dates.BaseMonthArchiveView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseMonthArchiveView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.YearMixin" title="django.views.generic.dates.YearMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.YearMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.MonthMixin" title="django.views.generic.dates.MonthMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.MonthMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView" title="django.views.generic.dates.BaseDateListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseDateListView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin" title="django.views.generic.list.MultipleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin" title="django.views.generic.dates.DateMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.DateMixin</span></code></a></li>
+<li><a class="reference internal" href="../base/#django.views.generic.base.View" title="django.views.generic.base.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></a></li>
+</ul>
+<p><strong>Context</strong></p>
+<p>In addition to the context provided by
+<a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin" title="django.views.generic.list.MultipleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectMixin</span></code></a> (via
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView" title="django.views.generic.dates.BaseDateListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDateListView</span></code></a>), the template’s
+context will be:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">date_list</span></code>: A <a class="reference internal" href="../../models/querysets/#django.db.models.query.QuerySet.dates" title="django.db.models.query.QuerySet.dates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">QuerySet</span></code></a>
+object containing all days that have objects available in the given month,
+according to <code class="docutils literal notranslate"><span class="pre">queryset</span></code>, represented as <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a>
+objects, in ascending order.</li>
+<li><code class="docutils literal notranslate"><span class="pre">month</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the given month.</li>
+<li><code class="docutils literal notranslate"><span class="pre">next_month</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the first day of the next month, according to
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView.allow_empty" title="django.views.generic.dates.BaseDateListView.allow_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_empty</span></code></a> and
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin.allow_future" title="django.views.generic.dates.DateMixin.allow_future"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_future</span></code></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">previous_month</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the first day of the previous month, according to
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView.allow_empty" title="django.views.generic.dates.BaseDateListView.allow_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_empty</span></code></a> and
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin.allow_future" title="django.views.generic.dates.DateMixin.allow_future"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_future</span></code></a>.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li>Uses a default <code class="docutils literal notranslate"><span class="pre">template_name_suffix</span></code> of <code class="docutils literal notranslate"><span class="pre">_archive_month</span></code>.</li>
+</ul>
+<p><strong>Example myapp/views.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.views.generic.dates</span> <span class="k">import</span> <span class="n">MonthArchiveView</span>
+
+<span class="kn">from</span> <span class="nn">myapp.models</span> <span class="k">import</span> <span class="n">Article</span>
+
+<span class="k">class</span> <span class="nc">ArticleMonthArchiveView</span><span class="p">(</span><span class="n">MonthArchiveView</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">date_field</span> <span class="o">=</span> <span class="s2">&quot;pub_date&quot;</span>
+    <span class="n">allow_future</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p><strong>Example myapp/urls.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="k">import</span> <span class="n">path</span>
+
+<span class="kn">from</span> <span class="nn">myapp.views</span> <span class="k">import</span> <span class="n">ArticleMonthArchiveView</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Example: /2012/08/</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&lt;int:year&gt;/&lt;int:month&gt;/&#39;</span><span class="p">,</span>
+         <span class="n">ArticleMonthArchiveView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">month_format</span><span class="o">=</span><span class="s1">&#39;%m&#39;</span><span class="p">),</span>
+         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;archive_month_numeric&quot;</span><span class="p">),</span>
+    <span class="c1"># Example: /2012/aug/</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&lt;int:year&gt;/&lt;str:month&gt;/&#39;</span><span class="p">,</span>
+         <span class="n">ArticleMonthArchiveView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span>
+         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;archive_month&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Example myapp/article_archive_month.html</strong>:</p>
+<div class="highlight-html+django notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">for</span> <span class="nv">article</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">article.pub_date</span><span class="o">|</span><span class="nf">date</span><span class="s2">:&quot;F j, Y&quot;</span> <span class="cp">}}</span>: <span class="cp">{{</span> <span class="nv">article.title</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">previous_month</span> <span class="cp">%}</span>
+        Previous Month: <span class="cp">{{</span> <span class="nv">previous_month</span><span class="o">|</span><span class="nf">date</span><span class="s2">:&quot;F Y&quot;</span> <span class="cp">}}</span>
+    <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">next_month</span> <span class="cp">%}</span>
+        Next Month: <span class="cp">{{</span> <span class="nv">next_month</span><span class="o">|</span><span class="nf">date</span><span class="s2">:&quot;F Y&quot;</span> <span class="cp">}}</span>
+    <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="s-weekarchiveview">
+<span id="weekarchiveview"></span><h2><code class="docutils literal notranslate"><span class="pre">WeekArchiveView</span></code><a class="headerlink" href="#weekarchiveview" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="django.views.generic.dates.WeekArchiveView">
+<em class="property">class </em><code class="descname">WeekArchiveView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#WeekArchiveView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.WeekArchiveView" title="Permalink to this definition">¶</a></dt>
+<dd><p>A weekly archive page showing all objects in a given week. Objects with a
+date in the <em>future</em> are not displayed unless you set <code class="docutils literal notranslate"><span class="pre">allow_future</span></code> to
+<code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p><strong>Ancestors (MRO)</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectTemplateResponseMixin" title="django.views.generic.list.MultipleObjectTemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectTemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-simple/#django.views.generic.base.TemplateResponseMixin" title="django.views.generic.base.TemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.TemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="#django.views.generic.dates.BaseWeekArchiveView" title="django.views.generic.dates.BaseWeekArchiveView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseWeekArchiveView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.YearMixin" title="django.views.generic.dates.YearMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.YearMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.WeekMixin" title="django.views.generic.dates.WeekMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.WeekMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView" title="django.views.generic.dates.BaseDateListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseDateListView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin" title="django.views.generic.list.MultipleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin" title="django.views.generic.dates.DateMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.DateMixin</span></code></a></li>
+<li><a class="reference internal" href="../base/#django.views.generic.base.View" title="django.views.generic.base.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></a></li>
+</ul>
+<p><strong>Context</strong></p>
+<p>In addition to the context provided by
+<a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin" title="django.views.generic.list.MultipleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectMixin</span></code></a> (via
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView" title="django.views.generic.dates.BaseDateListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDateListView</span></code></a>), the template’s
+context will be:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">week</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the first day of the given week.</li>
+<li><code class="docutils literal notranslate"><span class="pre">next_week</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the first day of the next week, according to
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView.allow_empty" title="django.views.generic.dates.BaseDateListView.allow_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_empty</span></code></a> and
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin.allow_future" title="django.views.generic.dates.DateMixin.allow_future"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_future</span></code></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">previous_week</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the first day of the previous week, according to
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView.allow_empty" title="django.views.generic.dates.BaseDateListView.allow_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_empty</span></code></a> and
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin.allow_future" title="django.views.generic.dates.DateMixin.allow_future"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_future</span></code></a>.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li>Uses a default <code class="docutils literal notranslate"><span class="pre">template_name_suffix</span></code> of <code class="docutils literal notranslate"><span class="pre">_archive_week</span></code>.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">week_format</span></code> attribute is a <a class="reference external" href="https://docs.python.org/3/library/time.html#time.strptime" title="(in Python v3.7)"><code class="xref py py-func docutils literal notranslate"><span class="pre">strptime()</span></code></a> format string
+used to parse the week number. The following values are supported:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">'%U'</span></code>: Based on the United States week system where the week
+begins on Sunday. This is the default value.</li>
+<li><code class="docutils literal notranslate"><span class="pre">'%W'</span></code>: Similar to <code class="docutils literal notranslate"><span class="pre">'%U'</span></code>, except it assumes that the week
+begins on Monday. This is not the same as the ISO 8601 week number.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example myapp/views.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.views.generic.dates</span> <span class="k">import</span> <span class="n">WeekArchiveView</span>
+
+<span class="kn">from</span> <span class="nn">myapp.models</span> <span class="k">import</span> <span class="n">Article</span>
+
+<span class="k">class</span> <span class="nc">ArticleWeekArchiveView</span><span class="p">(</span><span class="n">WeekArchiveView</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">date_field</span> <span class="o">=</span> <span class="s2">&quot;pub_date&quot;</span>
+    <span class="n">week_format</span> <span class="o">=</span> <span class="s2">&quot;%W&quot;</span>
+    <span class="n">allow_future</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p><strong>Example myapp/urls.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="k">import</span> <span class="n">path</span>
+
+<span class="kn">from</span> <span class="nn">myapp.views</span> <span class="k">import</span> <span class="n">ArticleWeekArchiveView</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Example: /2012/week/23/</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&lt;int:year&gt;/week/&lt;int:week&gt;/&#39;</span><span class="p">,</span>
+         <span class="n">ArticleWeekArchiveView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span>
+         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;archive_week&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Example myapp/article_archive_week.html</strong>:</p>
+<div class="highlight-html+django notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Week <span class="cp">{{</span> <span class="nv">week</span><span class="o">|</span><span class="nf">date</span><span class="s1">:&#39;W&#39;</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">for</span> <span class="nv">article</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">article.pub_date</span><span class="o">|</span><span class="nf">date</span><span class="s2">:&quot;F j, Y&quot;</span> <span class="cp">}}</span>: <span class="cp">{{</span> <span class="nv">article.title</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">previous_week</span> <span class="cp">%}</span>
+        Previous Week: <span class="cp">{{</span> <span class="nv">previous_week</span><span class="o">|</span><span class="nf">date</span><span class="s2">:&quot;W&quot;</span> <span class="cp">}}</span> of year <span class="cp">{{</span> <span class="nv">previous_week</span><span class="o">|</span><span class="nf">date</span><span class="s2">:&quot;Y&quot;</span> <span class="cp">}}</span>
+    <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">previous_week</span> <span class="k">and</span> <span class="nv">next_week</span> <span class="cp">%}</span>--<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">next_week</span> <span class="cp">%}</span>
+        Next week: <span class="cp">{{</span> <span class="nv">next_week</span><span class="o">|</span><span class="nf">date</span><span class="s2">:&quot;W&quot;</span> <span class="cp">}}</span> of year <span class="cp">{{</span> <span class="nv">next_week</span><span class="o">|</span><span class="nf">date</span><span class="s2">:&quot;Y&quot;</span> <span class="cp">}}</span>
+    <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>In this example, you are outputting the week number. Keep in mind that week
+numbers computed by the <a class="reference internal" href="../../templates/builtins/#std:templatefilter-date"><code class="xref std std-tfilter docutils literal notranslate"><span class="pre">date</span></code></a> template filter with the <code class="docutils literal notranslate"><span class="pre">'W'</span></code>
+format character are not always the same as those computed by
+<a class="reference external" href="https://docs.python.org/3/library/time.html#time.strftime" title="(in Python v3.7)"><code class="xref py py-func docutils literal notranslate"><span class="pre">strftime()</span></code></a> and <a class="reference external" href="https://docs.python.org/3/library/time.html#time.strptime" title="(in Python v3.7)"><code class="xref py py-func docutils literal notranslate"><span class="pre">strptime()</span></code></a> with the <code class="docutils literal notranslate"><span class="pre">'%W'</span></code> format
+string. For year 2015, for example, week numbers output by <a class="reference internal" href="../../templates/builtins/#std:templatefilter-date"><code class="xref std std-tfilter docutils literal notranslate"><span class="pre">date</span></code></a>
+are higher by one compared to those output by <a class="reference external" href="https://docs.python.org/3/library/time.html#time.strftime" title="(in Python v3.7)"><code class="xref py py-func docutils literal notranslate"><span class="pre">strftime()</span></code></a>. There
+isn’t an equivalent for the <code class="docutils literal notranslate"><span class="pre">'%U'</span></code> <a class="reference external" href="https://docs.python.org/3/library/time.html#time.strftime" title="(in Python v3.7)"><code class="xref py py-func docutils literal notranslate"><span class="pre">strftime()</span></code></a> format string
+in <a class="reference internal" href="../../templates/builtins/#std:templatefilter-date"><code class="xref std std-tfilter docutils literal notranslate"><span class="pre">date</span></code></a>. Therefore, you should avoid using <a class="reference internal" href="../../templates/builtins/#std:templatefilter-date"><code class="xref std std-tfilter docutils literal notranslate"><span class="pre">date</span></code></a> to
+generate URLs for <code class="docutils literal notranslate"><span class="pre">WeekArchiveView</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="s-dayarchiveview">
+<span id="dayarchiveview"></span><h2><code class="docutils literal notranslate"><span class="pre">DayArchiveView</span></code><a class="headerlink" href="#dayarchiveview" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="django.views.generic.dates.DayArchiveView">
+<em class="property">class </em><code class="descname">DayArchiveView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#DayArchiveView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.DayArchiveView" title="Permalink to this definition">¶</a></dt>
+<dd><p>A day archive page showing all objects in a given day. Days in the future
+throw a 404 error, regardless of whether any objects exist for future days,
+unless you set <code class="docutils literal notranslate"><span class="pre">allow_future</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p><strong>Ancestors (MRO)</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectTemplateResponseMixin" title="django.views.generic.list.MultipleObjectTemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectTemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-simple/#django.views.generic.base.TemplateResponseMixin" title="django.views.generic.base.TemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.TemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="#django.views.generic.dates.BaseDayArchiveView" title="django.views.generic.dates.BaseDayArchiveView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseDayArchiveView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.YearMixin" title="django.views.generic.dates.YearMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.YearMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.MonthMixin" title="django.views.generic.dates.MonthMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.MonthMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DayMixin" title="django.views.generic.dates.DayMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.DayMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView" title="django.views.generic.dates.BaseDateListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseDateListView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin" title="django.views.generic.list.MultipleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin" title="django.views.generic.dates.DateMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.DateMixin</span></code></a></li>
+<li><a class="reference internal" href="../base/#django.views.generic.base.View" title="django.views.generic.base.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></a></li>
+</ul>
+<p><strong>Context</strong></p>
+<p>In addition to the context provided by
+<a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin" title="django.views.generic.list.MultipleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectMixin</span></code></a> (via
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView" title="django.views.generic.dates.BaseDateListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDateListView</span></code></a>), the template’s
+context will be:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">day</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the given day.</li>
+<li><code class="docutils literal notranslate"><span class="pre">next_day</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the next day, according to
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView.allow_empty" title="django.views.generic.dates.BaseDateListView.allow_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_empty</span></code></a> and
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin.allow_future" title="django.views.generic.dates.DateMixin.allow_future"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_future</span></code></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">previous_day</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the previous day, according to
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView.allow_empty" title="django.views.generic.dates.BaseDateListView.allow_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_empty</span></code></a> and
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin.allow_future" title="django.views.generic.dates.DateMixin.allow_future"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_future</span></code></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">next_month</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the first day of the next month, according to
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView.allow_empty" title="django.views.generic.dates.BaseDateListView.allow_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_empty</span></code></a> and
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin.allow_future" title="django.views.generic.dates.DateMixin.allow_future"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_future</span></code></a>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">previous_month</span></code>: A <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">date</span></code></a> object
+representing the first day of the previous month, according to
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView.allow_empty" title="django.views.generic.dates.BaseDateListView.allow_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_empty</span></code></a> and
+<a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin.allow_future" title="django.views.generic.dates.DateMixin.allow_future"><code class="xref py py-attr docutils literal notranslate"><span class="pre">allow_future</span></code></a>.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li>Uses a default <code class="docutils literal notranslate"><span class="pre">template_name_suffix</span></code> of <code class="docutils literal notranslate"><span class="pre">_archive_day</span></code>.</li>
+</ul>
+<p><strong>Example myapp/views.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.views.generic.dates</span> <span class="k">import</span> <span class="n">DayArchiveView</span>
+
+<span class="kn">from</span> <span class="nn">myapp.models</span> <span class="k">import</span> <span class="n">Article</span>
+
+<span class="k">class</span> <span class="nc">ArticleDayArchiveView</span><span class="p">(</span><span class="n">DayArchiveView</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">date_field</span> <span class="o">=</span> <span class="s2">&quot;pub_date&quot;</span>
+    <span class="n">allow_future</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p><strong>Example myapp/urls.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="k">import</span> <span class="n">path</span>
+
+<span class="kn">from</span> <span class="nn">myapp.views</span> <span class="k">import</span> <span class="n">ArticleDayArchiveView</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># Example: /2012/nov/10/</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&lt;int:year&gt;/&lt;str:month&gt;/&lt;int:day&gt;/&#39;</span><span class="p">,</span>
+         <span class="n">ArticleDayArchiveView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span>
+         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;archive_day&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Example myapp/article_archive_day.html</strong>:</p>
+<div class="highlight-html+django notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">day</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">for</span> <span class="nv">article</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">article.pub_date</span><span class="o">|</span><span class="nf">date</span><span class="s2">:&quot;F j, Y&quot;</span> <span class="cp">}}</span>: <span class="cp">{{</span> <span class="nv">article.title</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">previous_day</span> <span class="cp">%}</span>
+        Previous Day: <span class="cp">{{</span> <span class="nv">previous_day</span> <span class="cp">}}</span>
+    <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">previous_day</span> <span class="k">and</span> <span class="nv">next_day</span> <span class="cp">%}</span>--<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">next_day</span> <span class="cp">%}</span>
+        Next Day: <span class="cp">{{</span> <span class="nv">next_day</span> <span class="cp">}}</span>
+    <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="s-todayarchiveview">
+<span id="todayarchiveview"></span><h2><code class="docutils literal notranslate"><span class="pre">TodayArchiveView</span></code><a class="headerlink" href="#todayarchiveview" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="django.views.generic.dates.TodayArchiveView">
+<em class="property">class </em><code class="descname">TodayArchiveView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#TodayArchiveView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.TodayArchiveView" title="Permalink to this definition">¶</a></dt>
+<dd><p>A day archive page showing all objects for <em>today</em>. This is exactly the
+same as <a class="reference internal" href="#django.views.generic.dates.DayArchiveView" title="django.views.generic.dates.DayArchiveView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.DayArchiveView</span></code></a>, except today’s
+date is used instead of the <code class="docutils literal notranslate"><span class="pre">year</span></code>/<code class="docutils literal notranslate"><span class="pre">month</span></code>/<code class="docutils literal notranslate"><span class="pre">day</span></code> arguments.</p>
+<p><strong>Ancestors (MRO)</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectTemplateResponseMixin" title="django.views.generic.list.MultipleObjectTemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectTemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-simple/#django.views.generic.base.TemplateResponseMixin" title="django.views.generic.base.TemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.TemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="#django.views.generic.dates.BaseTodayArchiveView" title="django.views.generic.dates.BaseTodayArchiveView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseTodayArchiveView</span></code></a></li>
+<li><a class="reference internal" href="#django.views.generic.dates.BaseDayArchiveView" title="django.views.generic.dates.BaseDayArchiveView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseDayArchiveView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.YearMixin" title="django.views.generic.dates.YearMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.YearMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.MonthMixin" title="django.views.generic.dates.MonthMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.MonthMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DayMixin" title="django.views.generic.dates.DayMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.DayMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.BaseDateListView" title="django.views.generic.dates.BaseDateListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseDateListView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin" title="django.views.generic.list.MultipleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.list.MultipleObjectMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin" title="django.views.generic.dates.DateMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.DateMixin</span></code></a></li>
+<li><a class="reference internal" href="../base/#django.views.generic.base.View" title="django.views.generic.base.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></a></li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li>Uses a default <code class="docutils literal notranslate"><span class="pre">template_name_suffix</span></code> of <code class="docutils literal notranslate"><span class="pre">_archive_today</span></code>.</li>
+</ul>
+<p><strong>Example myapp/views.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.views.generic.dates</span> <span class="k">import</span> <span class="n">TodayArchiveView</span>
+
+<span class="kn">from</span> <span class="nn">myapp.models</span> <span class="k">import</span> <span class="n">Article</span>
+
+<span class="k">class</span> <span class="nc">ArticleTodayArchiveView</span><span class="p">(</span><span class="n">TodayArchiveView</span><span class="p">):</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">date_field</span> <span class="o">=</span> <span class="s2">&quot;pub_date&quot;</span>
+    <span class="n">allow_future</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p><strong>Example myapp/urls.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="k">import</span> <span class="n">path</span>
+
+<span class="kn">from</span> <span class="nn">myapp.views</span> <span class="k">import</span> <span class="n">ArticleTodayArchiveView</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;today/&#39;</span><span class="p">,</span>
+         <span class="n">ArticleTodayArchiveView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span>
+         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;archive_today&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition-where-is-the-example-template-for-todayarchiveview admonition">
+<p class="first admonition-title">Where is the example template for <code class="docutils literal notranslate"><span class="pre">TodayArchiveView</span></code>?</p>
+<p class="last">This view uses by default the same template as the
+<a class="reference internal" href="../flattened-index/#DayArchiveView" title="DayArchiveView"><code class="xref py py-class docutils literal notranslate"><span class="pre">DayArchiveView</span></code></a>, which is in the previous example. If you need
+a different template, set the <code class="docutils literal notranslate"><span class="pre">template_name</span></code> attribute to be the
+name of the new template.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="s-datedetailview">
+<span id="datedetailview"></span><h2><code class="docutils literal notranslate"><span class="pre">DateDetailView</span></code><a class="headerlink" href="#datedetailview" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="django.views.generic.dates.DateDetailView">
+<em class="property">class </em><code class="descname">DateDetailView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#DateDetailView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.DateDetailView" title="Permalink to this definition">¶</a></dt>
+<dd><p>A page representing an individual object. If the object has a date value in
+the future, the view will throw a 404 error by default, unless you set
+<code class="docutils literal notranslate"><span class="pre">allow_future</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p><strong>Ancestors (MRO)</strong></p>
+<ul class="simple">
+<li><a class="reference internal" href="../mixins-single-object/#django.views.generic.detail.SingleObjectTemplateResponseMixin" title="django.views.generic.detail.SingleObjectTemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.detail.SingleObjectTemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-simple/#django.views.generic.base.TemplateResponseMixin" title="django.views.generic.base.TemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.TemplateResponseMixin</span></code></a></li>
+<li><a class="reference internal" href="#django.views.generic.dates.BaseDateDetailView" title="django.views.generic.dates.BaseDateDetailView"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.BaseDateDetailView</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.YearMixin" title="django.views.generic.dates.YearMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.YearMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.MonthMixin" title="django.views.generic.dates.MonthMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.MonthMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DayMixin" title="django.views.generic.dates.DayMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.DayMixin</span></code></a></li>
+<li><a class="reference internal" href="../mixins-date-based/#django.views.generic.dates.DateMixin" title="django.views.generic.dates.DateMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.dates.DateMixin</span></code></a></li>
+<li><code class="docutils literal notranslate"><span class="pre">django.views.generic.detail.BaseDetailView</span></code></li>
+<li><a class="reference internal" href="../mixins-single-object/#django.views.generic.detail.SingleObjectMixin" title="django.views.generic.detail.SingleObjectMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.detail.SingleObjectMixin</span></code></a></li>
+<li><a class="reference internal" href="../base/#django.views.generic.base.View" title="django.views.generic.base.View"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.base.View</span></code></a></li>
+</ul>
+<p><strong>Context</strong></p>
+<ul class="simple">
+<li>Includes the single object associated with the <code class="docutils literal notranslate"><span class="pre">model</span></code> specified in
+the <code class="docutils literal notranslate"><span class="pre">DateDetailView</span></code>.</li>
+</ul>
+<p><strong>Notes</strong></p>
+<ul class="simple">
+<li>Uses a default <code class="docutils literal notranslate"><span class="pre">template_name_suffix</span></code> of <code class="docutils literal notranslate"><span class="pre">_detail</span></code>.</li>
+</ul>
+<p><strong>Example myapp/urls.py</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="k">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">django.views.generic.dates</span> <span class="k">import</span> <span class="n">DateDetailView</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&lt;int:year&gt;/&lt;str:month&gt;/&lt;int:day&gt;/&lt;int:pk&gt;/&#39;</span><span class="p">,</span>
+         <span class="n">DateDetailView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">Article</span><span class="p">,</span> <span class="n">date_field</span><span class="o">=</span><span class="s2">&quot;pub_date&quot;</span><span class="p">),</span>
+         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;archive_date_detail&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Example myapp/article_detail.html</strong>:</p>
+<div class="highlight-html+django notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">object.title</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>All of the generic views listed above have matching <code class="docutils literal notranslate"><span class="pre">Base</span></code> views that
+only differ in that they do not include the
+<a class="reference internal" href="../mixins-multiple-object/#django.views.generic.list.MultipleObjectTemplateResponseMixin" title="django.views.generic.list.MultipleObjectTemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectTemplateResponseMixin</span></code></a>
+(for the archive views) or
+<a class="reference internal" href="../mixins-single-object/#django.views.generic.detail.SingleObjectTemplateResponseMixin" title="django.views.generic.detail.SingleObjectTemplateResponseMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">SingleObjectTemplateResponseMixin</span></code></a>
+(for the <a class="reference internal" href="../flattened-index/#DateDetailView" title="DateDetailView"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateDetailView</span></code></a>):</p>
+<dl class="class">
+<dt id="django.views.generic.dates.BaseArchiveIndexView">
+<em class="property">class </em><code class="descname">BaseArchiveIndexView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#BaseArchiveIndexView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.BaseArchiveIndexView" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="django.views.generic.dates.BaseYearArchiveView">
+<em class="property">class </em><code class="descname">BaseYearArchiveView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#BaseYearArchiveView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.BaseYearArchiveView" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="django.views.generic.dates.BaseMonthArchiveView">
+<em class="property">class </em><code class="descname">BaseMonthArchiveView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#BaseMonthArchiveView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.BaseMonthArchiveView" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="django.views.generic.dates.BaseWeekArchiveView">
+<em class="property">class </em><code class="descname">BaseWeekArchiveView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#BaseWeekArchiveView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.BaseWeekArchiveView" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="django.views.generic.dates.BaseDayArchiveView">
+<em class="property">class </em><code class="descname">BaseDayArchiveView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#BaseDayArchiveView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.BaseDayArchiveView" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="django.views.generic.dates.BaseTodayArchiveView">
+<em class="property">class </em><code class="descname">BaseTodayArchiveView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#BaseTodayArchiveView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.BaseTodayArchiveView" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="last class">
+<dt id="django.views.generic.dates.BaseDateDetailView">
+<em class="property">class </em><code class="descname">BaseDateDetailView</code><a class="reference internal" href="../../../_modules/django/views/generic/dates/#BaseDateDetailView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.views.generic.dates.BaseDateDetailView" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../generic-editing/"><i class="icon icon-chevron-left"></i> Generic editing views</a></div>
+  
+  
+  <div class="right"><a href="../mixins/">Class-based views mixins <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Pierre Vanhulst donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Generic date views</a><ul>
+<li><a class="reference internal" href="#archiveindexview"><code class="docutils literal notranslate"><span class="pre">ArchiveIndexView</span></code></a></li>
+<li><a class="reference internal" href="#yeararchiveview"><code class="docutils literal notranslate"><span class="pre">YearArchiveView</span></code></a></li>
+<li><a class="reference internal" href="#montharchiveview"><code class="docutils literal notranslate"><span class="pre">MonthArchiveView</span></code></a></li>
+<li><a class="reference internal" href="#weekarchiveview"><code class="docutils literal notranslate"><span class="pre">WeekArchiveView</span></code></a></li>
+<li><a class="reference internal" href="#dayarchiveview"><code class="docutils literal notranslate"><span class="pre">DayArchiveView</span></code></a></li>
+<li><a class="reference internal" href="#todayarchiveview"><code class="docutils literal notranslate"><span class="pre">TodayArchiveView</span></code></a></li>
+<li><a class="reference internal" href="#datedetailview"><code class="docutils literal notranslate"><span class="pre">DateDetailView</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../generic-editing/">Generic editing views</a></li>
+    
+    
+    <li>Next: <a href="../mixins/">Class-based views mixins</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../">API Reference</a>
+      
+      <ul><li><a href="../">Built-in class-based views API</a>
+      
+      <ul><li>Generic date views</li></ul>
+      </li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

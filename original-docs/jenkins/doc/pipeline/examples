@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Pipeline Examples
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Pipeline Examples' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Pipeline Examples' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Pipeline Examples' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/pipeline/examples/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Pipeline Examples' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<style>
+  .container .row.body {
+    margin-right: 5em;
+    margin-left: 5em;
+  }
+  .toc {
+      float: right;
+  }
+</style>
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row.body h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-md-12'>
+<h1>
+Pipeline Examples
+</h1>
+<div>
+<p>
+The following examples are sourced from the the
+<a href='https://github.com/jenkinsci/pipeline-examples' target='_blank'>
+pipeline-examples
+</a>
+repository on GitHub and contributed to by various members of the Jenkins
+project. If you are interested in contributing your own example, please consult the
+<a href='https://github.com/jenkinsci/pipeline-examples#introduction' target='_blank'>
+README
+</a>
+in the repository.
+</p>
+</div>
+<div class='toc' id='toc'>
+<div class='toctitle'>
+Table of Contents
+</div>
+<ul class='sectlevel1'>
+<li>
+<a href='#ansi-color-build-wrapper'>
+Ansi Color Build Wrapper
+</a>
+</li>
+<li>
+<a href='#archive-build-output-artifacts'>
+Archive Build Output Artifacts
+</a>
+</li>
+<li>
+<a href='#artifactory-generic-upload-download'>
+Artifactory Generic Upload Download
+</a>
+</li>
+<li>
+<a href='#artifactory-gradle-build'>
+Artifactory Gradle Build
+</a>
+</li>
+<li>
+<a href='#artifactory-maven-build'>
+Artifactory Maven Build
+</a>
+</li>
+<li>
+<a href='#configfile-provider-plugin'>
+Configfile Provider Plugin
+</a>
+</li>
+<li>
+<a href='#external-workspace-manager'>
+External Workspace Manager
+</a>
+</li>
+<li>
+<a href='#get-build-cause'>
+Get Build Cause
+</a>
+</li>
+<li>
+<a href='#gitcommit'>
+Gitcommit
+</a>
+</li>
+<li>
+<a href='#gitcommit_changeset'>
+Gitcommit_changeset
+</a>
+</li>
+<li>
+<a href='#ircnotify-commandline'>
+Ircnotify Commandline
+</a>
+</li>
+<li>
+<a href='#jobs-in-parallel'>
+Jobs In Parallel
+</a>
+</li>
+<li>
+<a href='#load-from-file'>
+Load From File
+</a>
+</li>
+<li>
+<a href='#maven-and-jdk-specific-version'>
+Maven And Jdk Specific Version
+</a>
+</li>
+<li>
+<a href='#parallel-from-grep'>
+Parallel From Grep
+</a>
+</li>
+<li>
+<a href='#parallel-from-list'>
+Parallel From List
+</a>
+</li>
+<li>
+<a href='#parallel-multiple-nodes'>
+Parallel Multiple Nodes
+</a>
+</li>
+<li>
+<a href='#push-git-repo'>
+Push Git Repo
+</a>
+</li>
+<li>
+<a href='#slacknotify'>
+Slacknotify
+</a>
+</li>
+<li>
+<a href='#timestamper-wrapper'>
+Timestamper Wrapper
+</a>
+</li>
+<li>
+<a href='#trigger-job-on-all-nodes'>
+Trigger Job On All Nodes
+</a>
+</li>
+<li>
+<a href='#unstash-different-dir'>
+Unstash Different Dir
+</a>
+</li>
+</ul>
+</div>
+<div class='examples'>
+<div class='example'>
+<div class='title'>
+<a name='ansi-color-build-wrapper'></a>
+<h3>
+Ansi Color Build Wrapper
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+This shows usage of a simple build wrapper, specifically the
+AnsiColor plugin, which adds ANSI coloring to the console output.
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>This shows usage of a simple build wrapper, specifically the
+AnsiColor plugin, which adds ANSI coloring to the console output.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting AnsiColorBuildWrapper.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// This shows a simple build wrapper example, using the AnsiColor plugin.</span>
+node {
+    <span style="color:#777">// This displays colors using the 'xterm' ansi color map.</span>
+    ansiColor(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">xterm</span><span style="color:#710">'</span></span>) {
+        <span style="color:#777">// Just some echoes to show the ANSI color.</span>
+        stage <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#b0b">\u001B</span><span style="color:#D20">[31mI'm Red</span><span style="color:#b0b">\u001B</span><span style="color:#D20">[0m Now not</span><span style="color:#710">&quot;</span></span>
+    }
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='archive-build-output-artifacts'></a>
+<h3>
+Archive Build Output Artifacts
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+This is a simple demonstration of how to archive the build output artifacts in workspace for later use.
+
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>This is a simple demonstration of how to archive the build output artifacts in workspace for later use.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting ArchiveBuildOutputArtifacts.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// This shows a simple example of how to archive the build output artifacts.</span>
+node {
+    stage <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Create build output</span><span style="color:#710">&quot;</span></span>
+    
+    <span style="color:#777">// Make the output directory.</span>
+    sh <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">mkdir -p output</span><span style="color:#710">&quot;</span></span>
+
+    <span style="color:#777">// Write an useful file, which is needed to be archived.</span>
+    writeFile <span style="color:#606">file</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">output/usefulfile.txt</span><span style="color:#710">&quot;</span></span>, <span style="color:#606">text</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">This file is useful, need to archive it.</span><span style="color:#710">&quot;</span></span>
+
+    <span style="color:#777">// Write an useless file, which is not needed to be archived.</span>
+    writeFile <span style="color:#606">file</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">output/uselessfile.md</span><span style="color:#710">&quot;</span></span>, <span style="color:#606">text</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">This file is useless, no need to archive it.</span><span style="color:#710">&quot;</span></span>
+
+    stage <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Archive build output</span><span style="color:#710">&quot;</span></span>
+    
+    <span style="color:#777">// Archive the build output artifacts.</span>
+    archiveArtifacts <span style="color:#606">artifacts</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">output/*.txt</span><span style="color:#710">'</span></span>, <span style="color:#606">excludes</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">output/*.md</span><span style="color:#710">'</span></span>
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='artifactory-generic-upload-download'></a>
+<h3>
+Artifactory Generic Upload Download
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+This is a simple demonstration of how to download dependencies, upload artifacts and publish build info to Artifactory.
+<br>
+Read the full documentation [here](https://www.jfrog.com/confluence/display/RTF/Working+With+Pipeline+Jobs+in+Jenkins).
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>This is a simple demonstration of how to download dependencies, upload artifacts and publish build info to Artifactory.
+<br />
+Read the full documentation <a href="https://www.jfrog.com/confluence/display/RTF/Working+With+Pipeline+Jobs+in+Jenkins">here</a>.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting artifactoryGenericUploadDownload.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre>node {
+    git <span style="color:#606">url</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">https://github.com/jfrogdev/project-examples.git</span><span style="color:#710">'</span></span>
+
+    <span style="color:#777">// Get Artifactory server instance, defined in the Artifactory Plugin administration page.</span>
+    <span style="color:#080;font-weight:bold">def</span> server = Artifactory.server <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">SERVER_ID</span><span style="color:#710">&quot;</span></span>
+
+    <span style="color:#777">// Read the upload spec and upload files to Artifactory.</span>
+    <span style="color:#080;font-weight:bold">def</span> downloadSpec =
+            <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'''</span><span style="color:#D20">{
+            &quot;files&quot;: [
+                {
+                    &quot;pattern&quot;: &quot;libs-snapshot-local/*.zip&quot;,
+                    &quot;target&quot;: &quot;dependencies/&quot;,
+                    &quot;props&quot;: &quot;p1=v1;p2=v2&quot;
+                }
+            ]
+        }</span><span style="color:#710">'''</span></span>
+
+    <span style="color:#080;font-weight:bold">def</span> buildInfo1 = server.download <span style="color:#606">spec</span>: downloadSpec
+
+    <span style="color:#777">// Read the upload spec which was downloaded from github.</span>
+    <span style="color:#080;font-weight:bold">def</span> uploadSpec =
+            <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'''</span><span style="color:#D20">{
+            &quot;files&quot;: [
+                {
+                    &quot;pattern&quot;: &quot;resources/Kermit.*&quot;,
+                    &quot;target&quot;: &quot;libs-snapshot-local&quot;,
+                    &quot;props&quot;: &quot;p1=v1;p2=v2&quot;
+                },
+                {
+                    &quot;pattern&quot;: &quot;resources/Frogger.*&quot;,
+                    &quot;target&quot;: &quot;libs-snapshot-local&quot;
+                }
+            ]
+        }</span><span style="color:#710">'''</span></span>
+
+    <span style="color:#777">// Upload to Artifactory.</span>
+    <span style="color:#080;font-weight:bold">def</span> buildInfo2 = server.upload <span style="color:#606">spec</span>: uploadSpec
+
+    <span style="color:#777">// Merge the upload and download build-info objects.</span>
+    buildInfo1.append buildInfo2
+
+    <span style="color:#777">// Publish the build to Artifactory</span>
+    server.publishBuildInfo buildInfo1
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='artifactory-gradle-build'></a>
+<h3>
+Artifactory Gradle Build
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+This is a simple demonstration of how to run a Gradle build, that resolves dependencies, upload artifacts and publish build info to Artifactory.
+<br>
+Read the full documentation [here](https://www.jfrog.com/confluence/display/RTF/Working+With+Pipeline+Jobs+in+Jenkins).
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>This is a simple demonstration of how to run a Gradle build, that resolves dependencies, upload artifacts and publish build info to Artifactory.
+<br />
+Read the full documentation <a href="https://www.jfrog.com/confluence/display/RTF/Working+With+Pipeline+Jobs+in+Jenkins">here</a>.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting artifactoryGradleBuild.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre>node {
+    <span style="color:#777">// Get Artifactory server instance, defined in the Artifactory Plugin administration page.</span>
+    <span style="color:#080;font-weight:bold">def</span> server = Artifactory.server <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">SERVER_ID</span><span style="color:#710">&quot;</span></span>
+    <span style="color:#777">// Create an Artifactory Gradle instance.</span>
+    <span style="color:#080;font-weight:bold">def</span> rtGradle = Artifactory.newGradleBuild()
+    <span style="color:#080;font-weight:bold">def</span> buildInfo
+
+    stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Clone sources</span><span style="color:#710">'</span></span>) {
+        git <span style="color:#606">url</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">https://github.com/jfrogdev/project-examples.git</span><span style="color:#710">'</span></span>
+    }
+
+    stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Artifactory configuration</span><span style="color:#710">'</span></span>) {
+        <span style="color:#777">// Tool name from Jenkins configuration</span>
+        rtGradle.tool = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Gradle-2.4</span><span style="color:#710">&quot;</span></span>
+        <span style="color:#777">// Set Artifactory repositories for dependencies resolution and artifacts deployment.</span>
+        rtGradle.deployer <span style="color:#606">repo</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">ext-release-local</span><span style="color:#710">'</span></span>, <span style="color:#606">server</span>: server
+        rtGradle.resolver <span style="color:#606">repo</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">remote-repos</span><span style="color:#710">'</span></span>, <span style="color:#606">server</span>: server
+    }
+
+    stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Gradle build</span><span style="color:#710">'</span></span>) {
+        buildInfo = rtGradle.run <span style="color:#606">rootDir</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">gradle-examples/4/gradle-example-ci-server/</span><span style="color:#710">&quot;</span></span>, <span style="color:#606">buildFile</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">build.gradle</span><span style="color:#710">'</span></span>, <span style="color:#606">tasks</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">clean artifactoryPublish</span><span style="color:#710">'</span></span>
+    }
+
+    stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Publish build info</span><span style="color:#710">'</span></span>) {
+        server.publishBuildInfo buildInfo
+    }
+}</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='artifactory-maven-build'></a>
+<h3>
+Artifactory Maven Build
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+This is a simple demonstration of how to run a Maven build, that resolves dependencies, upload artifacts and publish build info to Artifactory.
+<br>
+Read the full documentation [here](https://www.jfrog.com/confluence/display/RTF/Working+With+Pipeline+Jobs+in+Jenkins).
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>This is a simple demonstration of how to run a Maven build, that resolves dependencies, upload artifacts and publish build info to Artifactory.
+<br />
+Read the full documentation <a href="https://www.jfrog.com/confluence/display/RTF/Working+With+Pipeline+Jobs+in+Jenkins">here</a>.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting artifactoryMavenBuild.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre>node {
+    <span style="color:#777">// Get Artifactory server instance, defined in the Artifactory Plugin administration page.</span>
+    <span style="color:#080;font-weight:bold">def</span> server = Artifactory.server <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">SERVER_ID</span><span style="color:#710">&quot;</span></span>
+    <span style="color:#777">// Create an Artifactory Maven instance.</span>
+    <span style="color:#080;font-weight:bold">def</span> rtMaven = Artifactory.newMavenBuild()
+    <span style="color:#080;font-weight:bold">def</span> buildInfo
+
+    stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Clone sources</span><span style="color:#710">'</span></span>) {
+        git <span style="color:#606">url</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">https://github.com/jfrogdev/project-examples.git</span><span style="color:#710">'</span></span>
+    }
+
+    stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Artifactory configuration</span><span style="color:#710">'</span></span>) {
+        <span style="color:#777">// Tool name from Jenkins configuration</span>
+        rtMaven.tool = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Maven-3.3.9</span><span style="color:#710">&quot;</span></span>
+        <span style="color:#777">// Set Artifactory repositories for dependencies resolution and artifacts deployment.</span>
+        rtMaven.deployer <span style="color:#606">releaseRepo</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">libs-release-local</span><span style="color:#710">'</span></span>, <span style="color:#606">snapshotRepo</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">libs-snapshot-local</span><span style="color:#710">'</span></span>, <span style="color:#606">server</span>: server
+        rtMaven.resolver <span style="color:#606">releaseRepo</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">libs-release</span><span style="color:#710">'</span></span>, <span style="color:#606">snapshotRepo</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">libs-snapshot</span><span style="color:#710">'</span></span>, <span style="color:#606">server</span>: server
+    }
+
+    stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Maven build</span><span style="color:#710">'</span></span>) {
+        buildInfo = rtMaven.run <span style="color:#606">pom</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">maven-example/pom.xml</span><span style="color:#710">'</span></span>, <span style="color:#606">goals</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">clean install</span><span style="color:#710">'</span></span>
+    }
+
+    stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Publish build info</span><span style="color:#710">'</span></span>) {
+        server.publishBuildInfo buildInfo
+    }
+}</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='configfile-provider-plugin'></a>
+<h3>
+Configfile Provider Plugin
+</h3>
+</div>
+<div class='readme'>
+<!--
+[configFile Provider plugin](https://plugins.jenkins.io/config-file-provider) enables provisioning of various types of configuration files. Plugin works in such a way as to make the configuration available for the entire duration of the build across all the build agents that are used to execute the build.
+
+Common scenarios that demand the usage of configuration files:
+
+- Provide properties that can be consumed by the build tool
+- Global settings that override local settings
+- Details of credentials needed to access repos
+- Inputs to generate binary images that need to be tailored to specific architectures 
+
+The example shows simple usage of configFile Provider plugin and howto access it's contents.
+
+-->
+
+<p><a href="https://plugins.jenkins.io/config-file-provider">configFile Provider plugin</a> enables provisioning of various types of configuration files. Plugin works in such a way as to make the configuration available for the entire duration of the build across all the build agents that are used to execute the build.</p>
+
+<p>Common scenarios that demand the usage of configuration files:</p>
+
+<ul>
+  <li>Provide properties that can be consumed by the build tool</li>
+  <li>Global settings that override local settings</li>
+  <li>Details of credentials needed to access repos</li>
+  <li>Inputs to generate binary images that need to be tailored to specific architectures</li>
+</ul>
+
+<p>The example shows simple usage of configFile Provider plugin and howto access it's contents.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting configFileProvider.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#34b">#!groovy</span>
+
+node {
+    stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">configFile Plugin</span><span style="color:#710">'</span></span>) {
+
+        <span style="color:#777">// 'ID' refers to alpha-numeric value generated automatically by Jenkins.</span>
+        <span style="color:#777">// This code snippet assumes that the config file is stored in Jenkins.</span>
+
+        <span style="color:#777">// help to assign the ID of config file to a variable, this is optional </span>
+        <span style="color:#777">// as ID can be used directly within 'configFileProvider' step too.</span>
+        <span style="color:#080;font-weight:bold">def</span> mycfg_file = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">&lt;substitute-alpha-numeric-value-cfgfille-here-within-quotes&gt;</span><span style="color:#710">'</span></span>
+
+        <span style="color:#777">// whether referencing the config file as ID (directly) or via user-defined </span>
+        <span style="color:#777">// variable, 'configFileProvider' step enables access to the config file</span>
+        <span style="color:#777">// via 'name' given for the field, 'variable:'</span>
+        configFileProvider([configFile(<span style="color:#606">fileId</span>: mycfg_file, <span style="color:#606">variable</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">PACKER_OPTIONS</span><span style="color:#710">'</span></span>)]) {
+            echo <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20"> =========== ^^^^^^^^^^^^ Reading config from pipeline script </span><span style="color:#710">&quot;</span></span>
+            sh <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">cat </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>env.PACKER_OPTIONS<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+            echo <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20"> =========== ~~~~~~~~~~~~ ============ </span><span style="color:#710">&quot;</span></span>
+ 
+            <span style="color:#777">// Access to config file opens up other possibilities like</span>
+            <span style="color:#777">// passing on the configuration to an external script for other tasks, like,</span>
+            <span style="color:#777">// for example, to set generic options that can be used for generating </span>
+            <span style="color:#777">// binary images using packer.</span>
+            echo <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20"> =========== ^^^^^^^^^^^^ Reading config via Python... </span><span style="color:#710">&quot;</span></span>
+            sh <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">python build_image.py </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>env.PACKER_OPTIONS<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+            echo <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20"> =========== ~~~~~~~~~~~~ ============ </span><span style="color:#710">&quot;</span></span>
+        }
+    }
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='external-workspace-manager'></a>
+<h3>
+External Workspace Manager
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+Shows how to allocate the same workspace on multiple nodes using the 
+[External Workspace Manager Plugin](https://github.com/jenkinsci/external-workspace-manager-plugin).
+
+##### Prerequisites
+Before using this script, you must configure several prerequisites.
+A starting guide may be found in the  
+[prerequisites](https://github.com/jenkinsci/external-workspace-manager-plugin/blob/master/doc/PREREQUISITES.md)
+section, from the plugin's documentation.
+
+##### Documentation
+Additional examples can be found on the plugin's 
+[documentation page](https://github.com/jenkinsci/external-workspace-manager-plugin/blob/master/README.md),
+along with all the available features.
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+<p>Shows how to allocate the same workspace on multiple nodes using the 
+<a href="https://github.com/jenkinsci/external-workspace-manager-plugin">External Workspace Manager Plugin</a>.</p>
+
+<h5 id="prerequisites">Prerequisites</h5>
+<p>Before using this script, you must configure several prerequisites.
+A starting guide may be found in the<br />
+<a href="https://github.com/jenkinsci/external-workspace-manager-plugin/blob/master/doc/PREREQUISITES.md">prerequisites</a>
+section, from the plugin's documentation.</p>
+
+<h5 id="documentation">Documentation</h5>
+<p>Additional examples can be found on the plugin's 
+<a href="https://github.com/jenkinsci/external-workspace-manager-plugin/blob/master/README.md">documentation page</a>,
+along with all the available features.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting externalWorkspace.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// allocate a Disk from the Disk Pool defined in the Jenkins global config</span>
+<span style="color:#080;font-weight:bold">def</span> extWorkspace = exwsAllocate <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">diskpool1</span><span style="color:#710">'</span></span>
+
+<span style="color:#777">// on a node labeled 'linux', perform code checkout and build the project</span>
+node(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">linux</span><span style="color:#710">'</span></span>) {
+    <span style="color:#777">// compute complete workspace path, from current node to the allocated disk</span>
+    exws(extWorkspace) {
+        <span style="color:#777">// checkout code from repo</span>
+        checkout scm
+        <span style="color:#777">// build project, but skip running tests</span>
+        sh <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">mvn clean install -DskipTests</span><span style="color:#710">'</span></span>
+    }
+}
+
+<span style="color:#777">// on a different node, labeled 'test', perform testing using the same workspace as previously</span>
+<span style="color:#777">// at the end, if the build have passed, delete the workspace</span>
+node(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">test</span><span style="color:#710">'</span></span>) {
+    <span style="color:#777">// compute complete workspace path, from current node to the allocated disk</span>
+    exws(extWorkspace) {
+        <span style="color:#080;font-weight:bold">try</span> {
+            <span style="color:#777">// run tests in the same workspace that the project was built</span>
+            sh <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">mvn test</span><span style="color:#710">'</span></span>
+        } <span style="color:#080;font-weight:bold">catch</span> (e) {
+            <span style="color:#777">// if any exception occurs, mark the build as failed</span>
+            currentBuild.result = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">FAILURE</span><span style="color:#710">'</span></span>
+            <span style="color:#080;font-weight:bold">throw</span> e
+        } <span style="color:#080;font-weight:bold">finally</span> {
+            <span style="color:#777">// perform workspace cleanup only if the build have passed</span>
+            <span style="color:#777">// if the build has failed, the workspace will be kept</span>
+            cleanWs <span style="color:#606">cleanWhenFailure</span>: <span style="color:#069">false</span>
+        }
+    }
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='get-build-cause'></a>
+<h3>
+Get Build Cause
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+Shows how to get the Cause(s) of a Pipeline build from within the
+Pipeline script.
+
+##### Credit
+Based on Stackoverflow answer at http://stackoverflow.com/questions/33587927/how-to-get-cause-in-workflow
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+<p>Shows how to get the Cause(s) of a Pipeline build from within the
+Pipeline script.</p>
+
+<h5 id="credit">Credit</h5>
+<p>Based on Stackoverflow answer at http://stackoverflow.com/questions/33587927/how-to-get-cause-in-workflow</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting getBuildCause.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// There is no direct access to the build Causes from the Pipeline, but you can</span>
+<span style="color:#777">// get this by using the `currentBuild.rawBuild` variable, as shown below.</span>
+
+<span style="color:#777">// Get all Causes for the current build</span>
+<span style="color:#080;font-weight:bold">def</span> causes = currentBuild.rawBuild.getCauses()
+
+<span style="color:#777">// Get a specific Cause type (in this case the user who kicked off the build),</span>
+<span style="color:#777">// if present.</span>
+<span style="color:#080;font-weight:bold">def</span> specificCause = currentBuild.rawBuild.getCause(hudson.model.Cause<span style="color:#F00;background-color:#FAA">$</span>UserIdCause)
+
+<span style="color:#777">// If you see errors regarding 'Scripts not permitted to use method...' approve </span>
+<span style="color:#777">// these scripts at JENKINS_URL/scriptApproval/ - the UI shows the blocked methods </span>
+
+<span style="color:#777">// See the Javadoc for Cause for more information on what's in Causes, etc at:</span>
+<span style="color:#777">// http://javadoc.jenkins-ci.org/hudson/model/class-use/Cause.html</span>
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='gitcommit'></a>
+<h3>
+Gitcommit
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+Demonstrate how to expose the git_commit to a Pipeline job.
+
+##### Background
+
+The git plugin exposes some environment variables to a freestyle job that are not currently exposed to a Pipeline job.
+Here's how to recover that ability using a git command and Pipeline's [`sh`][pipeline-sh-documentation] step.
+
+[pipeline-sh-documentation]: https://jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#sh-shell-script
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>Demonstrate how to expose the git_commit to a Pipeline job.</p>
+
+<h5 id="background">Background</h5>
+
+<p>The git plugin exposes some environment variables to a freestyle job that are not currently exposed to a Pipeline job.
+Here's how to recover that ability using a git command and Pipeline's <a href="https://jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#sh-shell-script"><code>sh</code></a> step.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting gitcommit.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// These should all be performed at the point where you've</span>
+<span style="color:#777">// checked out your sources on the agent. A 'git' executable</span>
+<span style="color:#777">// must be available.</span>
+<span style="color:#777">// Most typical, if you're not cloning into a sub directory</span>
+shortCommit = sh(<span style="color:#606">returnStdout</span>: <span style="color:#069">true</span>, <span style="color:#606">script</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">git log -n 1 --pretty=format:'%h'</span><span style="color:#710">&quot;</span></span>).trim()
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='gitcommit_changeset'></a>
+<h3>
+Gitcommit_changeset
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+Demonstrate how to retrieve the changeset associated with a git commit to a Pipeline job.
+
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>Demonstrate how to retrieve the changeset associated with a git commit to a Pipeline job.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting gitcommit_changeset.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// This should be performed at the point where you've</span>
+<span style="color:#777">// checked out your sources on the agent. A 'git' executable</span>
+<span style="color:#777">// must be available.</span>
+<span style="color:#777">// Most typical, if you're not cloning into a sub directory</span>
+<span style="color:#777">// and invoke this in the context of a directory with .git/</span>
+<span style="color:#777">// Along with SHA-1 id of the commit, it will be useful to retrieve changeset associated with that commit</span>
+<span style="color:#777">// This command results in output indicating several one of these and the affected files:</span>
+<span style="color:#777">// Added (A), Copied (C), Deleted (D), Modified (M), Renamed (R)</span>
+commitChangeset = sh(<span style="color:#606">returnStdout</span>: <span style="color:#069">true</span>, <span style="color:#606">script</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">git diff-tree --no-commit-id --name-status -r HEAD</span><span style="color:#710">'</span></span>).trim()
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='ircnotify-commandline'></a>
+<h3>
+Ircnotify Commandline
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+Send a notification to an IRC channel
+
+##### Background
+The IRC protocol is simple enough that you can use a pipeline shell step and nc to send a message to an irc room.
+You will need to customize the script to use the actual room, server, and authentication details.  
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+<p>Send a notification to an IRC channel</p>
+
+<h5 id="background">Background</h5>
+<p>The IRC protocol is simple enough that you can use a pipeline shell step and nc to send a message to an irc room.
+You will need to customize the script to use the actual room, server, and authentication details.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting ircNotify.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre>stage <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">notify</span><span style="color:#710">&quot;</span></span>
+
+<span style="color:#777">//</span>
+<span style="color:#777">// Modify the channel, message etc as needed.</span>
+<span style="color:#777">// Some IRC servers require authentication. </span>
+<span style="color:#777">// This specific example does not with the current settings on freenode.</span>
+<span style="color:#777">//</span>
+node {
+    
+    sh <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'''</span><span style="color:#D20"> 
+        MSG='This is the message here'
+        SERVER=irc.freenode.net
+        CHANNEL=#mictest
+        USER=mic2234test
+    
+        (
+        echo NICK $USER
+        echo USER $USER 8 * : $USER
+        sleep 1
+        #echo PASS $USER:$MYPASSWORD                                                                                                                                                       
+        echo &quot;JOIN $CHANNEL&quot;
+        echo &quot;PRIVMSG $CHANNEL&quot; :$MSG
+        echo QUIT
+        ) | nc $SERVER 6667
+        
+    </span><span style="color:#710">'''</span></span>
+    
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='jobs-in-parallel'></a>
+<h3>
+Jobs In Parallel
+</h3>
+</div>
+<div class='readme'>
+<!--
+This code snippet will run the same job multiple times in parallel 
+a usecase of that is, for example, a system test or load test that requires several workers with heavy i/o or compute.
+it allows you to run each worker on a different machine to distribute the i/o or compute
+
+
+-->
+
+<p>This code snippet will run the same job multiple times in parallel 
+a usecase of that is, for example, a system test or load test that requires several workers with heavy i/o or compute.
+it allows you to run each worker on a different machine to distribute the i/o or compute</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting jobs_in_parallel.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// in this array we'll place the jobs that we wish to run</span>
+<span style="color:#080;font-weight:bold">def</span> branches = [:]
+
+<span style="color:#777">//running the job 4 times concurrently</span>
+<span style="color:#777">//the dummy parameter is for preventing mutation of the parameter before the execution of the closure.</span>
+<span style="color:#777">//we have to assign it outside the closure or it will run the job multiple times with the same parameter &quot;4&quot;</span>
+<span style="color:#777">//and jenkins will unite them into a single run of the job</span>
+
+<span style="color:#080;font-weight:bold">for</span> (<span style="color:#339;font-weight:bold">int</span> i = <span style="color:#00D">0</span>; i &lt; <span style="color:#00D">4</span>; i++) {
+  <span style="color:#080;font-weight:bold">def</span> index = i <span style="color:#777">//if we tried to use i below, it would equal 4 in each job execution.</span>
+  branches[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">branch</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>i<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>] = {
+<span style="color:#777">//Parameters:</span>
+<span style="color:#777">//param1 : an example string parameter for the triggered job.</span>
+<span style="color:#777">//dummy: a parameter used to prevent triggering the job with the same parameters value.</span>
+<span style="color:#777">//       this parameter has to accept a different value each time the job is triggered.</span>
+    build <span style="color:#606">job</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">freestyle</span><span style="color:#710">'</span></span>, <span style="color:#606">parameters</span>: [
+      string(<span style="color:#606">name</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">param1</span><span style="color:#710">'</span></span>, <span style="color:#606">value</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">test_param</span><span style="color:#710">'</span></span>),
+      string(<span style="color:#606">name</span>:<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">dummy</span><span style="color:#710">'</span></span>, <span style="color:#606">value</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>index<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>)]
+  }
+}
+parallel branches
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='load-from-file'></a>
+<h3>
+Load From File
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+A very simple example demonstrating how the load method allows you to
+read in Groovy files from disk or from the web and then call the code in them.
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>A very simple example demonstrating how the load method allows you to
+read in Groovy files from disk or from the web and then call the code in them.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting externalMethod.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// Methods in this file will end up as object methods on the object that load returns.</span>
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">lookAtThis</span>(<span style="color:#0a8;font-weight:bold">String</span> whoAreYou) {
+    echo <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Look at this, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>whoAreYou<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">! You loaded this from another file!</span><span style="color:#710">&quot;</span></span>
+}
+
+<span style="color:#080;font-weight:bold">return</span> <span style="color:#950">this</span>;
+</pre></div>
+</div>
+
+</div>
+<!-- syntax highlighting externalCall.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// If there's a call method, you can just load the file, say, as &quot;foo&quot;, and then invoke that call method with foo(...) </span>
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">call</span>(<span style="color:#0a8;font-weight:bold">String</span> whoAreYou) {
+    echo <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Now we're being called more magically, </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>whoAreYou<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">, thanks to the call(...) method.</span><span style="color:#710">&quot;</span></span>
+}
+
+<span style="color:#080;font-weight:bold">return</span> <span style="color:#950">this</span>;
+</pre></div>
+</div>
+
+</div>
+<!-- syntax highlighting loadFromGithub.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#34b">#!groovy</span>
+<span style="color:#777">/*
+   Instead of duplicating a lot of build related code in each repo include the common one from this file using the command below:
+
+   Don't forget to put configure GITHUB_TOKEN inside Jenkins as it is a very bad idea to include it inside your code.
+*/</span>
+
+apply <span style="color:#606">from</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">https://raw.githubusercontent.com/org-name/repo-name/master/subfolder/Jenkinsfile?token=${env.GITHUB_TOKEN}</span><span style="color:#710">'</span></span>
+</pre></div>
+</div>
+
+</div>
+<!-- syntax highlighting pipeline.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre>node {
+    <span style="color:#777">// Load the file 'externalMethod.groovy' from the current directory, into a variable called &quot;externalMethod&quot;.</span>
+    <span style="color:#080;font-weight:bold">def</span> externalMethod = load(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">externalMethod.groovy</span><span style="color:#710">&quot;</span></span>)
+
+    <span style="color:#777">// Call the method we defined in externalMethod.</span>
+    externalMethod.lookAtThis(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Steve</span><span style="color:#710">&quot;</span></span>)
+
+    <span style="color:#777">// Now load 'externalCall.groovy'.</span>
+    <span style="color:#080;font-weight:bold">def</span> externalCall = load(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">externalCall.groovy</span><span style="color:#710">&quot;</span></span>)
+
+    <span style="color:#777">// We can just run it with &quot;externalCall(...)&quot; since it has a call method.</span>
+    externalCall(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Steve</span><span style="color:#710">&quot;</span></span>)
+}</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='maven-and-jdk-specific-version'></a>
+<h3>
+Maven And Jdk Specific Version
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+An example showing how to build a standard maven project with specific
+versions for Maven and the JDK.
+
+It shows how to use the `withEnv` step to define the right `PATH` to use the tools.
+
+##### Caveats
+
+* in `tool 'thetool'`, the `thetool` string **must** match a defined
+  tool in your Jenkins installation.
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>An example showing how to build a standard maven project with specific
+versions for Maven and the JDK.</p>
+
+<p>It shows how to use the <code>withEnv</code> step to define the right <code>PATH</code> to use the tools.</p>
+
+<h5 id="caveats">Caveats</h5>
+
+<ul>
+  <li>in <code>tool 'thetool'</code>, the <code>thetool</code> string <strong>must</strong> match a defined
+tool in your Jenkins installation.</li>
+</ul>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting mavenAndJdkSpecificVersion.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// Advice: don't define M2_HOME in general. Maven will autodetect its root fine.</span>
+withEnv([<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">JAVA_HOME=</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span> tool <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">jdk-1.8.0_64bits</span><span style="color:#710">'</span></span> <span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">PATH+MAVEN=</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>tool <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">maven-3.2.1</span><span style="color:#710">'</span></span><span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">/bin:</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>env.JAVA_HOME<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">/bin</span><span style="color:#710">&quot;</span></span>]) {
+
+    <span style="color:#777">// Apache Maven related side notes:</span>
+    <span style="color:#777">// --batch-mode : recommended in CI to inform maven to not run in interactive mode (less logs)</span>
+    <span style="color:#777">// -V : strongly recommended in CI, will display the JDK and Maven versions in use.</span>
+    <span style="color:#777">//      Very useful to be quickly sure the selected versions were the ones you think.</span>
+    <span style="color:#777">// -U : force maven to update snapshots each time (default : once an hour, makes no sense in CI).</span>
+    <span style="color:#777">// -Dsurefire.useFile=false : useful in CI. Displays test errors in the logs directly (instead of</span>
+    <span style="color:#777">//                            having to crawl the workspace files to see the cause).</span>
+    sh <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">mvn --batch-mode -V -U -e clean deploy -Dsurefire.useFile=false</span><span style="color:#710">&quot;</span></span>
+
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='parallel-from-grep'></a>
+<h3>
+Parallel From Grep
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+An example showing how to search for a list of existing jobs and
+triggering all of them in parallel.
+
+##### Caveats
+
+* Calling other jobs is not the most idiomatic way to use the Worflow DSL, 
+however, the chance of re-using existing jobs is always welcome under certain
+circumstances.
+
+* Due to limitations in Workflow - i.e.,
+[JENKINS-26481](https://issues.jenkins-ci.org/browse/JENKINS-26481) -
+it's not really possible to use Groovy closures or syntax that depends
+on closures, so you can't do the Groovy standard of using
+.collectEntries on a list and generating the steps as values for the
+resulting entries. You also can't use the standard Java syntax for For
+loops - i.e., "for (String s: strings)" - and instead have to use old
+school counter-based for loops.
+* There is no need for the generation of the step itself to be in a
+separate method. I've opted to do so here to show how to return a step
+closure from a method.
+
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>An example showing how to search for a list of existing jobs and
+triggering all of them in parallel.</p>
+
+<h5 id="caveats">Caveats</h5>
+
+<ul>
+  <li>
+    <p>Calling other jobs is not the most idiomatic way to use the Worflow DSL, 
+however, the chance of re-using existing jobs is always welcome under certain
+circumstances.</p>
+  </li>
+  <li>Due to limitations in Workflow - i.e.,
+<a href="https://issues.jenkins-ci.org/browse/JENKINS-26481">JENKINS-26481</a> -
+it's not really possible to use Groovy closures or syntax that depends
+on closures, so you can't do the Groovy standard of using
+.collectEntries on a list and generating the steps as values for the
+resulting entries. You also can't use the standard Java syntax for For
+loops - i.e., "for (String s: strings)" - and instead have to use old
+school counter-based for loops.</li>
+  <li>There is no need for the generation of the step itself to be in a
+separate method. I've opted to do so here to show how to return a step
+closure from a method.</li>
+</ul>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting parallelFromGrep.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">jenkins.model.*</span>
+
+<span style="color:#777">// While you can't use Groovy's .collect or similar methods currently, you can</span>
+<span style="color:#777">// still transform a list into a set of actual build steps to be executed in</span>
+<span style="color:#777">// parallel.</span>
+
+<span style="color:#080;font-weight:bold">def</span> stepsForParallel = [:]
+
+<span style="color:#777">// Since this method uses grep/collect it needs to be annotated with @NonCPS</span>
+<span style="color:#777">// It returns a simple string map so the workflow can be serialized</span>
+<span style="color:#007">@NonCPS</span>
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">jobs</span>(jobRegexp) {
+  Jenkins.instance.getAllItems()
+         .grep { <span style="color:#950">it</span>.name ==~ ~<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>jobRegexp<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>  }
+         .collect { [ name : <span style="color:#950">it</span>.name.toString(),
+                      fullName : <span style="color:#950">it</span>.fullName.toString() ] }
+}
+
+j = jobs(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">test-(dev|stage)-(unit|integration)</span><span style="color:#710">'</span></span>)
+<span style="color:#080;font-weight:bold">for</span> (<span style="color:#339;font-weight:bold">int</span> i=<span style="color:#00D">0</span>; i &lt; j.size(); i++) {
+    stepsForParallel[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>j[i].name<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>] = transformIntoStep(j[i].fullName)
+}
+
+<span style="color:#777">// Actually run the steps in parallel - parallel takes a map as an argument,</span>
+<span style="color:#777">// hence the above.</span>
+parallel stepsForParallel
+
+<span style="color:#777">// Take the string and echo it.</span>
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">transformIntoStep</span>(jobFullName) {
+    <span style="color:#777">// We need to wrap what we return in a Groovy closure, or else it's invoked</span>
+    <span style="color:#777">// when this method is called, not when we pass it to parallel.</span>
+    <span style="color:#777">// To do this, you need to wrap the code below in { }, and either return</span>
+    <span style="color:#777">// that explicitly, or use { -&gt; } syntax.</span>
+    <span style="color:#080;font-weight:bold">return</span> {
+       <span style="color:#777">// Job parameters can be added to this step</span>
+       build jobFullName
+    }
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='parallel-from-list'></a>
+<h3>
+Parallel From List
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+An example showing how to take a list of objects and transform it into
+a map of steps to be run with the parallel command.
+
+##### Caveats
+
+* There is no need for the generation of the step itself to be in a
+separate method. I've opted to do so here to show how to return a step
+closure from a method.
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>An example showing how to take a list of objects and transform it into
+a map of steps to be run with the parallel command.</p>
+
+<h5 id="caveats">Caveats</h5>
+
+<ul>
+  <li>There is no need for the generation of the step itself to be in a
+separate method. I've opted to do so here to show how to return a step
+closure from a method.</li>
+</ul>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting parallelFromList.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// While you can't use Groovy's .collect or similar methods currently, you can</span>
+<span style="color:#777">// still transform a list into a set of actual build steps to be executed in</span>
+<span style="color:#777">// parallel.</span>
+
+<span style="color:#777">// Our initial list of strings we want to echo in parallel</span>
+<span style="color:#080;font-weight:bold">def</span> stringsToEcho = [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">a</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">b</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">c</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">d</span><span style="color:#710">&quot;</span></span>]
+
+<span style="color:#777">// The map we'll store the parallel steps in before executing them.</span>
+<span style="color:#080;font-weight:bold">def</span> stepsForParallel = stringsToEcho.collectEntries {
+    [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">echoing </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span><span style="color:#950">it</span><span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span> : transformIntoStep(<span style="color:#950">it</span>)]
+}
+
+<span style="color:#777">// Actually run the steps in parallel - parallel takes a map as an argument,</span>
+<span style="color:#777">// hence the above.</span>
+parallel stepsForParallel
+
+<span style="color:#777">// Take the string and echo it.</span>
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">transformIntoStep</span>(inputString) {
+    <span style="color:#777">// We need to wrap what we return in a Groovy closure, or else it's invoked</span>
+    <span style="color:#777">// when this method is called, not when we pass it to parallel.</span>
+    <span style="color:#777">// To do this, you need to wrap the code below in { }, and either return</span>
+    <span style="color:#777">// that explicitly, or use { -&gt; } syntax.</span>
+    <span style="color:#080;font-weight:bold">return</span> {
+        node {
+            echo inputString
+        }
+    }
+}</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='parallel-multiple-nodes'></a>
+<h3>
+Parallel Multiple Nodes
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+This is a simple example showing how to succinctly parallel the same build across multiple Jenkins nodes. This is useful for e.g. building the same project on multiple OS platforms.
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>This is a simple example showing how to succinctly parallel the same build across multiple Jenkins nodes. This is useful for e.g. building the same project on multiple OS platforms.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting ParallelMultipleNodes.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#080;font-weight:bold">def</span> labels = [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">precise</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">trusty</span><span style="color:#710">'</span></span>] <span style="color:#777">// labels for Jenkins node types we will build on</span>
+<span style="color:#080;font-weight:bold">def</span> builders = [:]
+<span style="color:#080;font-weight:bold">for</span> (x <span style="color:#080;font-weight:bold">in</span> labels) {
+    <span style="color:#080;font-weight:bold">def</span> label = x <span style="color:#777">// Need to bind the label variable before the closure - can't do 'for (label in labels)'</span>
+
+    <span style="color:#777">// Create a map to pass in to the 'parallel' step so we can fire all the builds at once</span>
+    builders[label] = {
+      node(label) {
+        <span style="color:#777">// build steps that should happen on all nodes go here</span>
+      }
+    }
+}
+
+parallel builders
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='push-git-repo'></a>
+<h3>
+Push Git Repo
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+This demonstrates how to push a tag (or branch, etc) to a remote Git
+repository from within a Pipeline job. The authentication step may vary between projects. This example illustrates injected credentials and also username / password authentication.
+
+##### Note
+
+If you inject a credential associated with your Git repo, use the Snippet Generator to select the plain `Git` option and it will return a snippet with this gem:
+
+```java
+stage('Checkout') {
+       git branch: 'lts-1.532', credentialsId: '82aa2d26-ef4b-4a6a-a05f-2e1090b9ce17', url: 'git@github.com:jenkinsci/maven-plugin.git'
+   }
+```
+This is not ideal - there is an open JIRA,
+https://issues.jenkins-ci.org/browse/JENKINS-28335, for getting the GitPublisher Jenkins functionality working with Pipeline.
+
+##### Credit
+
+Based on Stackoverflow answer at http://stackoverflow.com/questions/33570075/tag-a-repo-from-a-jenkins-workflow-script
+Injected credentials gist at https://gist.github.com/blaisep/eb8aa720b06eff4f095e4b64326961b5#file-jenkins-pipeline-git-cred-md
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>This demonstrates how to push a tag (or branch, etc) to a remote Git
+repository from within a Pipeline job. The authentication step may vary between projects. This example illustrates injected credentials and also username / password authentication.</p>
+
+<h5 id="note">Note</h5>
+
+<p>If you inject a credential associated with your Git repo, use the Snippet Generator to select the plain <code>Git</code> option and it will return a snippet with this gem:</p>
+
+<p><code>java&#x000A;stage('Checkout') {&#x000A;       git branch: 'lts-1.532', credentialsId: '82aa2d26-ef4b-4a6a-a05f-2e1090b9ce17', url: 'git@github.com:jenkinsci/maven-plugin.git'&#x000A;   }</code>
+This is not ideal - there is an open JIRA,
+https://issues.jenkins-ci.org/browse/JENKINS-28335, for getting the GitPublisher Jenkins functionality working with Pipeline.</p>
+
+<h5 id="credit">Credit</h5>
+
+<p>Based on Stackoverflow answer at http://stackoverflow.com/questions/33570075/tag-a-repo-from-a-jenkins-workflow-script
+Injected credentials gist at https://gist.github.com/blaisep/eb8aa720b06eff4f095e4b64326961b5#file-jenkins-pipeline-git-cred-md</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting pushGitRepo.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// This is currently the best way to push a tag (or a branch, etc) from a</span>
+<span style="color:#777">// Pipeline job. It's not ideal - https://issues.jenkins-ci.org/browse/JENKINS-28335</span>
+<span style="color:#777">// is an open JIRA for getting the GitPublisher Jenkins functionality working</span>
+<span style="color:#777">// with Pipeline.</span>
+
+<span style="color:#777">// credentialsId here is the credentials you have set up in Jenkins for pushing</span>
+<span style="color:#777">// to that repository using username and password.</span>
+withCredentials([usernamePassword(<span style="color:#606">credentialsId</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">git-pass-credentials-ID</span><span style="color:#710">'</span></span>, <span style="color:#606">passwordVariable</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">GIT_PASSWORD</span><span style="color:#710">'</span></span>, <span style="color:#606">usernameVariable</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">GIT_USERNAME</span><span style="color:#710">'</span></span>)]) {
+    sh(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">git tag -a some_tag -m 'Jenkins'</span><span style="color:#710">&quot;</span></span>)
+    sh(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">git push https://${GIT_USERNAME}:${GIT_PASSWORD}@&lt;REPO&gt; --tags</span><span style="color:#710">'</span></span>)
+}
+
+<span style="color:#777">// For SSH private key authentication, try the sshagent step from the SSH Agent plugin.</span>
+sshagent (<span style="color:#606">credentials</span>: [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">git-ssh-credentials-ID</span><span style="color:#710">'</span></span>]) {
+    sh(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">git tag -a some_tag -m 'Jenkins'</span><span style="color:#710">&quot;</span></span>)
+    sh(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">git push &lt;REPO&gt; --tags</span><span style="color:#710">'</span></span>)
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='slacknotify'></a>
+<h3>
+Slacknotify
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+Use a slack webhook to send an arbitrary message.
+
+##### Background
+Using a combination of groovy and curl from shell, send a message to slack for notifications.
+Some of the more friendly groovy http libs like HTTPBuilder are not easily available. However,
+we can use groovy's built in json handling to build up the request and ship it to a command
+line curl easily enough.
+
+This will require that you configure a webhook integration in slack (not the Jenkins specific configuration.)
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+<p>Use a slack webhook to send an arbitrary message.</p>
+
+<h5 id="background">Background</h5>
+<p>Using a combination of groovy and curl from shell, send a message to slack for notifications.
+Some of the more friendly groovy http libs like HTTPBuilder are not easily available. However,
+we can use groovy's built in json handling to build up the request and ship it to a command
+line curl easily enough.</p>
+
+<p>This will require that you configure a webhook integration in slack (not the Jenkins specific configuration.)</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting slackNotify.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#080;font-weight:bold">import</span> <span style="color:#B44;font-weight:bold">groovy.json.JsonOutput</span>
+<span style="color:#777">// Add whichever params you think you'd most want to have</span>
+<span style="color:#777">// replace the slackURL below with the hook url provided by</span>
+<span style="color:#777">// slack when you configure the webhook</span>
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">notifySlack</span>(text, channel) {
+    <span style="color:#080;font-weight:bold">def</span> slackURL = <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">https://hooks.slack.com/services/xxxxxxx/yyyyyyyy/zzzzzzzzzz</span><span style="color:#710">'</span></span>
+    <span style="color:#080;font-weight:bold">def</span> payload = JsonOutput.toJson([text      : text,
+                                     channel   : channel,
+                                     username  : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">jenkins</span><span style="color:#710">&quot;</span></span>,
+                                     <span style="color:#606">icon_emoji</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">:jenkins:</span><span style="color:#710">&quot;</span></span>])
+    sh <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">curl -X POST --data-urlencode </span><span style="color:#b0b">\'</span><span style="color:#D20">payload=</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>payload<span style="font-weight:bold;color:#666">}</span></span><span style="color:#b0b">\'</span><span style="color:#D20"> </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>slackURL<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='timestamper-wrapper'></a>
+<h3>
+Timestamper Wrapper
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+This shows usage of a simple build wrapper, specifically the
+Timestamper plugin, which adds timestamps to the console output.
+
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>This shows usage of a simple build wrapper, specifically the
+Timestamper plugin, which adds timestamps to the console output.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting timestamperWrapper.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// This shows a simple build wrapper example, using the Timestamper plugin.</span>
+node {
+    <span style="color:#777">// Adds timestamps to the output logged by steps inside the wrapper.</span>
+    timestamps {
+        <span style="color:#777">// Just some echoes to show the timestamps.</span>
+        stage <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">First echo</span><span style="color:#710">&quot;</span></span>
+        echo <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Hey, look, I'm echoing with a timestamp!</span><span style="color:#710">&quot;</span></span>
+
+        <span style="color:#777">// A sleep to make sure we actually get a real difference!</span>
+        stage <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Sleeping</span><span style="color:#710">&quot;</span></span>
+        sleep <span style="color:#00D">30</span>
+
+        <span style="color:#777">// And a final echo to show the time when we wrap up.</span>
+        stage <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Second echo</span><span style="color:#710">&quot;</span></span>
+        echo <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Wonder what time it is now?</span><span style="color:#710">&quot;</span></span>
+    }
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='trigger-job-on-all-nodes'></a>
+<h3>
+Trigger Job On All Nodes
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+The example shows how to trigger jobs on all Jenkins nodes from Pipeline.
+
+Summary:
+* The script uses [NodeLabel Parameter plugin](https://wiki.jenkins-ci.org/display/JENKINS/NodeLabel+Parameter+Plugin) to pass the job name to the payload job.
+* Node list retrieval is being performed using Jenkins API, so it will require [script approvals](https://wiki.jenkins-ci.org/display/JENKINS/Script+Security+Plugin) in the Sandbox mode
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>The example shows how to trigger jobs on all Jenkins nodes from Pipeline.</p>
+
+<p>Summary:
+* The script uses <a href="https://wiki.jenkins-ci.org/display/JENKINS/NodeLabel+Parameter+Plugin">NodeLabel Parameter plugin</a> to pass the job name to the payload job.
+* Node list retrieval is being performed using Jenkins API, so it will require <a href="https://wiki.jenkins-ci.org/display/JENKINS/Script+Security+Plugin">script approvals</a> in the Sandbox mode</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting triggerJobOnEveryNode.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// The script triggers PayloadJob on every node.</span>
+<span style="color:#777">// It uses Node and Label Parameter plugin to pass the job name to the payload job.</span>
+<span style="color:#777">// The code will require approval of several Jenkins classes in the Script Security mode</span>
+<span style="color:#080;font-weight:bold">def</span> branches = [:]
+<span style="color:#080;font-weight:bold">def</span> names = nodeNames()
+<span style="color:#080;font-weight:bold">for</span> (<span style="color:#339;font-weight:bold">int</span> i=<span style="color:#00D">0</span>; i&lt;names.size(); ++i) {
+  <span style="color:#080;font-weight:bold">def</span> nodeName = names[i];
+  <span style="color:#777">// Into each branch we put the pipeline code we want to execute</span>
+  branches[<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">node_</span><span style="color:#710">&quot;</span></span> + nodeName] = {
+    node(nodeName) {
+      echo <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Triggering on </span><span style="color:#710">&quot;</span></span> + nodeName
+      build <span style="color:#606">job</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">PayloadJob</span><span style="color:#710">'</span></span>, <span style="color:#606">parameters</span>: [
+              <span style="color:#080;font-weight:bold">new</span> org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterValue
+                  (<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">TARGET_NODE</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">description</span><span style="color:#710">&quot;</span></span>, nodeName)
+          ]
+    }
+  }
+}
+
+<span style="color:#777">// Now we trigger all branches</span>
+parallel branches
+
+<span style="color:#777">// This method collects a list of Node names from the current Jenkins instance</span>
+<span style="color:#007">@NonCPS</span>
+<span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">nodeNames</span>() {
+  <span style="color:#080;font-weight:bold">return</span> jenkins.model.Jenkins.instance.nodes.collect { node -&gt; node.name }
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+<div class='example'>
+<div class='title'>
+<a name='unstash-different-dir'></a>
+<h3>
+Unstash Different Dir
+</h3>
+</div>
+<div class='readme'>
+<!--
+##### Synopsis
+
+This is a simple demonstration of how to unstash to a different
+directory than the root directory, so that you can make sure not to
+overwrite directories or files, etc.
+
+
+-->
+
+<h5 id="synopsis">Synopsis</h5>
+
+<p>This is a simple demonstration of how to unstash to a different
+directory than the root directory, so that you can make sure not to
+overwrite directories or files, etc.</p>
+
+
+</div>
+<div class='code'>
+<!-- syntax highlighting unstashDifferentDir.groovy -->
+
+<div class='listingblock'>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777">// First we'll generate a text file in a subdirectory on one node and stash it.</span>
+stage <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">first step on first node</span><span style="color:#710">&quot;</span></span>
+
+<span style="color:#777">// Run on a node with the &quot;first-node&quot; label.</span>
+node(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">first-node</span><span style="color:#710">'</span></span>) {
+    <span style="color:#777">// Make the output directory.</span>
+    sh <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">mkdir -p output</span><span style="color:#710">&quot;</span></span>
+
+    <span style="color:#777">// Write a text file there.</span>
+    writeFile <span style="color:#606">file</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">output/somefile</span><span style="color:#710">&quot;</span></span>, <span style="color:#606">text</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Hey look, some text.</span><span style="color:#710">&quot;</span></span>
+
+    <span style="color:#777">// Stash that directory and file.</span>
+    <span style="color:#777">// Note that the includes could be &quot;output/&quot;, &quot;output/*&quot; as below, or even</span>
+    <span style="color:#777">// &quot;output/**/*&quot; - it all works out basically the same.</span>
+    stash <span style="color:#606">name</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">first-stash</span><span style="color:#710">&quot;</span></span>, <span style="color:#606">includes</span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">output/*</span><span style="color:#710">&quot;</span></span>
+}
+
+<span style="color:#777">// Next, we'll make a new directory on a second node, and unstash the original</span>
+<span style="color:#777">// into that new directory, rather than into the root of the build.</span>
+stage <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">second step on second node</span><span style="color:#710">&quot;</span></span>
+
+<span style="color:#777">// Run on a node with the &quot;second-node&quot; label.</span>
+node(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">second-node</span><span style="color:#710">'</span></span>) {
+    <span style="color:#777">// Run the unstash from within that directory!</span>
+    dir(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">first-stash</span><span style="color:#710">&quot;</span></span>) {
+        unstash <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">first-stash</span><span style="color:#710">&quot;</span></span>
+    }
+
+    <span style="color:#777">// Look, no output directory under the root!</span>
+    <span style="color:#777">// pwd() outputs the current directory Pipeline is running in.</span>
+    sh <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ls -la </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>pwd()<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+
+    <span style="color:#777">// And look, output directory is there under first-stash!</span>
+    sh <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">ls -la </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">${</span>pwd()<span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20">/first-stash</span><span style="color:#710">&quot;</span></span>
+}
+</pre></div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<p class='box'>
+<a href='https://github.com/jenkins-infra/jenkins.io/edit/master/content//doc/pipeline/examples.html.haml' title='Edit /doc/pipeline/examples.html.haml on GitHub'>
+Improve this page
+</a>
+|
+<a href='https://github.com/jenkins-infra/jenkins.io/commits/master/content//doc/pipeline/examples.html.haml' title='View /doc/pipeline/examples.html.haml history on GitHub'>
+Page history
+</a>
+</p>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

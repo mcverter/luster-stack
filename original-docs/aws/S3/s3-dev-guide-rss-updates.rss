@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+   <channel>
+      <title>Amazon S3 Developer Guide RSS Feed</title>
+      <link>https://docs.aws.amazon.com/AmazonS3/latest/dev/</link>
+      <description>Amazon S3 developer guide document history updates.</description>
+      <lastBuildDate>Fri, 28 Sep 2018 12:55:26 Z</lastBuildDate>
+      <item>
+         <title>
+					Filtering enhancements in cross-region replication (CRR) rules
+				</title>
+         <link>https://docs.aws.amazon.com/AmazonS3/latest/dev/WhatsNew.html</link>
+         <description>
+					In a CRR rule configuration, you can 
+					specify an object filter to choose a subset of objects to apply the rule to.
+					
+					Previously, you could filter only on an object key prefix. 
+					In this release, you can filter on an object key prefix,
+					one or more object tags, or both.
+					
+					For more information, see 
+					
+					&lt;a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/crr-add-config.html" target="_blank"&gt;CRR Setup: Replication Configuration Overview&lt;/a&gt;.
+					
+				</description>
+         <pubDate>Wed, 19 Sep 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AmazonS3/latest/dev/#
+					Filtering_enhancements_in_cross-region_replication_(CRR)_rules
+				_2018-09-19</guid>
+      </item>
+      <item>
+         <title>New Amazon S3 Select features</title>
+         <link>https://docs.aws.amazon.com/AmazonS3/latest/dev/WhatsNew.html</link>
+         <description>Amazon S3 Select now supports Apache Parquet input, queries on nested JSON objects, and two new
+					Amazon CloudWatch monitoring metrics (&lt;code class="code"&gt;SelectScannedBytes&lt;/code&gt; and
+					&lt;code class="code"&gt;SelectReturnedBytes&lt;/code&gt;).</description>
+         <pubDate>Wed, 5 Sep 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AmazonS3/latest/dev/#New_Amazon_S3_Select_features_2018-09-05</guid>
+      </item>
+      <item>
+         <title>Updates now available over RSS</title>
+         <link>https://docs.aws.amazon.com/AmazonS3/latest/dev/WhatsNew.html</link>
+         <description>You can now subscribe to an RSS feed to receive notifications about updates to the Amazon Simple Storage Service Developer Guide guide.</description>
+         <pubDate>Tue, 19 Jun 2018 19:00:00 GMT</pubDate>
+         <guid isPermaLink="false">https://docs.aws.amazon.com/AmazonS3/latest/dev/#Updates_now_available_over_RSS_2018-06-19</guid>
+      </item>
+   </channel>
+</rss>

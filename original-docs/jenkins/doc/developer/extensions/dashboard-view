@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Extension Points defined in Dashboard View Plugin
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Extension Points defined in Dashboard View Plugin' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Extension Points defined in Dashboard View Plugin' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Extension Points defined in Dashboard View Plugin' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/developer/extensions/dashboard-view/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Extension Points defined in Dashboard View Plugin' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<style>
+  .container .row.body {
+    margin-right: 5em;
+    margin-left: 5em;
+  }
+  .toc {
+      float: right;
+  }
+</style>
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row.body h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-12'>
+<h1>
+Extension Points defined in Dashboard View Plugin
+</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#dashboardportlet">DashboardPortlet</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="dashboardportlet"><a class="anchor" href="#dashboardportlet"></a>DashboardPortlet</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/dashboard-view/hudson/plugins/view/dashboard/DashboardPortlet.html" title="Javadoc for hudson.plugins.view.dashboard.DashboardPortlet">hudson.plugins.view.dashboard.DashboardPortlet in dashboard-view</a></code></p>
+</div>
+<div class="paragraph">
+<p> Report that can summarize project data across multiple projects and display  the resulting data.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/all-changes">All changes Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>all_changes.<wbr/><strong>AllChangesPortlet</strong> (<a href="https://github.com/jenkinsci/all-changes-plugin/search?q=AllChangesPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/android-lint">Android Lint Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>android_lint.<wbr/>dashboard.<wbr/><strong>WarningsNewVersusFixedGraphPortlet</strong> (<a href="https://github.com/jenkinsci/android-lint-plugin/search?q=WarningsNewVersusFixedGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/android-lint">Android Lint Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>android_lint.<wbr/>dashboard.<wbr/><strong>WarningsPriorityGraphPortlet</strong> (<a href="https://github.com/jenkinsci/android-lint-plugin/search?q=WarningsPriorityGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/android-lint">Android Lint Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>android_lint.<wbr/>dashboard.<wbr/><strong>WarningsTablePortlet</strong> (<a href="https://github.com/jenkinsci/android-lint-plugin/search?q=WarningsTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/vmanager-plugin">Cadence vManager Plugin</a>: hudson.<wbr/>plugins.<wbr/>vmanager.<wbr/><strong>VmgrBuilds</strong> (<a href="https://github.com/jenkinsci/vmanager-plugin/search?q=VmgrBuilds&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/ccm">CCM Plugin</a>: hudson.<wbr/>plugins.<wbr/>ccm.<wbr/>dashboard.<wbr/><strong>WarningsNewVersusFixedGraphPortlet</strong> (<a href="https://github.com/jenkinsci/ccm-plugin/search?q=WarningsNewVersusFixedGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/ccm">CCM Plugin</a>: hudson.<wbr/>plugins.<wbr/>ccm.<wbr/>dashboard.<wbr/><strong>WarningsPriorityGraphPortlet</strong> (<a href="https://github.com/jenkinsci/ccm-plugin/search?q=WarningsPriorityGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/ccm">CCM Plugin</a>: hudson.<wbr/>plugins.<wbr/>ccm.<wbr/>dashboard.<wbr/><strong>WarningsTablePortlet</strong> (<a href="https://github.com/jenkinsci/ccm-plugin/search?q=WarningsTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/CFLint">CFLint Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>cflint.<wbr/>dashboard.<wbr/><strong>WarningsNewVersusFixedGraphPortlet</strong> (<a href="https://github.com/jenkinsci/CFLint-plugin/search?q=WarningsNewVersusFixedGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/CFLint">CFLint Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>cflint.<wbr/>dashboard.<wbr/><strong>WarningsPriorityGraphPortlet</strong> (<a href="https://github.com/jenkinsci/CFLint-plugin/search?q=WarningsPriorityGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/CFLint">CFLint Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>cflint.<wbr/>dashboard.<wbr/><strong>WarningsTablePortlet</strong> (<a href="https://github.com/jenkinsci/CFLint-plugin/search?q=WarningsTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/checkstyle">Checkstyle Plugin</a>: hudson.<wbr/>plugins.<wbr/>checkstyle.<wbr/>dashboard.<wbr/><strong>WarningsNewVersusFixedGraphPortlet</strong> (<a href="https://github.com/jenkinsci/checkstyle-plugin/search?q=WarningsNewVersusFixedGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/checkstyle">Checkstyle Plugin</a>: hudson.<wbr/>plugins.<wbr/>checkstyle.<wbr/>dashboard.<wbr/><strong>WarningsPriorityGraphPortlet</strong> (<a href="https://github.com/jenkinsci/checkstyle-plugin/search?q=WarningsPriorityGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/checkstyle">Checkstyle Plugin</a>: hudson.<wbr/>plugins.<wbr/>checkstyle.<wbr/>dashboard.<wbr/><strong>WarningsTablePortlet</strong> (<a href="https://github.com/jenkinsci/checkstyle-plugin/search?q=WarningsTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/checkstyle">Checkstyle Plugin</a>: hudson.<wbr/>plugins.<wbr/>checkstyle.<wbr/>dashboard.<wbr/><strong>WarningsTotalsGraphPortlet</strong> (<a href="https://github.com/jenkinsci/checkstyle-plugin/search?q=WarningsTotalsGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/checkstyle">Checkstyle Plugin</a>: hudson.<wbr/>plugins.<wbr/>checkstyle.<wbr/>dashboard.<wbr/><strong>WarningsUserGraphPortlet</strong> (<a href="https://github.com/jenkinsci/checkstyle-plugin/search?q=WarningsUserGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/cobertura">Cobertura Plugin</a>: hudson.<wbr/>plugins.<wbr/>cobertura.<wbr/>dashboard.<wbr/><strong>CoverageTablePortlet</strong> (<a href="https://github.com/jenkinsci/cobertura-plugin/search?q=CoverageTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/codecover">CodeCover Plugin</a>: hudson.<wbr/>plugins.<wbr/>codecover.<wbr/>portlet.<wbr/>grid.<wbr/><strong>CodeCoverBuilderGrid</strong> (<a href="https://github.com/jenkinsci/codecover-plugin/search?q=CodeCoverBuilderGrid&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/codecover">CodeCover Plugin</a>: hudson.<wbr/>plugins.<wbr/>codecover.<wbr/>portlet.<wbr/>chart.<wbr/><strong>CodeCoverBuilderTrendChart</strong> (<a href="https://github.com/jenkinsci/codecover-plugin/search?q=CodeCoverBuilderTrendChart&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/cppcheck">Cppcheck Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>cppcheck.<wbr/><strong>CppcheckTablePortlet</strong> (<a href="https://github.com/jenkinsci/cppcheck-plugin/search?q=CppcheckTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/custom-job-icon">Custom Job Icon Plugin</a>: jenkins.<wbr/>plugins.<wbr/>jobicon.<wbr/><strong>CustomIconJobsPortlet</strong> (<a href="https://github.com/jenkinsci/custom-job-icon-plugin/search?q=CustomIconJobsPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/custom-job-icon">Custom Job Icon Plugin</a>: jenkins.<wbr/>plugins.<wbr/>jobicon.<wbr/><strong>CustomIconLatestBuilds</strong> (<a href="https://github.com/jenkinsci/custom-job-icon-plugin/search?q=CustomIconLatestBuilds&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>core.<wbr/><strong>HudsonStdJobsPortlet</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=HudsonStdJobsPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>core.<wbr/><strong>IframePortlet</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=IframePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>core.<wbr/><strong>ImagePortlet</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=ImagePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>core.<wbr/><strong>JobsPortlet</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=JobsPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>builds.<wbr/><strong>LatestBuilds</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=LatestBuilds&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>stats.<wbr/><strong>StatBuilds</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=StatBuilds&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>stats.<wbr/><strong>StatJobs</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=StatJobs&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>stats.<wbr/><strong>StatSlaves</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=StatSlaves&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>test.<wbr/><strong>TestStatisticsChart</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=TestStatisticsChart&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>test.<wbr/><strong>TestStatisticsPortlet</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=TestStatisticsPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>test.<wbr/><strong>TestTrendChart</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=TestTrendChart&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dashboard-view">Dashboard View Plugin</a>: hudson.<wbr/>plugins.<wbr/>view.<wbr/>dashboard.<wbr/>core.<wbr/><strong>UnstableJobsPortlet</strong> (<a href="https://github.com/jenkinsci/dashboard-view-plugin/search?q=UnstableJobsPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dry">DRY Plugin</a>: hudson.<wbr/>plugins.<wbr/>dry.<wbr/>dashboard.<wbr/><strong>WarningsNewVersusFixedGraphPortlet</strong> (<a href="https://github.com/jenkinsci/dry-plugin/search?q=WarningsNewVersusFixedGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dry">DRY Plugin</a>: hudson.<wbr/>plugins.<wbr/>dry.<wbr/>dashboard.<wbr/><strong>WarningsPriorityGraphPortlet</strong> (<a href="https://github.com/jenkinsci/dry-plugin/search?q=WarningsPriorityGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dry">DRY Plugin</a>: hudson.<wbr/>plugins.<wbr/>dry.<wbr/>dashboard.<wbr/><strong>WarningsTablePortlet</strong> (<a href="https://github.com/jenkinsci/dry-plugin/search?q=WarningsTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dry">DRY Plugin</a>: hudson.<wbr/>plugins.<wbr/>dry.<wbr/>dashboard.<wbr/><strong>WarningsTotalsGraphPortlet</strong> (<a href="https://github.com/jenkinsci/dry-plugin/search?q=WarningsTotalsGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dry">DRY Plugin</a>: hudson.<wbr/>plugins.<wbr/>dry.<wbr/>dashboard.<wbr/><strong>WarningsUserGraphPortlet</strong> (<a href="https://github.com/jenkinsci/dry-plugin/search?q=WarningsUserGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/findbugs">FindBugs Plugin</a>: hudson.<wbr/>plugins.<wbr/>findbugs.<wbr/>dashboard.<wbr/><strong>FindBugsEvaluationsGraphPortlet</strong> (<a href="https://github.com/jenkinsci/findbugs-plugin/search?q=FindBugsEvaluationsGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/findbugs">FindBugs Plugin</a>: hudson.<wbr/>plugins.<wbr/>findbugs.<wbr/>dashboard.<wbr/><strong>WarningsNewVersusFixedGraphPortlet</strong> (<a href="https://github.com/jenkinsci/findbugs-plugin/search?q=WarningsNewVersusFixedGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/findbugs">FindBugs Plugin</a>: hudson.<wbr/>plugins.<wbr/>findbugs.<wbr/>dashboard.<wbr/><strong>WarningsPriorityGraphPortlet</strong> (<a href="https://github.com/jenkinsci/findbugs-plugin/search?q=WarningsPriorityGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/findbugs">FindBugs Plugin</a>: hudson.<wbr/>plugins.<wbr/>findbugs.<wbr/>dashboard.<wbr/><strong>WarningsTablePortlet</strong> (<a href="https://github.com/jenkinsci/findbugs-plugin/search?q=WarningsTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/findbugs">FindBugs Plugin</a>: hudson.<wbr/>plugins.<wbr/>findbugs.<wbr/>dashboard.<wbr/><strong>WarningsTotalsGraphPortlet</strong> (<a href="https://github.com/jenkinsci/findbugs-plugin/search?q=WarningsTotalsGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/findbugs">FindBugs Plugin</a>: hudson.<wbr/>plugins.<wbr/>findbugs.<wbr/>dashboard.<wbr/><strong>WarningsUserGraphPortlet</strong> (<a href="https://github.com/jenkinsci/findbugs-plugin/search?q=WarningsUserGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/m2release">Maven Release Plug-in Plugin</a>: org.<wbr/>jvnet.<wbr/>hudson.<wbr/>plugins.<wbr/>m2release.<wbr/>dashboard.<wbr/><strong>RecentReleasesPortlet</strong> (<a href="https://github.com/jenkinsci/m2release-plugin//search?q=RecentReleasesPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dependency-check-jenkins-plugin">OWASP Dependency-Check Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>DependencyCheck.<wbr/>dashboard.<wbr/><strong>WarningsNewVersusFixedGraphPortlet</strong> (<a href="https://github.com/jenkinsci/dependency-check-plugin/search?q=WarningsNewVersusFixedGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dependency-check-jenkins-plugin">OWASP Dependency-Check Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>DependencyCheck.<wbr/>dashboard.<wbr/><strong>WarningsPriorityGraphPortlet</strong> (<a href="https://github.com/jenkinsci/dependency-check-plugin/search?q=WarningsPriorityGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dependency-check-jenkins-plugin">OWASP Dependency-Check Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>DependencyCheck.<wbr/>dashboard.<wbr/><strong>WarningsTablePortlet</strong> (<a href="https://github.com/jenkinsci/dependency-check-plugin/search?q=WarningsTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dependency-check-jenkins-plugin">OWASP Dependency-Check Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>DependencyCheck.<wbr/>dashboard.<wbr/><strong>WarningsTotalsGraphPortlet</strong> (<a href="https://github.com/jenkinsci/dependency-check-plugin/search?q=WarningsTotalsGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dependency-check-jenkins-plugin">OWASP Dependency-Check Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>DependencyCheck.<wbr/>dashboard.<wbr/><strong>WarningsUserGraphPortlet</strong> (<a href="https://github.com/jenkinsci/dependency-check-plugin/search?q=WarningsUserGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/pmd">PMD Plugin</a>: hudson.<wbr/>plugins.<wbr/>pmd.<wbr/>dashboard.<wbr/><strong>WarningsNewVersusFixedGraphPortlet</strong> (<a href="https://github.com/jenkinsci/pmd-plugin/search?q=WarningsNewVersusFixedGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/pmd">PMD Plugin</a>: hudson.<wbr/>plugins.<wbr/>pmd.<wbr/>dashboard.<wbr/><strong>WarningsPriorityGraphPortlet</strong> (<a href="https://github.com/jenkinsci/pmd-plugin/search?q=WarningsPriorityGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/pmd">PMD Plugin</a>: hudson.<wbr/>plugins.<wbr/>pmd.<wbr/>dashboard.<wbr/><strong>WarningsTablePortlet</strong> (<a href="https://github.com/jenkinsci/pmd-plugin/search?q=WarningsTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/pmd">PMD Plugin</a>: hudson.<wbr/>plugins.<wbr/>pmd.<wbr/>dashboard.<wbr/><strong>WarningsTotalsGraphPortlet</strong> (<a href="https://github.com/jenkinsci/pmd-plugin/search?q=WarningsTotalsGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/pmd">PMD Plugin</a>: hudson.<wbr/>plugins.<wbr/>pmd.<wbr/>dashboard.<wbr/><strong>WarningsUserGraphPortlet</strong> (<a href="https://github.com/jenkinsci/pmd-plugin/search?q=WarningsUserGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/project-build-times">Project Build Times Plugin</a>: hudson.<wbr/>plugins.<wbr/>projectbuildtimes.<wbr/><strong>BuildTimesChart</strong> (<a href="https://github.com/jenkinsci/project-build-times-plugin/search?q=BuildTimesChart&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/project-stats-plugin">Project statistics Plugin</a>: hudson.<wbr/>plugins.<wbr/>projectstats.<wbr/>portlet.<wbr/><strong>NumBuildsPortlet</strong> (<a href="https://github.com/jenkinsci/project-stats-plugin/search?q=NumBuildsPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/mentor-questa-vrm">Questa VRM Plugin</a>: com.<wbr/>mentor.<wbr/>questa.<wbr/>vrm.<wbr/>jenkins.<wbr/><strong>QuestaVrmPortlet</strong> (<a href="https://github.com/jenkinsci/mentor-questa-vrm-plugin/search?q=QuestaVrmPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/mentor-questa-vrm">Questa VRM Plugin</a>: com.<wbr/>mentor.<wbr/>questa.<wbr/>vrm.<wbr/>jenkins.<wbr/><strong>QuestaVrmTrendGraphsPortlet</strong> (<a href="https://github.com/jenkinsci/mentor-questa-vrm-plugin/search?q=QuestaVrmTrendGraphsPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/release">Release Plugin</a>: hudson.<wbr/>plugins.<wbr/>release.<wbr/>dashboard.<wbr/><strong>RecentReleasesPortlet</strong> (<a href="https://github.com/jenkinsci/release-plugin/search?q=RecentReleasesPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/rich-text-publisher-plugin">Rich Text Publisher Plugin</a>: org.<wbr/>korosoft.<wbr/>jenkins.<wbr/>plugin.<wbr/>rtp.<wbr/><strong>RichTextPortlet</strong> (<a href="https://github.com/jenkinsci/rich-text-publisher-plugin/search?q=RichTextPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/rich-text-publisher-plugin">Rich Text Publisher Plugin</a>: org.<wbr/>korosoft.<wbr/>jenkins.<wbr/>plugin.<wbr/>rtp.<wbr/><strong>StaticTextPortlet</strong> (<a href="https://github.com/jenkinsci/rich-text-publisher-plugin/search?q=StaticTextPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/sloccount">SLOCCount Plugin</a>: hudson.<wbr/>plugins.<wbr/>sloccount.<wbr/>dashboard.<wbr/><strong>SloccountTablePortlet</strong> (<a href="https://github.com/jenkinsci/sloccount-plugin/search?q=SloccountTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-collector">Static Analysis Collector Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>collector.<wbr/>dashboard.<wbr/><strong>WarningsNewVersusFixedGraphPortlet</strong> (<a href="https://github.com/jenkinsci/analysis-collector-plugin/search?q=WarningsNewVersusFixedGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-collector">Static Analysis Collector Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>collector.<wbr/>dashboard.<wbr/><strong>WarningsOriginGraphPortlet</strong> (<a href="https://github.com/jenkinsci/analysis-collector-plugin/search?q=WarningsOriginGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-collector">Static Analysis Collector Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>collector.<wbr/>dashboard.<wbr/><strong>WarningsPriorityGraphPortlet</strong> (<a href="https://github.com/jenkinsci/analysis-collector-plugin/search?q=WarningsPriorityGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-collector">Static Analysis Collector Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>collector.<wbr/>dashboard.<wbr/><strong>WarningsTablePortlet</strong> (<a href="https://github.com/jenkinsci/analysis-collector-plugin/search?q=WarningsTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-collector">Static Analysis Collector Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>collector.<wbr/>dashboard.<wbr/><strong>WarningsTotalsGraphPortlet</strong> (<a href="https://github.com/jenkinsci/analysis-collector-plugin/search?q=WarningsTotalsGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-collector">Static Analysis Collector Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>collector.<wbr/>dashboard.<wbr/><strong>WarningsUserGraphPortlet</strong> (<a href="https://github.com/jenkinsci/analysis-collector-plugin/search?q=WarningsUserGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-core">Static Analysis Utilities Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>dashboard.<wbr/><strong>AbstractPortlet</strong> (<a href="https://github.com/jenkinsci/analysis-core-plugin/search?q=AbstractPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-core">Static Analysis Utilities Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>dashboard.<wbr/><strong>AbstractWarningsGraphPortlet</strong> (<a href="https://github.com/jenkinsci/analysis-core-plugin/search?q=AbstractWarningsGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-core">Static Analysis Utilities Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>dashboard.<wbr/><strong>AbstractWarningsTablePortlet</strong> (<a href="https://github.com/jenkinsci/analysis-core-plugin/search?q=AbstractWarningsTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/tasks">Task Scanner Plugin</a>: hudson.<wbr/>plugins.<wbr/>tasks.<wbr/>dashboard.<wbr/><strong>WarningsNewVersusFixedGraphPortlet</strong> (<a href="https://github.com/jenkinsci/tasks-plugin/search?q=WarningsNewVersusFixedGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/tasks">Task Scanner Plugin</a>: hudson.<wbr/>plugins.<wbr/>tasks.<wbr/>dashboard.<wbr/><strong>WarningsPriorityGraphPortlet</strong> (<a href="https://github.com/jenkinsci/tasks-plugin/search?q=WarningsPriorityGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/tasks">Task Scanner Plugin</a>: hudson.<wbr/>plugins.<wbr/>tasks.<wbr/>dashboard.<wbr/><strong>WarningsTablePortlet</strong> (<a href="https://github.com/jenkinsci/tasks-plugin/search?q=WarningsTablePortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/tasks">Task Scanner Plugin</a>: hudson.<wbr/>plugins.<wbr/>tasks.<wbr/>dashboard.<wbr/><strong>WarningsTotalsGraphPortlet</strong> (<a href="https://github.com/jenkinsci/tasks-plugin/search?q=WarningsTotalsGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/tasks">Task Scanner Plugin</a>: hudson.<wbr/>plugins.<wbr/>tasks.<wbr/>dashboard.<wbr/><strong>WarningsUserGraphPortlet</strong> (<a href="https://github.com/jenkinsci/tasks-plugin/search?q=WarningsUserGraphPortlet&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/vectorcast-coverage">VectorCAST Coverage Plugin</a>: com.<wbr/>vectorcast.<wbr/>plugins.<wbr/>vectorcastcoverage.<wbr/>portlet.<wbr/>grid.<wbr/><strong>VectorCASTBuilderGrid</strong> (<a href="https://github.com/jenkinsci/vectorcast-coverage-plugin/search?q=VectorCASTBuilderGrid&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/vectorcast-coverage">VectorCAST Coverage Plugin</a>: com.<wbr/>vectorcast.<wbr/>plugins.<wbr/>vectorcastcoverage.<wbr/>portlet.<wbr/>chart.<wbr/><strong>VectorCASTBuilderTrendChart</strong> (<a href="https://github.com/jenkinsci/vectorcast-coverage-plugin/search?q=VectorCASTBuilderTrendChart&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

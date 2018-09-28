@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Writing your first Django app, part 4 | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/intro/tutorial04/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/intro/tutorial04/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/intro/tutorial04/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/intro/tutorial04/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/intro/tutorial04/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/intro/tutorial04/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/intro/tutorial04/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/intro/tutorial04/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/intro/tutorial04/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/intro/tutorial04/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/intro/tutorial04/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/intro/tutorial04/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/intro/tutorial04/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/intro/tutorial04/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/intro/tutorial04/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/intro/tutorial04/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/intro/tutorial04/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/intro/tutorial04/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/intro/tutorial04/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/intro/tutorial04/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/intro/tutorial04/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/intro/tutorial04/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/intro/tutorial04/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/intro/tutorial04/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/intro/tutorial04/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/intro/tutorial04/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/intro/tutorial04/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/intro/tutorial04/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-writing-your-first-django-app-part-4">
+<span id="writing-your-first-django-app-part-4"></span><h1>Writing your first Django app, part 4<a class="headerlink" href="#writing-your-first-django-app-part-4" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial begins where <a class="reference internal" href="../tutorial03/"><span class="doc">Tutorial 3</span></a> left off. We’re
+continuing the Web-poll application and will focus on simple form processing and
+cutting down our code.</p>
+<div class="section" id="s-write-a-simple-form">
+<span id="write-a-simple-form"></span><h2>Write a simple form<a class="headerlink" href="#write-a-simple-form" title="Permalink to this headline">¶</a></h2>
+<p>Let’s update our poll detail template (“polls/detail.html”) from the last
+tutorial, so that the template contains an HTML <code class="docutils literal notranslate"><span class="pre">&lt;form&gt;</span></code> element:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">polls/templates/polls/detail.html</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-html+django notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">question.question_text</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+<span class="cp">{%</span> <span class="k">if</span> <span class="nv">error_message</span> <span class="cp">%}</span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">strong</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">error_message</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">{%</span> <span class="k">url</span> <span class="s1">&#39;polls:vote&#39;</span> <span class="nv">question.id</span> <span class="cp">%}</span><span class="s">&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">csrf_token</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">choice</span> <span class="k">in</span> <span class="nv">question.choice_set.all</span> <span class="cp">%}</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;choice&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;choice</span><span class="cp">{{</span> <span class="nb">forloop</span><span class="nv">.counter</span> <span class="cp">}}</span><span class="s">&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">choice.id</span> <span class="cp">}}</span><span class="s">&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;choice</span><span class="cp">{{</span> <span class="nb">forloop</span><span class="nv">.counter</span> <span class="cp">}}</span><span class="s">&quot;</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">choice.choice_text</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Vote&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>A quick rundown:</p>
+<ul class="simple">
+<li>The above template displays a radio button for each question choice. The
+<code class="docutils literal notranslate"><span class="pre">value</span></code> of each radio button is the associated question choice’s ID. The
+<code class="docutils literal notranslate"><span class="pre">name</span></code> of each radio button is <code class="docutils literal notranslate"><span class="pre">&quot;choice&quot;</span></code>. That means, when somebody
+selects one of the radio buttons and submits the form, it’ll send the
+POST data <code class="docutils literal notranslate"><span class="pre">choice=#</span></code> where # is the ID of the selected choice. This is the
+basic concept of HTML forms.</li>
+<li>We set the form’s <code class="docutils literal notranslate"><span class="pre">action</span></code> to <code class="docutils literal notranslate"><span class="pre">{%</span> <span class="pre">url</span> <span class="pre">'polls:vote'</span> <span class="pre">question.id</span> <span class="pre">%}</span></code>, and we
+set <code class="docutils literal notranslate"><span class="pre">method=&quot;post&quot;</span></code>. Using <code class="docutils literal notranslate"><span class="pre">method=&quot;post&quot;</span></code> (as opposed to
+<code class="docutils literal notranslate"><span class="pre">method=&quot;get&quot;</span></code>) is very important, because the act of submitting this
+form will alter data server-side. Whenever you create a form that alters
+data server-side, use <code class="docutils literal notranslate"><span class="pre">method=&quot;post&quot;</span></code>. This tip isn’t specific to
+Django; it’s just good Web development practice.</li>
+<li><code class="docutils literal notranslate"><span class="pre">forloop.counter</span></code> indicates how many times the <a class="reference internal" href="../../ref/templates/builtins/#std:templatetag-for"><code class="xref std std-ttag docutils literal notranslate"><span class="pre">for</span></code></a> tag has gone
+through its loop</li>
+<li>Since we’re creating a POST form (which can have the effect of modifying
+data), we need to worry about Cross Site Request Forgeries.
+Thankfully, you don’t have to worry too hard, because Django comes with
+a very easy-to-use system for protecting against it. In short, all POST
+forms that are targeted at internal URLs should use the
+<a class="reference internal" href="../../ref/templates/builtins/#std:templatetag-csrf_token"><code class="xref std std-ttag docutils literal notranslate"><span class="pre">{%</span> <span class="pre">csrf_token</span> <span class="pre">%}</span></code></a> template tag.</li>
+</ul>
+<p>Now, let’s create a Django view that handles the submitted data and does
+something with it. Remember, in <a class="reference internal" href="../tutorial03/"><span class="doc">Tutorial 3</span></a>, we
+created a URLconf for the polls application that includes this line:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">polls/urls.py</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path</span><span class="p">(</span><span class="s1">&#39;&lt;int:question_id&gt;/vote/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">vote</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;vote&#39;</span><span class="p">),</span>
+</pre></div>
+</div>
+</div>
+<p>We also created a dummy implementation of the <code class="docutils literal notranslate"><span class="pre">vote()</span></code> function. Let’s
+create a real version. Add the following to <code class="docutils literal notranslate"><span class="pre">polls/views.py</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">polls/views.py</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span><span class="p">,</span> <span class="n">HttpResponseRedirect</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span><span class="p">,</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Choice</span><span class="p">,</span> <span class="n">Question</span>
+<span class="c1"># ...</span>
+<span class="k">def</span> <span class="nf">vote</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">question_id</span><span class="p">):</span>
+    <span class="n">question</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Question</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">question_id</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">selected_choice</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">choice_set</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">])</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="n">Choice</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">):</span>
+        <span class="c1"># Redisplay the question voting form.</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;polls/detail.html&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s1">&#39;question&#39;</span><span class="p">:</span> <span class="n">question</span><span class="p">,</span>
+            <span class="s1">&#39;error_message&#39;</span><span class="p">:</span> <span class="s2">&quot;You didn&#39;t select a choice.&quot;</span><span class="p">,</span>
+        <span class="p">})</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">selected_choice</span><span class="o">.</span><span class="n">votes</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">selected_choice</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="c1"># Always return an HttpResponseRedirect after successfully dealing</span>
+        <span class="c1"># with POST data. This prevents data from being posted twice if a</span>
+        <span class="c1"># user hits the Back button.</span>
+        <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;polls:results&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">question</span><span class="o">.</span><span class="n">id</span><span class="p">,)))</span>
+</pre></div>
+</div>
+</div>
+<p>This code includes a few things we haven’t covered yet in this tutorial:</p>
+<ul>
+<li><p class="first"><a class="reference internal" href="../../ref/request-response/#django.http.HttpRequest.POST" title="django.http.HttpRequest.POST"><code class="xref py py-attr docutils literal notranslate"><span class="pre">request.POST</span></code></a> is a dictionary-like
+object that lets you access submitted data by key name. In this case,
+<code class="docutils literal notranslate"><span class="pre">request.POST['choice']</span></code> returns the ID of the selected choice, as a
+string. <a class="reference internal" href="../../ref/request-response/#django.http.HttpRequest.POST" title="django.http.HttpRequest.POST"><code class="xref py py-attr docutils literal notranslate"><span class="pre">request.POST</span></code></a> values are
+always strings.</p>
+<p>Note that Django also provides <a class="reference internal" href="../../ref/request-response/#django.http.HttpRequest.GET" title="django.http.HttpRequest.GET"><code class="xref py py-attr docutils literal notranslate"><span class="pre">request.GET</span></code></a> for accessing GET data in the same way –
+but we’re explicitly using <a class="reference internal" href="../../ref/request-response/#django.http.HttpRequest.POST" title="django.http.HttpRequest.POST"><code class="xref py py-attr docutils literal notranslate"><span class="pre">request.POST</span></code></a> in our code, to ensure that data is only
+altered via a POST call.</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">request.POST['choice']</span></code> will raise <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyError</span></code></a> if
+<code class="docutils literal notranslate"><span class="pre">choice</span></code> wasn’t provided in POST data. The above code checks for
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyError</span></code></a> and redisplays the question form with an error
+message if <code class="docutils literal notranslate"><span class="pre">choice</span></code> isn’t given.</p>
+</li>
+<li><p class="first">After incrementing the choice count, the code returns an
+<a class="reference internal" href="../../ref/request-response/#django.http.HttpResponseRedirect" title="django.http.HttpResponseRedirect"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpResponseRedirect</span></code></a> rather than a normal
+<a class="reference internal" href="../../ref/request-response/#django.http.HttpResponse" title="django.http.HttpResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpResponse</span></code></a>.
+<a class="reference internal" href="../../ref/request-response/#django.http.HttpResponseRedirect" title="django.http.HttpResponseRedirect"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpResponseRedirect</span></code></a> takes a single argument: the
+URL to which the user will be redirected (see the following point for how
+we construct the URL in this case).</p>
+<p>As the Python comment above points out, you should always return an
+<a class="reference internal" href="../../ref/request-response/#django.http.HttpResponseRedirect" title="django.http.HttpResponseRedirect"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpResponseRedirect</span></code></a> after successfully dealing with
+POST data. This tip isn’t specific to Django; it’s just good Web
+development practice.</p>
+</li>
+<li><p class="first">We are using the <a class="reference internal" href="../../ref/urlresolvers/#django.urls.reverse" title="django.urls.reverse"><code class="xref py py-func docutils literal notranslate"><span class="pre">reverse()</span></code></a> function in the
+<a class="reference internal" href="../../ref/request-response/#django.http.HttpResponseRedirect" title="django.http.HttpResponseRedirect"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpResponseRedirect</span></code></a> constructor in this example.
+This function helps avoid having to hardcode a URL in the view function.
+It is given the name of the view that we want to pass control to and the
+variable portion of the URL pattern that points to that view. In this
+case, using the URLconf we set up in <a class="reference internal" href="../tutorial03/"><span class="doc">Tutorial 3</span></a>,
+this <a class="reference internal" href="../../ref/urlresolvers/#django.urls.reverse" title="django.urls.reverse"><code class="xref py py-func docutils literal notranslate"><span class="pre">reverse()</span></code></a> call will return a string like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;/polls/3/results/&#39;</span>
+</pre></div>
+</div>
+<p>where the <code class="docutils literal notranslate"><span class="pre">3</span></code> is the value of <code class="docutils literal notranslate"><span class="pre">question.id</span></code>. This redirected URL will
+then call the <code class="docutils literal notranslate"><span class="pre">'results'</span></code> view to display the final page.</p>
+</li>
+</ul>
+<p>As mentioned in <a class="reference internal" href="../tutorial03/"><span class="doc">Tutorial 3</span></a>, <code class="docutils literal notranslate"><span class="pre">request</span></code> is an
+<a class="reference internal" href="../../ref/request-response/#django.http.HttpRequest" title="django.http.HttpRequest"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code></a> object. For more on
+<a class="reference internal" href="../../ref/request-response/#django.http.HttpRequest" title="django.http.HttpRequest"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code></a> objects, see the <a class="reference internal" href="../../ref/request-response/"><span class="doc">request and
+response documentation</span></a>.</p>
+<p>After somebody votes in a question, the <code class="docutils literal notranslate"><span class="pre">vote()</span></code> view redirects to the results
+page for the question. Let’s write that view:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">polls/views.py</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span><span class="p">,</span> <span class="n">render</span>
+
+
+<span class="k">def</span> <span class="nf">results</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">question_id</span><span class="p">):</span>
+    <span class="n">question</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Question</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">question_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;polls/results.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;question&#39;</span><span class="p">:</span> <span class="n">question</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<p>This is almost exactly the same as the <code class="docutils literal notranslate"><span class="pre">detail()</span></code> view from <a class="reference internal" href="../tutorial03/"><span class="doc">Tutorial 3</span></a>. The only difference is the template name. We’ll fix this
+redundancy later.</p>
+<p>Now, create a <code class="docutils literal notranslate"><span class="pre">polls/results.html</span></code> template:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">polls/templates/polls/results.html</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-html+django notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">question.question_text</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">choice</span> <span class="k">in</span> <span class="nv">question.choice_set.all</span> <span class="cp">%}</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">choice.choice_text</span> <span class="cp">}}</span> -- <span class="cp">{{</span> <span class="nv">choice.votes</span> <span class="cp">}}</span> vote<span class="cp">{{</span> <span class="nv">choice.votes</span><span class="o">|</span><span class="nf">pluralize</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;</span><span class="cp">{%</span> <span class="k">url</span> <span class="s1">&#39;polls:detail&#39;</span> <span class="nv">question.id</span> <span class="cp">%}</span><span class="s">&quot;</span><span class="p">&gt;</span>Vote again?<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Now, go to <code class="docutils literal notranslate"><span class="pre">/polls/1/</span></code> in your browser and vote in the question. You should see a
+results page that gets updated each time you vote. If you submit the form
+without having chosen a choice, you should see the error message.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The code for our <code class="docutils literal notranslate"><span class="pre">vote()</span></code> view does have a small problem. It first gets
+the <code class="docutils literal notranslate"><span class="pre">selected_choice</span></code> object from the database, then computes the new
+value of <code class="docutils literal notranslate"><span class="pre">votes</span></code>, and then saves it back to the database. If two users of
+your website try to vote at <em>exactly the same time</em>, this might go wrong:
+The same value, let’s say 42, will be retrieved for <code class="docutils literal notranslate"><span class="pre">votes</span></code>. Then, for
+both users the new value of 43 is computed and saved, but 44 would be the
+expected value.</p>
+<p class="last">This is called a <em>race condition</em>. If you are interested, you can read
+<a class="reference internal" href="../../ref/models/expressions/#avoiding-race-conditions-using-f"><span class="std std-ref">Avoiding race conditions using F()</span></a> to learn how you can solve this
+issue.</p>
+</div>
+</div>
+<div class="section" id="s-use-generic-views-less-code-is-better">
+<span id="use-generic-views-less-code-is-better"></span><h2>Use generic views: Less code is better<a class="headerlink" href="#use-generic-views-less-code-is-better" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">detail()</span></code> (from <a class="reference internal" href="../tutorial03/"><span class="doc">Tutorial 3</span></a>) and <code class="docutils literal notranslate"><span class="pre">results()</span></code>
+views are very simple – and, as mentioned above, redundant. The <code class="docutils literal notranslate"><span class="pre">index()</span></code>
+view, which displays a list of polls, is similar.</p>
+<p>These views represent a common case of basic Web development: getting data from
+the database according to a parameter passed in the URL, loading a template and
+returning the rendered template. Because this is so common, Django provides a
+shortcut, called the “generic views” system.</p>
+<p>Generic views abstract common patterns to the point where you don’t even need
+to write Python code to write an app.</p>
+<p>Let’s convert our poll app to use the generic views system, so we can delete a
+bunch of our own code. We’ll just have to take a few steps to make the
+conversion. We will:</p>
+<ol class="arabic simple">
+<li>Convert the URLconf.</li>
+<li>Delete some of the old, unneeded views.</li>
+<li>Introduce new views based on Django’s generic views.</li>
+</ol>
+<p>Read on for details.</p>
+<div class="admonition-why-the-code-shuffle admonition">
+<p class="first admonition-title">Why the code-shuffle?</p>
+<p>Generally, when writing a Django app, you’ll evaluate whether generic views
+are a good fit for your problem, and you’ll use them from the beginning,
+rather than refactoring your code halfway through. But this tutorial
+intentionally has focused on writing the views “the hard way” until now, to
+focus on core concepts.</p>
+<p class="last">You should know basic math before you start using a calculator.</p>
+</div>
+<div class="section" id="s-amend-urlconf">
+<span id="amend-urlconf"></span><h3>Amend URLconf<a class="headerlink" href="#amend-urlconf" title="Permalink to this headline">¶</a></h3>
+<p>First, open the <code class="docutils literal notranslate"><span class="pre">polls/urls.py</span></code> URLconf and change it like so:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">polls/urls.py</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">views</span>
+
+<span class="n">app_name</span> <span class="o">=</span> <span class="s1">&#39;polls&#39;</span>
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">IndexView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&lt;int:pk&gt;/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">DetailView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;detail&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&lt;int:pk&gt;/results/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">ResultsView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;results&#39;</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&lt;int:question_id&gt;/vote/&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">vote</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;vote&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Note that the name of the matched pattern in the path strings of the second and
+third patterns has changed from <code class="docutils literal notranslate"><span class="pre">&lt;question_id&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">&lt;pk&gt;</span></code>.</p>
+</div>
+<div class="section" id="s-amend-views">
+<span id="amend-views"></span><h3>Amend views<a class="headerlink" href="#amend-views" title="Permalink to this headline">¶</a></h3>
+<p>Next, we’re going to remove our old <code class="docutils literal notranslate"><span class="pre">index</span></code>, <code class="docutils literal notranslate"><span class="pre">detail</span></code>, and <code class="docutils literal notranslate"><span class="pre">results</span></code>
+views and use Django’s generic views instead. To do so, open the
+<code class="docutils literal notranslate"><span class="pre">polls/views.py</span></code> file and change it like so:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">polls/views.py</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponseRedirect</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span><span class="p">,</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">django.views</span> <span class="kn">import</span> <span class="n">generic</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Choice</span><span class="p">,</span> <span class="n">Question</span>
+
+
+<span class="k">class</span> <span class="nc">IndexView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">ListView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;polls/index.html&#39;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;latest_question_list&#39;</span>
+
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the last five published questions.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Question</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">DetailView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">DetailView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Question</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;polls/detail.html&#39;</span>
+
+
+<span class="k">class</span> <span class="nc">ResultsView</span><span class="p">(</span><span class="n">generic</span><span class="o">.</span><span class="n">DetailView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Question</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;polls/results.html&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">vote</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">question_id</span><span class="p">):</span>
+    <span class="o">...</span> <span class="c1"># same as above, no changes needed.</span>
+</pre></div>
+</div>
+</div>
+<p>We’re using two generic views here:
+<a class="reference internal" href="../../ref/class-based-views/generic-display/#django.views.generic.list.ListView" title="django.views.generic.list.ListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ListView</span></code></a> and
+<a class="reference internal" href="../../ref/class-based-views/generic-display/#django.views.generic.detail.DetailView" title="django.views.generic.detail.DetailView"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetailView</span></code></a>. Respectively, those
+two views abstract the concepts of “display a list of objects” and
+“display a detail page for a particular type of object.”</p>
+<ul class="simple">
+<li>Each generic view needs to know what model it will be acting
+upon. This is provided using the <code class="docutils literal notranslate"><span class="pre">model</span></code> attribute.</li>
+<li>The <a class="reference internal" href="../../ref/class-based-views/generic-display/#django.views.generic.detail.DetailView" title="django.views.generic.detail.DetailView"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetailView</span></code></a> generic view
+expects the primary key value captured from the URL to be called
+<code class="docutils literal notranslate"><span class="pre">&quot;pk&quot;</span></code>, so we’ve changed <code class="docutils literal notranslate"><span class="pre">question_id</span></code> to <code class="docutils literal notranslate"><span class="pre">pk</span></code> for the generic
+views.</li>
+</ul>
+<p>By default, the <a class="reference internal" href="../../ref/class-based-views/generic-display/#django.views.generic.detail.DetailView" title="django.views.generic.detail.DetailView"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetailView</span></code></a> generic
+view uses a template called <code class="docutils literal notranslate"><span class="pre">&lt;app</span> <span class="pre">name&gt;/&lt;model</span> <span class="pre">name&gt;_detail.html</span></code>.
+In our case, it would use the template <code class="docutils literal notranslate"><span class="pre">&quot;polls/question_detail.html&quot;</span></code>. The
+<code class="docutils literal notranslate"><span class="pre">template_name</span></code> attribute is used to tell Django to use a specific
+template name instead of the autogenerated default template name. We
+also specify the <code class="docutils literal notranslate"><span class="pre">template_name</span></code> for the <code class="docutils literal notranslate"><span class="pre">results</span></code> list view –
+this ensures that the results view and the detail view have a
+different appearance when rendered, even though they’re both a
+<a class="reference internal" href="../../ref/class-based-views/generic-display/#django.views.generic.detail.DetailView" title="django.views.generic.detail.DetailView"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetailView</span></code></a> behind the scenes.</p>
+<p>Similarly, the <a class="reference internal" href="../../ref/class-based-views/generic-display/#django.views.generic.list.ListView" title="django.views.generic.list.ListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ListView</span></code></a> generic
+view uses a default template called <code class="docutils literal notranslate"><span class="pre">&lt;app</span> <span class="pre">name&gt;/&lt;model</span>
+<span class="pre">name&gt;_list.html</span></code>; we use <code class="docutils literal notranslate"><span class="pre">template_name</span></code> to tell
+<a class="reference internal" href="../../ref/class-based-views/generic-display/#django.views.generic.list.ListView" title="django.views.generic.list.ListView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ListView</span></code></a> to use our existing
+<code class="docutils literal notranslate"><span class="pre">&quot;polls/index.html&quot;</span></code> template.</p>
+<p>In previous parts of the tutorial, the templates have been provided
+with a context that contains the <code class="docutils literal notranslate"><span class="pre">question</span></code> and <code class="docutils literal notranslate"><span class="pre">latest_question_list</span></code>
+context variables. For <code class="docutils literal notranslate"><span class="pre">DetailView</span></code> the <code class="docutils literal notranslate"><span class="pre">question</span></code> variable is provided
+automatically – since we’re using a Django model (<code class="docutils literal notranslate"><span class="pre">Question</span></code>), Django
+is able to determine an appropriate name for the context variable.
+However, for ListView, the automatically generated context variable is
+<code class="docutils literal notranslate"><span class="pre">question_list</span></code>. To override this we provide the <code class="docutils literal notranslate"><span class="pre">context_object_name</span></code>
+attribute, specifying that we want to use <code class="docutils literal notranslate"><span class="pre">latest_question_list</span></code> instead.
+As an alternative approach, you could change your templates to match
+the new default context variables – but it’s a lot easier to just
+tell Django to use the variable you want.</p>
+<p>Run the server, and use your new polling app based on generic views.</p>
+<p>For full details on generic views, see the <a class="reference internal" href="../../topics/class-based-views/"><span class="doc">generic views documentation</span></a>.</p>
+<p>When you’re comfortable with forms and generic views, read <a class="reference internal" href="../tutorial05/"><span class="doc">part 5 of this
+tutorial</span></a> to learn about testing our polls app.</p>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../tutorial03/"><i class="icon icon-chevron-left"></i> Writing your first Django app, part 3</a></div>
+  
+  
+  <div class="right"><a href="../tutorial05/">Writing your first Django app, part 5 <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Andrey Kostakov donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Writing your first Django app, part 4</a><ul>
+<li><a class="reference internal" href="#write-a-simple-form">Write a simple form</a></li>
+<li><a class="reference internal" href="#use-generic-views-less-code-is-better">Use generic views: Less code is better</a><ul>
+<li><a class="reference internal" href="#amend-urlconf">Amend URLconf</a></li>
+<li><a class="reference internal" href="#amend-views">Amend views</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../tutorial03/">Writing your first Django app, part 3</a></li>
+    
+    
+    <li>Next: <a href="../tutorial05/">Writing your first Django app, part 5</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../">Getting started</a>
+      
+      <ul><li>Writing your first Django app, part 4</li></ul>
+      </li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

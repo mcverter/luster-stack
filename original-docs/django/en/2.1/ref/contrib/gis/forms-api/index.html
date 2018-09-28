@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>GeoDjango Forms API | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/ref/contrib/gis/forms-api/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/ref/contrib/gis/forms-api/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/ref/contrib/gis/forms-api/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/ref/contrib/gis/forms-api/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/ref/contrib/gis/forms-api/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/ref/contrib/gis/forms-api/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/ref/contrib/gis/forms-api/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/ref/contrib/gis/forms-api/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/ref/contrib/gis/forms-api/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/ref/contrib/gis/forms-api/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/ref/contrib/gis/forms-api/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/ref/contrib/gis/forms-api/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/ref/contrib/gis/forms-api/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/ref/contrib/gis/forms-api/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/ref/contrib/gis/forms-api/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/ref/contrib/gis/forms-api/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/ref/contrib/gis/forms-api/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/ref/contrib/gis/forms-api/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/ref/contrib/gis/forms-api/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/ref/contrib/gis/forms-api/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/ref/contrib/gis/forms-api/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/ref/contrib/gis/forms-api/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/ref/contrib/gis/forms-api/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/ref/contrib/gis/forms-api/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/ref/contrib/gis/forms-api/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/ref/contrib/gis/forms-api/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/ref/contrib/gis/forms-api/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/ref/contrib/gis/forms-api/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-module-django.contrib.gis.forms">
+<span id="s-geodjango-forms-api"></span><span id="module-django.contrib.gis.forms"></span><span id="geodjango-forms-api"></span><h1>GeoDjango Forms API<a class="headerlink" href="#module-django.contrib.gis.forms" title="Permalink to this headline">¶</a></h1>
+<p>GeoDjango provides some specialized form fields and widgets in order to visually
+display and edit geolocalized data on a map. By default, they use
+<a class="reference external" href="https://openlayers.org/">OpenLayers</a>-powered maps, with a base WMS layer provided by <a class="reference external" href="https://earthdata.nasa.gov/">NASA</a>.</p>
+<div class="section" id="s-field-arguments">
+<span id="field-arguments"></span><h2>Field arguments<a class="headerlink" href="#field-arguments" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the regular <a class="reference internal" href="../../../forms/fields/#core-field-arguments"><span class="std std-ref">form field arguments</span></a>,
+GeoDjango form fields take the following optional arguments.</p>
+<div class="section" id="s-srid">
+<span id="srid"></span><h3><code class="docutils literal notranslate"><span class="pre">srid</span></code><a class="headerlink" href="#srid" title="Permalink to this headline">¶</a></h3>
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.Field.srid">
+<code class="descclassname">Field.</code><code class="descname">srid</code><a class="headerlink" href="#django.contrib.gis.forms.Field.srid" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the SRID code that the field value should be transformed to. For
+example, if the map widget SRID is different from the SRID more generally
+used by your application or database, the field will automatically convert
+input values into that SRID.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="s-geom-type">
+<span id="geom-type"></span><h3><code class="docutils literal notranslate"><span class="pre">geom_type</span></code><a class="headerlink" href="#geom-type" title="Permalink to this headline">¶</a></h3>
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.Field.geom_type">
+<code class="descclassname">Field.</code><code class="descname">geom_type</code><a class="headerlink" href="#django.contrib.gis.forms.Field.geom_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>You generally shouldn’t have to set or change that attribute which should
+be setup depending on the field class. It matches the OpenGIS standard
+geometry name.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="s-form-field-classes">
+<span id="form-field-classes"></span><h2>Form field classes<a class="headerlink" href="#form-field-classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="s-geometryfield">
+<span id="geometryfield"></span><h3><code class="docutils literal notranslate"><span class="pre">GeometryField</span></code><a class="headerlink" href="#geometryfield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.gis.forms.GeometryField">
+<em class="property">class </em><code class="descname">GeometryField</code><a class="headerlink" href="#django.contrib.gis.forms.GeometryField" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="s-pointfield">
+<span id="pointfield"></span><h3><code class="docutils literal notranslate"><span class="pre">PointField</span></code><a class="headerlink" href="#pointfield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.gis.forms.PointField">
+<em class="property">class </em><code class="descname">PointField</code><a class="headerlink" href="#django.contrib.gis.forms.PointField" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="s-linestringfield">
+<span id="linestringfield"></span><h3><code class="docutils literal notranslate"><span class="pre">LineStringField</span></code><a class="headerlink" href="#linestringfield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.gis.forms.LineStringField">
+<em class="property">class </em><code class="descname">LineStringField</code><a class="headerlink" href="#django.contrib.gis.forms.LineStringField" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="s-polygonfield">
+<span id="polygonfield"></span><h3><code class="docutils literal notranslate"><span class="pre">PolygonField</span></code><a class="headerlink" href="#polygonfield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.gis.forms.PolygonField">
+<em class="property">class </em><code class="descname">PolygonField</code><a class="headerlink" href="#django.contrib.gis.forms.PolygonField" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="s-multipointfield">
+<span id="multipointfield"></span><h3><code class="docutils literal notranslate"><span class="pre">MultiPointField</span></code><a class="headerlink" href="#multipointfield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.gis.forms.MultiPointField">
+<em class="property">class </em><code class="descname">MultiPointField</code><a class="headerlink" href="#django.contrib.gis.forms.MultiPointField" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="s-multilinestringfield">
+<span id="multilinestringfield"></span><h3><code class="docutils literal notranslate"><span class="pre">MultiLineStringField</span></code><a class="headerlink" href="#multilinestringfield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.gis.forms.MultiLineStringField">
+<em class="property">class </em><code class="descname">MultiLineStringField</code><a class="headerlink" href="#django.contrib.gis.forms.MultiLineStringField" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="s-multipolygonfield">
+<span id="multipolygonfield"></span><h3><code class="docutils literal notranslate"><span class="pre">MultiPolygonField</span></code><a class="headerlink" href="#multipolygonfield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.gis.forms.MultiPolygonField">
+<em class="property">class </em><code class="descname">MultiPolygonField</code><a class="headerlink" href="#django.contrib.gis.forms.MultiPolygonField" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="s-geometrycollectionfield">
+<span id="geometrycollectionfield"></span><h3><code class="docutils literal notranslate"><span class="pre">GeometryCollectionField</span></code><a class="headerlink" href="#geometrycollectionfield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.gis.forms.GeometryCollectionField">
+<em class="property">class </em><code class="descname">GeometryCollectionField</code><a class="headerlink" href="#django.contrib.gis.forms.GeometryCollectionField" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="s-module-django.contrib.gis.forms.widgets">
+<span id="s-form-widgets"></span><span id="module-django.contrib.gis.forms.widgets"></span><span id="form-widgets"></span><h2>Form widgets<a class="headerlink" href="#module-django.contrib.gis.forms.widgets" title="Permalink to this headline">¶</a></h2>
+<p>GeoDjango form widgets allow you to display and edit geographic data on a
+visual map.
+Note that none of the currently available widgets supports 3D geometries, hence
+geometry fields will fallback using a simple <code class="docutils literal notranslate"><span class="pre">Textarea</span></code> widget for such data.</p>
+<div class="section" id="s-widget-attributes">
+<span id="widget-attributes"></span><h3>Widget attributes<a class="headerlink" href="#widget-attributes" title="Permalink to this headline">¶</a></h3>
+<p>GeoDjango widgets are template-based, so their attributes are mostly different
+from other Django widget attributes.</p>
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.widgets.BaseGeometryWidget.geom_type">
+<code class="descclassname">BaseGeometryWidget.</code><code class="descname">geom_type</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.BaseGeometryWidget.geom_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The OpenGIS geometry type, generally set by the form field.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.widgets.BaseGeometryWidget.map_height">
+<code class="descclassname">BaseGeometryWidget.</code><code class="descname">map_height</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.BaseGeometryWidget.map_height" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.widgets.BaseGeometryWidget.map_width">
+<code class="descclassname">BaseGeometryWidget.</code><code class="descname">map_width</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.BaseGeometryWidget.map_width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Height and width of the widget map (default is 400x600).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.widgets.BaseGeometryWidget.map_srid">
+<code class="descclassname">BaseGeometryWidget.</code><code class="descname">map_srid</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.BaseGeometryWidget.map_srid" title="Permalink to this definition">¶</a></dt>
+<dd><p>SRID code used by the map (default is 4326).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.widgets.BaseGeometryWidget.display_raw">
+<code class="descclassname">BaseGeometryWidget.</code><code class="descname">display_raw</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.BaseGeometryWidget.display_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean value specifying if a textarea input showing the serialized
+representation of the current geometry is visible, mainly for debugging
+purposes (default is <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.widgets.BaseGeometryWidget.supports_3d">
+<code class="descclassname">BaseGeometryWidget.</code><code class="descname">supports_3d</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.BaseGeometryWidget.supports_3d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates if the widget supports edition of 3D data (default is <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.widgets.BaseGeometryWidget.template_name">
+<code class="descclassname">BaseGeometryWidget.</code><code class="descname">template_name</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.BaseGeometryWidget.template_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The template used to render the map widget.</p>
+</dd></dl>
+
+<p>You can pass widget attributes in the same manner that for any other Django
+widget. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib.gis</span> <span class="k">import</span> <span class="n">forms</span>
+
+<span class="k">class</span> <span class="nc">MyGeoForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">PointField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span>
+        <span class="n">forms</span><span class="o">.</span><span class="n">OSMWidget</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;map_width&#39;</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span> <span class="s1">&#39;map_height&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-widget-classes">
+<span id="widget-classes"></span><h3>Widget classes<a class="headerlink" href="#widget-classes" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">BaseGeometryWidget</span></code></p>
+<dl class="class">
+<dt id="django.contrib.gis.forms.widgets.BaseGeometryWidget">
+<em class="property">class </em><code class="descname">BaseGeometryWidget</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.BaseGeometryWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is an abstract base widget containing the logic needed by subclasses.
+You cannot directly use this widget for a geometry field.
+Note that the rendering of GeoDjango widgets is based on a template,
+identified by the <a class="reference internal" href="#django.contrib.gis.forms.widgets.BaseGeometryWidget.template_name" title="django.contrib.gis.forms.widgets.BaseGeometryWidget.template_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">template_name</span></code></a> class attribute.</p>
+</dd></dl>
+
+<p><code class="docutils literal notranslate"><span class="pre">OpenLayersWidget</span></code></p>
+<dl class="class">
+<dt id="django.contrib.gis.forms.widgets.OpenLayersWidget">
+<em class="property">class </em><code class="descname">OpenLayersWidget</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.OpenLayersWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the default widget used by all GeoDjango form fields.
+<code class="docutils literal notranslate"><span class="pre">template_name</span></code> is <code class="docutils literal notranslate"><span class="pre">gis/openlayers.html</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">OpenLayersWidget</span></code> and <a class="reference internal" href="#django.contrib.gis.forms.widgets.OSMWidget" title="django.contrib.gis.forms.widgets.OSMWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">OSMWidget</span></code></a> use the <code class="docutils literal notranslate"><span class="pre">openlayers.js</span></code> file
+hosted on the <code class="docutils literal notranslate"><span class="pre">cdnjs.cloudflare.com</span></code> content-delivery network. You can
+subclass these widgets in order to specify your own version of the
+<code class="docutils literal notranslate"><span class="pre">OpenLayers.js</span></code> file <a class="reference external" href="http://openlayers.org/en/latest/doc/tutorials/custom-builds.html">tailored to your needs</a> in the <code class="docutils literal notranslate"><span class="pre">js</span></code> property of
+the inner <code class="docutils literal notranslate"><span class="pre">Media</span></code> class (see <a class="reference internal" href="../../../../topics/forms/media/#assets-as-a-static-definition"><span class="std std-ref">Assets as a static definition</span></a>).</p>
+</dd></dl>
+
+<p><code class="docutils literal notranslate"><span class="pre">OSMWidget</span></code></p>
+<dl class="class">
+<dt id="django.contrib.gis.forms.widgets.OSMWidget">
+<em class="property">class </em><code class="descname">OSMWidget</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.OSMWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>This widget uses an OpenStreetMap base layer to display geographic objects
+on. Attributes are:</p>
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.widgets.OSMWidget.template_name">
+<code class="descname">template_name</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.OSMWidget.template_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">gis/openlayers-osm.html</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.widgets.OSMWidget.default_lat">
+<code class="descname">default_lat</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.OSMWidget.default_lat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.widgets.OSMWidget.default_lon">
+<code class="descname">default_lon</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.OSMWidget.default_lon" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default center latitude and longitude are <code class="docutils literal notranslate"><span class="pre">47</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code>,
+respectively, which is a location in eastern France.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.gis.forms.widgets.OSMWidget.default_zoom">
+<code class="descname">default_zoom</code><a class="headerlink" href="#django.contrib.gis.forms.widgets.OSMWidget.default_zoom" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<span class="title">New in Django 2.0:</span> </div>
+<p>The default map zoom is <code class="docutils literal notranslate"><span class="pre">12</span></code>.</p>
+</dd></dl>
+
+<p>The <a class="reference internal" href="#django.contrib.gis.forms.widgets.OpenLayersWidget" title="django.contrib.gis.forms.widgets.OpenLayersWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenLayersWidget</span></code></a> note about JavaScript file hosting above also
+applies here. See also this <a class="reference external" href="https://help.openstreetmap.org/questions/10920/how-to-embed-a-map-in-my-https-site">FAQ answer</a> about <code class="docutils literal notranslate"><span class="pre">https</span></code> access to map
+tiles.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../db-api/"><i class="icon icon-chevron-left"></i> GeoDjango Database API</a></div>
+  
+  
+  <div class="right"><a href="../geoquerysets/">GIS QuerySet API Reference <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Parus Analytics donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">GeoDjango Forms API</a><ul>
+<li><a class="reference internal" href="#field-arguments">Field arguments</a><ul>
+<li><a class="reference internal" href="#srid"><code class="docutils literal notranslate"><span class="pre">srid</span></code></a></li>
+<li><a class="reference internal" href="#geom-type"><code class="docutils literal notranslate"><span class="pre">geom_type</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#form-field-classes">Form field classes</a><ul>
+<li><a class="reference internal" href="#geometryfield"><code class="docutils literal notranslate"><span class="pre">GeometryField</span></code></a></li>
+<li><a class="reference internal" href="#pointfield"><code class="docutils literal notranslate"><span class="pre">PointField</span></code></a></li>
+<li><a class="reference internal" href="#linestringfield"><code class="docutils literal notranslate"><span class="pre">LineStringField</span></code></a></li>
+<li><a class="reference internal" href="#polygonfield"><code class="docutils literal notranslate"><span class="pre">PolygonField</span></code></a></li>
+<li><a class="reference internal" href="#multipointfield"><code class="docutils literal notranslate"><span class="pre">MultiPointField</span></code></a></li>
+<li><a class="reference internal" href="#multilinestringfield"><code class="docutils literal notranslate"><span class="pre">MultiLineStringField</span></code></a></li>
+<li><a class="reference internal" href="#multipolygonfield"><code class="docutils literal notranslate"><span class="pre">MultiPolygonField</span></code></a></li>
+<li><a class="reference internal" href="#geometrycollectionfield"><code class="docutils literal notranslate"><span class="pre">GeometryCollectionField</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-django.contrib.gis.forms.widgets">Form widgets</a><ul>
+<li><a class="reference internal" href="#widget-attributes">Widget attributes</a></li>
+<li><a class="reference internal" href="#widget-classes">Widget classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../db-api/">GeoDjango Database API</a></li>
+    
+    
+    <li>Next: <a href="../geoquerysets/">GIS QuerySet API Reference</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../../">API Reference</a>
+      
+      <ul><li><a href="../../"><code class="docutils literal notranslate"><span class="pre">contrib</span></code> packages</a>
+      
+      <ul><li><a href="../">GeoDjango</a>
+      
+      <ul><li>GeoDjango Forms API</li></ul>
+      </li></ul></li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

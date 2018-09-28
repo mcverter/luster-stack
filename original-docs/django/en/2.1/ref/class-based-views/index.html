@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Built-in class-based views API | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/ref/class-based-views/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/ref/class-based-views/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/ref/class-based-views/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/ref/class-based-views/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/ref/class-based-views/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/ref/class-based-views/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/ref/class-based-views/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/ref/class-based-views/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/ref/class-based-views/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/ref/class-based-views/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/ref/class-based-views/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/ref/class-based-views/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/ref/class-based-views/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/ref/class-based-views/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/ref/class-based-views/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/ref/class-based-views/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/ref/class-based-views/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/ref/class-based-views/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/ref/class-based-views/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/ref/class-based-views/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/ref/class-based-views/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/ref/class-based-views/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/ref/class-based-views/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/ref/class-based-views/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/ref/class-based-views/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/ref/class-based-views/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/ref/class-based-views/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/ref/class-based-views/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-built-in-class-based-views-api">
+<span id="built-in-class-based-views-api"></span><h1>Built-in class-based views API<a class="headerlink" href="#built-in-class-based-views-api" title="Permalink to this headline">¶</a></h1>
+<p>Class-based views API reference. For introductory material, see the
+<a class="reference internal" href="../../topics/class-based-views/"><span class="doc">Class-based views</span></a> topic guide.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="base/">Base views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="base/#view"><code class="docutils literal notranslate"><span class="pre">View</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="base/#templateview"><code class="docutils literal notranslate"><span class="pre">TemplateView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="base/#redirectview"><code class="docutils literal notranslate"><span class="pre">RedirectView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generic-display/">Generic display views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generic-display/#detailview"><code class="docutils literal notranslate"><span class="pre">DetailView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-display/#listview"><code class="docutils literal notranslate"><span class="pre">ListView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generic-editing/">Generic editing views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generic-editing/#formview"><code class="docutils literal notranslate"><span class="pre">FormView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-editing/#createview"><code class="docutils literal notranslate"><span class="pre">CreateView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-editing/#updateview"><code class="docutils literal notranslate"><span class="pre">UpdateView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-editing/#deleteview"><code class="docutils literal notranslate"><span class="pre">DeleteView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generic-date-based/">Generic date views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#archiveindexview"><code class="docutils literal notranslate"><span class="pre">ArchiveIndexView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#yeararchiveview"><code class="docutils literal notranslate"><span class="pre">YearArchiveView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#montharchiveview"><code class="docutils literal notranslate"><span class="pre">MonthArchiveView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#weekarchiveview"><code class="docutils literal notranslate"><span class="pre">WeekArchiveView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#dayarchiveview"><code class="docutils literal notranslate"><span class="pre">DayArchiveView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#todayarchiveview"><code class="docutils literal notranslate"><span class="pre">TodayArchiveView</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic-date-based/#datedetailview"><code class="docutils literal notranslate"><span class="pre">DateDetailView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mixins/">Class-based views mixins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mixins-simple/">Simple mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mixins-simple/#contextmixin"><code class="docutils literal notranslate"><span class="pre">ContextMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-simple/#templateresponsemixin"><code class="docutils literal notranslate"><span class="pre">TemplateResponseMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mixins-single-object/">Single object mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mixins-single-object/#singleobjectmixin"><code class="docutils literal notranslate"><span class="pre">SingleObjectMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-single-object/#singleobjecttemplateresponsemixin"><code class="docutils literal notranslate"><span class="pre">SingleObjectTemplateResponseMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mixins-multiple-object/">Multiple object mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mixins-multiple-object/#multipleobjectmixin"><code class="docutils literal notranslate"><span class="pre">MultipleObjectMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-multiple-object/#multipleobjecttemplateresponsemixin"><code class="docutils literal notranslate"><span class="pre">MultipleObjectTemplateResponseMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mixins-editing/">Editing mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mixins-editing/#formmixin"><code class="docutils literal notranslate"><span class="pre">FormMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-editing/#modelformmixin"><code class="docutils literal notranslate"><span class="pre">ModelFormMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-editing/#processformview"><code class="docutils literal notranslate"><span class="pre">ProcessFormView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-editing/#deletionmixin"><code class="docutils literal notranslate"><span class="pre">DeletionMixin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mixins-date-based/">Date-based mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#yearmixin"><code class="docutils literal notranslate"><span class="pre">YearMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#monthmixin"><code class="docutils literal notranslate"><span class="pre">MonthMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#daymixin"><code class="docutils literal notranslate"><span class="pre">DayMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#weekmixin"><code class="docutils literal notranslate"><span class="pre">WeekMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#datemixin"><code class="docutils literal notranslate"><span class="pre">DateMixin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixins-date-based/#basedatelistview"><code class="docutils literal notranslate"><span class="pre">BaseDateListView</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flattened-index/">Class-based generic views - flattened index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flattened-index/#simple-generic-views">Simple generic views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#view"><code class="docutils literal notranslate"><span class="pre">View</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#templateview"><code class="docutils literal notranslate"><span class="pre">TemplateView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#redirectview"><code class="docutils literal notranslate"><span class="pre">RedirectView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flattened-index/#detail-views">Detail Views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#detailview"><code class="docutils literal notranslate"><span class="pre">DetailView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flattened-index/#list-views">List Views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#listview"><code class="docutils literal notranslate"><span class="pre">ListView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flattened-index/#editing-views">Editing views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#formview"><code class="docutils literal notranslate"><span class="pre">FormView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#createview"><code class="docutils literal notranslate"><span class="pre">CreateView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#updateview"><code class="docutils literal notranslate"><span class="pre">UpdateView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#deleteview"><code class="docutils literal notranslate"><span class="pre">DeleteView</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flattened-index/#date-based-views">Date-based views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#archiveindexview"><code class="docutils literal notranslate"><span class="pre">ArchiveIndexView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#yeararchiveview"><code class="docutils literal notranslate"><span class="pre">YearArchiveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#montharchiveview"><code class="docutils literal notranslate"><span class="pre">MonthArchiveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#weekarchiveview"><code class="docutils literal notranslate"><span class="pre">WeekArchiveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#dayarchiveview"><code class="docutils literal notranslate"><span class="pre">DayArchiveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#todayarchiveview"><code class="docutils literal notranslate"><span class="pre">TodayArchiveView</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="flattened-index/#datedetailview"><code class="docutils literal notranslate"><span class="pre">DateDetailView</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="s-specification">
+<span id="specification"></span><h2>Specification<a class="headerlink" href="#specification" title="Permalink to this headline">¶</a></h2>
+<p>Each request served by a class-based view has an independent state; therefore,
+it is safe to store state variables on the instance (i.e., <code class="docutils literal notranslate"><span class="pre">self.foo</span> <span class="pre">=</span> <span class="pre">3</span></code> is
+a thread-safe operation).</p>
+<p>A class-based view is deployed into a URL pattern using the
+<a class="reference internal" href="base/#django.views.generic.base.View.as_view" title="django.views.generic.base.View.as_view"><code class="xref py py-meth docutils literal notranslate"><span class="pre">as_view()</span></code></a> classmethod:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;view/&#39;</span><span class="p">,</span> <span class="n">MyView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">42</span><span class="p">)),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition-thread-safety-with-view-arguments admonition">
+<p class="first admonition-title">Thread safety with view arguments</p>
+<p class="last">Arguments passed to a view are shared between every instance of a view.
+This means that you shouldn’t use a list, dictionary, or any other
+mutable object as an argument to a view. If you do and the shared object
+is modified, the actions of one user visiting your view could have an
+effect on subsequent users visiting the same view.</p>
+</div>
+<p>Arguments passed into <a class="reference internal" href="base/#django.views.generic.base.View.as_view" title="django.views.generic.base.View.as_view"><code class="xref py py-meth docutils literal notranslate"><span class="pre">as_view()</span></code></a> will
+be assigned onto the instance that is used to service a request. Using the
+previous example, this means that every request on <code class="docutils literal notranslate"><span class="pre">MyView</span></code> is able to use
+<code class="docutils literal notranslate"><span class="pre">self.size</span></code>. Arguments must correspond to attributes that already exist on
+the class (return <code class="docutils literal notranslate"><span class="pre">True</span></code> on a <code class="docutils literal notranslate"><span class="pre">hasattr</span></code> check).</p>
+</div>
+<div class="section" id="s-base-vs-generic-views">
+<span id="base-vs-generic-views"></span><h2>Base vs Generic views<a class="headerlink" href="#base-vs-generic-views" title="Permalink to this headline">¶</a></h2>
+<p>Base class-based views can be thought of as <em>parent</em> views, which can be
+used by themselves or inherited from. They may not provide all the
+capabilities required for projects, in which case there are Mixins which
+extend what base views can do.</p>
+<p>Django’s generic views are built off of those base views, and were developed
+as a shortcut for common usage patterns such as displaying the details of an
+object. They take certain common idioms and patterns found in view
+development and abstract them so that you can quickly write common views of
+data without having to repeat yourself.</p>
+<p>Most generic views require the <code class="docutils literal notranslate"><span class="pre">queryset</span></code> key, which is a <code class="docutils literal notranslate"><span class="pre">QuerySet</span></code>
+instance; see <a class="reference internal" href="../../topics/db/queries/"><span class="doc">Making queries</span></a> for more information about <code class="docutils literal notranslate"><span class="pre">QuerySet</span></code>
+objects.</p>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../checks/"><i class="icon icon-chevron-left"></i> System check framework</a></div>
+  
+  
+  <div class="right"><a href="base/">Base views <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          PythonAnywhere donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Built-in class-based views API</a><ul>
+<li><a class="reference internal" href="#specification">Specification</a></li>
+<li><a class="reference internal" href="#base-vs-generic-views">Base vs Generic views</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../checks/">System check framework</a></li>
+    
+    
+    <li>Next: <a href="base/">Base views</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../">API Reference</a>
+      
+      <ul><li>Built-in class-based views API</li></ul>
+      </li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

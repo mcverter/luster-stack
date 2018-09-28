@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>What to read next | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/intro/whatsnext/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/intro/whatsnext/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/intro/whatsnext/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/intro/whatsnext/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/intro/whatsnext/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/intro/whatsnext/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/intro/whatsnext/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/intro/whatsnext/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/intro/whatsnext/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/intro/whatsnext/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/intro/whatsnext/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/intro/whatsnext/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/intro/whatsnext/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/intro/whatsnext/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/intro/whatsnext/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/intro/whatsnext/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/intro/whatsnext/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/intro/whatsnext/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/intro/whatsnext/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/intro/whatsnext/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/intro/whatsnext/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/intro/whatsnext/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/intro/whatsnext/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/intro/whatsnext/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/intro/whatsnext/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/intro/whatsnext/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/intro/whatsnext/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/intro/whatsnext/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-what-to-read-next">
+<span id="what-to-read-next"></span><h1>What to read next<a class="headerlink" href="#what-to-read-next" title="Permalink to this headline">¶</a></h1>
+<p>So you’ve read all the <a class="reference internal" href="../"><span class="doc">introductory material</span></a> and have
+decided you’d like to keep using Django. We’ve only just scratched the surface
+with this intro (in fact, if you’ve read every single word, you’ve read about
+5% of the overall documentation).</p>
+<p>So what’s next?</p>
+<p>Well, we’ve always been big fans of learning by doing. At this point you should
+know enough to start a project of your own and start fooling around. As you need
+to learn new tricks, come back to the documentation.</p>
+<p>We’ve put a lot of effort into making Django’s documentation useful, easy to
+read and as complete as possible. The rest of this document explains more about
+how the documentation works so that you can get the most out of it.</p>
+<p>(Yes, this is documentation about documentation. Rest assured we have no plans
+to write a document about how to read the document about documentation.)</p>
+<div class="section" id="s-finding-documentation">
+<span id="finding-documentation"></span><h2>Finding documentation<a class="headerlink" href="#finding-documentation" title="Permalink to this headline">¶</a></h2>
+<p>Django’s got a <em>lot</em> of documentation – almost 450,000 words and counting –
+so finding what you need can sometimes be tricky. A few good places to start
+are the <a class="reference internal" href="../../search/"><span class="std std-ref">Search Page</span></a> and the <a class="reference internal" href="../../genindex/"><span class="std std-ref">Index</span></a>.</p>
+<p>Or you can just browse around!</p>
+</div>
+<div class="section" id="s-how-the-documentation-is-organized">
+<span id="how-the-documentation-is-organized"></span><h2>How the documentation is organized<a class="headerlink" href="#how-the-documentation-is-organized" title="Permalink to this headline">¶</a></h2>
+<p>Django’s main documentation is broken up into “chunks” designed to fill
+different needs:</p>
+<ul>
+<li><p class="first">The <a class="reference internal" href="../"><span class="doc">introductory material</span></a> is designed for people new
+to Django – or to Web development in general. It doesn’t cover anything
+in depth, but instead gives a high-level overview of how developing in
+Django “feels”.</p>
+</li>
+<li><p class="first">The <a class="reference internal" href="../../topics/"><span class="doc">topic guides</span></a>, on the other hand, dive deep into
+individual parts of Django. There are complete guides to Django’s
+<a class="reference internal" href="../../topics/db/"><span class="doc">model system</span></a>, <a class="reference internal" href="../../topics/templates/"><span class="doc">template engine</span></a>, <a class="reference internal" href="../../topics/forms/"><span class="doc">forms framework</span></a>, and much
+more.</p>
+<p>This is probably where you’ll want to spend most of your time; if you work
+your way through these guides you should come out knowing pretty much
+everything there is to know about Django.</p>
+</li>
+<li><p class="first">Web development is often broad, not deep – problems span many domains.
+We’ve written a set of <a class="reference internal" href="../../howto/"><span class="doc">how-to guides</span></a> that answer
+common “How do I …?” questions. Here you’ll find information about
+<a class="reference internal" href="../../howto/outputting-pdf/"><span class="doc">generating PDFs with Django</span></a>, <a class="reference internal" href="../../howto/custom-template-tags/"><span class="doc">writing
+custom template tags</span></a>, and more.</p>
+<p>Answers to really common questions can also be found in the <a class="reference internal" href="../../faq/"><span class="doc">FAQ</span></a>.</p>
+</li>
+<li><p class="first">The guides and how-to’s don’t cover every single class, function, and
+method available in Django – that would be overwhelming when you’re
+trying to learn. Instead, details about individual classes, functions,
+methods, and modules are kept in the <a class="reference internal" href="../../ref/"><span class="doc">reference</span></a>. This is
+where you’ll turn to find the details of a particular function or
+whatever you need.</p>
+</li>
+<li><p class="first">If you are interested in deploying a project for public use, our docs have
+<a class="reference internal" href="../../howto/deployment/"><span class="doc">several guides</span></a> for various deployment
+setups as well as a <a class="reference internal" href="../../howto/deployment/checklist/"><span class="doc">deployment checklist</span></a>
+for some things you’ll need to think about.</p>
+</li>
+<li><p class="first">Finally, there’s some “specialized” documentation not usually relevant to
+most developers. This includes the <a class="reference internal" href="../../releases/"><span class="doc">release notes</span></a> and
+<a class="reference internal" href="../../internals/"><span class="doc">internals documentation</span></a> for those who want to add
+code to Django itself, and a <a class="reference internal" href="../../misc/"><span class="doc">few other things that simply don’t fit
+elsewhere</span></a>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="s-how-documentation-is-updated">
+<span id="how-documentation-is-updated"></span><h2>How documentation is updated<a class="headerlink" href="#how-documentation-is-updated" title="Permalink to this headline">¶</a></h2>
+<p>Just as the Django code base is developed and improved on a daily basis, our
+documentation is consistently improving. We improve documentation for several
+reasons:</p>
+<ul class="simple">
+<li>To make content fixes, such as grammar/typo corrections.</li>
+<li>To add information and/or examples to existing sections that need to be
+expanded.</li>
+<li>To document Django features that aren’t yet documented. (The list of
+such features is shrinking but exists nonetheless.)</li>
+<li>To add documentation for new features as new features get added, or as
+Django APIs or behaviors change.</li>
+</ul>
+<p>Django’s documentation is kept in the same source control system as its code. It
+lives in the <a class="reference external" href="https://github.com/django/django/tree/master/docs">docs</a> directory of our Git repository. Each document online is a
+separate text file in the repository.</p>
+</div>
+<div class="section" id="s-where-to-get-it">
+<span id="where-to-get-it"></span><h2>Where to get it<a class="headerlink" href="#where-to-get-it" title="Permalink to this headline">¶</a></h2>
+<p>You can read Django documentation in several ways. They are, in order of
+preference:</p>
+<div class="section" id="s-on-the-web">
+<span id="on-the-web"></span><h3>On the Web<a class="headerlink" href="#on-the-web" title="Permalink to this headline">¶</a></h3>
+<p>The most recent version of the Django documentation lives at
+<a class="reference external" href="https://docs.djangoproject.com/en/dev/">https://docs.djangoproject.com/en/dev/</a>. These HTML pages are generated
+automatically from the text files in source control. That means they reflect the
+“latest and greatest” in Django – they include the very latest corrections and
+additions, and they discuss the latest Django features, which may only be
+available to users of the Django development version. (See
+<a class="reference internal" href="#differences-between-doc-versions"><span class="std std-ref">Differences between versions</span></a> below.)</p>
+<p>We encourage you to help improve the docs by submitting changes, corrections and
+suggestions in the <a class="reference external" href="https://code.djangoproject.com/">ticket system</a>. The Django developers actively monitor the
+ticket system and use your feedback to improve the documentation for everybody.</p>
+<p>Note, however, that tickets should explicitly relate to the documentation,
+rather than asking broad tech-support questions. If you need help with your
+particular Django setup, try the <a class="reference internal" href="../../internals/mailing-lists/#django-users-mailing-list"><span class="std std-ref">django-users</span></a> mailing list or the <a class="reference external" href="irc://irc.freenode.net/django">#django
+IRC channel</a> instead.</p>
+</div>
+<div class="section" id="s-in-plain-text">
+<span id="in-plain-text"></span><h3>In plain text<a class="headerlink" href="#in-plain-text" title="Permalink to this headline">¶</a></h3>
+<p>For offline reading, or just for convenience, you can read the Django
+documentation in plain text.</p>
+<p>If you’re using an official release of Django, the zipped package (tarball) of
+the code includes a <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory, which contains all the documentation
+for that release.</p>
+<p>If you’re using the development version of Django (aka the master branch), the
+<code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory contains all of the documentation. You can update your
+Git checkout to get the latest changes.</p>
+<p>One low-tech way of taking advantage of the text documentation is by using the
+Unix <code class="docutils literal notranslate"><span class="pre">grep</span></code> utility to search for a phrase in all of the documentation. For
+example, this will show you each mention of the phrase “max_length” in any
+Django document:</p>
+<div class="console-block" id="console-block-0">
+<input class="c-tab-unix" id="c-tab-0-unix" type="radio" name="console-0" checked>
+<label for="c-tab-0-unix" title="Linux/macOS">&#xf17c/&#xf179</label>
+<input class="c-tab-win" id="c-tab-0-win" type="radio" name="console-0">
+<label for="c-tab-0-win" title="Windows">&#xf17a</label>
+<section class="c-content-unix" id="c-content-0-unix">
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> grep -r max_length /path/to/django/docs/
+</pre></div>
+</div>
+</section>
+<section class="c-content-win" id="c-content-0-win">
+<div class="highlight"><pre><span></span><span class="gp">...\&gt;</span> grep -r max_length \path\to\django\docs\
+</pre></div>
+</section>
+</div>
+</div>
+<div class="section" id="s-as-html-locally">
+<span id="as-html-locally"></span><h3>As HTML, locally<a class="headerlink" href="#as-html-locally" title="Permalink to this headline">¶</a></h3>
+<p>You can get a local copy of the HTML documentation following a few easy steps:</p>
+<ul>
+<li><p class="first">Django’s documentation uses a system called <a class="reference external" href="http://sphinx-doc.org/">Sphinx</a> to convert from
+plain text to HTML. You’ll need to install Sphinx by either downloading
+and installing the package from the Sphinx website, or with <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="console-block" id="console-block-1">
+<input class="c-tab-unix" id="c-tab-1-unix" type="radio" name="console-1" checked>
+<label for="c-tab-1-unix" title="Linux/macOS">&#xf17c/&#xf179</label>
+<input class="c-tab-win" id="c-tab-1-win" type="radio" name="console-1">
+<label for="c-tab-1-win" title="Windows">&#xf17a</label>
+<section class="c-content-unix" id="c-content-1-unix">
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install Sphinx
+</pre></div>
+</div>
+</section>
+<section class="c-content-win" id="c-content-1-win">
+<div class="highlight"><pre><span></span><span class="gp">...\&gt;</span> pip install Sphinx
+</pre></div>
+</section>
+</div>
+</li>
+<li><p class="first">Then, just use the included <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to turn the documentation into
+HTML:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> path/to/django/docs
+<span class="gp">$</span> make html
+</pre></div>
+</div>
+<p>You’ll need <a class="reference external" href="https://www.gnu.org/software/make/">GNU Make</a> installed for this.</p>
+<p>If you’re on Windows you can alternatively use the included batch file:</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">cd</span> path\to\django\docs
+make.bat html
+</pre></div>
+</div>
+</li>
+<li><p class="first">The HTML documentation will be placed in <code class="docutils literal notranslate"><span class="pre">docs/_build/html</span></code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="s-differences-between-versions">
+<span id="s-differences-between-doc-versions"></span><span id="differences-between-versions"></span><span id="differences-between-doc-versions"></span><h2>Differences between versions<a class="headerlink" href="#differences-between-versions" title="Permalink to this headline">¶</a></h2>
+<p>The text documentation in the master branch of the Git repository contains the
+“latest and greatest” changes and additions. These changes include
+documentation of new features targeted for Django’s next <a class="reference internal" href="../../internals/release-process/#term-feature-release"><span class="xref std std-term">feature
+release</span></a>. For that reason, it’s worth pointing out our policy to highlight
+recent changes and additions to Django.</p>
+<p>We follow this policy:</p>
+<ul class="simple">
+<li>The development documentation at <a class="reference external" href="https://docs.djangoproject.com/en/dev/">https://docs.djangoproject.com/en/dev/</a> is
+from the master branch. These docs correspond to the latest feature release,
+plus whatever features have been added/changed in the framework since then.</li>
+<li>As we add features to Django’s development version, we update the
+documentation in the same Git commit transaction.</li>
+<li>To distinguish feature changes/additions in the docs, we use the phrase:
+“New in Django Development version” for the version of Django that hasn’t
+been released yet, or “New in version X.Y” for released versions.</li>
+<li>Documentation fixes and improvements may be backported to the last release
+branch, at the discretion of the committer, however, once a version of
+Django is <a class="reference internal" href="../../internals/release-process/#supported-versions-policy"><span class="std std-ref">no longer supported</span></a>, that version
+of the docs won’t get any further updates.</li>
+<li>The <a class="reference external" href="https://docs.djangoproject.com/en/dev/">main documentation Web page</a> includes links to documentation for
+previous versions. Be sure you are using the version of the docs
+corresponding to the version of Django you are using!</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../reusable-apps/"><i class="icon icon-chevron-left"></i> Advanced tutorial: How to write reusable apps</a></div>
+  
+  
+  <div class="right"><a href="../contributing/">Writing your first patch for Django <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Haiko Schol donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">What to read next</a><ul>
+<li><a class="reference internal" href="#finding-documentation">Finding documentation</a></li>
+<li><a class="reference internal" href="#how-the-documentation-is-organized">How the documentation is organized</a></li>
+<li><a class="reference internal" href="#how-documentation-is-updated">How documentation is updated</a></li>
+<li><a class="reference internal" href="#where-to-get-it">Where to get it</a><ul>
+<li><a class="reference internal" href="#on-the-web">On the Web</a></li>
+<li><a class="reference internal" href="#in-plain-text">In plain text</a></li>
+<li><a class="reference internal" href="#as-html-locally">As HTML, locally</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#differences-between-versions">Differences between versions</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../reusable-apps/">Advanced tutorial: How to write reusable apps</a></li>
+    
+    
+    <li>Next: <a href="../contributing/">Writing your first patch for Django</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../">Getting started</a>
+      
+      <ul><li>What to read next</li></ul>
+      </li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

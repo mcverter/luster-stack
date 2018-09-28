@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Scaling Pipelines
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Scaling Pipelines' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Scaling Pipelines' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Scaling Pipelines' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/book/pipeline/scaling-pipeline/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Scaling Pipelines' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<p>
+<a href="https://jenkins.io/doc" class="">Jenkins User Documentation Home</a>
+</p>
+<h4>
+Guided Tour
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/getting-started" class="">Getting started</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/hello-world" class="">Creating your first Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps" class="">Running multiple steps</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/agents" class="">Defining execution environments</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/environment" class="">Using environment variables</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/tests-and-artifacts" class="">Recording test results and artifacts</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/post" class="">Cleaning up and notifications</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/deployment" class="">Deployment</a>
+</li>
+</ul>
+<h4>
+Tutorials
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/tutorials" class="">Overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-java-app-with-maven" class="">Build a Java app with Maven</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm" class="">Build a Node.js and React app with npm</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller" class="">Build a Python app with PyInstaller</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean" class="">Create a Pipeline in Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project" class="">End-to-End Multibranch Pipeline Project Creation</a>
+</li>
+</ul>
+<h4>
+User Handbook
+<span style='font-size: 0.6rem; vertical-align: middle;'>
+<a href='/user-handbook.pdf'>
+(PDF)
+</a>
+</span>
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/getting-started" class="">User Handbook overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/installing" class="">Installing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/using" class="">Using Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline" class="active">Pipeline</a>
+<small>
+<ul style='padding-left: 1rem;'>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/getting-started" class="">Getting started with Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/jenkinsfile" class="">Using a Jenkinsfile</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/running-pipelines" class="">Running Pipelines</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/multibranch" class="">Branches and Pull Requests</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/docker" class="">Using Docker with Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/shared-libraries" class="">Extending with Shared Libraries</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/development" class="">Pipeline Development Tools</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/scaling-pipeline" class="active">Scaling Pipelines</a>
+</li>
+</ul>
+</small>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean" class="">Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing" class="">Managing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/system-administration" class="">System Administration</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/scaling" class="">Scaling Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/appendix" class="">Appendix</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/glossary" class="">Glossary</a>
+</li>
+</ul>
+<h4>
+Resources
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/steps" class="">Pipeline Steps reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/upgrade-guide" class="">LTS Upgrade Guide</a>
+</li>
+</ul>
+<h5>
+Recent Tutorial Blog Posts
+</h5>
+<ul>
+<li>
+<a href='/blog/2017/11/27/tutorials-in-the-jenkins-user-documentation/'>
+Introducing Tutorials in the Jenkins User Documentation
+</a>
+</li>
+<li>
+<a href='/blog/2017/05/18/pipeline-dev-tools/'>
+Pipeline Development Tools
+</a>
+</li>
+<li>
+<a href='/blog/2017/04/12/welcome-to-blue-ocean-dashboard/'>
+Getting Started with the Blue Ocean Dashboard
+</a>
+</li>
+</ul>
+<div class='small'>
+<a href='/node/tags/tutorial'>
+View all tutorial blog posts
+</a>
+</div>
+<p></p>
+</div>
+</div>
+<div class='col-lg-9'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='row'>
+<a class='prev doc-page-link' href='../syntax'>
+⇐ Pipeline Syntax
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='up doc-page-link' href='../'>
+⇑ Pipeline
+</a>
+</div>
+<div class='row'>
+<a class='index doc-page-link' href='../../'>
+Index
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='next doc-page-link' href='../../blueocean'>
+Blue Ocean ⇒
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class='container'>
+<div class='row body'>
+<div class='section'>
+<h1>
+Scaling Pipelines
+</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#how-do-i-set-speeddurability-settings">How Do I Set Speed/Durability Settings?</a></li>
+<li><a href="#will-higher-performance-durability-settings-help-me">Will Higher-Performance Durability Settings Help Me?</a></li>
+<li><a href="#what-am-i-giving-up-with-this-durability-setting-trade-off">What Am I Giving Up With This Durability Setting "Trade-Off?"</a></li>
+<li><a href="#requirements-to-use-durability-settings">Requirements To Use Durability Settings</a></li>
+<li><a href="#what-are-the-durability-settings">What Are The Durability Settings?</a></li>
+<li><a href="#suggested-best-practices-and-tips-for-durability-settings">Suggested Best Practices And Tips for Durability Settings</a></li>
+<li><a href="#other-scaling-suggestions">Other Scaling Suggestions</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of the main bottlenecks in Pipeline is that it writes transient data to disk <strong>FREQUENTLY</strong> so that running pipelines can handle an unexpected Jenkins restart or system crash. This durability is useful for many users but its performance cost can be a problem.</p>
+</div>
+<div class="paragraph">
+<p>Pipeline now includes features to let users improve performance by reducing how much data is written to disk and how often it is written&#8201;&#8212;&#8201;at a small cost to durability.  In some special cases, users may not be able to resume or visualize running Pipelines if Jenkins shuts down suddenly without getting a chance to write data.</p>
+</div>
+<div class="paragraph">
+<p>Because these settings include a trade-off of speed vs. durability, they are initially opt-in.  To enable performance-optimized modes, users need to explicity set a <em>Speed/Durability Setting</em> for Pipelines.  If no explicit choice is made, pipelines currently default to the "maximum durability" setting and write to disk as they have in the past.  There are some I/O optimizations to this mode included in the same plugin releases, but the benefits are much smaller.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="how-do-i-set-speeddurability-settings"><a class="anchor" href="#how-do-i-set-speeddurability-settings"></a>How Do I Set Speed/Durability Settings?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are 3 ways to configure the durability setting:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Globally</strong>, you can choose a global default durability setting under "Manage Jenkins" &gt; "Configure System", labelled "Pipeline Speed/Durability Settings".  You can override these with the more specific settings below.</p>
+</li>
+<li>
+<p><strong>Per pipeline job:</strong> at the top of the job configuration, labelled "Custom Pipeline Speed/Durability Level" - this overrides the global setting.  Or, use a "properties" step - the setting will apply to the NEXT run after the step is executed (same result).</p>
+</li>
+<li>
+<p><strong>Per-branch for a multibranch project:</strong> configure a custom Branch Property Strategy (under the SCM) and add a property for Custom Pipeline Speed/Durability Level.  This overrides the global setting. You can also use a "properties" step to override the setting, but remember that you may have to run the step again to undo this.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Durability settings will take effect with the next applicable Pipeline run, not immediately.  The setting will be displayed in the log.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="will-higher-performance-durability-settings-help-me"><a class="anchor" href="#will-higher-performance-durability-settings-help-me"></a>Will Higher-Performance Durability Settings Help Me?</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Yes, if your Jenkins instance uses NFS, magnetic storage, runs many Pipelines at once, or shows high iowait.</p>
+</li>
+<li>
+<p>Yes, if you are running Pipelines with many steps (more than several hundred).</p>
+</li>
+<li>
+<p>Yes, if your Pipeline stores large files or complex data to variables in the script, keeps that variable in scope for future use, and then runs steps.  This sounds oddly specific but happens more than you&#8217;d expect.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For example: <code>readFile</code> step with a large XML/JSON file, or using configuration information from parsing such a file with <a href="https://jenkins.io/doc/pipeline/steps/pipeline-utility-steps/#code-readjson-code-read-json-from-files-in-the-workspace">One of the Utility Steps</a>.</p>
+</li>
+<li>
+<p>Another common pattern is a "summary" object containing data from many branches (logs, results, or statistics). Often this is visible because you&#8217;ll be adding to it often via an add/append or <code>Map.put()</code> operations.</p>
+</li>
+<li>
+<p>Large arrays of data or <code>Map</code>s of configuration information are another common example of this situation.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>No, if your Pipelines spend almost all their time waiting for a few shell/batch scripts to finish.  This ISN&#8217;T a magic "go fast" button for everything!</p>
+</li>
+<li>
+<p>No, if Pipelines are writing massive amounts of data to logs (logging is unchanged).</p>
+</li>
+<li>
+<p>No, if you are not using Pipelines, or your system is loaded down by other factors.</p>
+</li>
+<li>
+<p>No, if you don&#8217;t enable higher-performance modes for pipelines.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="what-am-i-giving-up-with-this-durability-setting-trade-off"><a class="anchor" href="#what-am-i-giving-up-with-this-durability-setting-trade-off"></a>What Am I Giving Up With This Durability Setting "Trade-Off?"</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Stability of Jenkins ITSELF is not changed regardless of this setting</strong> - it only applies to Pipelines.  The worst-case behavior for Pipelines reverts to something like Freestyle builds&#8201;&#8212;&#8201;running Pipelines that cannot persist transient data may not be able to resume or be displayed in Blue Ocean/Stage View/etc, but will show logs.  This impacts <em>only</em> running Pipelines and only when Jenkins is shut down abruptly and not gracefully before they get to complete.</p>
+</div>
+<div class="paragraph">
+<p>A <strong>"graceful" shutdown</strong> is where Jenkins goes through a full shutdown process, such as visiting http://[jenkins-server]/exit,  or using normal service shutdown scripts (if Jenkins is healthy).  Sending a SIGTERM/SIGINT to Jenkins will trigger a graceful shutdown.  Note that running Pipelines do not need to complete (you do not need to use /safeExit to shut down).</p>
+</div>
+<div class="paragraph">
+<p>A <strong>"dirty" shutdown</strong> is when Jenkins does not get to do normal shutdown processes. This can occur if the process is forcibly terminated.  The most common causes are using SIGKILL to terminate the Jenkins process or killing the container/VM running Jenkins.  Simply stopping or pausing the container/VM will not cause this, as long as the Jenkins process is able to resume.
+A dirty shutdown can also happen due to catastrophic operating system failures, including the Linux OOMKiller attacking the Jenkins java process to free memory.</p>
+</div>
+<div class="paragraph">
+<p><strong>Atomic writes:</strong> All settings <strong>except</strong> "maximum durability" currently avoid atomic writes&#8201;&#8212;&#8201;what this means is that if the operating system running Jenkins fails, data that is buffered for writing to disk will not be flushed, it will be lost.  This is quite rare, but can happen as a result of container or virtualization operations that halt the operating system or disconnect storage.  Usually this data is flushed pretty quickly to disk, so the window for data loss is brief.  On Linux this flush-to-disk can be forced by running 'sync'.  In some rare cases this can also result in a build that cannot be loaded.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="requirements-to-use-durability-settings"><a class="anchor" href="#requirements-to-use-durability-settings"></a>Requirements To Use Durability Settings</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Jenkins LTS 2.73+ or higher (or a weekly 2.62+)</p>
+</li>
+<li>
+<p>For <strong>all</strong> the Pipeline plugins below, at least the specified minimum version must be installed</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pipeline: API (workflow-api) v2.25</p>
+</li>
+<li>
+<p>Pipeline: Groovy (workflow-cps) v2.43</p>
+</li>
+<li>
+<p>Pipeline: Job (workflow-job) v2.17</p>
+</li>
+<li>
+<p>Pipeline: Supporting APIs (workflow-support) v2.17</p>
+</li>
+<li>
+<p>Pipeline: Multibranch (workflow-multibranch) v2.17 - optional, only needed to enable this setting for multibranch pipelines.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Restart the master to use the updated plugins - note: you need all of them to take advantage.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="what-are-the-durability-settings"><a class="anchor" href="#what-are-the-durability-settings"></a>What Are The Durability Settings?</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Performance-optimized mode ("PERFORMANCE_OPTIMIZED") - <strong>Greatly</strong> reduces disk I/O.  If Pipelines do not finish AND Jenkins is not shut down gracefully, they may lose data and behave like Freestyle projects&#8201;&#8212;&#8201;see details above.</p>
+</li>
+<li>
+<p>Maximum durability ("MAX_SURVIVABILITY") - behaves just like Pipeline did before, slowest option.  Use this for running your most critical Pipelines.</p>
+</li>
+<li>
+<p>Less durable, a bit faster ("SURVIVABLE_NONATOMIC") - Writes data with every step but avoids atomic writes. This is faster than maximum durability mode, especially on networked filesystems.  It carries a small extra risk (details above under "What Am I Giving Up: Atomic Writes").</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="suggested-best-practices-and-tips-for-durability-settings"><a class="anchor" href="#suggested-best-practices-and-tips-for-durability-settings"></a>Suggested Best Practices And Tips for Durability Settings</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Use the "performance-optimized" mode for most pipelines and especially basic build-test Pipelines or anything that can simply be run again if needed.</p>
+</li>
+<li>
+<p>Use either the "maximum durability" or "less durable" mode for pipelines when you need a guaranteed record of their execution (auditing). These two modes record every step run. For example, use one of these two modes when:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>you have a pipeline that modifies the state of critical infrastructure</p>
+</li>
+<li>
+<p>you do a production deployment</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Set a global default (see above) of "performance-optimized" for the Durability Setting, and then where needed set "maximum durability" on specific Pipeline jobs or Multibranch Pipeline branches ("master" or release branches).</p>
+</li>
+<li>
+<p>You can force a Pipeline to persist data by pausing it.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="other-scaling-suggestions"><a class="anchor" href="#other-scaling-suggestions"></a>Other Scaling Suggestions</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Use @NonCPS-annotated functions for more complex work. This means more involved processing, logic, and transformations. This lets you leverage additional Groovy &amp; functional features for more powerful, concise, and performant code.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This still runs on masters so be aware of complexity of the work, but is much faster than native Pipeline code because it doesn’t provide durability and uses a faster execution model. Still, be mindful of the CPU cost and offload to executors when the cost becomes too high.</p>
+</li>
+<li>
+<p>@NonCPS functions can use a much broader subset of the Groovy language, such as iterators and functional features, which makes them more terse and fast to write.</p>
+</li>
+<li>
+<p>@NonCPS functions <strong>should not use</strong> Pipeline steps internally, however you can store the result of a Pipeline step to a variable and use it that as the input to a @NonCPS function.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Gotcha</strong>: It’s not guaranteed that use of a step will generate an error (there is an open RFE to implement that), but you should not rely on that behavior. You may see improper handling of exceptions.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>While normal Pipeline is restricted to serializable local variables, @NonCPS functions can use more complex, nonserializable types internally (for example regex matchers, etc). Parameters and return types should still be Serializable, however.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Gotcha</strong>: improper usages are not guaranteed to raise an error with normal Pipeline (optimizations may mask the issue), but it is unsafe to rely on this behavior.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>General Gotcha</strong>: when using running @NonCPS functions, the actual error can sometimes be swallowed by pipeline creating a confusing error message. Combat this by using a <code>try/catch</code> block and potentially using an <code>echo</code> to plain text print the error message in the <code>catch</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Whenever possible, run Jenkins with fast SSD-backed storage and not hard drives.  This can make a <em>huge</em> difference.</strong></p>
+</li>
+<li>
+<p>In general try to fit the tool to the job.  Consider writing short Shell/Batch/Groovy/Python scripts when running a complex process using a build agent.  Good examples include processing data, communicating interactively with REST APIs, and parsing/templating larger XML or JSON files.  The <code>sh</code> and <code>bat</code> steps are helpful to invoke these, especially with <code>returnStdout: true</code> to return the output from this script and save it as a variable (Scripted Pipeline).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The Pipeline DSL is not designed for arbitrary networking and computation tasks - it is intended for CI/CD scripting.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Use the latest versions of the Pipeline plugins and Script Security, if applicable.  These include regular performance improvements.</p>
+</li>
+<li>
+<p>Try to simplify Pipeline code by reducing the number of steps run and using simpler Groovy code for Scripted Pipelines.</p>
+</li>
+<li>
+<p>Consolidate sequential steps of the same type if you can, for example by using one Shell step to invoke a helper script rather than running many steps.</p>
+</li>
+<li>
+<p>Try to limit the amount of data written to logs by Pipelines.  If you are writing several MB of log data, such as from a build tool, consider instead writing this to an external file, compressing it, and archiving it as a build artifact.</p>
+</li>
+<li>
+<p>When using Jenkins with more than 6 GB of heap use the <a href="https://jenkins.io/blog/2016/11/21/gc-tuning/">suggested garbage collection tuning options</a> to minimize garbage collection pause times and overhead.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='row'>
+<a class='prev doc-page-link' href='../syntax'>
+⇐ Pipeline Syntax
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='up doc-page-link' href='../'>
+⇑ Pipeline
+</a>
+</div>
+<div class='row'>
+<a class='index doc-page-link' href='../../'>
+Index
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='next doc-page-link' href='../../blueocean'>
+Blue Ocean ⇒
+</a>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'></div>
+<!-- starting partial _feedback-footer.html -->
+<!-- HTML inclusion for chapter and section layouts (i.e. as footers) as well as
+     for use in AsciiDoc file inclusions. -->
+
+<!--
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+-->
+
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(window.location.href);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<p><a href="#feedback" data-toggle="collapse">Was this page helpful?</a></p>
+
+<div id="feedback" class="collapse">
+
+<p>Please submit your feedback about this page through this
+<a href="/doc/feedback-form/">quick form</a>.</p>
+
+<p>Alternatively, if you don't wish to complete the quick form, you can simply
+indicate if you found this page helpful?</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the current URL into the form. -->
+<input type="hidden" name="entry.1246830226" id="current-url" value=""/>
+
+<!-- The answer bit -->
+<p><input type="radio" name="entry.790002525" id="h1" value="Yes" required/>
+<label for="h1">Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="entry.790002525" id="h2" value="No"/>
+<label for="h2">No</label></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+</form>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1IIdpVs39JDYKg0sLQIv-MNO928qcGApAIfdW5ohfD78" target="_blank">here</a>.</p>
+
+</div>
+
+<!-- ending partial _feedback-footer.html -->
+
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<p class='box'>
+<a href='https://github.com/jenkins-infra/jenkins.io/edit/master/content//doc/book/pipeline/scaling-pipeline.adoc' title='Edit /doc/book/pipeline/scaling-pipeline.adoc on GitHub'>
+Improve this page
+</a>
+|
+<a href='https://github.com/jenkins-infra/jenkins.io/commits/master/content//doc/book/pipeline/scaling-pipeline.adoc' title='View /doc/book/pipeline/scaling-pipeline.adoc history on GitHub'>
+Page history
+</a>
+</p>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

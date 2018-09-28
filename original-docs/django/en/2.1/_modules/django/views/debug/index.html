@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>django.views.debug | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/_modules/django/views/debug/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/_modules/django/views/debug/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/_modules/django/views/debug/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/_modules/django/views/debug/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/_modules/django/views/debug/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/_modules/django/views/debug/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/_modules/django/views/debug/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/_modules/django/views/debug/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/_modules/django/views/debug/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/_modules/django/views/debug/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/_modules/django/views/debug/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/_modules/django/views/debug/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/_modules/django/views/debug/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/_modules/django/views/debug/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/_modules/django/views/debug/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/_modules/django/views/debug/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/_modules/django/views/debug/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/_modules/django/views/debug/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/_modules/django/views/debug/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/_modules/django/views/debug/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/_modules/django/views/debug/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/_modules/django/views/debug/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/_modules/django/views/debug/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/_modules/django/views/debug/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/_modules/django/views/debug/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/_modules/django/views/debug/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/_modules/django/views/debug/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<h1>Source code for django.views.debug</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">types</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">django.conf</span> <span class="k">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="k">import</span> <span class="n">HttpResponse</span><span class="p">,</span> <span class="n">HttpResponseNotFound</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="k">import</span> <span class="n">Context</span><span class="p">,</span> <span class="n">Engine</span><span class="p">,</span> <span class="n">TemplateDoesNotExist</span>
+<span class="kn">from</span> <span class="nn">django.template.defaultfilters</span> <span class="k">import</span> <span class="n">pprint</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="k">import</span> <span class="n">Resolver404</span><span class="p">,</span> <span class="n">resolve</span>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="k">import</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">django.utils.datastructures</span> <span class="k">import</span> <span class="n">MultiValueDict</span>
+<span class="kn">from</span> <span class="nn">django.utils.encoding</span> <span class="k">import</span> <span class="n">force_text</span>
+<span class="kn">from</span> <span class="nn">django.utils.module_loading</span> <span class="k">import</span> <span class="n">import_string</span>
+<span class="kn">from</span> <span class="nn">django.utils.version</span> <span class="k">import</span> <span class="n">get_docs_version</span>
+
+<span class="c1"># Minimal Django templates engine to render the error templates</span>
+<span class="c1"># regardless of the project&#39;s TEMPLATES setting. Templates are</span>
+<span class="c1"># read directly from the filesystem so that the error handler</span>
+<span class="c1"># works even if the template loader is broken.</span>
+<span class="n">DEBUG_ENGINE</span> <span class="o">=</span> <span class="n">Engine</span><span class="p">(</span>
+    <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">libraries</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;i18n&#39;</span><span class="p">:</span> <span class="s1">&#39;django.templatetags.i18n&#39;</span><span class="p">},</span>
+<span class="p">)</span>
+
+<span class="n">HIDDEN_SETTINGS</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;API|TOKEN|KEY|SECRET|PASS|SIGNATURE&#39;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+
+<span class="n">CLEANSED_SUBSTITUTE</span> <span class="o">=</span> <span class="s1">&#39;********************&#39;</span>
+
+<span class="n">CURRENT_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+
+
+<span class="k">class</span> <span class="nc">CallableSettingWrapper</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Object to wrap callable appearing in settings.</span>
+<span class="sd">    * Not to call in the debug page (#21345).</span>
+<span class="sd">    * Not to break the debug page if the callable forbidding to set attributes</span>
+<span class="sd">      (#23070).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callable_setting</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_wrapped</span> <span class="o">=</span> <span class="n">callable_setting</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_wrapped</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">cleanse_setting</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cleanse an individual setting key/value of sensitive content. If the value</span>
+<span class="sd">    is a dictionary, recursively cleanse the keys in that dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">HIDDEN_SETTINGS</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+            <span class="n">cleansed</span> <span class="o">=</span> <span class="n">CLEANSED_SUBSTITUTE</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">cleansed</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">cleanse_setting</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cleansed</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="c1"># If the key isn&#39;t regex-able, just return as-is.</span>
+        <span class="n">cleansed</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">cleansed</span><span class="p">):</span>
+        <span class="c1"># For fixing #21345 and #23070</span>
+        <span class="n">cleansed</span> <span class="o">=</span> <span class="n">CallableSettingWrapper</span><span class="p">(</span><span class="n">cleansed</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">cleansed</span>
+
+
+<span class="k">def</span> <span class="nf">get_safe_settings</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a dictionary of the settings module with values of sensitive</span>
+<span class="sd">    settings replaced with stars (*********).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">settings_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">settings</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+            <span class="n">settings_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">cleanse_setting</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">settings_dict</span>
+
+
+<span class="k">def</span> <span class="nf">technical_500_response</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a technical server error response. The last three arguments are</span>
+<span class="sd">    the values returned from sys.exc_info() and friends.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">reporter</span> <span class="o">=</span> <span class="n">ExceptionReporter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">tb</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">is_ajax</span><span class="p">():</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">reporter</span><span class="o">.</span><span class="n">get_traceback_text</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status_code</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/plain; charset=utf-8&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">reporter</span><span class="o">.</span><span class="n">get_traceback_html</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status_code</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span>
+
+
+<span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">get_default_exception_reporter_filter</span><span class="p">():</span>
+    <span class="c1"># Instantiate the default filter for the first time and cache it.</span>
+    <span class="k">return</span> <span class="n">import_string</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_EXCEPTION_REPORTER_FILTER</span><span class="p">)()</span>
+
+
+<span class="k">def</span> <span class="nf">get_exception_reporter_filter</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">default_filter</span> <span class="o">=</span> <span class="n">get_default_exception_reporter_filter</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;exception_reporter_filter&#39;</span><span class="p">,</span> <span class="n">default_filter</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ExceptionReporterFilter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base for all exception reporter filter classes. All overridable hooks</span>
+<span class="sd">    contain lenient default behaviors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_post_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">request</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span>
+
+    <span class="k">def</span> <span class="nf">get_traceback_frame_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">tb_frame</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">tb_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+
+<div class="viewcode-block" id="SafeExceptionReporterFilter"><a class="viewcode-back" href="../../../../howto/error-reporting/#django.views.debug.SafeExceptionReporterFilter">[docs]</a><span class="k">class</span> <span class="nc">SafeExceptionReporterFilter</span><span class="p">(</span><span class="n">ExceptionReporterFilter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Use annotations made by the sensitive_post_parameters and</span>
+<span class="sd">    sensitive_variables decorators to filter out sensitive information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SafeExceptionReporterFilter.is_active"><a class="viewcode-back" href="../../../../howto/error-reporting/#django.views.debug.SafeExceptionReporterFilter.is_active">[docs]</a>    <span class="k">def</span> <span class="nf">is_active</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This filter is to add safety in production environments (i.e. DEBUG</span>
+<span class="sd">        is False). If DEBUG is True then your site is not safe anyway.</span>
+<span class="sd">        This hook is provided as a convenience to easily activate or</span>
+<span class="sd">        deactivate the filter on a per request basis.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEBUG</span> <span class="ow">is</span> <span class="kc">False</span></div>
+
+    <span class="k">def</span> <span class="nf">get_cleansed_multivaluedict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">multivaluedict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Replace the keys in a MultiValueDict marked as sensitive with stars.</span>
+<span class="sd">        This mitigates leaking sensitive POST parameters if something like</span>
+<span class="sd">        request.POST[&#39;nonexistent_key&#39;] throws an exception (#21098).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sensitive_post_parameters</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;sensitive_post_parameters&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sensitive_post_parameters</span><span class="p">:</span>
+            <span class="n">multivaluedict</span> <span class="o">=</span> <span class="n">multivaluedict</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">sensitive_post_parameters</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">multivaluedict</span><span class="p">:</span>
+                    <span class="n">multivaluedict</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="n">CLEANSED_SUBSTITUTE</span>
+        <span class="k">return</span> <span class="n">multivaluedict</span>
+
+<div class="viewcode-block" id="SafeExceptionReporterFilter.get_post_parameters"><a class="viewcode-back" href="../../../../howto/error-reporting/#django.views.debug.SafeExceptionReporterFilter.get_post_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">get_post_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Replace the values of POST parameters marked as sensitive with</span>
+<span class="sd">        stars (*********).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">request</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sensitive_post_parameters</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;sensitive_post_parameters&#39;</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sensitive_post_parameters</span><span class="p">:</span>
+                <span class="n">cleansed</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">sensitive_post_parameters</span> <span class="o">==</span> <span class="s1">&#39;__ALL__&#39;</span><span class="p">:</span>
+                    <span class="c1"># Cleanse all parameters.</span>
+                    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">cleansed</span><span class="p">:</span>
+                        <span class="n">cleansed</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">CLEANSED_SUBSTITUTE</span>
+                    <span class="k">return</span> <span class="n">cleansed</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Cleanse only the specified parameters.</span>
+                    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">sensitive_post_parameters</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">cleansed</span><span class="p">:</span>
+                            <span class="n">cleansed</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="n">CLEANSED_SUBSTITUTE</span>
+                    <span class="k">return</span> <span class="n">cleansed</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span></div>
+
+    <span class="k">def</span> <span class="nf">cleanse_special_types</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># If value is lazy or a complex object of another kind, this check</span>
+            <span class="c1"># might raise an exception. isinstance checks that lazy</span>
+            <span class="c1"># MultiValueDicts will have a return value.</span>
+            <span class="n">is_multivalue_dict</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">MultiValueDict</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{!r}</span><span class="s1"> while evaluating </span><span class="si">{!r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">is_multivalue_dict</span><span class="p">:</span>
+            <span class="c1"># Cleanse MultiValueDicts (request.POST is the one we usually care about)</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cleansed_multivaluedict</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+<div class="viewcode-block" id="SafeExceptionReporterFilter.get_traceback_frame_variables"><a class="viewcode-back" href="../../../../howto/error-reporting/#django.views.debug.SafeExceptionReporterFilter.get_traceback_frame_variables">[docs]</a>    <span class="k">def</span> <span class="nf">get_traceback_frame_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">tb_frame</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Replace the values of variables marked as sensitive with</span>
+<span class="sd">        stars (*********).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Loop through the frame&#39;s callers to see if the sensitive_variables</span>
+        <span class="c1"># decorator was used.</span>
+        <span class="n">current_frame</span> <span class="o">=</span> <span class="n">tb_frame</span><span class="o">.</span><span class="n">f_back</span>
+        <span class="n">sensitive_variables</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">while</span> <span class="n">current_frame</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">current_frame</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_name</span> <span class="o">==</span> <span class="s1">&#39;sensitive_variables_wrapper&#39;</span> <span class="ow">and</span>
+                    <span class="s1">&#39;sensitive_variables_wrapper&#39;</span> <span class="ow">in</span> <span class="n">current_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">):</span>
+                <span class="c1"># The sensitive_variables decorator was used, so we take note</span>
+                <span class="c1"># of the sensitive variables&#39; names.</span>
+                <span class="n">wrapper</span> <span class="o">=</span> <span class="n">current_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">[</span><span class="s1">&#39;sensitive_variables_wrapper&#39;</span><span class="p">]</span>
+                <span class="n">sensitive_variables</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="s1">&#39;sensitive_variables&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="n">current_frame</span> <span class="o">=</span> <span class="n">current_frame</span><span class="o">.</span><span class="n">f_back</span>
+
+        <span class="n">cleansed</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_active</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sensitive_variables</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sensitive_variables</span> <span class="o">==</span> <span class="s1">&#39;__ALL__&#39;</span><span class="p">:</span>
+                <span class="c1"># Cleanse all variables</span>
+                <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tb_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">:</span>
+                    <span class="n">cleansed</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">CLEANSED_SUBSTITUTE</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Cleanse specified variables</span>
+                <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">tb_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">sensitive_variables</span><span class="p">:</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="n">CLEANSED_SUBSTITUTE</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanse_special_types</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                    <span class="n">cleansed</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Potentially cleanse the request and any MultiValueDicts if they</span>
+            <span class="c1"># are one of the frame variables.</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">tb_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">cleansed</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanse_special_types</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">tb_frame</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_name</span> <span class="o">==</span> <span class="s1">&#39;sensitive_variables_wrapper&#39;</span> <span class="ow">and</span>
+                <span class="s1">&#39;sensitive_variables_wrapper&#39;</span> <span class="ow">in</span> <span class="n">tb_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="p">):</span>
+            <span class="c1"># For good measure, obfuscate the decorated function&#39;s arguments in</span>
+            <span class="c1"># the sensitive_variables decorator&#39;s frame, in case the variables</span>
+            <span class="c1"># associated with those arguments were meant to be obfuscated from</span>
+            <span class="c1"># the decorated function&#39;s frame.</span>
+            <span class="n">cleansed</span><span class="p">[</span><span class="s1">&#39;func_args&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">CLEANSED_SUBSTITUTE</span>
+            <span class="n">cleansed</span><span class="p">[</span><span class="s1">&#39;func_kwargs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">CLEANSED_SUBSTITUTE</span>
+
+        <span class="k">return</span> <span class="n">cleansed</span><span class="o">.</span><span class="n">items</span><span class="p">()</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">ExceptionReporter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Organize and coordinate reporting on exceptions.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">is_email</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">request</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filter</span> <span class="o">=</span> <span class="n">get_exception_reporter_filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exc_type</span> <span class="o">=</span> <span class="n">exc_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exc_value</span> <span class="o">=</span> <span class="n">exc_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tb</span> <span class="o">=</span> <span class="n">tb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_email</span> <span class="o">=</span> <span class="n">is_email</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">template_info</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exc_value</span><span class="p">,</span> <span class="s1">&#39;template_debug&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">template_does_not_exist</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">postmortem</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">get_traceback_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a dictionary containing traceback information.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_type</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exc_type</span><span class="p">,</span> <span class="n">TemplateDoesNotExist</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">template_does_not_exist</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">postmortem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_value</span><span class="o">.</span><span class="n">chain</span> <span class="ow">or</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">exc_value</span><span class="p">]</span>
+
+        <span class="n">frames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_traceback_frames</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">frames</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;vars&#39;</span> <span class="ow">in</span> <span class="n">frame</span><span class="p">:</span>
+                <span class="n">frame_vars</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">frame</span><span class="p">[</span><span class="s1">&#39;vars&#39;</span><span class="p">]:</span>
+                    <span class="n">v</span> <span class="o">=</span> <span class="n">pprint</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                    <span class="c1"># Trim large blobs of data</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4096</span><span class="p">:</span>
+                        <span class="n">v</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">... &lt;trimmed </span><span class="si">%d</span><span class="s1"> bytes string&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4096</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+                    <span class="n">frame_vars</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+                <span class="n">frame</span><span class="p">[</span><span class="s1">&#39;vars&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame_vars</span>
+            <span class="n">frames</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span>
+
+        <span class="n">unicode_hint</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_type</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exc_type</span><span class="p">,</span> <span class="ne">UnicodeError</span><span class="p">):</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exc_value</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exc_value</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">unicode_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_value</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">unicode_hint</span> <span class="o">=</span> <span class="n">force_text</span><span class="p">(</span>
+                    <span class="n">unicode_str</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="n">start</span> <span class="o">-</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span><span class="nb">min</span><span class="p">(</span><span class="n">end</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">unicode_str</span><span class="p">))],</span>
+                    <span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span>
+                <span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">django</span> <span class="k">import</span> <span class="n">get_version</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">user_str</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">user_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="c1"># request.user may raise OperationalError if the database is</span>
+                <span class="c1"># unavailable, for example.</span>
+                <span class="n">user_str</span> <span class="o">=</span> <span class="s1">&#39;[unable to retrieve the current user]&#39;</span>
+
+        <span class="n">c</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;is_email&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_email</span><span class="p">,</span>
+            <span class="s1">&#39;unicode_hint&#39;</span><span class="p">:</span> <span class="n">unicode_hint</span><span class="p">,</span>
+            <span class="s1">&#39;frames&#39;</span><span class="p">:</span> <span class="n">frames</span><span class="p">,</span>
+            <span class="s1">&#39;request&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span>
+            <span class="s1">&#39;user_str&#39;</span><span class="p">:</span> <span class="n">user_str</span><span class="p">,</span>
+            <span class="s1">&#39;filtered_POST_items&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">get_post_parameters</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span>
+            <span class="s1">&#39;settings&#39;</span><span class="p">:</span> <span class="n">get_safe_settings</span><span class="p">(),</span>
+            <span class="s1">&#39;sys_executable&#39;</span><span class="p">:</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span>
+            <span class="s1">&#39;sys_version_info&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%d</span><span class="s1">.</span><span class="si">%d</span><span class="s1">.</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span>
+            <span class="s1">&#39;server_time&#39;</span><span class="p">:</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+            <span class="s1">&#39;django_version_info&#39;</span><span class="p">:</span> <span class="n">get_version</span><span class="p">(),</span>
+            <span class="s1">&#39;sys_path&#39;</span><span class="p">:</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
+            <span class="s1">&#39;template_info&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">template_info</span><span class="p">,</span>
+            <span class="s1">&#39;template_does_not_exist&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">template_does_not_exist</span><span class="p">,</span>
+            <span class="s1">&#39;postmortem&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">postmortem</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">c</span><span class="p">[</span><span class="s1">&#39;request_GET_items&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="n">c</span><span class="p">[</span><span class="s1">&#39;request_FILES_items&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">FILES</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="n">c</span><span class="p">[</span><span class="s1">&#39;request_COOKIES_items&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">COOKIES</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="c1"># Check whether exception info is available</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_type</span><span class="p">:</span>
+            <span class="n">c</span><span class="p">[</span><span class="s1">&#39;exception_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_type</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_value</span><span class="p">:</span>
+            <span class="n">c</span><span class="p">[</span><span class="s1">&#39;exception_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exc_value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">frames</span><span class="p">:</span>
+            <span class="n">c</span><span class="p">[</span><span class="s1">&#39;lastframe&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frames</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">c</span>
+
+    <span class="k">def</span> <span class="nf">get_traceback_html</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return HTML version of debug 500 HTTP error page.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">Path</span><span class="p">(</span><span class="n">CURRENT_DIR</span><span class="p">,</span> <span class="s1">&#39;templates&#39;</span><span class="p">,</span> <span class="s1">&#39;technical_500.html&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">DEBUG_ENGINE</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_traceback_data</span><span class="p">(),</span> <span class="n">use_l10n</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_traceback_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return plain text version of debug 500 HTTP error page.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">Path</span><span class="p">(</span><span class="n">CURRENT_DIR</span><span class="p">,</span> <span class="s1">&#39;templates&#39;</span><span class="p">,</span> <span class="s1">&#39;technical_500.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">DEBUG_ENGINE</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_traceback_data</span><span class="p">(),</span> <span class="n">autoescape</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">use_l10n</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_lines_from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">context_lines</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">module_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return context_lines before and after lineno from file.</span>
+<span class="sd">        Return (pre_context_lineno, pre_context, context_line, post_context).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">loader</span><span class="p">,</span> <span class="s1">&#39;get_source&#39;</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">source</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_source</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">source</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+                    <span class="n">source</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">OSError</span><span class="p">,</span> <span class="ne">IOError</span><span class="p">):</span>
+                <span class="k">pass</span>
+        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[],</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[]</span>
+
+        <span class="c1"># If we just read the source from a file, or if the loader did not</span>
+        <span class="c1"># apply tokenize.detect_encoding to decode the source into a</span>
+        <span class="c1"># string, then we should do that ourselves.</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;ascii&#39;</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">source</span><span class="p">[:</span><span class="mi">2</span><span class="p">]:</span>
+                <span class="c1"># File coding may be specified. Match pattern from PEP-263</span>
+                <span class="c1"># (http://www.python.org/dev/peps/pep-0263/)</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">br</span><span class="s1">&#39;coding[:=]\s*([-\w.]+)&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="n">encoding</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+                    <span class="k">break</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">sline</span><span class="p">,</span> <span class="n">encoding</span><span class="p">,</span> <span class="s1">&#39;replace&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">sline</span> <span class="ow">in</span> <span class="n">source</span><span class="p">]</span>
+
+        <span class="n">lower_bound</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lineno</span> <span class="o">-</span> <span class="n">context_lines</span><span class="p">)</span>
+        <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">lineno</span> <span class="o">+</span> <span class="n">context_lines</span>
+
+        <span class="n">pre_context</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="n">lower_bound</span><span class="p">:</span><span class="n">lineno</span><span class="p">]</span>
+        <span class="n">context_line</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="n">lineno</span><span class="p">]</span>
+        <span class="n">post_context</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="n">lineno</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">upper_bound</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">lower_bound</span><span class="p">,</span> <span class="n">pre_context</span><span class="p">,</span> <span class="n">context_line</span><span class="p">,</span> <span class="n">post_context</span>
+
+    <span class="k">def</span> <span class="nf">get_traceback_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">explicit_or_implicit_cause</span><span class="p">(</span><span class="n">exc_value</span><span class="p">):</span>
+            <span class="n">explicit</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">exc_value</span><span class="p">,</span> <span class="s1">&#39;__cause__&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">implicit</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">exc_value</span><span class="p">,</span> <span class="s1">&#39;__context__&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">explicit</span> <span class="ow">or</span> <span class="n">implicit</span>
+
+        <span class="c1"># Get the exception and all its causes</span>
+        <span class="n">exceptions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">exc_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_value</span>
+        <span class="k">while</span> <span class="n">exc_value</span><span class="p">:</span>
+            <span class="n">exceptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exc_value</span><span class="p">)</span>
+            <span class="n">exc_value</span> <span class="o">=</span> <span class="n">explicit_or_implicit_cause</span><span class="p">(</span><span class="n">exc_value</span><span class="p">)</span>
+
+        <span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># No exceptions were supplied to ExceptionReporter</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">exceptions</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">frames</span>
+
+        <span class="c1"># In case there&#39;s just one exception, take the traceback from self.tb</span>
+        <span class="n">exc_value</span> <span class="o">=</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">tb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tb</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">exceptions</span> <span class="k">else</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">__traceback__</span>
+
+        <span class="k">while</span> <span class="n">tb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Support for __traceback_hide__ which is used by a few libraries</span>
+            <span class="c1"># to hide internal frames.</span>
+            <span class="k">if</span> <span class="n">tb</span><span class="o">.</span><span class="n">tb_frame</span><span class="o">.</span><span class="n">f_locals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__traceback_hide__&#39;</span><span class="p">):</span>
+                <span class="n">tb</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">tb_next</span>
+                <span class="k">continue</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">tb_frame</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_filename</span>
+            <span class="n">function</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">tb_frame</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_name</span>
+            <span class="n">lineno</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">tb_lineno</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">loader</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">tb_frame</span><span class="o">.</span><span class="n">f_globals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__loader__&#39;</span><span class="p">)</span>
+            <span class="n">module_name</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">tb_frame</span><span class="o">.</span><span class="n">f_globals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__name__&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">pre_context_lineno</span><span class="p">,</span> <span class="n">pre_context</span><span class="p">,</span> <span class="n">context_line</span><span class="p">,</span> <span class="n">post_context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_lines_from_file</span><span class="p">(</span>
+                <span class="n">filename</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">loader</span><span class="p">,</span> <span class="n">module_name</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">pre_context_lineno</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">pre_context_lineno</span> <span class="o">=</span> <span class="n">lineno</span>
+                <span class="n">pre_context</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">context_line</span> <span class="o">=</span> <span class="s1">&#39;&lt;source code not available&gt;&#39;</span>
+                <span class="n">post_context</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;exc_cause&#39;</span><span class="p">:</span> <span class="n">explicit_or_implicit_cause</span><span class="p">(</span><span class="n">exc_value</span><span class="p">),</span>
+                <span class="s1">&#39;exc_cause_explicit&#39;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">exc_value</span><span class="p">,</span> <span class="s1">&#39;__cause__&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+                <span class="s1">&#39;tb&#39;</span><span class="p">:</span> <span class="n">tb</span><span class="p">,</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;django&#39;</span> <span class="k">if</span> <span class="n">module_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;django.&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">filename</span><span class="p">,</span>
+                <span class="s1">&#39;function&#39;</span><span class="p">:</span> <span class="n">function</span><span class="p">,</span>
+                <span class="s1">&#39;lineno&#39;</span><span class="p">:</span> <span class="n">lineno</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s1">&#39;vars&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">get_traceback_frame_variables</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="n">tb</span><span class="o">.</span><span class="n">tb_frame</span><span class="p">),</span>
+                <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="nb">id</span><span class="p">(</span><span class="n">tb</span><span class="p">),</span>
+                <span class="s1">&#39;pre_context&#39;</span><span class="p">:</span> <span class="n">pre_context</span><span class="p">,</span>
+                <span class="s1">&#39;context_line&#39;</span><span class="p">:</span> <span class="n">context_line</span><span class="p">,</span>
+                <span class="s1">&#39;post_context&#39;</span><span class="p">:</span> <span class="n">post_context</span><span class="p">,</span>
+                <span class="s1">&#39;pre_context_lineno&#39;</span><span class="p">:</span> <span class="n">pre_context_lineno</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="p">})</span>
+
+            <span class="c1"># If the traceback for current exception is consumed, try the</span>
+            <span class="c1"># other exception.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">tb</span><span class="o">.</span><span class="n">tb_next</span> <span class="ow">and</span> <span class="n">exceptions</span><span class="p">:</span>
+                <span class="n">exc_value</span> <span class="o">=</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">tb</span> <span class="o">=</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">__traceback__</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tb</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">tb_next</span>
+
+        <span class="k">return</span> <span class="n">frames</span>
+
+
+<span class="k">def</span> <span class="nf">technical_404_response</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a technical 404 error response. `exception` is the Http404.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">error_url</span> <span class="o">=</span> <span class="n">exception</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">):</span>
+        <span class="n">error_url</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path_info</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># Trim leading slash</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">tried</span> <span class="o">=</span> <span class="n">exception</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;tried&#39;</span><span class="p">]</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="ne">KeyError</span><span class="p">):</span>
+        <span class="n">tried</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">tried</span> <span class="ow">or</span> <span class="p">(</span>                  <span class="c1"># empty URLconf</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">path</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span> <span class="ow">and</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">tried</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span>             <span class="c1"># default URLconf</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">tried</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="n">tried</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;app_name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tried</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;namespace&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;admin&#39;</span>
+        <span class="p">)):</span>
+            <span class="k">return</span> <span class="n">default_urlconf</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+    <span class="n">urlconf</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;urlconf&#39;</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">ROOT_URLCONF</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">urlconf</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">):</span>
+        <span class="n">urlconf</span> <span class="o">=</span> <span class="n">urlconf</span><span class="o">.</span><span class="vm">__name__</span>
+
+    <span class="n">caller</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">resolver_match</span> <span class="o">=</span> <span class="n">resolve</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">Resolver404</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">resolver_match</span><span class="o">.</span><span class="n">func</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">):</span>
+            <span class="n">caller</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;__class__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">):</span>
+            <span class="n">caller</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;__module__&#39;</span><span class="p">):</span>
+            <span class="n">module</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__module__</span>
+            <span class="n">caller</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">caller</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">Path</span><span class="p">(</span><span class="n">CURRENT_DIR</span><span class="p">,</span> <span class="s1">&#39;templates&#39;</span><span class="p">,</span> <span class="s1">&#39;technical_404.html&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">DEBUG_ENGINE</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">Context</span><span class="p">({</span>
+        <span class="s1">&#39;urlconf&#39;</span><span class="p">:</span> <span class="n">urlconf</span><span class="p">,</span>
+        <span class="s1">&#39;root_urlconf&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">ROOT_URLCONF</span><span class="p">,</span>
+        <span class="s1">&#39;request_path&#39;</span><span class="p">:</span> <span class="n">error_url</span><span class="p">,</span>
+        <span class="s1">&#39;urlpatterns&#39;</span><span class="p">:</span> <span class="n">tried</span><span class="p">,</span>
+        <span class="s1">&#39;reason&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">exception</span><span class="p">),</span>
+        <span class="s1">&#39;request&#39;</span><span class="p">:</span> <span class="n">request</span><span class="p">,</span>
+        <span class="s1">&#39;settings&#39;</span><span class="p">:</span> <span class="n">get_safe_settings</span><span class="p">(),</span>
+        <span class="s1">&#39;raising_view_name&#39;</span><span class="p">:</span> <span class="n">caller</span><span class="p">,</span>
+    <span class="p">})</span>
+    <span class="k">return</span> <span class="n">HttpResponseNotFound</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">default_urlconf</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an empty URLconf 404 error response.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">Path</span><span class="p">(</span><span class="n">CURRENT_DIR</span><span class="p">,</span> <span class="s1">&#39;templates&#39;</span><span class="p">,</span> <span class="s1">&#39;default_urlconf.html&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">DEBUG_ENGINE</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">Context</span><span class="p">({</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="n">get_docs_version</span><span class="p">(),</span>
+    <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">content_type</span><span class="o">=</span><span class="s1">&#39;text/html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Thomas Kwon donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../../">Module code</a>
+      
+      <ul><li><a href="../../">django</a>
+      
+      <ul><li>django.views.debug</li></ul>
+      </li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

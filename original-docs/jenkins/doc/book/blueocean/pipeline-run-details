@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Pipeline Run Details View
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Pipeline Run Details View' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Pipeline Run Details View' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Pipeline Run Details View' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/book/blueocean/pipeline-run-details/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Pipeline Run Details View' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<p>
+<a href="https://jenkins.io/doc" class="">Jenkins User Documentation Home</a>
+</p>
+<h4>
+Guided Tour
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/getting-started" class="">Getting started</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/hello-world" class="">Creating your first Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps" class="">Running multiple steps</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/agents" class="">Defining execution environments</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/environment" class="">Using environment variables</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/tests-and-artifacts" class="">Recording test results and artifacts</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/post" class="">Cleaning up and notifications</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/deployment" class="">Deployment</a>
+</li>
+</ul>
+<h4>
+Tutorials
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/tutorials" class="">Overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-java-app-with-maven" class="">Build a Java app with Maven</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm" class="">Build a Node.js and React app with npm</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller" class="">Build a Python app with PyInstaller</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean" class="">Create a Pipeline in Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project" class="">End-to-End Multibranch Pipeline Project Creation</a>
+</li>
+</ul>
+<h4>
+User Handbook
+<span style='font-size: 0.6rem; vertical-align: middle;'>
+<a href='/user-handbook.pdf'>
+(PDF)
+</a>
+</span>
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/getting-started" class="">User Handbook overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/installing" class="">Installing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/using" class="">Using Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline" class="">Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean" class="active">Blue Ocean</a>
+<small>
+<ul style='padding-left: 1rem;'>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/getting-started" class="">Getting started with Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/creating-pipelines" class="">Creating a Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/dashboard" class="">Dashboard</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/activity" class="">Activity View</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/pipeline-run-details" class="active">Pipeline Run Details View</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/pipeline-editor" class="">Pipeline Editor</a>
+</li>
+</ul>
+</small>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing" class="">Managing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/system-administration" class="">System Administration</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/scaling" class="">Scaling Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/appendix" class="">Appendix</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/glossary" class="">Glossary</a>
+</li>
+</ul>
+<h4>
+Resources
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/steps" class="">Pipeline Steps reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/upgrade-guide" class="">LTS Upgrade Guide</a>
+</li>
+</ul>
+<h5>
+Recent Tutorial Blog Posts
+</h5>
+<ul>
+<li>
+<a href='/blog/2017/11/27/tutorials-in-the-jenkins-user-documentation/'>
+Introducing Tutorials in the Jenkins User Documentation
+</a>
+</li>
+<li>
+<a href='/blog/2017/05/18/pipeline-dev-tools/'>
+Pipeline Development Tools
+</a>
+</li>
+<li>
+<a href='/blog/2017/04/12/welcome-to-blue-ocean-dashboard/'>
+Getting Started with the Blue Ocean Dashboard
+</a>
+</li>
+</ul>
+<div class='small'>
+<a href='/node/tags/tutorial'>
+View all tutorial blog posts
+</a>
+</div>
+<p></p>
+</div>
+</div>
+<div class='col-lg-9'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='row'>
+<a class='prev doc-page-link' href='../activity'>
+⇐ Activity View
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='up doc-page-link' href='../'>
+⇑ Blue Ocean
+</a>
+</div>
+<div class='row'>
+<a class='index doc-page-link' href='../../'>
+Index
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='next doc-page-link' href='../pipeline-editor'>
+Pipeline Editor ⇒
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class='container'>
+<div class='row body'>
+<div class='section'>
+<h1>
+Pipeline Run Details View
+</h1>
+<!-- starting partial wip.adoc -->
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This section is a work in progress.
+Want to help?
+Check out the <a href="https://groups.google.com/forum/#!forum/jenkinsci-docs">jenkinsci-docs mailing list</a>.
+For other ways to contribute to the Jenkins project, see <a href="/participate">this page about participating and contributing</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<!-- ending partial wip.adoc -->
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#pipeline-run-status">Pipeline Run Status</a></li>
+<li><a href="#special-cases">Special cases</a>
+<ul class="sectlevel2">
+<li><a href="#pipelines-outside-of-souce-control">Pipelines outside of Souce Control</a></li>
+<li><a href="#freestyle-projects">Freestyle Projects</a></li>
+<li><a href="#matrix-projects">Matrix projects</a></li>
+</ul>
+</li>
+<li><a href="#tabs">Tabs</a>
+<ul class="sectlevel2">
+<li><a href="#pipeline">Pipeline</a></li>
+<li><a href="#changes">Changes</a></li>
+<li><a href="#tests">Tests</a></li>
+<li><a href="#artifacts">Artifacts</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Blue Ocean Pipeline Run Details view shows the information related to
+a single Pipeline Run and allows users to edit or replay that run.
+Below is a detailed overview of the parts of the Run Details view.</p>
+</div>
+<div class="paragraph">
+<p><span class="image center"><img src="../../resources/blueocean/pipeline-run-details/overview.png" alt="Overview of the Pipeline Run Details"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Run Status</strong> - This icon, along with the background color of the top menu bar,
+indicates the status of this Pipeline run.</p>
+</li>
+<li>
+<p><strong>Pipeline Name</strong> - The name of this run&#8217;s Pipeline.</p>
+</li>
+<li>
+<p><strong>Run Number</strong> - The id number for this Pipeline run.
+Id numbers unique for each Branch (and Pull Request) of a Pipeline.</p>
+</li>
+<li>
+<p><strong>Tab Selector</strong> - View one of the detail <a href="#tabs">tabs</a> for this run.
+The default is "<a href="#pipeline">Pipeline</a>".</p>
+</li>
+<li>
+<p><strong>Re-run Pipeline</strong> - Execute this run&#8217;s Pipeline again.</p>
+</li>
+<li>
+<p><strong>Edit Pipeline</strong> - Open this run&#8217;s Pipeline in the <a href="../pipeline-editor/">Pipeline Editor</a>.</p>
+</li>
+<li>
+<p><strong>Go to Classic</strong> - Switch to the "Classic" UI view of the details for this run.</p>
+</li>
+<li>
+<p><strong>Close Details</strong> - This closes the Details view and returns the user to the
+&lt;&lt;activity, Activity view&gt; for this Pipeline.</p>
+</li>
+<li>
+<p><strong>Branch</strong> or <strong>Pull Request</strong> - the branch or pull request for this run.</p>
+</li>
+<li>
+<p><strong>Commit Id</strong> - Commit id for this run.</p>
+</li>
+<li>
+<p><strong>Duration</strong> - The duration of this run.</p>
+</li>
+<li>
+<p><strong>Completed Time</strong> - How long ago the this run completed.</p>
+</li>
+<li>
+<p><strong>Change Author</strong> - Names of the authors with changes in this run.</p>
+</li>
+<li>
+<p><strong>Tab View</strong> - Shows the information for the selected tab.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pipeline-run-status"><a class="anchor" href="#pipeline-run-status"></a>Pipeline Run Status</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Blue Ocean makes it easy to see the status of the current Pipeline Run by
+changing the color of the top menu bar to match the status:
+blue for "In progress", green for "Passed", yellow for "Unstable",
+red for "Failed", and gray for "Aborted".</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="special-cases"><a class="anchor" href="#special-cases"></a>Special cases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Blue Ocean is optimized for working with Pipelines in Source Control,
+but it can display details for other kinds of projects as well.
+Blue Ocean offers the same <a href="#tabs">tabs</a> for all supported projects types,
+but those tabs may display different information.</p>
+</div>
+<div class="sect2">
+<h3 id="pipelines-outside-of-souce-control"><a class="anchor" href="#pipelines-outside-of-souce-control"></a>Pipelines outside of Souce Control</h3>
+<div class="paragraph">
+<p>For Pipelines that are not based on Source Control,
+Blue Ocean still shows the "Commit Id", "Branch", and "Changes",
+but those fields are left blank.
+In this case, the top menu bar does not include the "Edit" option.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="freestyle-projects"><a class="anchor" href="#freestyle-projects"></a>Freestyle Projects</h3>
+<div class="paragraph">
+<p>For Freestyle projects, Blue Ocean still offers the same <a href="#tabs">tabs</a>,
+but the Pipeline tab only shows the console log output.
+The "Rerun" or "Edit" options are also not shown in the top menu bar.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="matrix-projects"><a class="anchor" href="#matrix-projects"></a>Matrix projects</h3>
+<div class="paragraph">
+<p>Matrix projects are not supported in Blue Ocean.
+Viewing a Matrix project will redirect to the "Classic UI" view for that project.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tabs"><a class="anchor" href="#tabs"></a>Tabs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each of the tabs of the Run Detail view provides information on a specific
+aspect of a run.</p>
+</div>
+<div class="sect2">
+<h3 id="pipeline"><a class="anchor" href="#pipeline"></a>Pipeline</h3>
+<div class="paragraph">
+<p>This is the default tab and gives an overall view of the flow of this Pipeline Run.
+It shows each stage and parallel branch, the steps in those stages,
+and the console output from those steps.  The overview image above shows a successful Pipeline run.
+If a particular step during the run fails, this tab will automatically default to
+showing the console log from the failed step.
+The image below shows a failed Run.</p>
+</div>
+<div class="paragraph">
+<p><span class="image center"><img src="../../resources/blueocean/pipeline-run-details/pipeline-failed.png" alt="Failed Run"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changes"><a class="anchor" href="#changes"></a>Changes</h3>
+<div class="paragraph">
+<p><span class="image center"><img src="../../resources/blueocean/pipeline-run-details/changes-one-change.png" alt="List of Changes for a Run"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tests"><a class="anchor" href="#tests"></a>Tests</h3>
+<div class="paragraph">
+<p>The "Tests" tab shows information about test results for this run.
+This tab will only contain information if a test result publishing step,
+such as the "Publish JUnit test results" (<code>junit</code>) step.
+If no results are recorded this table will say that,
+If all tests pass, this tab will report the total number of passing tests.
+In the case of failures, the tab will display logs details from the failures as shown below.</p>
+</div>
+<div class="paragraph">
+<p><span class="image center"><img src="../../resources/blueocean/pipeline-run-details/tests-unstable.png" alt="Test Results for Unstable Run"></span></p>
+</div>
+<div class="paragraph">
+<p>When the previous Run had failures and the current run fixes those failures,
+this tab will note the fixed texts and display their logs as well.</p>
+</div>
+<div class="paragraph">
+<p><span class="image center"><img src="../../resources/blueocean/pipeline-run-details/tests-fixed.png" alt="Test Results for Fixed Run"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="artifacts"><a class="anchor" href="#artifacts"></a>Artifacts</h3>
+<div class="paragraph">
+<p>The "Artifacts" tabs show a list of any artifacts saved using the "Archive Artifacts" (<code>archive</code>) step.
+Clicking on a item in the list will download it.
+The full output log from the Run can be downloaded from this list.</p>
+</div>
+<div class="paragraph">
+<p><span class="image center"><img src="../../resources/blueocean/pipeline-run-details/artifacts-list.png" alt="List of Artifacts from a Run"></span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='row'>
+<a class='prev doc-page-link' href='../activity'>
+⇐ Activity View
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='up doc-page-link' href='../'>
+⇑ Blue Ocean
+</a>
+</div>
+<div class='row'>
+<a class='index doc-page-link' href='../../'>
+Index
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='next doc-page-link' href='../pipeline-editor'>
+Pipeline Editor ⇒
+</a>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'></div>
+<!-- starting partial _feedback-footer.html -->
+<!-- HTML inclusion for chapter and section layouts (i.e. as footers) as well as
+     for use in AsciiDoc file inclusions. -->
+
+<!--
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+-->
+
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(window.location.href);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<p><a href="#feedback" data-toggle="collapse">Was this page helpful?</a></p>
+
+<div id="feedback" class="collapse">
+
+<p>Please submit your feedback about this page through this
+<a href="/doc/feedback-form/">quick form</a>.</p>
+
+<p>Alternatively, if you don't wish to complete the quick form, you can simply
+indicate if you found this page helpful?</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the current URL into the form. -->
+<input type="hidden" name="entry.1246830226" id="current-url" value=""/>
+
+<!-- The answer bit -->
+<p><input type="radio" name="entry.790002525" id="h1" value="Yes" required/>
+<label for="h1">Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="entry.790002525" id="h2" value="No"/>
+<label for="h2">No</label></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+</form>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1IIdpVs39JDYKg0sLQIv-MNO928qcGApAIfdW5ohfD78" target="_blank">here</a>.</p>
+
+</div>
+
+<!-- ending partial _feedback-footer.html -->
+
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<p class='box'>
+<a href='https://github.com/jenkins-infra/jenkins.io/edit/master/content//doc/book/blueocean/pipeline-run-details.adoc' title='Edit /doc/book/blueocean/pipeline-run-details.adoc on GitHub'>
+Improve this page
+</a>
+|
+<a href='https://github.com/jenkins-infra/jenkins.io/commits/master/content//doc/book/blueocean/pipeline-run-details.adoc' title='View /doc/book/blueocean/pipeline-run-details.adoc history on GitHub'>
+Page history
+</a>
+</p>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

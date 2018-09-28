@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Working with Git and GitHub | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+     
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/working-with-git/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/internals/contributing/writing-code/working-with-git/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/internals/contributing/writing-code/working-with-git/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/internals/contributing/writing-code/working-with-git/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/internals/contributing/writing-code/working-with-git/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/internals/contributing/writing-code/working-with-git/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/internals/contributing/writing-code/working-with-git/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/internals/contributing/writing-code/working-with-git/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/internals/contributing/writing-code/working-with-git/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/internals/contributing/writing-code/working-with-git/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/internals/contributing/writing-code/working-with-git/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/internals/contributing/writing-code/working-with-git/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/internals/contributing/writing-code/working-with-git/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/internals/contributing/writing-code/working-with-git/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/internals/contributing/writing-code/working-with-git/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/internals/contributing/writing-code/working-with-git/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/internals/contributing/writing-code/working-with-git/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/internals/contributing/writing-code/working-with-git/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/internals/contributing/writing-code/working-with-git/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/internals/contributing/writing-code/working-with-git/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/internals/contributing/writing-code/working-with-git/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/internals/contributing/writing-code/working-with-git/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/internals/contributing/writing-code/working-with-git/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/internals/contributing/writing-code/working-with-git/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/internals/contributing/writing-code/working-with-git/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/internals/contributing/writing-code/working-with-git/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/internals/contributing/writing-code/working-with-git/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/working-with-git/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-working-with-git-and-github">
+<span id="working-with-git-and-github"></span><h1>Working with Git and GitHub<a class="headerlink" href="#working-with-git-and-github" title="Permalink to this headline">¶</a></h1>
+<p>This section explains how the community can contribute code to Django via pull
+requests. If you’re interested in how committers handle them, see
+<a class="reference internal" href="../../committing-code/"><span class="doc">Committing code</span></a>.</p>
+<p>Below, we are going to show how to create a GitHub pull request containing the
+changes for Trac ticket #xxxxx. By creating a fully-ready pull request, you
+will make the reviewer’s job easier, meaning that your work is more likely to
+be merged into Django.</p>
+<p>You could also upload a traditional patch to Trac, but it’s less practical for
+reviews.</p>
+<div class="section" id="s-installing-git">
+<span id="installing-git"></span><h2>Installing Git<a class="headerlink" href="#installing-git" title="Permalink to this headline">¶</a></h2>
+<p>Django uses <a class="reference external" href="https://git-scm.com/">Git</a> for its source control. You can <a class="reference external" href="https://git-scm.com/download">download</a> Git, but it’s often easier to install with
+your operating system’s package manager.</p>
+<p>Django’s <a class="reference external" href="https://github.com/django/django/">Git repository</a> is hosted on <a class="reference external" href="https://github.com/">GitHub</a>, and it is recommended
+that you also work using GitHub.</p>
+<p>After installing Git, the first thing you should do is setup your name and
+email:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git config --global user.name &quot;Your Real Name&quot;
+$ git config --global user.email &quot;you@email.com&quot;
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">user.name</span></code> should be your real name, not your GitHub nick. GitHub
+should know the email you use in the <code class="docutils literal notranslate"><span class="pre">user.email</span></code> field, as this will be
+used to associate your commits with your GitHub account.</p>
+</div>
+<div class="section" id="s-setting-up-local-repository">
+<span id="setting-up-local-repository"></span><h2>Setting up local repository<a class="headerlink" href="#setting-up-local-repository" title="Permalink to this headline">¶</a></h2>
+<p>When you have created your GitHub account, with the nick “GitHub_nick”, and
+<a class="reference external" href="https://github.com/django/django/fork">forked Django’s repository</a>,
+create a local copy of your fork:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">GitHub_nick</span><span class="o">/</span><span class="n">django</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>This will create a new directory “django”, containing a clone of your GitHub
+repository. The rest of the git commands on this page need to be run within the
+cloned directory, so switch to it now:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">django</span>
+</pre></div>
+</div>
+<p>Your GitHub repository will be called “origin” in Git.</p>
+<p>You should also setup <code class="docutils literal notranslate"><span class="pre">django/django</span></code> as an “upstream” remote (that is, tell
+git that the reference Django repository was the source of your fork of it):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">upstream</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">django</span><span class="o">/</span><span class="n">django</span><span class="o">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">fetch</span> <span class="n">upstream</span>
+</pre></div>
+</div>
+<p>You can add other remotes similarly, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">akaariai</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">akaariai</span><span class="o">/</span><span class="n">django</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="s-working-on-a-ticket">
+<span id="working-on-a-ticket"></span><h2>Working on a ticket<a class="headerlink" href="#working-on-a-ticket" title="Permalink to this headline">¶</a></h2>
+<p>When working on a ticket, create a new branch for the work, and base that work
+on upstream/master:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">ticket_xxxxx</span> <span class="n">upstream</span><span class="o">/</span><span class="n">master</span>
+</pre></div>
+</div>
+<p>The -b flag creates a new branch for you locally. Don’t hesitate to create new
+branches even for the smallest things - that’s what they are there for.</p>
+<p>If instead you were working for a fix on the 1.4 branch, you would do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">ticket_xxxxx_1_4</span> <span class="n">upstream</span><span class="o">/</span><span class="n">stable</span><span class="o">/</span><span class="mf">1.4</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+<p>Assume the work is carried on the ticket_xxxxx branch. Make some changes and
+commit them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span>
+</pre></div>
+</div>
+<p>When writing the commit message, follow the <a class="reference internal" href="../../committing-code/#committing-guidelines"><span class="std std-ref">commit message
+guidelines</span></a> to ease the work of the committer. If
+you’re uncomfortable with English, try at least to describe precisely what the
+commit does.</p>
+<p>If you need to do additional work on your branch, commit as often as
+necessary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s1">&#39;Added two more tests for edge cases&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="s-publishing-work">
+<span id="publishing-work"></span><h3>Publishing work<a class="headerlink" href="#publishing-work" title="Permalink to this headline">¶</a></h3>
+<p>You can publish your work on GitHub just by doing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">ticket_xxxxx</span>
+</pre></div>
+</div>
+<p>When you go to your GitHub page, you will notice a new branch has been created.</p>
+<p>If you are working on a Trac ticket, you should mention in the ticket that
+your work is available from branch ticket_xxxxx of your GitHub repo. Include a
+link to your branch.</p>
+<p>Note that the above branch is called a “topic branch” in Git parlance. You are
+free to rewrite the history of this branch, by using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span></code> for
+example. Other people shouldn’t base their work on such a branch, because
+their clone would become corrupt when you edit commits.</p>
+<p>There are also “public branches”. These are branches other people are supposed
+to fork, so the history of these branches should never change. Good examples
+of public branches are the <code class="docutils literal notranslate"><span class="pre">master</span></code> and <code class="docutils literal notranslate"><span class="pre">stable/A.B.x</span></code> branches in the
+<code class="docutils literal notranslate"><span class="pre">django/django</span></code> repository.</p>
+<p>When you think your work is ready to be pulled into Django, you should create
+a pull request at GitHub. A good pull request means:</p>
+<ul class="simple">
+<li>commits with one logical change in each, following the
+<a class="reference internal" href="../coding-style/"><span class="doc">coding style</span></a>,</li>
+<li>well-formed messages for each commit: a summary line and then paragraphs
+wrapped at 72 characters thereafter – see the <a class="reference internal" href="../../committing-code/#committing-guidelines"><span class="std std-ref">committing guidelines</span></a> for more details,</li>
+<li>documentation and tests, if needed – actually tests are always needed,
+except for documentation changes.</li>
+</ul>
+<p>The test suite must pass and the documentation must build without warnings.</p>
+<p>Once you have created your pull request, you should add a comment in the
+related Trac ticket explaining what you’ve done. In particular, you should note
+the environment in which you ran the tests, for instance: “all tests pass
+under SQLite and MySQL”.</p>
+<p>Pull requests at GitHub have only two states: open and closed. The committer
+who will deal with your pull request has only two options: merge it or close
+it. For this reason, it isn’t useful to make a pull request until the code is
+ready for merging – or sufficiently close that a committer will finish it
+himself.</p>
+</div>
+<div class="section" id="s-rebasing-branches">
+<span id="rebasing-branches"></span><h3>Rebasing branches<a class="headerlink" href="#rebasing-branches" title="Permalink to this headline">¶</a></h3>
+<p>In the example above, you created two commits, the “Fixed ticket_xxxxx” commit
+and “Added two more tests” commit.</p>
+<p>We do not want to have the entire history of your working process in your
+repository. Your commit “Added two more tests” would be unhelpful noise.
+Instead, we would rather only have one commit containing all your work.</p>
+<p>To rework the history of your branch you can squash the commits into one by
+using interactive rebase:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>The HEAD~2 above is shorthand for two latest commits. The above command
+will open an editor showing the two commits, prefixed with the word “pick”.</p>
+<p>Change “pick” on the second line to “squash” instead. This will keep the
+first commit, and squash the second commit into the first one. Save and quit
+the editor. A second editor window should open, so you can reword the
+commit message for the commit now that it includes both your steps.</p>
+<p>You can also use the “edit” option in rebase. This way you can change a single
+commit, for example to fix a typo in a docstring:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">3</span>
+<span class="c1"># Choose edit, pick, pick for the commits</span>
+<span class="c1"># Now you are able to rework the commit (use git add normally to add changes)</span>
+<span class="c1"># When finished, commit work with &quot;--amend&quot; and continue</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">amend</span>
+<span class="c1"># Reword the commit message if needed</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="o">--</span><span class="k">continue</span>
+<span class="c1"># The second and third commits should be applied.</span>
+</pre></div>
+</div>
+<p>If your topic branch is already published at GitHub, for example if you’re
+making minor changes to take into account a review, you will need to force-push
+the changes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">f</span> <span class="n">origin</span> <span class="n">ticket_xxxxx</span>
+</pre></div>
+</div>
+<p>Note that this will rewrite history of ticket_xxxxx - if you check the commit
+hashes before and after the operation at GitHub you will notice that the
+commit hashes do not match anymore. This is acceptable, as the branch is merely
+a topic branch, and nobody should be basing their work on it.</p>
+</div>
+<div class="section" id="s-after-upstream-has-changed">
+<span id="after-upstream-has-changed"></span><h3>After upstream has changed<a class="headerlink" href="#after-upstream-has-changed" title="Permalink to this headline">¶</a></h3>
+<p>When upstream (<code class="docutils literal notranslate"><span class="pre">django/django</span></code>) has changed, you should rebase your work. To
+do this, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">fetch</span> <span class="n">upstream</span>
+<span class="n">git</span> <span class="n">rebase</span>
+</pre></div>
+</div>
+<p>The work is automatically rebased using the branch you forked on, in the
+example case using <code class="docutils literal notranslate"><span class="pre">upstream/master</span></code>.</p>
+<p>The rebase command removes all your local commits temporarily, applies the
+upstream commits, and then applies your local commits again on the work.</p>
+<p>If there are merge conflicts, you will need to resolve them and then use <code class="docutils literal notranslate"><span class="pre">git</span>
+<span class="pre">rebase</span> <span class="pre">--continue</span></code>. At any point you can use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">--abort</span></code> to return
+to the original state.</p>
+<p>Note that you want to <em>rebase</em> on upstream, not <em>merge</em> the upstream.</p>
+<p>The reason for this is that by rebasing, your commits will always be <em>on
+top of</em> the upstream’s work, not <em>mixed in with</em> the changes in the upstream.
+This way your branch will contain only commits related to its topic, which
+makes squashing easier.</p>
+</div>
+<div class="section" id="s-after-review">
+<span id="after-review"></span><h3>After review<a class="headerlink" href="#after-review" title="Permalink to this headline">¶</a></h3>
+<p>It is unusual to get any non-trivial amount of code into core without changes
+requested by reviewers. In this case, it is often a good idea to add the
+changes as one incremental commit to your work. This allows the reviewer to
+easily check what changes you have done.</p>
+<p>In this case, do the changes required by the reviewer. Commit as often as
+necessary. Before publishing the changes, rebase your work. If you added two
+commits, you would run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>Squash the second commit into the first. Write a commit message along the lines
+of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Made</span> <span class="n">changes</span> <span class="n">asked</span> <span class="ow">in</span> <span class="n">review</span> <span class="n">by</span> <span class="o">&lt;</span><span class="n">reviewer</span><span class="o">&gt;</span>
+
+<span class="o">-</span> <span class="n">Fixed</span> <span class="n">whitespace</span> <span class="n">errors</span> <span class="ow">in</span> <span class="n">foobar</span>
+<span class="o">-</span> <span class="n">Reworded</span> <span class="n">the</span> <span class="n">docstring</span> <span class="n">of</span> <span class="n">bar</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Finally, push your work back to your GitHub repository. Since you didn’t touch
+the public commits during the rebase, you should not need to force-push:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">ticket_xxxxx</span>
+</pre></div>
+</div>
+<p>Your pull request should now contain the new commit too.</p>
+<p>Note that the committer is likely to squash the review commit into the previous
+commit when committing the code.</p>
+</div>
+</div>
+<div class="section" id="s-working-on-a-patch">
+<span id="working-on-a-patch"></span><h2>Working on a patch<a class="headerlink" href="#working-on-a-patch" title="Permalink to this headline">¶</a></h2>
+<p>One of the ways that developers can contribute to Django is by reviewing
+patches. Those patches will typically exist as pull requests on GitHub and
+can be easily integrated into your local repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">pull_xxxxx</span> <span class="n">upstream</span><span class="o">/</span><span class="n">master</span>
+<span class="n">curl</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">django</span><span class="o">/</span><span class="n">django</span><span class="o">/</span><span class="n">pull</span><span class="o">/</span><span class="n">xxxxx</span><span class="o">.</span><span class="n">patch</span> <span class="o">|</span> <span class="n">git</span> <span class="n">am</span>
+</pre></div>
+</div>
+<p>This will create a new branch and then apply the changes from the pull request
+to it. At this point you can run the tests or do anything else you need to
+do to investigate the quality of the patch.</p>
+<p>For more detail on working with pull requests see the
+<a class="reference internal" href="../../committing-code/#handling-pull-requests"><span class="std std-ref">guidelines for committers</span></a>.</p>
+</div>
+<div class="section" id="s-summary">
+<span id="summary"></span><h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Work on GitHub if you can.</li>
+<li>Announce your work on the Trac ticket by linking to your GitHub branch.</li>
+<li>When you have something ready, make a pull request.</li>
+<li>Make your pull requests as good as you can.</li>
+<li>When doing fixes to your work, use <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">-i</span></code> to squash the commits.</li>
+<li>When upstream has changed, do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">upstream;</span> <span class="pre">git</span> <span class="pre">rebase</span></code>.</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../submitting-patches/"><i class="icon icon-chevron-left"></i> Submitting patches</a></div>
+  
+  
+  <div class="right"><a href="../javascript/">JavaScript <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Jim Munro donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Working with Git and GitHub</a><ul>
+<li><a class="reference internal" href="#installing-git">Installing Git</a></li>
+<li><a class="reference internal" href="#setting-up-local-repository">Setting up local repository</a></li>
+<li><a class="reference internal" href="#working-on-a-ticket">Working on a ticket</a><ul>
+<li><a class="reference internal" href="#publishing-work">Publishing work</a></li>
+<li><a class="reference internal" href="#rebasing-branches">Rebasing branches</a></li>
+<li><a class="reference internal" href="#after-upstream-has-changed">After upstream has changed</a></li>
+<li><a class="reference internal" href="#after-review">After review</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#working-on-a-patch">Working on a patch</a></li>
+<li><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../submitting-patches/">Submitting patches</a></li>
+    
+    
+    <li>Next: <a href="../javascript/">JavaScript</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../../">Django internals</a>
+      
+      <ul><li><a href="../../">Contributing to Django</a>
+      
+      <ul><li><a href="../">Writing code</a>
+      
+      <ul><li>Working with Git and GitHub</li></ul>
+      </li></ul></li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

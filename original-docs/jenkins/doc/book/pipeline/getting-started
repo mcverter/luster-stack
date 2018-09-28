@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Getting started with Pipeline
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Getting started with Pipeline' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Getting started with Pipeline' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Getting started with Pipeline' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/book/pipeline/getting-started/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Getting started with Pipeline' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<p>
+<a href="https://jenkins.io/doc" class="">Jenkins User Documentation Home</a>
+</p>
+<h4>
+Guided Tour
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/getting-started" class="">Getting started</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/hello-world" class="">Creating your first Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps" class="">Running multiple steps</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/agents" class="">Defining execution environments</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/environment" class="">Using environment variables</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/tests-and-artifacts" class="">Recording test results and artifacts</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/post" class="">Cleaning up and notifications</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/deployment" class="">Deployment</a>
+</li>
+</ul>
+<h4>
+Tutorials
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/tutorials" class="">Overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-java-app-with-maven" class="">Build a Java app with Maven</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm" class="">Build a Node.js and React app with npm</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller" class="">Build a Python app with PyInstaller</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean" class="">Create a Pipeline in Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project" class="">End-to-End Multibranch Pipeline Project Creation</a>
+</li>
+</ul>
+<h4>
+User Handbook
+<span style='font-size: 0.6rem; vertical-align: middle;'>
+<a href='/user-handbook.pdf'>
+(PDF)
+</a>
+</span>
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/getting-started" class="">User Handbook overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/installing" class="">Installing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/using" class="">Using Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline" class="active">Pipeline</a>
+<small>
+<ul style='padding-left: 1rem;'>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/getting-started" class="active">Getting started with Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/jenkinsfile" class="">Using a Jenkinsfile</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/running-pipelines" class="">Running Pipelines</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/multibranch" class="">Branches and Pull Requests</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/docker" class="">Using Docker with Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/shared-libraries" class="">Extending with Shared Libraries</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/development" class="">Pipeline Development Tools</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/scaling-pipeline" class="">Scaling Pipelines</a>
+</li>
+</ul>
+</small>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean" class="">Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing" class="">Managing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/system-administration" class="">System Administration</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/scaling" class="">Scaling Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/appendix" class="">Appendix</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/glossary" class="">Glossary</a>
+</li>
+</ul>
+<h4>
+Resources
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/steps" class="">Pipeline Steps reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/upgrade-guide" class="">LTS Upgrade Guide</a>
+</li>
+</ul>
+<h5>
+Recent Tutorial Blog Posts
+</h5>
+<ul>
+<li>
+<a href='/blog/2017/11/27/tutorials-in-the-jenkins-user-documentation/'>
+Introducing Tutorials in the Jenkins User Documentation
+</a>
+</li>
+<li>
+<a href='/blog/2017/05/18/pipeline-dev-tools/'>
+Pipeline Development Tools
+</a>
+</li>
+<li>
+<a href='/blog/2017/04/12/welcome-to-blue-ocean-dashboard/'>
+Getting Started with the Blue Ocean Dashboard
+</a>
+</li>
+</ul>
+<div class='small'>
+<a href='/node/tags/tutorial'>
+View all tutorial blog posts
+</a>
+</div>
+<p></p>
+</div>
+</div>
+<div class='col-lg-9'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='row'>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='up doc-page-link' href='../'>
+⇑ Pipeline
+</a>
+</div>
+<div class='row'>
+<a class='index doc-page-link' href='../../'>
+Index
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='next doc-page-link' href='../jenkinsfile'>
+Using a Jenkinsfile ⇒
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class='container'>
+<div class='row body'>
+<div class='section'>
+<h1>
+Getting started with Pipeline
+</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#defining-a-pipeline">Defining a Pipeline</a>
+<ul class="sectlevel2">
+<li><a href="#through-blue-ocean">Through Blue Ocean</a></li>
+<li><a href="#through-the-classic-ui">Through the classic UI</a></li>
+<li><a href="#defining-a-pipeline-in-scm">In SCM</a></li>
+</ul>
+</li>
+<li><a href="#built-in-documentation">Built-in Documentation</a>
+<ul class="sectlevel2">
+<li><a href="#snippet-generator">Snippet Generator</a></li>
+<li><a href="#global-variable-reference">Global Variable Reference</a></li>
+<li><a href="#directive-generator">Declarative Directive Generator</a></li>
+</ul>
+</li>
+<li><a href="#further-reading">Further Reading</a>
+<ul class="sectlevel2">
+<li><a href="#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>As mentioned <a href="../">previously</a>, Jenkins Pipeline is a suite of
+plugins that supports implementing and integrating continuous delivery pipelines
+into Jenkins. Pipeline provides an extensible set of tools for modeling
+simple-to-complex delivery pipelines "as code" via the Pipeline DSL.
+<sup class="footnote" id="_footnote_dsl">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>This section describes how to get started with creating your Pipeline project in
+Jenkins and introduces you to the various ways that a <code>Jenkinsfile</code> can be
+created and stored.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use Jenkins Pipeline, you will need:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Jenkins 2.x or later (older versions back to 1.642.3 may work but are not
+recommended)</p>
+</li>
+<li>
+<p>Pipeline plugin,
+<sup class="footnote" id="_footnote_pipeline">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup>
+which is installed as part of the "suggested plugins" (specified when running
+through the <a href="../../installing#setup-wizard">Post-installation setup wizard</a>
+after <a href="../../installing">installing Jenkins</a>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Read more about how to install and manage plugins in
+<a href="../../managing/plugins">Managing Plugins</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="defining-a-pipeline"><a class="anchor" href="#defining-a-pipeline"></a>Defining a Pipeline</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Both
+<a href="../#declarative-versus-scripted-pipeline-syntax">Declarative and Scripted Pipeline</a>
+are DSLs <sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> to describe portions of your software delivery
+pipeline. Scripted Pipeline is written in a limited form of
+<a href="http://groovy-lang.org/semantics.html">Groovy syntax</a>.</p>
+</div>
+<div class="paragraph">
+<p>Relevant components of Groovy syntax will be introduced as required throughout
+this documentation, so while an understanding of Groovy is helpful, it is not
+required to work with Pipeline.</p>
+</div>
+<div class="paragraph">
+<p>A Pipeline can be created in one of the following ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#through-blue-ocean">Through Blue Ocean</a> - after setting up a Pipeline project in Blue Ocean,
+the Blue Ocean UI helps you write your Pipeline&#8217;s <code>Jenkinsfile</code> and commit it
+to source control.</p>
+</li>
+<li>
+<p><a href="#through-the-classic-ui">Through the classic UI</a> - you can enter a basic Pipeline directly in
+Jenkins through the classic UI.</p>
+</li>
+<li>
+<p><a href="#defining-a-pipeline-in-scm">In SCM</a> - you can write a <code>Jenkinsfile</code>
+manually, which you can commit to your project&#8217;s source control repository.
+<sup class="footnote" id="_footnote_scm">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The syntax for defining a Pipeline with either approach is the same, but while
+Jenkins supports entering Pipeline directly into the classic UI, it is
+generally considered best practice to define the Pipeline in a <code>Jenkinsfile</code>
+which Jenkins will then load directly from source control.</p>
+</div>
+<div class="sect2">
+<h3 id="through-blue-ocean"><a class="anchor" href="#through-blue-ocean"></a>Through Blue Ocean</h3>
+<div class="paragraph">
+<p>If you are new to Jenkins Pipeline, the Blue Ocean UI helps you
+<a href="../../blueocean/creating-pipelines">set up your Pipeline project</a>, and
+automatically creates and writes your Pipeline (i.e. the <code>Jenkinsfile</code>) for you
+through the graphical Pipeline editor.</p>
+</div>
+<div class="paragraph">
+<p>As part of setting up your Pipeline project in Blue Ocean, Jenkins configures a
+secure and appropriately authenticated connection to your project&#8217;s source
+control repository. Therefore, any changes you make to the <code>Jenkinsfile</code> via
+Blue Ocean&#8217;s Pipeline editor are automatically saved and committed to source
+control.</p>
+</div>
+<div class="paragraph">
+<p>Read more about Blue Ocean in the <a href="../../blueocean">Blue Ocean</a> chapter and
+<a href="../../blueocean/getting-started">Getting started with Blue Ocean</a> page.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="through-the-classic-ui"><a class="anchor" href="#through-the-classic-ui"></a>Through the classic UI</h3>
+<div class="paragraph">
+<p>A <code>Jenkinsfile</code> created using the classic UI is stored by Jenkins itself (within
+the Jenkins home directory).</p>
+</div>
+<div class="paragraph">
+<p>To create a basic Pipeline through the Jenkins classic UI:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If required, ensure you are logged in to Jenkins.</p>
+</li>
+<li>
+<p>From the Jenkins home page (i.e. the Dashboard of the Jenkins classic UI),
+click <strong>New Item</strong> at the top left.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/pipeline/classic-ui-left-column.png" alt="Classic UI left column" width="30%"></span></p>
+</div>
+</li>
+<li>
+<p>In the <strong>Enter an item name</strong> field, specify the name for your new Pipeline
+project.<br>
+<strong>Caution:</strong> Jenkins uses this item name to create directories on disk. It is
+recommended to avoid using spaces in item names, since doing so may uncover
+bugs in scripts that do not properly handle spaces in directory paths.</p>
+</li>
+<li>
+<p>Scroll down and click <strong>Pipeline</strong>, then click <strong>OK</strong> at the end of the page to
+open the Pipeline configuration page (whose <strong>General</strong> tab is selected).</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/pipeline/new-item-creation.png" alt="Enter a name, click <strong>Pipeline</strong> and then click <strong>OK</strong>" width="100%"></span></p>
+</div>
+</li>
+<li>
+<p>Click the <strong>Pipeline</strong> tab at the top of the page to scroll down to the
+<strong>Pipeline</strong> section.<br>
+<strong>Note:</strong> If instead you are defining your <code>Jenkinsfile</code> in source control,
+follow the instructions in <a href="#defining-a-pipeline-in-scm">In SCM</a> below.</p>
+</li>
+<li>
+<p>In the <strong>Pipeline</strong> section, ensure that the <strong>Definition</strong> field indicates the
+<strong>Pipeline script</strong> option.</p>
+</li>
+<li>
+<p>Enter your Pipeline code into the <strong>Script</strong> text area.<br>
+For instance, copy the following Declarative example Pipeline code (below the
+<em>Jenkinsfile ( &#8230;&#8203; )</em> heading) or its Scripted version equivalent and paste
+this into the <strong>Script</strong> text area. (The Declarative example below is used
+throughout the remainder of this procedure.)</p>
+<div class="pipeline-block">  <div class="listingblock pipeline-declarative">
+    <div class="title">Jenkinsfile (Declarative Pipeline)</div>
+    <div class="content">
+  <pre class="CodeRay highlight nowrap"><code class="language-groovy" data-lang="groovy">pipeline {
+    agent any <span style="color:#777"><i class="conum" data-value="1"></i><b>(1)</b></span>
+    stages {
+        stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Stage 1</span><span style="color:#710">'</span></span>) {
+            steps {
+                echo <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello world!</span><span style="color:#710">'</span></span> <span style="color:#777"><i class="conum" data-value="2"></i><b>(2)</b></span>
+            }
+        }
+    }
+}</code></pre>
+</div></div>  <div class="pipeline-script-expand">
+    <a href="#" onclick="javascript:$(this).parent().siblings('.pipeline-script').toggle(); return false;">Toggle Scripted Pipeline</a>
+    <em>(Advanced)</em>
+  </div>
+  <div class="listingblock pipeline-script"
+        style="display: none">
+    <div class="title">Jenkinsfile (Scripted Pipeline)</div>
+    <div class="content">
+  <pre class="CodeRay highlight nowrap"><code class="language-groovy" data-lang="groovy">node { <span style="color:#777"><i class="conum" data-value="3"></i><b>(3)</b></span>
+    stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Stage 1</span><span style="color:#710">'</span></span>) {
+        echo <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Hello World</span><span style="color:#710">'</span></span> <span style="color:#777"><i class="conum" data-value="2"></i><b>(2)</b></span>
+    }
+}</code></pre>
+</div></div></div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>agent</code> instructs Jenkins to allocate an executor (on any available
+agent/node in the Jenkins environment) and workspace for the entire Pipeline.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>echo</code> writes simple string in the console output.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>node</code> effectively does the same as <code>agent</code> (above).</td>
+</tr>
+</table>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/pipeline/example-pipeline-in-classic-ui.png" alt="Example Pipeline in the classic UI" width="100%"></span></p>
+</div>
+<div class="paragraph">
+<p><strong>Note:</strong> You can also select from canned <em>Scripted</em> Pipeline examples from the
+<strong>try sample Pipeline</strong> option at the top right of the <strong>Script</strong> text area. Be
+aware that there are no canned Declarative Pipeline examples available from this
+field.</p>
+</div>
+</li>
+<li>
+<p>Click <strong>Save</strong> to open the Pipeline project/item view page.</p>
+</li>
+<li>
+<p>On this page, click <strong>Build Now</strong> on the left to run the Pipeline.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/pipeline/classic-ui-left-column-on-item.png" alt="Classic UI left column on an item" width="35%"></span></p>
+</div>
+</li>
+<li>
+<p>Under <strong>Build History</strong> on the left, click <strong>#1</strong> to access the details for this
+particular Pipeline run.</p>
+</li>
+<li>
+<p>Click <strong>Console Output</strong> to see the full output from the Pipeline run. The
+following output shows a successful run of your Pipeline.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/pipeline/hello-world-console-output.png" alt="<strong>Console Output</strong> for the Pipeline" width="70%"></span></p>
+</div>
+<div class="paragraph">
+<p><strong>Notes:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can also access the console output directly from the Dashboard by clicking
+the colored globe to the left of the build number (e.g. <strong>#1</strong>).</p>
+</li>
+<li>
+<p>Defining a Pipeline through the classic UI is convenient for testing Pipeline
+code snippets, or for handling simple Pipelines or Pipelines that do not
+require source code to be checked out/cloned from a repository. As mentioned
+above, unlike <code>Jenkinsfile</code>&zwj;s you define through Blue Ocean
+(<a href="#through-blue-ocean">above</a>) or in source control
+(<a href="#defining-a-pipeline-in-scm">below</a>), <code>Jenkinsfile</code>&zwj;s entered into
+the <strong>Script</strong> text area area of Pipeline projects are stored by Jenkins itself,
+within the Jenkins home directory. Therefore, for greater control and
+flexibility over your Pipeline, particularly for projects in source control
+that are likely to gain complexity, it is recommended that you use
+<a href="#through-blue-ocean">Blue Ocean</a> or
+<a href="#defining-a-pipeline-in-scm">source control</a> to define your <code>Jenkinsfile</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="defining-a-pipeline-in-scm"><a class="anchor" href="#defining-a-pipeline-in-scm"></a>In SCM</h3>
+<div class="paragraph">
+<p>Complex Pipelines are difficult to write and maintain within the
+<a href="#through-the-classic-ui">classic UI&#8217;s</a> <strong>Script</strong> text area of the Pipeline
+configuration page.</p>
+</div>
+<div class="paragraph">
+<p>To make this easier, your Pipeline&#8217;s <code>Jenkinsfile</code> can be written in a text
+editor or integrated development environment (IDE) and committed to source
+control <sup class="footnoteref">[<a class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup> (optionally with the application code that Jenkins
+will build). Jenkins can then check out your <code>Jenkinsfile</code> from source control
+as part of your Pipeline project&#8217;s build process and then proceed to execute
+your Pipeline.</p>
+</div>
+<div class="paragraph">
+<p>To configure your Pipeline project to use a <code>Jenkinsfile</code> from source control:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Follow the procedure above for defining your Pipeline
+<a href="#through-the-classic-ui">through the classic UI</a> until you reach step 5
+(accessing the <strong>Pipeline</strong> section on the Pipeline configuration page).</p>
+</li>
+<li>
+<p>From the <strong>Definition</strong> field, choose the <strong>Pipeline script from SCM</strong> option.</p>
+</li>
+<li>
+<p>From the <strong>SCM</strong> field, choose the type of source control system of the
+repository containing your <code>Jenkinsfile</code>.</p>
+</li>
+<li>
+<p>Complete the fields specific to your repository&#8217;s source control system.<br>
+<strong>Tip:</strong> If you are uncertain of what value to specify for a given field, click
+its <strong>?</strong> icon to the right for more information.</p>
+</li>
+<li>
+<p>In the <strong>Script Path</strong> field, specify the location (and name) of your
+<code>Jenkinsfile</code>. This location is the one that Jenkins checks out/clones the
+repository containing your <code>Jenkinsfile</code>, which should match that of the
+repository&#8217;s file structure. The default value of this field assumes that your
+<code>Jenkinsfile</code> is named "Jenkinsfile" and is located at the root of the
+repository.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When you update the designated repository, a new build is triggered, as long as
+the Pipeline is configured with an SCM polling trigger.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Since Pipeline code (i.e. Scripted Pipeline in particular) is written in
+Groovy-like syntax, if your IDE is not correctly syntax highlighting your
+<code>Jenkinsfile</code>, try inserting the line <code>#!/usr/bin/env groovy</code> at the top of the
+<code>Jenkinsfile</code>,
+<sup class="footnote" id="_footnote_shebang">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup>
+<sup class="footnote" id="_footnote_groovy_shebang">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup>
+which may rectify the issue.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="built-in-documentation"><a class="anchor" href="#built-in-documentation"></a>Built-in Documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pipeline ships with built-in documentation features to make it
+easier to create Pipelines of varying complexities. This built-in documentation
+is automatically generated and updated based on the plugins installed in the
+Jenkins instance.</p>
+</div>
+<div class="paragraph">
+<p>The built-in documentation can be found globally at:
+<a href="http://localhost:8080/pipeline-syntax/">localhost:8080/pipeline-syntax/</a>,
+assuming you have a Jenkins instance running on localhost port 8080. The same
+documentation is also linked as <strong>Pipeline Syntax</strong> in the side-bar for any
+configured Pipeline project.</p>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/pipeline/classic-ui-left-column-on-item.png" alt="Classic UI left column on an item" width="35%"></span></p>
+</div>
+<div class="sect2">
+<h3 id="snippet-generator"><a class="anchor" href="#snippet-generator"></a>Snippet Generator</h3>
+<div class="paragraph">
+<p>The built-in "Snippet Generator" utility is helpful for creating bits of
+code for individual steps, discovering new steps provided by plugins, or
+experimenting with different parameters for a particular step.</p>
+</div>
+<div class="paragraph">
+<p>The Snippet Generator is dynamically populated with a list of the steps
+available to the Jenkins instance. The number of steps available is dependent
+on the plugins installed which explicitly expose steps for use in Pipeline.</p>
+</div>
+<div class="paragraph">
+<p>To generate a step snippet with the Snippet Generator:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the <strong>Pipeline Syntax</strong> link (referenced above) from a configured Pipeline, or at <a href="http://localhost:8080/pipeline-syntax">localhost:8080/pipeline-syntax</a>.</p>
+</li>
+<li>
+<p>Select the desired step in the <strong>Sample Step</strong> dropdown menu</p>
+</li>
+<li>
+<p>Use the dynamically populated area below the <strong>Sample Step</strong> dropdown to configure the selected step.</p>
+</li>
+<li>
+<p>Click <strong>Generate Pipeline Script</strong> to create a snippet of Pipeline which can be
+copied and pasted into a Pipeline.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/pipeline/snippet-generator.png" alt="Snippet Generator" width="100%"></span></p>
+</div>
+<div class="paragraph">
+<p>To access additional information and/or documentation about the step selected,
+click on the help icon (indicated by the red arrow in the image above).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="global-variable-reference"><a class="anchor" href="#global-variable-reference"></a>Global Variable Reference</h3>
+<div class="paragraph">
+<p>In addition to the Snippet Generator, which only surfaces steps, Pipeline also
+provides a built-in "<strong>Global Variable Reference</strong>." Like the Snippet Generator,
+it is also dynamically populated by plugins. Unlike the Snippet Generator
+however, the Global Variable Reference only contains documentation for
+<strong>variables</strong> provided by Pipeline or plugins, which are available for
+Pipelines.</p>
+</div>
+<div class="paragraph">
+<p>The variables provided by default in Pipeline are:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">env</dt>
+<dd>
+<p>Environment variables accessible from Scripted Pipeline, for example:
+<code>env.PATH</code> or <code>env.BUILD_ID</code>. Consult the built-in
+<a href="http://localhost:8080/pipeline-syntax/globals#env">Global Variable Reference</a>
+for a complete, and up to date, list of environment variables
+available in Pipeline.</p>
+</dd>
+<dt class="hdlist1">params</dt>
+<dd>
+<p>Exposes all parameters defined for the Pipeline as a read-only
+<a href="http://groovy-lang.org/syntax.html#_maps">Map</a>,
+for example: <code>params.MY_PARAM_NAME</code>.</p>
+</dd>
+<dt class="hdlist1">currentBuild</dt>
+<dd>
+<p>May be used to discover information about the currently executing Pipeline,
+with properties such as <code>currentBuild.result</code>, <code>currentBuild.displayName</code>,
+etc. Consult the built-in
+<a href="http://localhost:8080/pipeline-syntax/globals#currentBuild">Global Variable Reference</a>
+for a complete, and up to date, list of properties available on <code>currentBuild</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="directive-generator"><a class="anchor" href="#directive-generator"></a>Declarative Directive Generator</h3>
+<div class="paragraph">
+<p>While the Snippet Generator helps with generating steps for a Scripted
+Pipeline or for the <code>steps</code> block in a <code>stage</code> in a Declarative Pipeline, it
+does not cover the <a href="../syntax#declarative-sections">sections</a> and
+<a href="../syntax#declarative-directives">directives</a> used to define a Declarative Pipeline.
+The "Declarative Directive Generator" utility helps with that.
+Similar to the <a href="#snippet-generator">Snippet Generator</a>, the Directive Generator allows you
+to choose a Declarative directive, configure it in a form, and generate the
+configuration for that directive, which you can then use in your Declarative Pipeline.</p>
+</div>
+<div class="paragraph">
+<p>To generate a Declarative directive using the Declarative Directive Generator:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the <strong>Pipeline Syntax</strong> link (referenced above) from a configured Pipeline,
+and then click on the <strong>Declarative Directive Generator</strong> link in the sidepanel,
+or go directly to <a href="http://localhost:8080/directive-generator">localhost:8080/directive-generator</a>.</p>
+</li>
+<li>
+<p>Select the desired directive in the dropdown menu</p>
+</li>
+<li>
+<p>Use the dynamically populated area below the dropdown to configure the selected directive.</p>
+</li>
+<li>
+<p>Click <strong>Generate Directive</strong> to create the directive&#8217;s configuration to copy
+into your Pipeline.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The Directive Generator can generate configuration for nested directives,
+such as conditions inside a <code>when</code> directive, but it cannot generate Pipeline steps.
+For the contents of directives which contain steps,
+such as <code>steps</code> insde a <code>stage</code> or conditions like <code>always</code> or <code>failure</code> inside <code>post</code>,
+the Directive Generator adds a placeholder comment instead.
+You will still need to add steps to your Pipeline by hand.</p>
+</div>
+<div class="pipeline-block">  <div class="listingblock pipeline-declarative">
+    <div class="title">Jenkinsfile (Declarative Pipeline)</div>
+    <div class="content">
+  <pre class="CodeRay highlight nowrap"><code class="language-groovy" data-lang="groovy">stage(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Stage 1</span><span style="color:#710">'</span></span>) {
+    steps {
+        <span style="color:#777">// One or more steps need to be included within the steps block.</span>
+    }
+}</code></pre>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="further-reading"><a class="anchor" href="#further-reading"></a>Further Reading</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section merely scratches the surface of what can be done with Jenkins
+Pipeline, but should provide enough of a foundation for you to start
+experimenting with a test Jenkins instance.</p>
+</div>
+<div class="paragraph">
+<p>In the next section, <a href="../jenkinsfile/">The Jenkinsfile</a>, more Pipeline steps
+will be discussed along with patterns for implementing successful, real-world,
+Jenkins Pipelines.</p>
+</div>
+<div class="sect2">
+<h3 id="additional-resources"><a class="anchor" href="#additional-resources"></a>Additional Resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="../../../pipeline/steps">Pipeline Steps Reference</a>,
+encompassing all steps provided by plugins distributed in the Jenkins Update
+Center.</p>
+</li>
+<li>
+<p><a href="../../../pipeline/examples">Pipeline Examples</a>, a
+community-curated collection of copyable Pipeline examples.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. <a href="https://en.wikipedia.org/wiki/Domain-specific_language">Domain-specific language</a>
+</div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>. <a href="https://plugins.jenkins.io/workflow-aggregator">Pipeline plugin</a>
+</div>
+<div class="footnote" id="_footnotedef_3">
+<a href="#_footnoteref_3">3</a>. <a href="https://en.wikipedia.org/wiki/Version_control">Source control management</a>
+</div>
+<div class="footnote" id="_footnotedef_4">
+<a href="#_footnoteref_4">4</a>. <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">Shebang (general definition)</a>
+</div>
+<div class="footnote" id="_footnotedef_5">
+<a href="#_footnoteref_5">5</a>. <a href="http://groovy-lang.org/syntax.html#_shebang_line">Shebang line (Groovy syntax)</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='row'>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='up doc-page-link' href='../'>
+⇑ Pipeline
+</a>
+</div>
+<div class='row'>
+<a class='index doc-page-link' href='../../'>
+Index
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='next doc-page-link' href='../jenkinsfile'>
+Using a Jenkinsfile ⇒
+</a>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'></div>
+<!-- starting partial _feedback-footer.html -->
+<!-- HTML inclusion for chapter and section layouts (i.e. as footers) as well as
+     for use in AsciiDoc file inclusions. -->
+
+<!--
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+-->
+
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(window.location.href);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<p><a href="#feedback" data-toggle="collapse">Was this page helpful?</a></p>
+
+<div id="feedback" class="collapse">
+
+<p>Please submit your feedback about this page through this
+<a href="/doc/feedback-form/">quick form</a>.</p>
+
+<p>Alternatively, if you don't wish to complete the quick form, you can simply
+indicate if you found this page helpful?</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the current URL into the form. -->
+<input type="hidden" name="entry.1246830226" id="current-url" value=""/>
+
+<!-- The answer bit -->
+<p><input type="radio" name="entry.790002525" id="h1" value="Yes" required/>
+<label for="h1">Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="entry.790002525" id="h2" value="No"/>
+<label for="h2">No</label></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+</form>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1IIdpVs39JDYKg0sLQIv-MNO928qcGApAIfdW5ohfD78" target="_blank">here</a>.</p>
+
+</div>
+
+<!-- ending partial _feedback-footer.html -->
+
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<p class='box'>
+<a href='https://github.com/jenkins-infra/jenkins.io/edit/master/content//doc/book/pipeline/getting-started.adoc' title='Edit /doc/book/pipeline/getting-started.adoc on GitHub'>
+Improve this page
+</a>
+|
+<a href='https://github.com/jenkins-infra/jenkins.io/commits/master/content//doc/book/pipeline/getting-started.adoc' title='View /doc/book/pipeline/getting-started.adoc history on GitHub'>
+Page history
+</a>
+</p>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

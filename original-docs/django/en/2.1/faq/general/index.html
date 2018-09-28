@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>FAQ: General | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/faq/general/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/faq/general/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/faq/general/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/faq/general/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/faq/general/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/faq/general/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/faq/general/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/faq/general/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/faq/general/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/faq/general/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/faq/general/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/faq/general/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/faq/general/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/faq/general/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/faq/general/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/faq/general/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/faq/general/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/faq/general/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/faq/general/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/faq/general/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/faq/general/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/faq/general/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/faq/general/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/faq/general/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/faq/general/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/faq/general/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/faq/general/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/faq/general/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-faq-general">
+<span id="faq-general"></span><h1>FAQ: General<a class="headerlink" href="#faq-general" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="s-why-does-this-project-exist">
+<span id="why-does-this-project-exist"></span><h2>Why does this project exist?<a class="headerlink" href="#why-does-this-project-exist" title="Permalink to this headline">¶</a></h2>
+<p>Django grew from a very practical need: World Online, a newspaper Web
+operation, is responsible for building intensive Web applications on journalism
+deadlines. In the fast-paced newsroom, World Online often has only a matter of
+hours to take a complicated Web application from concept to public launch.</p>
+<p>At the same time, the World Online Web developers have consistently been
+perfectionists when it comes to following best practices of Web development.</p>
+<p>In fall 2003, the World Online developers (Adrian Holovaty and Simon Willison)
+ditched PHP and began using Python to develop its websites. As they built
+intensive, richly interactive sites such as Lawrence.com, they began to extract
+a generic Web development framework that let them build Web applications more
+and more quickly. They tweaked this framework constantly, adding improvements
+over two years.</p>
+<p>In summer 2005, World Online decided to open-source the resulting software,
+Django. Django would not be possible without a whole host of open-source
+projects – <a class="reference external" href="https://httpd.apache.org/">Apache</a>, <a class="reference external" href="https://www.python.org/">Python</a>, and <a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a> to name a few – and we’re
+thrilled to be able to give something back to the open-source community.</p>
+</div>
+<div class="section" id="s-what-does-django-mean-and-how-do-you-pronounce-it">
+<span id="what-does-django-mean-and-how-do-you-pronounce-it"></span><h2>What does “Django” mean, and how do you pronounce it?<a class="headerlink" href="#what-does-django-mean-and-how-do-you-pronounce-it" title="Permalink to this headline">¶</a></h2>
+<p>Django is named after <a class="reference external" href="https://en.wikipedia.org/wiki/Django_Reinhardt">Django Reinhardt</a>, a jazz manouche guitarist from the 1930s
+to early 1950s. To this day, he’s considered one of the best guitarists of all time.</p>
+<p>Listen to his music. You’ll like it.</p>
+<p>Django is pronounced <strong>JANG</strong>-oh. Rhymes with FANG-oh. The “D” is silent.</p>
+<p>We’ve also recorded an <a class="reference external" href="http://red-bean.com/~adrian/django_pronunciation.mp3">audio clip of the pronunciation</a>.</p>
+</div>
+<div class="section" id="s-is-django-stable">
+<span id="is-django-stable"></span><h2>Is Django stable?<a class="headerlink" href="#is-django-stable" title="Permalink to this headline">¶</a></h2>
+<p>Yes, it’s quite stable. Companies like Disqus, Instagram, Pinterest, and
+Mozilla have been using Django for many years. Sites built on Django have
+weathered traffic spikes of over 50 thousand hits per second.</p>
+</div>
+<div class="section" id="s-does-django-scale">
+<span id="does-django-scale"></span><h2>Does Django scale?<a class="headerlink" href="#does-django-scale" title="Permalink to this headline">¶</a></h2>
+<p>Yes. Compared to development time, hardware is cheap, and so Django is
+designed to take advantage of as much hardware as you can throw at it.</p>
+<p>Django uses a “shared-nothing” architecture, which means you can add hardware
+at any level – database servers, caching servers or Web/application servers.</p>
+<p>The framework cleanly separates components such as its database layer and
+application layer. And it ships with a simple-yet-powerful
+<a class="reference internal" href="../../topics/cache/"><span class="doc">cache framework</span></a>.</p>
+</div>
+<div class="section" id="s-who-s-behind-this">
+<span id="who-s-behind-this"></span><h2>Who’s behind this?<a class="headerlink" href="#who-s-behind-this" title="Permalink to this headline">¶</a></h2>
+<p>Django was originally developed at World Online, the Web department of a
+newspaper in Lawrence, Kansas, USA. Django’s now run by an international
+<a class="reference external" href="https://www.djangoproject.com/foundation/teams/">team of volunteers</a>.</p>
+</div>
+<div class="section" id="s-which-sites-use-django">
+<span id="which-sites-use-django"></span><h2>Which sites use Django?<a class="headerlink" href="#which-sites-use-django" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://djangosites.org">DjangoSites.org</a> features a constantly growing list of Django-powered sites.</p>
+</div>
+<div class="section" id="s-django-appears-to-be-a-mvc-framework-but-you-call-the-controller-the-view-and-the-view-the-template-how-come-you-don-t-use-the-standard-names">
+<span id="s-faq-mtv"></span><span id="django-appears-to-be-a-mvc-framework-but-you-call-the-controller-the-view-and-the-view-the-template-how-come-you-don-t-use-the-standard-names"></span><span id="faq-mtv"></span><h2>Django appears to be a MVC framework, but you call the Controller the “view”, and the View the “template”. How come you don’t use the standard names?<a class="headerlink" href="#django-appears-to-be-a-mvc-framework-but-you-call-the-controller-the-view-and-the-view-the-template-how-come-you-don-t-use-the-standard-names" title="Permalink to this headline">¶</a></h2>
+<p>Well, the standard names are debatable.</p>
+<p>In our interpretation of MVC, the “view” describes the data that gets presented
+to the user. It’s not necessarily <em>how</em> the data <em>looks</em>, but <em>which</em> data is
+presented. The view describes <em>which data you see</em>, not <em>how you see it.</em> It’s
+a subtle distinction.</p>
+<p>So, in our case, a “view” is the Python callback function for a particular URL,
+because that callback function describes which data is presented.</p>
+<p>Furthermore, it’s sensible to separate content from presentation – which is
+where templates come in. In Django, a “view” describes which data is presented,
+but a view normally delegates to a template, which describes <em>how</em> the data is
+presented.</p>
+<p>Where does the “controller” fit in, then? In Django’s case, it’s probably the
+framework itself: the machinery that sends a request to the appropriate view,
+according to the Django URL configuration.</p>
+<p>If you’re hungry for acronyms, you might say that Django is a “MTV” framework
+– that is, “model”, “template”, and “view.” That breakdown makes much more
+sense.</p>
+<p>At the end of the day, of course, it comes down to getting stuff done. And,
+regardless of how things are named, Django gets stuff done in a way that’s most
+logical to us.</p>
+</div>
+<div class="section" id="s-framework-x-does-feature-y-why-doesn-t-django">
+<span id="framework-x-does-feature-y-why-doesn-t-django"></span><h2>&lt;Framework X&gt; does &lt;feature Y&gt; – why doesn’t Django?<a class="headerlink" href="#framework-x-does-feature-y-why-doesn-t-django" title="Permalink to this headline">¶</a></h2>
+<p>We’re well aware that there are other awesome Web frameworks out there, and
+we’re not averse to borrowing ideas where appropriate. However, Django was
+developed precisely because we were unhappy with the status quo, so please be
+aware that “because &lt;Framework X&gt; does it” is not going to be sufficient reason
+to add a given feature to Django.</p>
+</div>
+<div class="section" id="s-why-did-you-write-all-of-django-from-scratch-instead-of-using-other-python-libraries">
+<span id="why-did-you-write-all-of-django-from-scratch-instead-of-using-other-python-libraries"></span><h2>Why did you write all of Django from scratch, instead of using other Python libraries?<a class="headerlink" href="#why-did-you-write-all-of-django-from-scratch-instead-of-using-other-python-libraries" title="Permalink to this headline">¶</a></h2>
+<p>When Django was originally written, Adrian and Simon spent quite a bit of time
+exploring the various Python Web frameworks available.</p>
+<p>In our opinion, none of them were completely up to snuff.</p>
+<p>We’re picky. You might even call us perfectionists. (With deadlines.)</p>
+<p>Over time, we stumbled across open-source libraries that did things we’d
+already implemented. It was reassuring to see other people solving similar
+problems in similar ways, but it was too late to integrate outside code: We’d
+already written, tested and implemented our own framework bits in several
+production settings – and our own code met our needs delightfully.</p>
+<p>In most cases, however, we found that existing frameworks/tools inevitably had
+some sort of fundamental, fatal flaw that made us squeamish. No tool fit our
+philosophies 100%.</p>
+<p>Like we said: We’re picky.</p>
+<p>We’ve documented our philosophies on the
+<a class="reference internal" href="../../misc/design-philosophies/"><span class="doc">design philosophies page</span></a>.</p>
+</div>
+<div class="section" id="s-is-django-a-content-management-system-cms">
+<span id="is-django-a-content-management-system-cms"></span><h2>Is Django a content-management-system (CMS)?<a class="headerlink" href="#is-django-a-content-management-system-cms" title="Permalink to this headline">¶</a></h2>
+<p>No, Django is not a CMS, or any sort of “turnkey product” in and of itself.
+It’s a Web framework; it’s a programming tool that lets you build websites.</p>
+<p>For example, it doesn’t make much sense to compare Django to something like
+<a class="reference external" href="https://drupal.org/">Drupal</a>, because Django is something you use to <em>create</em> things like Drupal.</p>
+<p>Of course, Django’s automatic admin site is fantastic and timesaving – but
+the admin site is one module of Django the framework. Furthermore, although
+Django has special conveniences for building “CMS-y” apps, that doesn’t mean
+it’s not just as appropriate for building “non-CMS-y” apps (whatever that
+means!).</p>
+</div>
+<div class="section" id="s-how-can-i-download-the-django-documentation-to-read-it-offline">
+<span id="how-can-i-download-the-django-documentation-to-read-it-offline"></span><h2>How can I download the Django documentation to read it offline?<a class="headerlink" href="#how-can-i-download-the-django-documentation-to-read-it-offline" title="Permalink to this headline">¶</a></h2>
+<p>The Django docs are available in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory of each Django tarball
+release. These docs are in reST (reStructuredText) format, and each text file
+corresponds to a Web page on the official Django site.</p>
+<p>Because the documentation is <a class="reference external" href="https://github.com/django/django/tree/master/docs/">stored in revision control</a>, you can browse
+documentation changes just like you can browse code changes.</p>
+<p>Technically, the docs on Django’s site are generated from the latest development
+versions of those reST documents, so the docs on the Django site may offer more
+information than the docs that come with the latest Django release.</p>
+</div>
+<div class="section" id="s-how-do-i-cite-django">
+<span id="how-do-i-cite-django"></span><h2>How do I cite Django?<a class="headerlink" href="#how-do-i-cite-django" title="Permalink to this headline">¶</a></h2>
+<p>It’s difficult to give an official citation format, for two reasons: citation
+formats can vary wildly between publications, and citation standards for
+software are still a matter of some debate.</p>
+<p>For example, <a class="reference external" href="http://www.apastyle.org">APA style</a>,  would dictate something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Django</span> <span class="p">(</span><span class="n">Version</span> <span class="mf">1.5</span><span class="p">)</span> <span class="p">[</span><span class="n">Computer</span> <span class="n">Software</span><span class="p">]</span><span class="o">.</span> <span class="p">(</span><span class="mi">2013</span><span class="p">)</span><span class="o">.</span> <span class="n">Retrieved</span> <span class="kn">from</span> <span class="nn">https</span><span class="p">:</span><span class="o">//</span><span class="n">djangoproject</span><span class="o">.</span><span class="n">com</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>However, the only true guide is what your publisher will accept, so get a copy
+of those guidelines and fill in the gaps as best you can.</p>
+<p>If your referencing style guide requires a publisher name, use “Django Software
+Foundation”.</p>
+<p>If you need a publishing location, use “Lawrence, Kansas”.</p>
+<p>If you need a web address, use <a class="reference external" href="https://djangoproject.com">https://djangoproject.com</a>.</p>
+<p>If you need a name, just use “Django”, without any tagline.</p>
+<p>If you need a publication date, use the year of release of the version you’re
+referencing (e.g., 2013 for v1.5)</p>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../"><i class="icon icon-chevron-left"></i> Django FAQ</a></div>
+  
+  
+  <div class="right"><a href="../install/">FAQ: Installation <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Leukeleu donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">FAQ: General</a><ul>
+<li><a class="reference internal" href="#why-does-this-project-exist">Why does this project exist?</a></li>
+<li><a class="reference internal" href="#what-does-django-mean-and-how-do-you-pronounce-it">What does “Django” mean, and how do you pronounce it?</a></li>
+<li><a class="reference internal" href="#is-django-stable">Is Django stable?</a></li>
+<li><a class="reference internal" href="#does-django-scale">Does Django scale?</a></li>
+<li><a class="reference internal" href="#who-s-behind-this">Who’s behind this?</a></li>
+<li><a class="reference internal" href="#which-sites-use-django">Which sites use Django?</a></li>
+<li><a class="reference internal" href="#django-appears-to-be-a-mvc-framework-but-you-call-the-controller-the-view-and-the-view-the-template-how-come-you-don-t-use-the-standard-names">Django appears to be a MVC framework, but you call the Controller the “view”, and the View the “template”. How come you don’t use the standard names?</a></li>
+<li><a class="reference internal" href="#framework-x-does-feature-y-why-doesn-t-django">&lt;Framework X&gt; does &lt;feature Y&gt; – why doesn’t Django?</a></li>
+<li><a class="reference internal" href="#why-did-you-write-all-of-django-from-scratch-instead-of-using-other-python-libraries">Why did you write all of Django from scratch, instead of using other Python libraries?</a></li>
+<li><a class="reference internal" href="#is-django-a-content-management-system-cms">Is Django a content-management-system (CMS)?</a></li>
+<li><a class="reference internal" href="#how-can-i-download-the-django-documentation-to-read-it-offline">How can I download the Django documentation to read it offline?</a></li>
+<li><a class="reference internal" href="#how-do-i-cite-django">How do I cite Django?</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../">Django FAQ</a></li>
+    
+    
+    <li>Next: <a href="../install/">FAQ: Installation</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../">Django FAQ</a>
+      
+      <ul><li>FAQ: General</li></ul>
+      </li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

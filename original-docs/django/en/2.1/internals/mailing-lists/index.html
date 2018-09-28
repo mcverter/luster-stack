@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Mailing lists | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+     
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/dev/internals/mailing-lists/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/internals/mailing-lists/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/internals/mailing-lists/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/internals/mailing-lists/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/internals/mailing-lists/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/internals/mailing-lists/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/internals/mailing-lists/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/internals/mailing-lists/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/internals/mailing-lists/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/internals/mailing-lists/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/internals/mailing-lists/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/internals/mailing-lists/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/internals/mailing-lists/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/internals/mailing-lists/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/internals/mailing-lists/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/internals/mailing-lists/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/internals/mailing-lists/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/internals/mailing-lists/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/internals/mailing-lists/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/internals/mailing-lists/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/internals/mailing-lists/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/internals/mailing-lists/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/internals/mailing-lists/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/internals/mailing-lists/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/internals/mailing-lists/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/internals/mailing-lists/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/internals/mailing-lists/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/internals/mailing-lists/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-mailing-lists">
+<span id="mailing-lists"></span><h1>Mailing lists<a class="headerlink" href="#mailing-lists" title="Permalink to this headline">¶</a></h1>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Please report security issues <strong>only</strong> to
+<a class="reference external" href="mailto:security&#37;&#52;&#48;djangoproject&#46;com">security<span>&#64;</span>djangoproject<span>&#46;</span>com</a>.  This is a private list only open to
+long-time, highly trusted Django developers, and its archives are
+not public. For further details, please see <a class="reference internal" href="../security/"><span class="doc">our security
+policies</span></a>.</p>
+</div>
+<p>Django has several official mailing lists on Google Groups that are open to
+anyone.</p>
+<div class="section" id="s-django-users">
+<span id="s-django-users-mailing-list"></span><span id="django-users"></span><span id="django-users-mailing-list"></span><h2><code class="docutils literal notranslate"><span class="pre">django-users</span></code><a class="headerlink" href="#django-users" title="Permalink to this headline">¶</a></h2>
+<p>This is the right place if you are looking to ask any question regarding the
+installation, usage, or debugging of Django.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If it’s the first time you send an email to this list, your email must be
+accepted first so don’t worry if <a class="reference internal" href="../../faq/help/#message-does-not-appear-on-django-users"><span class="std std-ref">your message does not appear</span></a> instantly.</p>
+</div>
+<ul class="simple">
+<li><a class="reference external" href="https://groups.google.com/d/forum/django-users">django-users mailing archive</a></li>
+<li><a class="reference external" href="mailto:django-users+subscribe&#37;&#52;&#48;googlegroups&#46;com">django-users subscription email address</a></li>
+<li><a class="reference external" href="mailto:django-users&#37;&#52;&#48;googlegroups&#46;com">django-users posting email</a></li>
+</ul>
+</div>
+<div class="section" id="s-django-core-mentorship">
+<span id="s-django-core-mentorship-mailing-list"></span><span id="django-core-mentorship"></span><span id="django-core-mentorship-mailing-list"></span><h2><code class="docutils literal notranslate"><span class="pre">django-core-mentorship</span></code><a class="headerlink" href="#django-core-mentorship" title="Permalink to this headline">¶</a></h2>
+<p>The Django Core Mentorship list is intended to provide a welcoming
+introductory environment for community members interested in contributing to
+the Django Project.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://groups.google.com/d/forum/django-core-mentorship">django-core-mentorship mailing archive</a></li>
+<li><a class="reference external" href="mailto:django-core-mentorship+subscribe&#37;&#52;&#48;googlegroups&#46;com">django-core-mentorship subscription email address</a></li>
+<li><a class="reference external" href="mailto:django-core-mentorship&#37;&#52;&#48;googlegroups&#46;com">django-core-mentorship posting email</a></li>
+</ul>
+</div>
+<div class="section" id="s-django-developers">
+<span id="s-django-developers-mailing-list"></span><span id="django-developers"></span><span id="django-developers-mailing-list"></span><h2><code class="docutils literal notranslate"><span class="pre">django-developers</span></code><a class="headerlink" href="#django-developers" title="Permalink to this headline">¶</a></h2>
+<p>The discussion about the development of Django itself takes place here.</p>
+<p>Before asking a question about how to contribute, read
+<a class="reference internal" href="../contributing/"><span class="doc">Contributing to Django</span></a>. Many frequently asked questions are
+answered there.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please make use of
+<a class="reference internal" href="#django-users-mailing-list"><span class="std std-ref">django-users mailing list</span></a> if you want
+to ask for tech support, doing so in this list is inappropriate.</p>
+</div>
+<ul class="simple">
+<li><a class="reference external" href="https://groups.google.com/d/forum/django-developers">django-developers mailing archive</a></li>
+<li><a class="reference external" href="mailto:django-developers+subscribe&#37;&#52;&#48;googlegroups&#46;com">django-developers subscription email address</a></li>
+<li><a class="reference external" href="mailto:django-developers&#37;&#52;&#48;googlegroups&#46;com">django-developers posting email</a></li>
+</ul>
+</div>
+<div class="section" id="s-django-i18n">
+<span id="s-django-i18n-mailing-list"></span><span id="django-i18n"></span><span id="django-i18n-mailing-list"></span><h2><code class="docutils literal notranslate"><span class="pre">django-i18n</span></code><a class="headerlink" href="#django-i18n" title="Permalink to this headline">¶</a></h2>
+<p>This is the place to discuss the internationalization and localization of
+Django’s components.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://groups.google.com/d/forum/django-i18n">django-i18n mailing archive</a></li>
+<li><a class="reference external" href="mailto:django-i18n+subscribe&#37;&#52;&#48;googlegroups&#46;com">django-i18n subscription email address</a></li>
+<li><a class="reference external" href="mailto:django-i18n&#37;&#52;&#48;googlegroups&#46;com">django-i18n posting email</a></li>
+</ul>
+</div>
+<div class="section" id="s-django-announce">
+<span id="s-django-announce-mailing-list"></span><span id="django-announce"></span><span id="django-announce-mailing-list"></span><h2><code class="docutils literal notranslate"><span class="pre">django-announce</span></code><a class="headerlink" href="#django-announce" title="Permalink to this headline">¶</a></h2>
+<p>A (very) low-traffic list for announcing <a class="reference internal" href="../security/#security-disclosure"><span class="std std-ref">upcoming security releases</span></a>, new releases of Django, and security advisories.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://groups.google.com/d/forum/django-announce">django-announce mailing archive</a></li>
+<li><a class="reference external" href="mailto:django-announce+subscribe&#37;&#52;&#48;googlegroups&#46;com">django-announce subscription email address</a></li>
+<li><a class="reference external" href="mailto:django-announce&#37;&#52;&#48;googlegroups&#46;com">django-announce posting email</a></li>
+</ul>
+</div>
+<div class="section" id="s-django-updates">
+<span id="s-django-updates-mailing-list"></span><span id="django-updates"></span><span id="django-updates-mailing-list"></span><h2><code class="docutils literal notranslate"><span class="pre">django-updates</span></code><a class="headerlink" href="#django-updates" title="Permalink to this headline">¶</a></h2>
+<p>All the ticket updates are mailed automatically to this list, which is tracked
+by developers and interested community members.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://groups.google.com/d/forum/django-updates">django-updates mailing archive</a></li>
+<li><a class="reference external" href="mailto:django-updates+subscribe&#37;&#52;&#48;googlegroups&#46;com">django-updates subscription email address</a></li>
+<li><a class="reference external" href="mailto:django-updates&#37;&#52;&#48;googlegroups&#46;com">django-updates posting email</a></li>
+</ul>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../contributing/committing-code/"><i class="icon icon-chevron-left"></i> Committing code</a></div>
+  
+  
+  <div class="right"><a href="../organization/">Organization of the Django Project <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Loïc Bistuer donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Mailing lists</a><ul>
+<li><a class="reference internal" href="#django-users"><code class="docutils literal notranslate"><span class="pre">django-users</span></code></a></li>
+<li><a class="reference internal" href="#django-core-mentorship"><code class="docutils literal notranslate"><span class="pre">django-core-mentorship</span></code></a></li>
+<li><a class="reference internal" href="#django-developers"><code class="docutils literal notranslate"><span class="pre">django-developers</span></code></a></li>
+<li><a class="reference internal" href="#django-i18n"><code class="docutils literal notranslate"><span class="pre">django-i18n</span></code></a></li>
+<li><a class="reference internal" href="#django-announce"><code class="docutils literal notranslate"><span class="pre">django-announce</span></code></a></li>
+<li><a class="reference internal" href="#django-updates"><code class="docutils literal notranslate"><span class="pre">django-updates</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../contributing/committing-code/">Committing code</a></li>
+    
+    
+    <li>Next: <a href="../organization/">Organization of the Django Project</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../">Django internals</a>
+      
+      <ul><li>Mailing lists</li></ul>
+      </li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

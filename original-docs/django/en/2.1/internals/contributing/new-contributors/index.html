@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Advice for new contributors | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+     
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/dev/internals/contributing/new-contributors/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/internals/contributing/new-contributors/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/internals/contributing/new-contributors/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/internals/contributing/new-contributors/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/internals/contributing/new-contributors/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/internals/contributing/new-contributors/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/internals/contributing/new-contributors/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/internals/contributing/new-contributors/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/internals/contributing/new-contributors/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/internals/contributing/new-contributors/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/internals/contributing/new-contributors/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/internals/contributing/new-contributors/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/internals/contributing/new-contributors/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/internals/contributing/new-contributors/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/internals/contributing/new-contributors/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/internals/contributing/new-contributors/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/internals/contributing/new-contributors/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/internals/contributing/new-contributors/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/internals/contributing/new-contributors/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/internals/contributing/new-contributors/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/internals/contributing/new-contributors/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/internals/contributing/new-contributors/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/internals/contributing/new-contributors/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/internals/contributing/new-contributors/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/internals/contributing/new-contributors/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/internals/contributing/new-contributors/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/internals/contributing/new-contributors/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/internals/contributing/new-contributors/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-advice-for-new-contributors">
+<span id="advice-for-new-contributors"></span><h1>Advice for new contributors<a class="headerlink" href="#advice-for-new-contributors" title="Permalink to this headline">¶</a></h1>
+<p>New contributor and not sure what to do? Want to help but just don’t know how
+to get started? This is the section for you.</p>
+<div class="admonition-basic-tools-and-workflow admonition">
+<p class="first admonition-title">Basic tools and workflow</p>
+<p class="last">If you are new to contributing to Django, the <a class="reference internal" href="../../../intro/contributing/"><span class="doc">Writing your first patch for Django</span></a>
+tutorial will give you an introduction to the tools and the workflow.</p>
+</div>
+<div class="section" id="s-first-steps">
+<span id="first-steps"></span><h2>First steps<a class="headerlink" href="#first-steps" title="Permalink to this headline">¶</a></h2>
+<p>Start with these easy tasks to discover Django’s development process.</p>
+<ul>
+<li><p class="first"><strong>Sign the Contributor License Agreement</strong></p>
+<p>The code that you write belongs to you or your employer. If your
+contribution is more than one or two lines of code, you need to sign the
+<a class="reference external" href="https://www.djangoproject.com/foundation/cla/">CLA</a>. See the <a class="reference external" href="https://www.djangoproject.com/foundation/cla/faq/">Contributor License Agreement FAQ</a> for a more thorough
+explanation.</p>
+</li>
+<li><p class="first"><strong>Triage tickets</strong></p>
+<p>If an <a class="reference external" href="https://code.djangoproject.com/query?status=!closed&amp;stage=Unreviewed">unreviewed ticket</a> reports a bug, try and reproduce it. If you
+can reproduce it and it seems valid, make a note that you confirmed the bug
+and accept the ticket. Make sure the ticket is filed under the correct
+component area. Consider writing a patch that adds a test for the bug’s
+behavior, even if you don’t fix the bug itself. See more at
+<a class="reference internal" href="../triaging-tickets/#how-can-i-help-with-triaging"><span class="std std-ref">How can I help with triaging?</span></a></p>
+</li>
+<li><p class="first"><strong>Look for tickets that are accepted and review patches to build familiarity
+with the codebase and the process</strong></p>
+<p>Mark the appropriate flags if a patch needs docs or tests. Look through the
+changes a patch makes, and keep an eye out for syntax that is incompatible
+with older but still supported versions of Python. <a class="reference internal" href="../writing-code/unit-tests/"><span class="doc">Run the tests</span></a> and make sure they pass.
+Where possible and relevant, try them out on a database other than SQLite.
+Leave comments and feedback!</p>
+</li>
+<li><p class="first"><strong>Keep old patches up to date</strong></p>
+<p>Oftentimes the codebase will change between a patch being submitted and the
+time it gets reviewed. Make sure it still applies cleanly and functions as
+expected. Simply updating a patch is both useful and important! See more on
+<a class="reference internal" href="../writing-code/submitting-patches/"><span class="doc">Submitting patches</span></a>.</p>
+</li>
+<li><p class="first"><strong>Write some documentation</strong></p>
+<p>Django’s documentation is great but it can always be improved. Did you find
+a typo? Do you think that something should be clarified? Go ahead and
+suggest a documentation patch! See also the guide on
+<a class="reference internal" href="../writing-documentation/"><span class="doc">Writing documentation</span></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <a class="reference external" href="https://code.djangoproject.com/wiki/Reports">reports page</a> contains links to many useful Trac queries, including
+several that are useful for triaging tickets and reviewing patches as
+suggested above.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="s-guidelines">
+<span id="guidelines"></span><h2>Guidelines<a class="headerlink" href="#guidelines" title="Permalink to this headline">¶</a></h2>
+<p>As a newcomer on a large project, it’s easy to experience frustration. Here’s
+some advice to make your work on Django more useful and rewarding.</p>
+<ul>
+<li><p class="first"><strong>Pick a subject area that you care about, that you are familiar with, or
+that you want to learn about</strong></p>
+<p>You don’t already have to be an expert on the area you want to work on; you
+become an expert through your ongoing contributions to the code.</p>
+</li>
+<li><p class="first"><strong>Analyze tickets’ context and history</strong></p>
+<p>Trac isn’t an absolute; the context is just as important as the words.
+When reading Trac, you need to take into account who says things, and when
+they were said. Support for an idea two years ago doesn’t necessarily mean
+that the idea will still have support. You also need to pay attention to who
+<em>hasn’t</em> spoken – for example, if an experienced contributor hasn’t been
+recently involved in a discussion, then a ticket may not have the support
+required to get into Django.</p>
+</li>
+<li><p class="first"><strong>Start small</strong></p>
+<p>It’s easier to get feedback on a little issue than on a big one. See the
+<a class="reference external" href="https://code.djangoproject.com/query?status=!closed&amp;easy=1">easy pickings</a>.</p>
+</li>
+<li><p class="first"><strong>If you’re going to engage in a big task, make sure that your idea has
+support first</strong></p>
+<p>This means getting someone else to confirm that a bug is real before you fix
+the issue, and ensuring that there’s consensus on a proposed feature before
+you go implementing it.</p>
+</li>
+<li><p class="first"><strong>Be bold! Leave feedback!</strong></p>
+<p>Sometimes it can be scary to put your opinion out to the world and say “this
+ticket is correct” or “this patch needs work”, but it’s the only way the
+project moves forward. The contributions of the broad Django community
+ultimately have a much greater impact than that of any one person. We can’t
+do it without <strong>you</strong>!</p>
+</li>
+<li><p class="first"><strong>Err on the side of caution when marking things Ready For Check-in</strong></p>
+<p>If you’re really not certain if a ticket is ready, don’t mark it as
+such. Leave a comment instead, letting others know your thoughts.  If you’re
+mostly certain, but not completely certain, you might also try asking on IRC
+to see if someone else can confirm your suspicions.</p>
+</li>
+<li><p class="first"><strong>Wait for feedback, and respond to feedback that you receive</strong></p>
+<p>Focus on one or two tickets, see them through from start to finish, and
+repeat. The shotgun approach of taking on lots of tickets and letting some
+fall by the wayside ends up doing more harm than good.</p>
+</li>
+<li><p class="first"><strong>Be rigorous</strong></p>
+<p>When we say “<span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0008"><strong>PEP 8</strong></a>, and must have docs and tests”, we mean it. If a patch
+doesn’t have docs and tests, there had better be a good reason. Arguments
+like “I couldn’t find any existing tests of this feature” don’t carry much
+weight–while it may be true, that means you have the extra-important job of
+writing the very first tests for that feature, not that you get a pass from
+writing tests altogether.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="s-faq">
+<span id="s-new-contributors-faq"></span><span id="faq"></span><span id="new-contributors-faq"></span><h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first"><strong>This ticket I care about has been ignored for days/weeks/months! What can
+I do to get it committed?</strong></p>
+<p>First off, it’s not personal. Django is entirely developed by volunteers
+(except the Django fellow), and sometimes folks just don’t have time. The
+best thing to do is to send a gentle reminder to the <a class="reference internal" href="../../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a>
+mailing list asking for review on the ticket, or to bring it up in the
+<cite>#django-dev</cite> IRC channel.</p>
+</li>
+<li><p class="first"><strong>I’m sure my ticket is absolutely 100% perfect, can I mark it as RFC
+myself?</strong></p>
+<p>Short answer: No. It’s always better to get another set of eyes on a
+ticket. If you’re having trouble getting that second set of eyes, see
+question 1, above.</p>
+</li>
+</ol>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../"><i class="icon icon-chevron-left"></i> Contributing to Django</a></div>
+  
+  
+  <div class="right"><a href="../bugs-and-features/">Reporting bugs and requesting features <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          49mm Tamper donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Advice for new contributors</a><ul>
+<li><a class="reference internal" href="#first-steps">First steps</a></li>
+<li><a class="reference internal" href="#guidelines">Guidelines</a></li>
+<li><a class="reference internal" href="#faq">FAQ</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../">Contributing to Django</a></li>
+    
+    
+    <li>Next: <a href="../bugs-and-features/">Reporting bugs and requesting features</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../">Django internals</a>
+      
+      <ul><li><a href="../">Contributing to Django</a>
+      
+      <ul><li>Advice for new contributors</li></ul>
+      </li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

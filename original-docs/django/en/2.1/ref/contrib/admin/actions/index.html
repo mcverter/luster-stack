@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Admin actions | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/ref/contrib/admin/actions/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/ref/contrib/admin/actions/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/ref/contrib/admin/actions/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/ref/contrib/admin/actions/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/ref/contrib/admin/actions/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/ref/contrib/admin/actions/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/ref/contrib/admin/actions/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/ref/contrib/admin/actions/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/ref/contrib/admin/actions/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/ref/contrib/admin/actions/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/ref/contrib/admin/actions/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/ref/contrib/admin/actions/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/ref/contrib/admin/actions/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/ref/contrib/admin/actions/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/ref/contrib/admin/actions/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/ref/contrib/admin/actions/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/ref/contrib/admin/actions/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/ref/contrib/admin/actions/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/ref/contrib/admin/actions/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/ref/contrib/admin/actions/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/ref/contrib/admin/actions/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/ref/contrib/admin/actions/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/ref/contrib/admin/actions/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/ref/contrib/admin/actions/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/ref/contrib/admin/actions/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/ref/contrib/admin/actions/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/ref/contrib/admin/actions/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/ref/contrib/admin/actions/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-admin-actions">
+<span id="admin-actions"></span><h1>Admin actions<a class="headerlink" href="#admin-actions" title="Permalink to this headline">¶</a></h1>
+<p>The basic workflow of Django’s admin is, in a nutshell, “select an object,
+then change it.” This works well for a majority of use cases. However, if you
+need to make the same change to many objects at once, this workflow can be
+quite tedious.</p>
+<p>In these cases, Django’s admin lets you write and register “actions” – simple
+functions that get called with a list of objects selected on the change list
+page.</p>
+<p>If you look at any change list in the admin, you’ll see this feature in
+action; Django ships with a “delete selected objects” action available to all
+models. For example, here’s the user module from Django’s built-in
+<a class="reference internal" href="../../../../topics/auth/#module-django.contrib.auth" title="django.contrib.auth: Django's authentication framework."><code class="xref py py-mod docutils literal notranslate"><span class="pre">django.contrib.auth</span></code></a> app:</p>
+<img alt="../../../../_images/admin-actions.png" src="../../../../_images/admin-actions.png" />
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>The “delete selected objects” action uses <a class="reference internal" href="../../../models/querysets/#django.db.models.query.QuerySet.delete" title="django.db.models.query.QuerySet.delete"><code class="xref py py-meth docutils literal notranslate"><span class="pre">QuerySet.delete()</span></code></a> for efficiency reasons, which
+has an important caveat: your model’s <code class="docutils literal notranslate"><span class="pre">delete()</span></code> method will not be
+called.</p>
+<p>If you wish to override this behavior, you can override
+<a class="reference internal" href="../#django.contrib.admin.ModelAdmin.delete_queryset" title="django.contrib.admin.ModelAdmin.delete_queryset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModelAdmin.delete_queryset()</span></code></a> or write a custom action which does
+deletion in your preferred manner – for example, by calling
+<code class="docutils literal notranslate"><span class="pre">Model.delete()</span></code> for each of the selected items.</p>
+<p class="last">For more background on bulk deletion, see the documentation on <a class="reference internal" href="../../../../topics/db/queries/#topics-db-queries-delete"><span class="std std-ref">object
+deletion</span></a>.</p>
+</div>
+<p>Read on to find out how to add your own actions to this list.</p>
+<div class="section" id="s-writing-actions">
+<span id="writing-actions"></span><h2>Writing actions<a class="headerlink" href="#writing-actions" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to explain actions is by example, so let’s dive in.</p>
+<p>A common use case for admin actions is the bulk updating of a model. Imagine a
+simple news application with an <code class="docutils literal notranslate"><span class="pre">Article</span></code> model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="n">models</span>
+
+<span class="n">STATUS_CHOICES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;Draft&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;Published&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;Withdrawn&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Article</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">STATUS_CHOICES</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+</pre></div>
+</div>
+<p>A common task we might perform with a model like this is to update an
+article’s status from “draft” to “published”. We could easily do this in the
+admin one article at a time, but if we wanted to bulk-publish a group of
+articles, it’d be tedious. So, let’s write an action that lets us change an
+article’s status to “published.”</p>
+<div class="section" id="s-writing-action-functions">
+<span id="writing-action-functions"></span><h3>Writing action functions<a class="headerlink" href="#writing-action-functions" title="Permalink to this headline">¶</a></h3>
+<p>First, we’ll need to write a function that gets called when the action is
+triggered from the admin. Action functions are just regular functions that take
+three arguments:</p>
+<ul class="simple">
+<li>The current <a class="reference internal" href="../#django.contrib.admin.ModelAdmin" title="django.contrib.admin.ModelAdmin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a></li>
+<li>An <a class="reference internal" href="../../../request-response/#django.http.HttpRequest" title="django.http.HttpRequest"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpRequest</span></code></a> representing the current request,</li>
+<li>A <a class="reference internal" href="../../../models/querysets/#django.db.models.query.QuerySet" title="django.db.models.query.QuerySet"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuerySet</span></code></a> containing the set of
+objects selected by the user.</li>
+</ul>
+<p>Our publish-these-articles function won’t need the <a class="reference internal" href="../#django.contrib.admin.ModelAdmin" title="django.contrib.admin.ModelAdmin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a> or the
+request object, but we will use the queryset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_published</span><span class="p">(</span><span class="n">modeladmin</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+    <span class="n">queryset</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For the best performance, we’re using the queryset’s <a class="reference internal" href="../../../../topics/db/queries/#topics-db-queries-update"><span class="std std-ref">update method</span></a>. Other types of actions might need to deal
+with each object individually; in these cases we’d just iterate over the
+queryset:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">queryset</span><span class="p">:</span>
+    <span class="n">do_something_with</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>That’s actually all there is to writing an action! However, we’ll take one
+more optional-but-useful step and give the action a “nice” title in the admin.
+By default, this action would appear in the action list as “Make published” –
+the function name, with underscores replaced by spaces. That’s fine, but we
+can provide a better, more human-friendly name by giving the
+<code class="docutils literal notranslate"><span class="pre">make_published</span></code> function a <code class="docutils literal notranslate"><span class="pre">short_description</span></code> attribute:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_published</span><span class="p">(</span><span class="n">modeladmin</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+    <span class="n">queryset</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="n">make_published</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s2">&quot;Mark selected stories as published&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This might look familiar; the admin’s <code class="docutils literal notranslate"><span class="pre">list_display</span></code> option uses the
+same technique to provide human-readable descriptions for callback
+functions registered there, too.</p>
+</div>
+</div>
+<div class="section" id="s-adding-actions-to-the-modeladmin">
+<span id="adding-actions-to-the-modeladmin"></span><h3>Adding actions to the <a class="reference internal" href="../#django.contrib.admin.ModelAdmin" title="django.contrib.admin.ModelAdmin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a><a class="headerlink" href="#adding-actions-to-the-modeladmin" title="Permalink to this headline">¶</a></h3>
+<p>Next, we’ll need to inform our <a class="reference internal" href="../#django.contrib.admin.ModelAdmin" title="django.contrib.admin.ModelAdmin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a> of the action. This works
+just like any other configuration option. So, the complete <code class="docutils literal notranslate"><span class="pre">admin.py</span></code> with
+the action and its registration would look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="k">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">myapp.models</span> <span class="k">import</span> <span class="n">Article</span>
+
+<span class="k">def</span> <span class="nf">make_published</span><span class="p">(</span><span class="n">modeladmin</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+    <span class="n">queryset</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="n">make_published</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s2">&quot;Mark selected stories as published&quot;</span>
+
+<span class="k">class</span> <span class="nc">ArticleAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">]</span>
+    <span class="n">ordering</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_published</span><span class="p">]</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Article</span><span class="p">,</span> <span class="n">ArticleAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That code will give us an admin change list that looks something like this:</p>
+<img alt="../../../../_images/adding-actions-to-the-modeladmin.png" src="../../../../_images/adding-actions-to-the-modeladmin.png" />
+<p>That’s really all there is to it! If you’re itching to write your own actions,
+you now know enough to get started. The rest of this document just covers more
+advanced techniques.</p>
+</div>
+<div class="section" id="s-handling-errors-in-actions">
+<span id="handling-errors-in-actions"></span><h3>Handling errors in actions<a class="headerlink" href="#handling-errors-in-actions" title="Permalink to this headline">¶</a></h3>
+<p>If there are foreseeable error conditions that may occur while running your
+action, you should gracefully inform the user of the problem. This means
+handling exceptions and using
+<a class="reference internal" href="../#django.contrib.admin.ModelAdmin.message_user" title="django.contrib.admin.ModelAdmin.message_user"><code class="xref py py-meth docutils literal notranslate"><span class="pre">django.contrib.admin.ModelAdmin.message_user()</span></code></a> to display a user friendly
+description of the problem in the response.</p>
+</div>
+</div>
+<div class="section" id="s-advanced-action-techniques">
+<span id="advanced-action-techniques"></span><h2>Advanced action techniques<a class="headerlink" href="#advanced-action-techniques" title="Permalink to this headline">¶</a></h2>
+<p>There’s a couple of extra options and possibilities you can exploit for more
+advanced options.</p>
+<div class="section" id="s-actions-as-modeladmin-methods">
+<span id="actions-as-modeladmin-methods"></span><h3>Actions as <a class="reference internal" href="../#django.contrib.admin.ModelAdmin" title="django.contrib.admin.ModelAdmin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a> methods<a class="headerlink" href="#actions-as-modeladmin-methods" title="Permalink to this headline">¶</a></h3>
+<p>The example above shows the <code class="docutils literal notranslate"><span class="pre">make_published</span></code> action defined as a simple
+function. That’s perfectly fine, but it’s not perfect from a code design point
+of view: since the action is tightly coupled to the <code class="docutils literal notranslate"><span class="pre">Article</span></code> object, it
+makes sense to hook the action to the <code class="docutils literal notranslate"><span class="pre">ArticleAdmin</span></code> object itself.</p>
+<p>That’s easy enough to do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ArticleAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="o">...</span>
+
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;make_published&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">make_published</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+        <span class="n">queryset</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+    <span class="n">make_published</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s2">&quot;Mark selected stories as published&quot;</span>
+</pre></div>
+</div>
+<p>Notice first that we’ve moved <code class="docutils literal notranslate"><span class="pre">make_published</span></code> into a method and renamed the
+<code class="docutils literal notranslate"><span class="pre">modeladmin</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">self</span></code>, and second that we’ve now put the string
+<code class="docutils literal notranslate"><span class="pre">'make_published'</span></code> in <code class="docutils literal notranslate"><span class="pre">actions</span></code> instead of a direct function reference. This
+tells the <a class="reference internal" href="../#django.contrib.admin.ModelAdmin" title="django.contrib.admin.ModelAdmin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a> to look up the action as a method.</p>
+<p>Defining actions as methods gives the action more straightforward, idiomatic
+access to the <a class="reference internal" href="../#django.contrib.admin.ModelAdmin" title="django.contrib.admin.ModelAdmin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a> itself, allowing the action to call any of the
+methods provided by the admin.</p>
+<p id="custom-admin-action">For example, we can use <code class="docutils literal notranslate"><span class="pre">self</span></code> to flash a message to the user informing her
+that the action was successful:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ArticleAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">make_published</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+        <span class="n">rows_updated</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rows_updated</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">message_bit</span> <span class="o">=</span> <span class="s2">&quot;1 story was&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">message_bit</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> stories were&quot;</span> <span class="o">%</span> <span class="n">rows_updated</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message_user</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> successfully marked as published.&quot;</span> <span class="o">%</span> <span class="n">message_bit</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This make the action match what the admin itself does after successfully
+performing an action:</p>
+<img alt="../../../../_images/actions-as-modeladmin-methods.png" src="../../../../_images/actions-as-modeladmin-methods.png" />
+</div>
+<div class="section" id="s-actions-that-provide-intermediate-pages">
+<span id="actions-that-provide-intermediate-pages"></span><h3>Actions that provide intermediate pages<a class="headerlink" href="#actions-that-provide-intermediate-pages" title="Permalink to this headline">¶</a></h3>
+<p>By default, after an action is performed the user is simply redirected back
+to the original change list page. However, some actions, especially more
+complex ones, will need to return intermediate pages. For example, the
+built-in delete action asks for confirmation before deleting the selected
+objects.</p>
+<p>To provide an intermediary page, simply return an
+<a class="reference internal" href="../../../request-response/#django.http.HttpResponse" title="django.http.HttpResponse"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpResponse</span></code></a> (or subclass) from your action. For
+example, you might write a simple export function that uses Django’s
+<a class="reference internal" href="../../../../topics/serialization/"><span class="doc">serialization functions</span></a> to dump some selected
+objects as JSON:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.core</span> <span class="k">import</span> <span class="n">serializers</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="k">import</span> <span class="n">HttpResponse</span>
+
+<span class="k">def</span> <span class="nf">export_as_json</span><span class="p">(</span><span class="n">modeladmin</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;application/json&quot;</span><span class="p">)</span>
+    <span class="n">serializers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">response</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+<p>Generally, something like the above isn’t considered a great idea. Most of the
+time, the best practice will be to return an
+<a class="reference internal" href="../../../request-response/#django.http.HttpResponseRedirect" title="django.http.HttpResponseRedirect"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpResponseRedirect</span></code></a> and redirect the user to a view
+you’ve written, passing the list of selected objects in the GET query string.
+This allows you to provide complex interaction logic on the intermediary
+pages. For example, if you wanted to provide a more complete export function,
+you’d want to let the user choose a format, and possibly a list of fields to
+include in the export. The best thing to do would be to write a small action
+that simply redirects to your custom export view:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="k">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.contrib.contenttypes.models</span> <span class="k">import</span> <span class="n">ContentType</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="k">import</span> <span class="n">HttpResponseRedirect</span>
+
+<span class="k">def</span> <span class="nf">export_selected_objects</span><span class="p">(</span><span class="n">modeladmin</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+    <span class="n">selected</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">getlist</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ACTION_CHECKBOX_NAME</span><span class="p">)</span>
+    <span class="n">ct</span> <span class="o">=</span> <span class="n">ContentType</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_for_model</span><span class="p">(</span><span class="n">queryset</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="s2">&quot;/export/?ct=</span><span class="si">%s</span><span class="s2">&amp;ids=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">pk</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">selected</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>As you can see, the action is the simple part; all the complex logic would
+belong in your export view. This would need to deal with objects of any type,
+hence the business with the <code class="docutils literal notranslate"><span class="pre">ContentType</span></code>.</p>
+<p>Writing this view is left as an exercise to the reader.</p>
+</div>
+<div class="section" id="s-making-actions-available-site-wide">
+<span id="s-adminsite-actions"></span><span id="making-actions-available-site-wide"></span><span id="adminsite-actions"></span><h3>Making actions available site-wide<a class="headerlink" href="#making-actions-available-site-wide" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.contrib.admin.AdminSite.add_action">
+<code class="descclassname">AdminSite.</code><code class="descname">add_action</code>(<em>action</em>, <em>name=None</em>)<a class="reference internal" href="../../../../_modules/django/contrib/admin/sites/#AdminSite.add_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.admin.AdminSite.add_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Some actions are best if they’re made available to <em>any</em> object in the admin
+site – the export action defined above would be a good candidate. You can
+make an action globally available using <a class="reference internal" href="#django.contrib.admin.AdminSite.add_action" title="django.contrib.admin.AdminSite.add_action"><code class="xref py py-meth docutils literal notranslate"><span class="pre">AdminSite.add_action()</span></code></a>. For
+example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="k">import</span> <span class="n">admin</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">add_action</span><span class="p">(</span><span class="n">export_selected_objects</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This makes the <code class="docutils literal notranslate"><span class="pre">export_selected_objects</span></code> action globally available as an
+action named “export_selected_objects”. You can explicitly give the action
+a name – good if you later want to programmatically <a class="reference internal" href="#disabling-admin-actions"><span class="std std-ref">remove the action</span></a> – by passing a second argument to
+<a class="reference internal" href="#django.contrib.admin.AdminSite.add_action" title="django.contrib.admin.AdminSite.add_action"><code class="xref py py-meth docutils literal notranslate"><span class="pre">AdminSite.add_action()</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">add_action</span><span class="p">(</span><span class="n">export_selected_objects</span><span class="p">,</span> <span class="s1">&#39;export_selected&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="s-disabling-actions">
+<span id="s-disabling-admin-actions"></span><span id="disabling-actions"></span><span id="disabling-admin-actions"></span><h3>Disabling actions<a class="headerlink" href="#disabling-actions" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes you need to disable certain actions – especially those
+<a class="reference internal" href="#adminsite-actions"><span class="std std-ref">registered site-wide</span></a> – for particular objects.
+There’s a few ways you can disable actions:</p>
+<div class="section" id="s-disabling-a-site-wide-action">
+<span id="disabling-a-site-wide-action"></span><h4>Disabling a site-wide action<a class="headerlink" href="#disabling-a-site-wide-action" title="Permalink to this headline">¶</a></h4>
+<dl class="method">
+<dt id="django.contrib.admin.AdminSite.disable_action">
+<code class="descclassname">AdminSite.</code><code class="descname">disable_action</code>(<em>name</em>)<a class="reference internal" href="../../../../_modules/django/contrib/admin/sites/#AdminSite.disable_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.admin.AdminSite.disable_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>If you need to disable a <a class="reference internal" href="#adminsite-actions"><span class="std std-ref">site-wide action</span></a> you can
+call <a class="reference internal" href="#django.contrib.admin.AdminSite.disable_action" title="django.contrib.admin.AdminSite.disable_action"><code class="xref py py-meth docutils literal notranslate"><span class="pre">AdminSite.disable_action()</span></code></a>.</p>
+<p>For example, you can use this method to remove the built-in “delete selected
+objects” action:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">disable_action</span><span class="p">(</span><span class="s1">&#39;delete_selected&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once you’ve done the above, that action will no longer be available
+site-wide.</p>
+<p>If, however, you need to re-enable a globally-disabled action for one
+particular model, simply list it explicitly in your <code class="docutils literal notranslate"><span class="pre">ModelAdmin.actions</span></code>
+list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Globally disable delete selected</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">disable_action</span><span class="p">(</span><span class="s1">&#39;delete_selected&#39;</span><span class="p">)</span>
+
+<span class="c1"># This ModelAdmin will not have delete_selected available</span>
+<span class="k">class</span> <span class="nc">SomeModelAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;some_other_action&#39;</span><span class="p">]</span>
+    <span class="o">...</span>
+
+<span class="c1"># This one will</span>
+<span class="k">class</span> <span class="nc">AnotherModelAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;delete_selected&#39;</span><span class="p">,</span> <span class="s1">&#39;a_third_action&#39;</span><span class="p">]</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="s-disabling-all-actions-for-a-particular-modeladmin">
+<span id="disabling-all-actions-for-a-particular-modeladmin"></span><h4>Disabling all actions for a particular <a class="reference internal" href="../#django.contrib.admin.ModelAdmin" title="django.contrib.admin.ModelAdmin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a><a class="headerlink" href="#disabling-all-actions-for-a-particular-modeladmin" title="Permalink to this headline">¶</a></h4>
+<p>If you want <em>no</em> bulk actions available for a given <a class="reference internal" href="../#django.contrib.admin.ModelAdmin" title="django.contrib.admin.ModelAdmin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a>, simply
+set <a class="reference internal" href="../#django.contrib.admin.ModelAdmin.actions" title="django.contrib.admin.ModelAdmin.actions"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ModelAdmin.actions</span></code></a> to <code class="docutils literal notranslate"><span class="pre">None</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyModelAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>This tells the <a class="reference internal" href="../#django.contrib.admin.ModelAdmin" title="django.contrib.admin.ModelAdmin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a> to not display or allow any actions,
+including any <a class="reference internal" href="#adminsite-actions"><span class="std std-ref">site-wide actions</span></a>.</p>
+</div>
+<div class="section" id="s-conditionally-enabling-or-disabling-actions">
+<span id="conditionally-enabling-or-disabling-actions"></span><h4>Conditionally enabling or disabling actions<a class="headerlink" href="#conditionally-enabling-or-disabling-actions" title="Permalink to this headline">¶</a></h4>
+<dl class="method">
+<dt id="django.contrib.admin.ModelAdmin.get_actions">
+<code class="descclassname">ModelAdmin.</code><code class="descname">get_actions</code>(<em>request</em>)<a class="reference internal" href="../../../../_modules/django/contrib/admin/options/#ModelAdmin.get_actions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.admin.ModelAdmin.get_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finally, you can conditionally enable or disable actions on a per-request
+(and hence per-user basis) by overriding <a class="reference internal" href="#django.contrib.admin.ModelAdmin.get_actions" title="django.contrib.admin.ModelAdmin.get_actions"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModelAdmin.get_actions()</span></code></a>.</p>
+<p>This returns a dictionary of actions allowed. The keys are action names, and
+the values are <code class="docutils literal notranslate"><span class="pre">(function,</span> <span class="pre">name,</span> <span class="pre">short_description)</span></code> tuples.</p>
+<p>Most of the time you’ll use this method to conditionally remove actions from
+the list gathered by the superclass. For example, if I only wanted users
+whose names begin with ‘J’ to be able to delete objects in bulk, I could do
+the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyModelAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">get_actions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">actions</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_actions</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s1">&#39;delete_selected&#39;</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">actions</span><span class="p">[</span><span class="s1">&#39;delete_selected&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">actions</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="s-setting-permissions-for-actions">
+<span id="s-admin-action-permissions"></span><span id="setting-permissions-for-actions"></span><span id="admin-action-permissions"></span><h3>Setting permissions for actions<a class="headerlink" href="#setting-permissions-for-actions" title="Permalink to this headline">¶</a></h3>
+<div class="versionadded">
+<span class="title">New in Django 2.1:</span> </div>
+<p>Actions may limit their availability to users with specific permissions by
+setting an <code class="docutils literal notranslate"><span class="pre">allowed_permissions</span></code> attribute on the action function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_published</span><span class="p">(</span><span class="n">modeladmin</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+    <span class="n">queryset</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+<span class="n">make_published</span><span class="o">.</span><span class="n">allowed_permissions</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">make_published()</span></code> action will only be available to users that pass the
+<a class="reference internal" href="../#django.contrib.admin.ModelAdmin.has_change_permission" title="django.contrib.admin.ModelAdmin.has_change_permission"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModelAdmin.has_change_permission()</span></code></a> check.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">allowed_permissions</span></code> has more than one permission, the action will be
+available as long as the user passes at least one of the checks.</p>
+<p>Available values for <code class="docutils literal notranslate"><span class="pre">allowed_permissions</span></code> and the corresponding method
+checks are:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">'add'</span></code>: <a class="reference internal" href="../#django.contrib.admin.ModelAdmin.has_add_permission" title="django.contrib.admin.ModelAdmin.has_add_permission"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModelAdmin.has_add_permission()</span></code></a></li>
+<li><code class="docutils literal notranslate"><span class="pre">'change'</span></code>: <a class="reference internal" href="../#django.contrib.admin.ModelAdmin.has_change_permission" title="django.contrib.admin.ModelAdmin.has_change_permission"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModelAdmin.has_change_permission()</span></code></a></li>
+<li><code class="docutils literal notranslate"><span class="pre">'delete'</span></code>: <a class="reference internal" href="../#django.contrib.admin.ModelAdmin.has_delete_permission" title="django.contrib.admin.ModelAdmin.has_delete_permission"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModelAdmin.has_delete_permission()</span></code></a></li>
+<li><code class="docutils literal notranslate"><span class="pre">'view'</span></code>: <a class="reference internal" href="../#django.contrib.admin.ModelAdmin.has_view_permission" title="django.contrib.admin.ModelAdmin.has_view_permission"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ModelAdmin.has_view_permission()</span></code></a></li>
+</ul>
+<p>You can specify any other value as long as you implement a corresponding
+<code class="docutils literal notranslate"><span class="pre">has_&lt;value&gt;_permission(self,</span> <span class="pre">request)</span></code> method on the <code class="docutils literal notranslate"><span class="pre">ModelAdmin</span></code>.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="k">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth</span> <span class="k">import</span> <span class="n">get_permission_codename</span>
+
+<span class="k">class</span> <span class="nc">ArticleAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;make_published&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">make_published</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
+        <span class="n">queryset</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+    <span class="n">make_published</span><span class="o">.</span><span class="n">allowed_permissions</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;publish&#39;</span><span class="p">,)</span>
+
+    <span class="k">def</span> <span class="nf">has_publish_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Does the user have the publish permission?&quot;&quot;&quot;</span>
+        <span class="n">opts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">opts</span>
+        <span class="n">codename</span> <span class="o">=</span> <span class="n">get_permission_codename</span><span class="p">(</span><span class="s1">&#39;publish&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">has_perm</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">app_label</span><span class="p">,</span> <span class="n">codename</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../"><i class="icon icon-chevron-left"></i> The Django admin site</a></div>
+  
+  
+  <div class="right"><a href="../admindocs/">The Django admin documentation generator <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Pratyush Mittal donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Admin actions</a><ul>
+<li><a class="reference internal" href="#writing-actions">Writing actions</a><ul>
+<li><a class="reference internal" href="#writing-action-functions">Writing action functions</a></li>
+<li><a class="reference internal" href="#adding-actions-to-the-modeladmin">Adding actions to the <code class="docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a></li>
+<li><a class="reference internal" href="#handling-errors-in-actions">Handling errors in actions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#advanced-action-techniques">Advanced action techniques</a><ul>
+<li><a class="reference internal" href="#actions-as-modeladmin-methods">Actions as <code class="docutils literal notranslate"><span class="pre">ModelAdmin</span></code> methods</a></li>
+<li><a class="reference internal" href="#actions-that-provide-intermediate-pages">Actions that provide intermediate pages</a></li>
+<li><a class="reference internal" href="#making-actions-available-site-wide">Making actions available site-wide</a></li>
+<li><a class="reference internal" href="#disabling-actions">Disabling actions</a><ul>
+<li><a class="reference internal" href="#disabling-a-site-wide-action">Disabling a site-wide action</a></li>
+<li><a class="reference internal" href="#disabling-all-actions-for-a-particular-modeladmin">Disabling all actions for a particular <code class="docutils literal notranslate"><span class="pre">ModelAdmin</span></code></a></li>
+<li><a class="reference internal" href="#conditionally-enabling-or-disabling-actions">Conditionally enabling or disabling actions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#setting-permissions-for-actions">Setting permissions for actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../">The Django admin site</a></li>
+    
+    
+    <li>Next: <a href="../admindocs/">The Django admin documentation generator</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../../">API Reference</a>
+      
+      <ul><li><a href="../../"><code class="docutils literal notranslate"><span class="pre">contrib</span></code> packages</a>
+      
+      <ul><li><a href="../">The Django admin site</a>
+      
+      <ul><li>Admin actions</li></ul>
+      </li></ul></li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

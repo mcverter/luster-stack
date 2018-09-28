@@ -1,0 +1,1868 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Amazon EC2 Security Groups for Linux Instances - Amazon Elastic Compute Cloud</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="home" href="#top" />
+      <link rel="up" href="EC2_Network_and_Security.html" title="Network and Security" />
+      <link rel="prev" href="ec2-key-pairs.html" title="Amazon EC2 Key Pairs" />
+      <link rel="next" href="security-group-rules-reference.html" title="Security Group Rules Reference" />
+      <meta name="description" content="Use security groups and security group rules as a firewall to control traffic for one or more EC2 instances." />
+      <meta name="keywords" content="EC2,Amazon EC2,EC2 instance,instance,VM,virtual machine" />
+      <meta name="deployment_region" content="IAD" />
+      <meta name="product" content="Amazon Elastic Compute Cloud" />
+      <meta name="guide" content="User Guide for Linux Instances" />
+      <meta name="guide-locale" content="en_us" />
+      <link rel="icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="canonical" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css" />
+      <link rel="stylesheet" type="text/css" href="/font/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="/css/google-font.css" />
+      <link id="code-style" rel="stylesheet" type="text/css" href="/css/code/light.css" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.theme.css" />
+      <link rel="stylesheet" type="text/css" href="/css/colorbox.css" />
+      <link rel="stylesheet" type="text/css" href="/css/awsdocs.css?v=20170615" /><script type="text/javascript" src="/js/highlight.pack.js"></script><script type="text/javascript" src="/js/jquery.min.js"></script><script type="text/javascript" src="/js/jquery-ui.min.js"></script><script type="text/javascript" src="/js/handlebars.js"></script><script type="text/javascript" src="/js/jquery.colorbox.js"></script><script type="text/javascript" src="/js/awsdocs.min.js?v=20170615"></script></head>
+   <body id="top">
+      <div xmlns:db="http://docbook.org/ns/docbook" id="aws-nav" class="aws-nav-header">
+         <div class="aws-nav-header-left">
+            <div id="aws-nav-flyout-trigger" class="aws-nav-flyout-trigger"><i class="fa fa-bars fa-2x"></i></div>
+            <div class="aws-nav-logo">
+               <!--aws_logo_105x39.png--><a href="http://aws.amazon.com"><img src="/images/aws_logo_105x39.png" alt="Amazon Web Services" /></a></div>
+         </div>
+         <div id="aws-nav-header-right" class="aws-nav-header-right">
+            <div class="aws-nav-cta-button-outer"><a id="aws-nav-cta-button" class="aws-nav-button" href="https://console.aws.amazon.com/console/home">Sign In to the Console</a></div>
+            <div class="aws-nav-popover-trigger" data-dropdown="aws-nav-dropdown-lang"><select id="languageSelection" onchange="SelectLanguage()">
+                  <option value="/de_de/AWSEC2/latest/UserGuide/using-network-security.html">Deutsch</option>
+                  <option value="/en_us/AWSEC2/latest/UserGuide/using-network-security.html" selected="selected">English</option>
+                  <option value="/es_es/AWSEC2/latest/UserGuide/using-network-security.html">Español</option>
+                  <option value="/fr_fr/AWSEC2/latest/UserGuide/using-network-security.html">Français</option>
+                  <option value="/it_it/AWSEC2/latest/UserGuide/using-network-security.html">Italiano</option>
+                  <option value="/ja_jp/AWSEC2/latest/UserGuide/using-network-security.html">日本語</option>
+                  <option value="/ko_kr/AWSEC2/latest/UserGuide/using-network-security.html">한국어</option>
+                  <option value="/pt_br/AWSEC2/latest/UserGuide/using-network-security.html">Português</option>
+                  <option value="/zh_cn/AWSEC2/latest/UserGuide/using-network-security.html">中文 (简体)</option>
+                  <option value="/zh_tw/AWSEC2/latest/UserGuide/using-network-security.html">中文 (繁體)</option></select></div><a class="btn btn-rss-link" id="rss-link-top" target="_blank" href="amazon-ec2-release-notes.rss" title="View RSS Feed"></a><a class="btn btn-kindle-link" id="kindle-link-top" target="_blank" href="http://www.amazon.com/dp/B076452RSZ" title="Open Kindle"></a><a class="btn btn-pdf-link" id="pdf-link-top" href="ec2-ug.pdf#using-network-security" target="_blank" title="Open PDF"></a><a class="btn btn-github-link" id="github-link-top" href="https://github.com/awsdocs/amazon-ec2-user-guide/tree/master/doc_source/using-network-security.md" target="_blank" title="Edit on GitHub"></a><div id="aws-nav-quicklinks-separator" class="aws-nav-quicklinks-separator">
+               <div class="aws-nav-left"></div>
+               <div class="aws-nav-right"></div>
+            </div>
+         </div>
+         <div xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" id="topnav-flyout-menu-container">
+            <ul id="topnav-flyout-menu"><script id="flyout-item-template" type="text/x-handlebars-template">
+                    {{#flyoutList}}
+
+                        {{#if topTarget}}
+                            <li class="awsdocs-flyout-link-wrapper"><a href="{{topTarget}}">{{listItem}}</a></li>
+                        {{else}}
+                            <li>{{listItem}}
+                                {{#if subList}}
+                                <ul>
+                                    {{#subList}}
+                                    <li class="awsdocs-flyout-link-wrapper"><a href="{{target}}">{{text}}</a></li>
+                                    {{/subList}}
+                                </ul>
+                                {{/if}}
+                            </li>
+                        {{/if}}
+
+                    {{/flyoutList}}
+                </script></ul>
+            <div id="topnav-flyout-menu-spacer"></div>
+         </div>
+      </div>
+      <div id="content-container">
+         <div id="left-column">
+            <div id="left-col-header">
+               <div xmlns:db="http://docbook.org/ns/docbook" id="left-col-top-content">
+                  <div id="service-name">Amazon Elastic Compute Cloud </div>
+                  <div id="search"><i id="search-icon" class="fa fa-search fa-2x"></i></div>
+                  <div id="guide-info">User Guide for Linux Instances
+                     <div id="content-button"><i id="toggle-contents" class="fa fa-bars"></i></div>
+                  </div>
+               </div>
+               <form id="finegrainedSearch" method="get" onsubmit="return searchFormSubmit(this);" action="/search/doc-search.html">
+                  <div id="search-form"><select id="search-select" name="searchPath">
+                        <option value="all">Entire Site</option>
+                        <option value="AWSMarketplace">AMIs from AWS Marketplace</option>
+                        <option value="amis">AMIs from All Sources</option>
+                        <option value="articles">Articles &amp; Tutorials</option>
+                        <option value="products_and_info">AWS Product Information</option>
+                        <option value="case_studies">Case Studies</option>
+                        <option value="customerapps">Customer Apps</option>
+                        <option value="documentation">Documentation</option>
+                        <option value="documentation-product">Documentation - This Product</option>
+                        <option value="documentation-guide" selected="selected">Documentation - This Guide</option>
+                        <option value="datasets">Public Data Sets</option>
+                        <option value="releasenotes">Release Notes</option>
+                        <option value="solution_providers">Partners</option>
+                        <option value="code">Sample Code &amp; Libraries</option></select><br /><input id="search-query" name="searchQuery" type="text" placeholder="Search" /><input id="search-button" src="/images/search-button.png" alt="Go" type="image" /></div><input type="hidden" name="this_doc_product" id="this_doc_product" value="Amazon Elastic Compute Cloud" /><input type="hidden" name="this_doc_guide" id="this_doc_guide" value="User Guide for Linux Instances" /><input type="hidden" name="doc_locale" value="en_us" /></form>
+            </div>
+            <div id="toc">
+               <ul class="awstoc">
+                  <li class="awstoc closed"><a class="awstoc" href="concepts.html">What Is Amazon EC2?</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-instances-and-amis.html">Instances and AMIs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-regions-availability-zones.html">Regions and Availability Zones</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="RootDeviceStorage.html">Root Device Volume</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="get-set-up-for-amazon-ec2.html">Setting Up</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="EC2_GetStarted.html">Getting Started</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="ec2-best-practices.html">Best Practices</a></li>
+                  <li class="awstoc closed"><a class="awstoc" href="ec2-tutorials.html">Tutorials</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-lamp-amazon-linux-2.html">Install a LAMP Server (Amazon Linux 2)</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="install-LAMP.html">Install a LAMP Server (Amazon Linux AMI)</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="hosting-wordpress.html">Tutorial: Hosting a WordPress Blog</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="SSL-on-an-instance.html">Tutorial: Configure Apache Web Server on Amazon Linux 2 to Use SSL/TLS</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-increase-availability.html">Tutorial: Increase the Availability of Your Application</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="tutorial_run_command.html">Tutorial: Remotely Manage Your Instances</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="AMIs.html">Amazon Machine Images</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ComponentsAMIs.html">AMI Types</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="virtualization_types.html">Virtualization Types</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="finding-an-ami.html">Finding a Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="sharing-amis.html">Shared AMIs</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="usingsharedamis-finding.html">Finding Shared AMIs</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="sharingamis-intro.html">Making an AMI Public</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="sharingamis-explicit.html">Sharing an AMI with Specific AWS Accounts</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="using-bookmarks.html">Using Bookmarks</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="building-shared-amis.html">Guidelines for Shared Linux AMIs</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="paid-amis.html">Paid AMIs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="creating-an-ami-ebs.html">Creating an Amazon EBS-Backed Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="creating-an-ami-instance-store.html">Creating an Instance Store-Backed Linux AMI</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="set-up-ami-tools.html">Setting Up the AMI Tools</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="create-instance-store-ami.html">Creating an AMI from an Instance Store-Backed Instance</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="Using_ConvertingS3toEBS.html">Converting to an Amazon EBS-Backed AMI</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ami-tools-commands.html">AMI Tools Reference</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AMIEncryption.html">AMIs with Encrypted Snapshots</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="CopyingAMIs.html">Copying an AMI</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="deregister-ami.html">Deregistering Your Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="amazon-linux-ami-basics.html">Amazon Linux</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="amazon-linux-2-virtual-machine.html">Running Amazon Linux 2 as a Virtual Machine On-Premises</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="UserProvidedKernels.html">User Provided Kernels</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Instances.html">Instances</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="instance-types.html">Instance Types</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances.html">Burstable Performance Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-credits-baseline-concepts.html">CPU Credits and Baseline Performance</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances-unlimited-mode.html">Unlimited Mode</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="unlimited-mode-examples.html">Examples</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances-standard-mode.html">Standard Mode</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="standard-mode-examples.html">Examples</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-performance-instances-how-to.html">Working with Burstable Performance Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-performance-instances-monitoring-cpu-credits.html">Monitoring Your CPU Credits</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="general-purpose-instances.html">General Purpose Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="compute-optimized-instances.html">Compute Optimized Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="memory-optimized-instances.html">Memory Optimized Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="storage-optimized-instances.html">Storage Optimized Instances</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="accelerated-computing-instances.html">Accelerated Computing Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-nvidia-driver.html">Installing the NVIDIA Driver on Linux Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="activate_grid.html">Activate NVIDIA GRID Virtual Applications (G3 Instances Only)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="optimize_gpu.html">Optimizing GPU Settings (P2, P3, and G3 Instances)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="fpga-getting-started.html">Getting Started with FPGA Development</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="concepts_micro_instances.html">T1 Micro Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-resize.html">Changing the Instance Type</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-optimize-cpu.html">Optimizing CPU Options</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="instance-purchasing-options.html">Instance Purchasing Options</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="ec2-reserved-instances.html">Reserved Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="reserved-instances-types.html">Types of Reserved Instances (Offering Classes)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="apply_ri.html">How Reserved Instances Are Applied</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="concepts-reserved-instances-application.html">How You Are Billed</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-market-concepts-buying.html">Buying Reserved Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-market-general.html">Selling on the Reserved Instance Marketplace</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-modifying.html">Modifying Reserved Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-convertible-exchange.html">Exchanging Convertible Reserved Instances</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-scheduled-instances.html">Scheduled Instances</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="using-spot-instances.html">Spot Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="how-spot-instances-work.html">How Spot Instances Work</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-fleet.html">How Spot Fleet Works</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="using-spot-instances-history.html">Spot Instance Pricing History</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-requests.html">Spot Instance Requests</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-request-examples.html">Example Launch Specifications</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-fleet-requests.html">Spot Fleet Requests</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-examples.html">Example Configurations</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-cloudwatch-metrics.html">CloudWatch Metrics for Spot Fleet</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-fleet-automatic-scaling.html">Automatic Scaling for Spot Fleet</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-target-tracking.html">Target Tracking Scaling Policies</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-step-scaling.html">Step Scaling Policies</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-scheduled-scaling.html">Scheduled Scaling</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-bid-status.html">Spot Request Status</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-interruptions.html">Spot Instance Interruptions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-data-feeds.html">Spot Instance Data Feed</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="using-spot-limits.html">Spot Instance Limits</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="dedicated-hosts-overview.html">Dedicated Hosts</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="how-dedicated-hosts-work.html">Working with Dedicated Hosts</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="dedicated-hosts-aws-config.html">Tracking Configuration Changes</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="dedicated-instance.html">Dedicated Instances</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="ec2-instance-lifecycle.html">Instance Lifecycle</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="LaunchingAndUsingInstances.html">Launch</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="launching-instance.html">Launching an Instance Using the Launch Instance Wizard</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ec2-launch-templates.html">Launching an Instance from a Launch Template</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="launch-more-like-this.html">Launching an Instance From an Existing Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="instance-launch-snapshot.html">Launching a Linux Instance from a Backup</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="launch-marketplace-console.html">Launching an AWS Marketplace Instance</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ec2-fleet.html">Launching an EC2 Fleet</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="ec2-fleet-configuration-strategies.html">EC2 Fleet Configuration Strategies</a></li>
+                                          <li class="awstoc closed"><a class="awstoc" href="manage-ec2-fleet.html">Managing an EC2 Fleet</a><ul class="awstoc">
+                                                <li class="awstoc leaf"><a class="awstoc" href="ec2-fleet-examples.html">Example Configurations</a></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="AccessingInstances.html">Connect</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="AccessingInstancesLinux.html">Connect Using SSH</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="putty.html">Connect Using PuTTY</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="WSL.html">Connect Using WSL</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="mindterm.html">Connect Using MindTerm</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="Stop_Start.html">Stop and Start</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-reboot.html">Reboot</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-retirement.html">Retire</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="terminating-instances.html">Terminate</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-recover.html">Recover</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="Configure_Instance.html">Configure Instances</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="managing-software.html">Managing Software</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-updates.html">Updating Instance Software</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="add-repositories.html">Adding Repositories</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="find-software.html">Finding Software Packages</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-software.html">Installing Software Packages</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="compile-software.html">Preparing to Compile Software</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="managing-users.html">Managing Users</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="processor_state_control.html">Processor State Control</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="set-time.html">Setting the Time</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="set-hostname.html">Changing the Hostname</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="dynamic-dns.html">Setting Up Dynamic DNS</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="user-data.html">Running Commands at Launch</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="ec2-instance-metadata.html">Instance Metadata and User Data</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="instance-identity-documents.html">Instance Identity Documents</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="identify_ec2_instances.html">Identify Instances</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="monitoring_ec2.html">Monitoring</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="monitoring_automated_manual.html">Automated and Manual Monitoring</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="monitoring_best_practices.html">Best Practices for Monitoring</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="monitoring-instances-status-check.html">Monitoring the Status of Your Instances</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="monitoring-system-instance-status-check.html">Instance Status Checks</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="monitoring-instances-status-check_sched.html">Scheduled Events</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-cloudwatch.html">Monitoring Your Instances Using CloudWatch</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="using-cloudwatch-new.html">Enable Detailed Monitoring</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="viewing_metrics_with_cloudwatch.html">List Available Metrics</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="monitoring_get_statistics.html">Get Statistics for Metrics</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="US_SingleMetricPerInstance.html">Get Statistics for a Specific Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="GetSingleMetricAllDimensions.html">Aggregate Statistics Across Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="GetMetricAutoScalingGroup.html">Aggregate Statistics by Auto Scaling Group</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="US_SingleMetricPerAMI.html">Aggregate Statistics by AMI</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="graphs-in-the-aws-management-console.html">Graph Metrics</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="using-cloudwatch-createalarm.html">Create an Alarm</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="UsingAlarmActions.html">Create Alarms That Stop, Terminate, Reboot, or Recover an Instance</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="automating_with_cloudwatch_events.html">Automating Amazon EC2 with CloudWatch Events</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="mon-scripts.html">Monitoring Memory and Disk Metrics</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc opened"><a class="awstoc" href="EC2_Network_and_Security.html">Network and Security</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-key-pairs.html">Key Pairs</a></li>
+                        <li class="awstoc opened"><a class="awstoc selected" href="using-network-security.html">Security Groups</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="security-group-rules-reference.html">Security Group Rules Reference</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="UsingIAM.html">Controlling Access</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="iam-policies-for-amazon-ec2.html">IAM Policies</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="iam-policy-structure.html">Policy Structure</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ec2-supported-iam-actions-resources.html">Supported Resource-Level Permissions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ExamplePolicies_EC2.html">Example Policies for CLI or SDK</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="iam-policies-ec2-console.html">Example Policies for the Console</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="iam-roles-for-amazon-ec2.html">IAM Roles</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="authorizing-access-to-an-instance.html">Network Access</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-instance-addressing.html">Instance IP Addressing</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="MultipleIP.html">Multiple IP Addresses</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="elastic-ip-addresses-eip.html">Elastic IP Addresses</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-eni.html">Network Interfaces</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="requester-managed-eni.html">Requester-Managed Network Interfaces</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="enhanced-networking.html">Enhanced Networking</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="sriov-networking.html">Enhanced Networking: Intel 82599 VF</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="enhanced-networking-ena.html">Enhanced Networking: ENA</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="troubleshooting-ena.html">Troubleshooting ENA</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="placement-groups.html">Placement Groups</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="network_mtu.html">Network MTU</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-vpc.html">Virtual Private Clouds</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="ec2-classic-platform.html">EC2-Classic</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="vpc-classiclink.html">ClassicLink</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="vpc-migrate.html">Migrating from EC2-Classic to a VPC</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Storage.html">Storage</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="AmazonEBS.html">Amazon EBS</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="EBSVolumes.html">EBS Volumes</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="EBSVolumeTypes.html">EBS Volume Types</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-creating-volume.html">Creating a Volume</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-restoring-volume.html">Restoring from a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-attaching-volume.html">Attaching a Volume to an Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-using-volumes.html">Making a Volume Available for Use</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-describing-volumes.html">Volume Information</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="monitoring-volume-status.html">Monitoring the Status of Your Volumes</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-detaching-volume.html">Detaching a Volume from an Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-deleting-volume.html">Deleting a Volume</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ebs-modify-volume.html">Modifying a Volume</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="volume_constraints.html">Volume Size Constraints</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="console-modify.html">Using the Console</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="cli-modify.html">Using the CLI</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="monitoring_mods.html">Monitoring Progress</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="expand-linux-partition.html">Expanding a Linux Partition</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="recognize-expanded-volume-linux.html">Extending Linux File Systems</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="limitations.html">Limitations</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="stop-start.html">Appendix: Manual Stop/Start Modification</a></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="EBSSnapshots.html">EBS Snapshots</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-creating-snapshot.html">Creating a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-deleting-snapshot.html">Deleting a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-copy-snapshot.html">Copying a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-describing-snapshots.html">Viewing Snapshot Information</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-modifying-snapshot-permissions.html">Sharing a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="snapshot-lifecycle.html">Automating Snapshots</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="EBSOptimized.html">EBS Optimization</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="EBSEncryption.html">EBS Encryption</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="nvme-ebs-volumes.html">EBS Volumes and NVMe</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="EBSPerformance.html">EBS Performance</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-ec2-config.html">EC2 Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-io-characteristics.html">I/O Characteristics and Monitoring</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-initialize.html">Initialize Volumes</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="raid-config.html">RAID Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="benchmark_procedures.html">Benchmark EBS Volumes</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ebs-cloud-watch-events.html">EBS CloudWatch Events</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="InstanceStorage.html">Instance Store</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="add-instance-store-volumes.html">Add Instance Store Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ssd-instance-store.html">SSD Instance Store Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-store-swap-volumes.html">Instance Store Swap Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="disk-performance.html">Optimizing Disk Performance</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AmazonEFS.html">Amazon EFS</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AmazonS3.html">Amazon S3</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="volume_limits.html">Instance Volume Limits</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="device_naming.html">Device Naming</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="block-device-mapping-concepts.html">Block Device Mapping</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-public-data-sets.html">Using Public Data Sets</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="EC2_Resources.html">Resources and Tags</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="resources.html">Resource Locations</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="resource-ids.html">Resource IDs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="Using_Filtering.html">Listing and Filtering Your Resources</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="Using_Tags.html">Tagging Your Resources</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-resource-limits.html">Service Limits</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="usage-reports.html">Usage Reports</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Linux-Server-EC2Rescue.html">EC2Rescue for Linux</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_install.html">Installing EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_verify.html">(Optional) Verify the Signature of EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_working.html">Working with EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_moduledev.html">Developing EC2Rescue Modules</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="ec2-instance-troubleshoot.html">Troubleshooting</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="troubleshooting-launch.html">Troubleshooting Launch Issues</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesConnecting.html">Connecting to Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesStopping.html">Stopping Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesShuttingDown.html">Terminating Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstanceRecovery.html">Instance Recovery Failures</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstances.html">Failed Status Checks</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="instance-console.html">Getting Console Output and Rebooting Instances</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="instance-booting-from-wrong-volume.html">Booting from the Wrong Volume</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="DocumentHistory.html">Document History</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="glossary.html">AWS Glossary</a></li>
+                  <li id="toc-additional-links"><a class="btn btn-pdf-link" id="pdf-link-alt" href="ec2-ug.pdf#top" target="_blank" title="Open PDF"></a><a class="btn btn-kindle-link" id="kindle-link-alt" target="_blank" href="http://www.amazon.com/dp/B076452RSZ" title="Open Kindle"></a><a class="btn btn-rss-link" id="rss-link-alt" target="_blank" href="amazon-ec2-release-notes.rss" title="View RSS Feed"></a></li>
+               </ul>
+            </div>
+         </div>
+         <div id="main-column">
+            <div id="main">
+               <div id="main-content">
+                  <div id="main-col-body">
+                     <table summary="Breadcrumbs">
+                        <tr>
+                           <td>
+                              <div class="breadcrumb"><a href="/index.html">AWS Documentation</a> » <a href="/ec2/index.html">Amazon EC2</a> » <a href="index.html">User Guide for Linux Instances</a> » <a href="EC2_Network_and_Security.html">Network and Security</a> » <span class="breadcrumb">Amazon EC2 Security Groups for Linux Instances</span></div>
+                           </td>
+                        </tr>
+                     </table>
+                     <div></div>
+                     <h1 class="topictitle" id="using-network-security">Amazon EC2 Security Groups for <span>Linux</span> Instances
+                     </h1>
+                     <p>A <em>security group</em> acts as a virtual firewall that controls the traffic
+                        		for one or more instances. When you launch an instance, you associate one or more
+                        security
+                        		groups with the instance. You add rules to each security group that allow traffic
+                        to or from
+                        		its associated instances. You can modify the rules for a security group at any time;
+                        the new
+                        		rules are automatically applied to all instances that are associated with the security
+                        		group. When we decide whether to allow traffic to reach an instance, we evaluate
+                        all the
+                        		rules from all the security groups that are associated with the instance.
+                     </p>
+                     <p>When you launch an instance in a VPC, you must specify a security group that's created
+                        for
+                        		that VPC. After you launch an instance, you can change its security groups. Security
+                        		groups are associated with network interfaces. Changing an instance's security groups
+                        		changes the security groups associated with the primary network interface (eth0).
+                        For
+                        		more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SG_Changing_Group_Membership" target="_blank">Changing an
+                           			Instance's Security Groups</a> in the <em>Amazon VPC User Guide</em>. You
+                        		can also change the security groups associated with any other network interface.
+                        For
+                        		more information, see <a href="using-eni.html#eni_security_group">Changing the Security Group</a>.
+                     </p>
+                     <p>If you have requirements that aren't met by security groups, you can maintain your
+                        own
+                        		firewall on any of your instances in addition to using security groups.
+                     </p>
+                     <p>If you need to allow traffic to a Windows instance, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/using-network-security.html" target="_blank">Amazon EC2 Security Groups for Windows
+                           			Instances</a> in the <em>Amazon EC2 User Guide for Windows Instances</em>.
+                     </p>
+                     <div class="highlights">
+                        <p><strong>Contents</strong></p>
+                        <ul>
+                           <li><a href="using-network-security.html#security-group-rules">Security Group Rules</a><ul>
+                                 <li><a href="using-network-security.html#security-group-connection-tracking">Connection Tracking</a></li>
+                              </ul>
+                           </li>
+                           <li><a href="using-network-security.html#default-security-group">Default Security Groups</a></li>
+                           <li><a href="using-network-security.html#creating-your-own-security-groups">Custom Security Groups</a></li>
+                           <li><a href="using-network-security.html#working-with-security-groups">Working with Security Groups</a><ul>
+                                 <li><a href="using-network-security.html#creating-security-group">Creating a Security Group</a></li>
+                                 <li><a href="using-network-security.html#describing-security-group">Describing Your Security Groups</a></li>
+                                 <li><a href="using-network-security.html#adding-security-group-rule">Adding Rules to a Security Group</a></li>
+                                 <li><a href="using-network-security.html#updating-security-group-rules">Updating Security Group Rules</a></li>
+                                 <li><a href="using-network-security.html#deleting-security-group-rule">Deleting Rules from a Security Group</a></li>
+                                 <li><a href="using-network-security.html#deleting-security-group">Deleting a Security Group</a></li>
+                              </ul>
+                           </li>
+                           <li><a href="security-group-rules-reference.html">Security Group Rules Reference</a><ul>
+                                 <li><a href="security-group-rules-reference.html#sg-rules-web-server">Web Server Rules</a></li>
+                                 <li><a href="security-group-rules-reference.html#sg-rules-db-server">Database Server Rules</a></li>
+                                 <li><a href="security-group-rules-reference.html#sg-rules-local-access">Rules to Connect to Instances from Your Computer</a></li>
+                                 <li><a href="security-group-rules-reference.html#sg-rules-other-instances">Rules to Connect to Instances from an Instance with the Same Security Group</a></li>
+                                 <li><a href="security-group-rules-reference.html#sg-rules-path-mtu">Rules for Path MTU Discovery</a></li>
+                                 <li><a href="security-group-rules-reference.html#sg-rules-ping">Rules for Ping/ICMP</a></li>
+                                 <li><a href="security-group-rules-reference.html#sg-rules-dns">DNS Server Rules</a></li>
+                                 <li><a href="security-group-rules-reference.html#sg-rules-efs">Amazon EFS Rules</a></li>
+                                 <li><a href="security-group-rules-reference.html#sg-rules-elb">Elastic Load Balancing Rules</a></li>
+                              </ul>
+                           </li>
+                        </ul>
+                     </div>
+                     		
+                     <h2 id="security-group-rules">Security Group Rules</h2>
+                     
+                     		
+                     <p>The rules of a security group control the inbound traffic that's allowed to reach
+                        the
+                        			instances that are associated with the security group and the outbound traffic
+                        that's
+                        			allowed to leave them.
+                     </p>
+                     		
+                     <p>The following are the characteristics of security group rules:</p>
+                     		
+                     <div class="itemizedlist">
+                        				
+                        				
+                        				
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p>By default, security groups allow all outbound traffic.</p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p>Security group rules are always permissive; you can't create rules that
+                                 						deny access.
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p>Security groups are stateful — if you send a request from your
+                                 						instance, the response traffic for that request is allowed to flow in
+                                 						regardless of inbound security group rules. For VPC security groups, this
+                                 						also means that responses to allowed inbound traffic are allowed to flow
+                                 						out, regardless of outbound rules. For more information, see <a href="using-network-security.html#security-group-connection-tracking">Connection Tracking</a>.
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p>You can add and remove rules at any time. Your changes are automatically applied to
+                                 the
+                                 					instances associated with the security group.
+                              </p>
+                              					
+                              <div class="aws-note">
+                                 <p class="aws-note">Note</p>
+                                 <p>The effect of some rule changes may depend on how the traffic is
+                                    							tracked. For more information, see <a href="using-network-security.html#security-group-connection-tracking">Connection Tracking</a>.
+                                 </p>
+                              </div>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p>When you associate multiple security groups with an instance, the rules
+                                 						from each security group are effectively aggregated to create one set of
+                                 						rules. We use this set of rules to determine whether to allow access.
+                              </p>
+                              					
+                              <div class="aws-note">
+                                 <p class="aws-note">Note</p>
+                                 <p>You can assign multiple security groups to an instance, therefore an
+                                    							instance can have hundreds of rules that apply. This might cause
+                                    							problems when you access the instance. We recommend that you condense
+                                    							your rules as much as possible. 
+                                 </p>
+                              </div>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     		
+                     <p>For each rule, you specify the following:</p>
+                     		
+                     <div class="itemizedlist">
+                        			
+                        			
+                        			
+                        			
+                        			
+                        		
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              				
+                              <p><b>Protocol</b>: The protocol to allow. The most
+                                 					common protocols are 6 (TCP) 17 (UDP), and 1 (ICMP). 
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p><b>Port range</b> : For TCP, UDP, or a custom
+                                 					protocol, the range of ports to allow. You can specify a single port number (for
+                                 					example, <code class="code">22</code>), or range of port numbers (for example,
+                                 						<code class="code">7000-8000</code>).
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p><b>ICMP type and code</b>: For ICMP, the ICMP type
+                                 					and code.
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p><b>Source or destination</b>: The source (inbound
+                                 					rules) or destination (outbound rules) for the traffic. Specify one of these
+                                 					options:
+                              </p>
+                              				
+                              <div class="itemizedlist">
+                                 					
+                                 					
+                                 					
+                                 					
+                                 
+                                 					
+                                 				
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+                                       						
+                                       <p>An individual IPv4 address. You must use the <code class="code">/32</code> prefix length; for
+                                          example, <code class="code">203.0.113.1/32</code>. 
+                                       </p>
+                                       					
+                                    </li>
+                                    <li class="listitem">
+                                       						
+                                       <p>An individual IPv6 address. You must use the <code class="code">/128</code> prefix length; for
+                                          							example <code class="code">2001:db8:1234:1a00::123/128</code>.
+                                       </p>
+                                       					
+                                    </li>
+                                    <li class="listitem">
+                                       						
+                                       <p>A range of IPv4 addresses, in CIDR block notation, for example,
+                                          								<code class="code">203.0.113.0/24</code>.
+                                       </p>
+                                       					
+                                    </li>
+                                    <li class="listitem">
+                                       						
+                                       <p>A range of IPv6 addresses, in CIDR block notation, for example,
+                                          								<code class="code">2001:db8:1234:1a00::/64</code>.
+                                       </p>
+                                       					
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p>The prefix list ID for the AWS service; for example,
+                                          								<code class="code">pl-1a2b3c4d</code>. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html" target="_blank">Gateway VPC Endpoints</a>
+                                          							in the <em>Amazon VPC User Guide</em>.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       						
+                                       <p>Another security group. This allows instances associated with the
+                                          							specified security group to access instances associated with this
+                                          							security group. This does not add rules from the source security group
+                                          							to this security group. You can specify one of the following security
+                                          							groups:
+                                       </p>
+                                       						
+                                       <div class="itemizedlist">
+                                          							
+                                          							
+                                          							
+                                          						
+                                          <ul class="itemizedlist" type="disc">
+                                             <li class="listitem">
+                                                								
+                                                <p>The current security group</p>
+                                                							
+                                             </li>
+                                             <li class="listitem">
+                                                								
+                                                <p>A different security group for the same VPC</p>
+                                                							
+                                             </li>
+                                             <li class="listitem">
+                                                								
+                                                <p>A different security group for a peer VPC in a VPC peering connection</p>
+                                                							
+                                             </li>
+                                          </ul>
+                                       </div>
+                                       					
+                                    </li>
+                                 </ul>
+                              </div>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p><b>(Optional) Description</b>: You can add a
+                                 					description for the rule; for example, to help you identify it later. A
+                                 					description can be up to 255 characters in length. Allowed characters are a-z,
+                                 					A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*.
+                              </p>
+                              			
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     		
+                     <p>When you specify a security group as the source or destination for a rule, the rule
+                        			affects all instances associated with the security group. Incoming traffic is allowed
+                        			based on the private IP addresses of the instances that are associated with the
+                        source
+                        			security group (and not the public IP or Elastic IP addresses). For more information
+                        			about IP addresses, see <a href="using-instance-addressing.html">Amazon EC2 Instance IP Addressing</a>. If your security group rule references
+                        			a security group in a peer VPC, and the referenced security group or VPC peering
+                        			connection is deleted, the rule is marked as stale. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html#vpc-peering-stale-groups" target="_blank">Working with Stale Security Group Rules</a> in the
+                        			<em>Amazon VPC Peering Guide</em>.
+                     </p>
+                     
+                     		
+                     <p>If there is more than one rule for a specific port, we apply the most permissive rule.
+                        			For example, if you have a rule that allows access to <span>TCP port 22
+                           				(SSH)</span> from IP address
+                        				<code class="code">203.0.113.1</code> and another rule that allows access to <span>TCP port 22</span> from everyone,
+                        			everyone has access to <span>TCP port 22</span>.
+                     </p>
+                     
+                     		
+                     			
+                     <h3 id="security-group-connection-tracking">Connection Tracking</h3>
+                     			
+                     			
+                     <p>Your security groups use connection tracking to track information about traffic to
+                        				and from the instance. Rules are applied based on the connection state of the
+                        				traffic to determine if the traffic is allowed or denied. This allows security
+                        				groups to be stateful — responses to inbound traffic are allowed to flow out
+                        				of the instance regardless of outbound security group rules, and vice versa. For
+                        				example, if you initiate an ICMP <code class="code">ping</code> command to your instance from
+                        				your home computer, and your inbound security group rules allow ICMP traffic,
+                        				information about the connection (including the port information) is tracked.
+                        				Response traffic from the instance for the <code class="code">ping</code> command is not tracked
+                        				as a new request, but rather as an established connection and is allowed to flow
+                        out
+                        				of the instance, even if your outbound security group rules restrict outbound
+                        ICMP
+                        				traffic.
+                     </p>
+                     			
+                     <p>Not all flows of traffic are tracked. If a security group rule permits TCP or UDP
+                        flows for
+                        all traffic (<code class="code">0.0.0.0/0</code>) and there is a corresponding rule in the other
+                        direction that permits all response traffic (<code class="code">0.0.0.0/0</code>) for all ports
+                        (0-65535), then that flow of traffic is not tracked. The response traffic is
+                        therefore allowed to flow based on the inbound or outbound rule that permits the
+                        response traffic, and not on tracking information. 
+                     </p>
+                     
+                     <p>In the following example, the security group has specific inbound rules for TCP
+                        and ICMP traffic, and an outbound rule that allows all outbound traffic.
+                     </p>
+                     
+                     				
+                     <div class="table">
+                        <p class="title"><b></b></p>
+                        <div class="table-contents">
+                           <table id="w228aac21b9c13c17b9">
+                              							
+                              <tr bgcolor="#eeeeee">
+                                 								
+                                 								
+                                 								
+                                 <td colspan="3" align="left" style="text-align: left;"><b>Inbound rules</b></td>
+                                 							
+                              </tr>
+                              							
+                              <tr>
+                                 								
+                                 <td><b>Protocol type</b></td>
+                                 								
+                                 <td><b>Port number</b></td>
+                                 								
+                                 <td><b>Source IP</b></td>
+                                 							
+                              </tr>
+                              							
+                              <tr>
+                                 								
+                                 <td>TCP </td>
+                                 								
+                                 <td>22 (SSH)</td>
+                                 								
+                                 <td>203.0.113.1/32</td>
+                                 							
+                              </tr>
+                              							
+                              <tr>
+                                 								
+                                 <td>TCP </td>
+                                 								
+                                 <td>80 (HTTP)</td>
+                                 								
+                                 <td>0.0.0.0/0</td>
+                                 							
+                              </tr>
+                              							
+                              <tr>
+                                 								
+                                 <td>ICMP</td>
+                                 								
+                                 <td>All</td>
+                                 								
+                                 <td>0.0.0.0/0</td>
+                                 							
+                              </tr>
+                              							
+                              <tr bgcolor="#eeeeee">
+                                 								
+                                 								
+                                 								
+                                 <td colspan="3" align="left" style="text-align: left;"><b>Outbound rules</b></td>
+                                 							
+                              </tr>
+                              							
+                              <tr>
+                                 								
+                                 <td><b>Protocol type</b></td>
+                                 								
+                                 <td><b>Port number</b></td>
+                                 								
+                                 <td><b>Destination IP</b></td>
+                                 							
+                              </tr>
+                              							
+                              <tr>
+                                 								
+                                 <td>All</td>
+                                 								
+                                 <td>All</td>
+                                 								
+                                 <td>0.0.0.0/0</td>
+                                 							
+                              </tr>
+                              						
+                           </table>
+                        </div>
+                     </div>
+                     			
+                     			
+                     <p>TCP traffic on port 22 (SSH) to and from the instance is tracked, because the inbound
+                        rule
+                        allows traffic from <code class="code">203.0.113.1/32</code> only, and not all IP addresses
+                        (<code class="code">0.0.0.0/0</code>). TCP traffic on port 80 (HTTP) to and from the instance
+                        is not tracked, because both the inbound and outbound rules allow all traffic
+                        (<code class="code">0.0.0.0/0</code>). ICMP traffic is always tracked, regardless of rules.
+                        If you remove the outbound rule from the security group, then all traffic to and
+                        from the instance is tracked, including traffic on port 80 (HTTP).
+                     </p>
+                     
+                     			
+                     <p>An existing flow of traffic that is tracked may not be interrupted when you remove
+                        				the security group rule that enables that flow. Instead, the flow is interrupted
+                        				when it's stopped by you or the other host for at least a few minutes (or up to
+                        5
+                        				days for established TCP connections). For UDP, this may require terminating actions
+                        				on the remote side of the flow. An untracked flow of traffic is immediately
+                        				interrupted if the rule that enables the flow is removed or modified. For example,
+                        				if you remove a rule that allows all inbound SSH traffic to the instance, then
+                        your
+                        				existing SSH connections to the instance are immediately dropped.
+                     </p>
+                     			
+                     <p>For protocols other than TCP, UDP, or ICMP, only the IP address and protocol
+                        				number is tracked. If your instance sends traffic to another host (host B), and
+                        host
+                        				B initiates the same type of traffic to your instance in a separate request within
+                        				600 seconds of the original request or response, your instance accepts it regardless
+                        				of inbound security group rules, because it’s regarded as response traffic.
+                     </p>
+                     			
+                     <p>To ensure that traffic is immediately interrupted when you remove a security group
+                        rule, or
+                        				to ensure that all inbound traffic is subject to firewall rules, you can use a
+                        				network ACL for your subnet — network ACLs are stateless and therefore do not
+                        				automatically allow response traffic. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html" target="_blank">Network ACLs</a> in the
+                        					<em>Amazon VPC User Guide</em>.
+                     </p>
+                     		
+                     	
+                     		
+                     <h2 id="default-security-group">Default Security Groups</h2>
+                     		
+                     		
+                     <p>Your AWS account automatically has a <em>default security group</em> for the
+                        			default VPC in each region. If you don't specify a security group when you launch
+                        an
+                        			instance, the instance is automatically associated with the default security group
+                        for
+                        			the VPC.
+                     </p>
+                     
+                     		
+                     <p>A default security group is named <code class="code">default</code>, and it has an ID assigned by
+                        			AWS. The following are the default rules for each default security group:
+                     </p>
+                     		
+                     <div class="itemizedlist">
+                        			
+                        			
+                        		
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              				
+                              <p>Allows all inbound traffic from other instances associated with the default
+                                 					security group (the security group specifies itself as a source security group
+                                 					in its inbound rules)
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p>Allows all outbound traffic from the instance.</p>
+                              			
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     		
+                     <p>You can add or remove inbound and outbound rules for any default security group.</p>
+                     		
+                     <p>You can't delete a default security group. If you try to delete a default security
+                        group,
+                        			you'll get the following error: <code class="code">Client.CannotDelete: the specified group:
+                           				"sg-51530134" name: "default" cannot be deleted by a user</code>. 
+                     </p>
+                     	
+                     		
+                     <h2 id="creating-your-own-security-groups">Custom Security Groups</h2>
+                     		
+                     		
+                     <p>If you don't want your instances to use the default security group, you can create
+                        			your own security groups and specify them when you launch your instances. You can
+                        create
+                        			multiple security groups to reflect the different roles that your instances play;
+                        for
+                        			example, a web server or a database server. 
+                     </p>
+                     
+                     		
+                     <p>When you create a security group, you must provide it with a name and a description.
+                        			Security group names and descriptions can be up to 255 characters in length, and
+                        are
+                        			limited to the following characters:
+                     </p>
+                     		
+                     <p>a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>
+                     
+                     		
+                     <p>A security group name cannot start with <code class="code">sg-</code>. A security group name must be
+                        			unique for the VPC.
+                     </p>
+                     
+                     		
+                     <p>The following are the default rules for a security group that you create:</p>
+                     		
+                     <div class="itemizedlist">
+                        			
+                        			
+                        		
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              				
+                              <p>Allows no inbound traffic</p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p>Allows all outbound traffic</p>
+                              			
+                           </li>
+                        </ul>
+                     </div>
+                     		
+                     <p>After you've created a security group, you can change its inbound rules to reflect
+                        the
+                        			type of inbound traffic that you want to reach the associated instances. You can
+                        also 
+                        			change its outbound rules.
+                     </p>
+                     		
+                     <p>For more information about the rules you can add to a security group, see
+                        			<a href="security-group-rules-reference.html">Security Group Rules Reference</a>.
+                     </p>
+                     	
+                     		
+                     <h2 id="working-with-security-groups">Working with Security Groups</h2>
+                     		
+                     		
+                     <p>You can create, view, update, and delete security groups and security group rules
+                        			using the Amazon EC2 console.
+                     </p>
+                     		
+                     <div class="highlights" id="inline-topiclist">
+                        <p><strong>Tasks</strong></p>
+                        <ul>
+                           <li><a href="#creating-security-group">Creating a Security Group</a></li>
+                           <li><a href="#describing-security-group">Describing Your Security Groups</a></li>
+                           <li><a href="#adding-security-group-rule">Adding Rules to a Security Group</a></li>
+                           <li><a href="#updating-security-group-rules">Updating Security Group Rules</a></li>
+                           <li><a href="#deleting-security-group-rule">Deleting Rules from a Security Group</a></li>
+                           <li><a href="#deleting-security-group">Deleting a Security Group</a></li>
+                        </ul>
+                     </div>
+                     		
+                     			
+                     <h3 id="creating-security-group">Creating a Security Group</h3>
+                     			
+                     			
+                     <p>You can create a custom security group using the Amazon EC2 console. You
+                        				must specify the VPC for which you're creating the security group.
+                     </p>
+                     
+                     			
+                     <p class="title"><b>To create a new security group using the console</b></p>
+                     <ol>
+                        <li> 
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p> 
+                        </li>
+                        <li>
+                           					
+                           <p>In the navigation pane, choose <b>Security Groups</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Choose <b>Create Security Group</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Specify a name and description for the security group.</p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>For <b>VPC</b>, choose the ID of the VPC.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>You can start adding rules, or you can choose <b>Create</b>
+                              						to create the security group now (you can always add rules later). For more
+                              						information about adding rules, see <a href="using-network-security.html#adding-security-group-rule">Adding Rules to a Security Group</a>. 
+                           </p>
+                           				
+                        </li>
+                     </ol>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        <p class="title"><b>To create a security group using the command line</b></p>
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/create-security-group.html" target="_blank">create-security-group</a> (AWS CLI)
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2SecurityGroup.html" target="_blank">New-EC2SecurityGroup</a> (AWS Tools for Windows PowerShell)
+                              </p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     			
+                     <p>The Amazon EC2 console enables you to copy the rules from an existing security group
+                        to
+                        				a new security group.
+                     </p>
+                     			
+                     <p class="title"><b>To copy a security group using the console</b></p>
+                     <ol>
+                        <li> 
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p> 
+                        </li>
+                        <li>
+                           					
+                           <p>In the navigation pane, choose <b>Security Groups</b>.
+                              					
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Select the security group you want to copy, choose
+                              							<b>Actions</b>, <b>Copy to new</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>The <b>Create Security Group</b> dialog opens, and is populated with the
+                              						rules from the existing security group. Specify a name and description for
+                              						your new security group. For <b>VPC</b>, choose the ID of the
+                              						VPC. When you are done, choose <b>Create</b>.
+                           </p>
+                           				
+                        </li>
+                     </ol>
+                     
+                     			
+                     <p>You can assign a security group to an instance when you launch the instance. When
+                        				you add or remove rules, those changes are automatically applied to all instances
+                        to
+                        				which you've assigned the security group.
+                     </p>
+                     			
+                     <p>After you launch an instance, you can change its security groups.
+                        				For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#SG_Changing_Group_Membership" target="_blank">Changing an Instance's Security Groups</a> in the <em>Amazon VPC User Guide</em>.
+                     </p>
+                     		
+                     
+                     		
+                     			
+                     <h3 id="describing-security-group">Describing Your Security Groups</h3>
+                     			
+                     <p>You can view information about your security groups using the Amazon EC2 console or
+                        the
+                        				command line.
+                     </p>
+                     			
+                     <p class="title"><b>To describe your security groups using the console</b></p>
+                     <ol>
+                        <li> 
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p> 
+                        </li>
+                        <li>
+                           					
+                           <p>In the navigation pane, choose <b>Security Groups</b>.
+                              					
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>(Optional) Select <b>VPC ID</b> from the filter list, then
+                              						choose the ID of the VPC.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Select a security group. We display general information in the
+                              							<b>Description</b> tab, inbound rules on the
+                              							<b>Inbound</b> tab, outbound rules on the
+                              							<b>Outbound</b> tab, and tags on the
+                              							<b>Tags</b> tab.
+                           </p>
+                           				
+                        </li>
+                     </ol>
+                     
+                     			
+                     <div class="itemizedlist">
+                        				
+                        <p class="title"><b>To describe one or more security groups using the command line</b></p>
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-security-groups.html" target="_blank">describe-security-groups</a> (AWS CLI)
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2SecurityGroup.html" target="_blank">Get-EC2SecurityGroup</a> (AWS Tools for Windows PowerShell)
+                              </p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     		
+                     
+                     		
+                     			
+                     <h3 id="adding-security-group-rule">Adding Rules to a Security Group</h3>
+                     
+                     			
+                     <p>When you add a rule to a security group, the new rule is automatically applied to
+                        any
+                        				instances associated with the security group after a short period.
+                     </p>
+                     			
+                     <p>For more information about choosing security group rules for specific types of
+                        				access, see <a href="security-group-rules-reference.html">Security Group Rules Reference</a>.
+                     </p>
+                     
+                     			
+                     <p class="title"><b>To add rules to a security group using the console</b></p>
+                     <ol>
+                        <li> 
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p> 
+                        </li>
+                        <li>
+                           					
+                           <p>In the navigation pane, choose <b>Security Groups</b> and
+                              						select the security group.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>On the <b>Inbound</b> tab, choose <b>Edit</b>. 
+                           </p>
+                           
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>In the dialog, choose <b>Add Rule</b> and do the following:
+                           </p>
+                           <div class="itemizedlist">
+                              							
+                              							
+                              							
+                              							
+                              							
+                              						
+                              <ul class="itemizedlist" type="disc">
+                                 <li class="listitem">
+                                    								
+                                    <p>For <b>Type</b>, select the protocol.
+                                    </p>
+                                    							
+                                 </li>
+                                 <li class="listitem">
+                                    								
+                                    <p>If you select a custom TCP or UDP protocol, specify the port
+                                       									range in <b>Port Range</b>. 
+                                    </p>
+                                    							
+                                 </li>
+                                 <li class="listitem">
+                                    								
+                                    <p>If you select a custom ICMP protocol, choose the ICMP type
+                                       									name from <b>Protocol</b>, and, if applicable, the
+                                       									code name from <b>Port Range</b>.
+                                    </p>
+                                    							
+                                 </li>
+                                 <li class="listitem">
+                                    								
+                                    <p>For <b>Source</b>, choose one of the following:
+                                    </p>
+                                    <div class="itemizedlist">
+                                       										
+                                       										
+                                       										
+                                       									
+                                       <ul class="itemizedlist" type="disc">
+                                          <li class="listitem">
+                                             											
+                                             <p><b>Custom</b>: in the provided
+                                                												field, you must specify an IP address in CIDR
+                                                												notation, a CIDR block, or another security
+                                                												group.
+                                             </p>
+                                             										
+                                          </li>
+                                          <li class="listitem">
+                                             											
+                                             <p><b>Anywhere</b>: automatically adds
+                                                												the <code class="code">0.0.0.0/0</code> IPv4 CIDR block. This
+                                                												option enables all traffic of the specified type to
+                                                												reach your instance. This is acceptable for a short
+                                                												time in a test environment, but it's unsafe for
+                                                												production environments. In production, authorize
+                                                												only a specific IP address or range of addresses to
+                                                												access your instance.
+                                             </p>
+                                             											
+                                             <div class="aws-note">
+                                                <p class="aws-note">Note</p>
+                                                <p>If your security group is in a VPC that's
+                                                   												enabled for IPv6, the
+                                                   												<b>Anywhere</b> option creates two
+                                                   												rules—one for IPv4 traffic
+                                                   												(<code class="code">0.0.0.0/0</code>) and one for IPv6 traffic
+                                                   												(<code class="code">::/0</code>).
+                                                </p>
+                                             </div>
+                                             										
+                                          </li>
+                                          <li class="listitem">
+                                             											
+                                             <p><b>My IP</b>: automatically adds the
+                                                												public IPv4 address of your local computer.
+                                             </p>
+                                             										
+                                          </li>
+                                       </ul>
+                                    </div>
+                                    							
+                                 </li>
+                                 <li class="listitem">
+                                    								
+                                    <p>For <b>Description</b>, you can
+                                       									optionally specify a description for the rule.
+                                    </p>
+                                    							
+                                 </li>
+                              </ul>
+                           </div>
+                           					
+                           <p>For more information about the types of rules that you can add, see <a href="security-group-rules-reference.html">Security Group Rules Reference</a>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Choose <b>Save</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>You can also specify outbound rules. On the
+                              							<b>Outbound tab</b>, choose <b>Edit</b>,
+                              							<b>Add Rule</b>, and do the following:
+                           </p>
+                           <div class="itemizedlist">
+                              							
+                              							
+                              							
+                              							
+                              							
+                              						
+                              <ul class="itemizedlist" type="disc">
+                                 <li class="listitem">
+                                    								
+                                    <p>For <b>Type</b>, select the protocol.
+                                    </p>
+                                    							
+                                 </li>
+                                 <li class="listitem">
+                                    								
+                                    <p>If you select a custom TCP or UDP protocol, specify the port
+                                       									range in <b>Port Range</b>. 
+                                    </p>
+                                    							
+                                 </li>
+                                 <li class="listitem">
+                                    								
+                                    <p>If you select a custom ICMP protocol, choose the ICMP type
+                                       									name from <b>Protocol</b>, and, if applicable, the
+                                       									code name from <b>Port Range</b>.
+                                    </p>
+                                    							
+                                 </li>
+                                 <li class="listitem">
+                                    								
+                                    <p>For <b>Destination</b>, choose one of the following:
+                                    </p>
+                                    <div class="itemizedlist">
+                                       										
+                                       										
+                                       										
+                                       									
+                                       <ul class="itemizedlist" type="disc">
+                                          <li class="listitem">
+                                             											
+                                             <p><b>Custom</b>: in the provided
+                                                												field, you must specify an IP address in CIDR
+                                                												notation, a CIDR block, or another security
+                                                												group.
+                                             </p>
+                                             										
+                                          </li>
+                                          <li class="listitem">
+                                             											
+                                             <p><b>Anywhere</b>: automatically adds
+                                                												the <code class="code">0.0.0.0/0</code> IPv4 CIDR block. This
+                                                												option enables outbound traffic to all IP
+                                                												addresses.
+                                             </p>
+                                             											
+                                             <div class="aws-note">
+                                                <p class="aws-note">Note</p>
+                                                <p>If your security group is in a VPC that's
+                                                   												enabled for IPv6, the
+                                                   												<b>Anywhere</b> option creates two
+                                                   												rules—one for IPv4 traffic
+                                                   												(<code class="code">0.0.0.0/0</code>) and one for IPv6 traffic
+                                                   												(<code class="code">::/0</code>).
+                                                </p>
+                                             </div>
+                                             										
+                                          </li>
+                                          <li class="listitem">
+                                             											
+                                             <p><b>My IP</b>: automatically adds the
+                                                												IP address of your local computer.
+                                             </p>
+                                             										
+                                          </li>
+                                       </ul>
+                                    </div>
+                                    							
+                                 </li>
+                                 <li class="listitem">
+                                    								
+                                    <p>For <b>Description</b>, you can
+                                       									optionally specify a description for the rule.
+                                    </p>
+                                    							
+                                 </li>
+                              </ul>
+                           </div>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Choose <b>Save</b>.
+                           </p>
+                           				
+                        </li>
+                     </ol>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        <p class="title"><b>To add one or more ingress rules to a security group using the command
+                              					line</b></p>
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/authorize-security-group-ingress.html" target="_blank">authorize-security-group-ingress</a> (AWS CLI)
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Grant-EC2SecurityGroupIngress.html" target="_blank">Grant-EC2SecurityGroupIngress</a> (AWS Tools for Windows PowerShell)
+                              </p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        <p class="title"><b>To add one or more egress rules to a security group using the
+                              					command line</b></p>
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/authorize-security-group-egress.html" target="_blank">authorize-security-group-egress</a> (AWS CLI)
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Grant-EC2SecurityGroupEgress.html" target="_blank">Grant-EC2SecurityGroupEgress</a> (AWS Tools for Windows PowerShell)
+                              </p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     		
+                     		
+                     		
+                     			
+                     <h3 id="updating-security-group-rules">Updating Security Group Rules</h3>
+                     			
+                     <p>When you modify the protocol, port range, or source or destination of an existing
+                        security
+                        				group rule using the console, the console deletes the existing rule and adds a
+                        new
+                        				one for you. 
+                     </p>
+                     			
+                     <p class="title"><b>To update a security group rule using the console</b></p>
+                     <ol>
+                        <li>
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p>
+                        </li>
+                        <li>
+                           							
+                           <p>In the navigation pane, choose <b>Security
+                                 									Groups</b>.
+                           </p>
+                           						
+                        </li>
+                        <li>
+                           							
+                           <p>Select the security group to update, and choose <b>Inbound
+                                 									Rules</b> to update a rule for inbound traffic or
+                              									<b>Outbound Rules</b> to update a rule for
+                              								outbound traffic.
+                           </p>
+                           						
+                        </li>
+                        <li>
+                           							
+                           <p>Choose <b>Edit</b>. Modify the rule entry as
+                              								required and choose <b>Save</b>.
+                           </p>
+                           						
+                        </li>
+                     </ol>
+                     					
+                     					
+                     <p>To update the protocol, port range, or source or destination of an existing rule using
+                        				the Amazon EC2 API or a command line tool, you cannot modify the rule. Instead,
+                        you must
+                        				delete the existing rule and add a new rule. To update the rule description only,
+                        				you can use the <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/update-security-group-rule-descriptions-ingress.html" target="_blank">update-security-group-rule-descriptions-ingress</a> and <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/update-security-group-rule-descriptions-egress.html" target="_blank">update-security-group-rule-descriptions-egress</a> commands. 
+                     </p>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        <p class="title"><b>To update the description for an ingress security group rule using the
+                              					command line</b></p>
+                        				
+                        			    
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/update-security-group-rule-descriptions-ingress.html" target="_blank">update-security-group-rule-descriptions-ingress</a> (AWS CLI)
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              			        
+                              <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Update-EC2SecurityGroupRuleIngressDescription.html" target="_blank">Update-EC2SecurityGroupRuleIngressDescription</a> (AWS Tools for Windows PowerShell)
+                              </p>
+                              			    
+                           </li>
+                        </ul>
+                     </div>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        <p class="title"><b>To update the description for an egress security group rule using
+                              					the command line</b></p>
+                        				
+                        			    
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/update-security-group-rule-descriptions-egress.html" target="_blank">update-security-group-rule-descriptions-egress</a> (AWS CLI)
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              			        
+                              <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Update-EC2SecurityGroupRuleEgressDescription.html" target="_blank">Update-EC2SecurityGroupRuleEgressDescription</a> (AWS Tools for Windows PowerShell)
+                              </p>
+                              			    
+                           </li>
+                        </ul>
+                     </div>
+                     		
+                     
+                     		
+                     			
+                     <h3 id="deleting-security-group-rule">Deleting Rules from a Security Group</h3>
+                     
+                     			
+                     <p>When you delete a rule from a security group, the change is automatically applied
+                        to any
+                        				instances associated with the security group.
+                     </p>
+                     
+                     			
+                     <p class="title"><b>To delete a security group rule using the console</b></p>
+                     <ol>
+                        <li> 
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p> 
+                        </li>
+                        <li>
+                           					
+                           <p>In the navigation pane, choose <b>Security Groups</b>.
+                              					
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Select a security group.</p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>On the <b>Inbound</b> tab (for inbound rules) or
+                              							<b>Outbound</b> tab (for outbound rules), choose
+                              							<b>Edit</b>. Choose <b>Delete</b> (a cross
+                              						icon) next to each rule to delete. 
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Choose <b>Save</b>.
+                           </p>
+                           				
+                        </li>
+                     </ol>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        <p class="title"><b>To remove one or more ingress rules from a security group using the command
+                              					line</b></p>
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/revoke-security-group-ingress.html" target="_blank">revoke-security-group-ingress</a> (AWS CLI)
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Revoke-EC2SecurityGroupIngress.html" target="_blank">Revoke-EC2SecurityGroupIngress</a> (AWS Tools for Windows PowerShell)
+                              </p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        <p class="title"><b>To remove one or more egress rules from a security group using the
+                              					command line</b></p>
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/revoke-security-group-egress.html" target="_blank">revoke-security-group-egress</a> (AWS CLI)
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Revoke-EC2SecurityGroupEgress.html" target="_blank">Revoke-EC2SecurityGroupEgress</a> (AWS Tools for Windows PowerShell)
+                              </p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     		
+                     
+                     		
+                     			
+                     <h3 id="deleting-security-group">Deleting a Security Group</h3>
+                     
+                     			
+                     <p>You can't delete a security group that is associated with an instance. You can't
+                        				delete the default security group. You can't delete a security group that is
+                        				referenced by a rule in another security group in the same VPC. If your security
+                        				group is referenced by one of its own rules, you must delete the rule before you
+                        can
+                        				delete the security group.
+                     </p>
+                     
+                     			
+                     <p class="title"><b>To delete a security group using the console</b></p>
+                     <ol>
+                        <li> 
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p> 
+                        </li>
+                        <li>
+                           					
+                           <p>In the navigation pane, choose <b>Security
+                                 						Groups</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Select a security group and choose <b>Actions</b>,
+                              							<b>Delete Security Group</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Choose <b>Yes, Delete</b>.
+                           </p>
+                           				
+                        </li>
+                     </ol>
+                     		
+                     			
+                     <div class="itemizedlist">
+                        				
+                        <p class="title"><b>To delete a security group using the command line</b></p>
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-security-group.html" target="_blank">delete-security-group</a> (AWS CLI)
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2SecurityGroup.html" target="_blank">Remove-EC2SecurityGroup</a> (AWS Tools for Windows PowerShell)
+                              </p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     		
+                     	
+                  </div>
+                  <noscript>
+                     <div>
+                        <div>
+                           <div>
+                              <div id="js_error_message">
+                                 <p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p>
+                                 <p>To use the AWS Documentation, Javascript must be enabled. Please refer to your browser's
+                                    Help pages for instructions.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </noscript>
+                  <div id="main-col-footer">
+                     <div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div>
+                     <div id="next"><a class="awstoc" accesskey="p" href="ec2-key-pairs.html">« Previous </a><a class="awstoc" accesskey="n" href="security-group-rules-reference.html">Next »</a></div>
+                     <div id="copyright-main-footer">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+                  </div>
+               </div>
+            </div>
+            <div id="right-expanded">
+               <div id="right-content-wrapper">
+                  <div id="pagetoc">
+                     <p>On this page:</p>
+                     <ul class="pagetoc">
+                        <li class="pagetoc" name="Security Group Rules"><a class="pagetoc" href="#security-group-rules">Security Group Rules</a></li>
+                        <li class="pagetoc" name="Default Security Groups"><a class="pagetoc" href="#default-security-group">Default Security Groups</a></li>
+                        <li class="pagetoc" name="Custom Security Groups"><a class="pagetoc" href="#creating-your-own-security-groups">Custom Security Groups</a></li>
+                        <li class="pagetoc" name="Working with Security Groups"><a class="pagetoc" href="#working-with-security-groups">Working with Security Groups</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="cookie-notice">
+         <div class="cookie-notice-text">We use cookies to provide and improve our services. By using our site, you consent
+            to cookies. <a href="http://aws.amazon.com/legal/cookies">Learn more</a></div>
+      </div>
+      <div id="footer">
+         <div id="footer_short_fb" class="hide" title="Feedback"><a target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2&amp;topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/using-network-security.html&amp;hidden_guide_name=User Guide for Linux Instances&amp;hidden_api_version=&amp;hidden_file_name=using-network-security"><i class="awsdocs-footer-text fa fa-envelope-o"></i></a></div>
+         <div id="footer_toggle" class="mediaobject">
+            <div id="footer_toggle_img" class="awsdocs-footer-text fa fa-caret-down"></div>
+            <div id="footer_toggle_img_collapse" class="hide awsdocs-footer-text fa fa-caret-right"></div>
+         </div>
+         <div id="footer-left"><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/terms">Terms of Use</a><span class="awsdocs-footer-text"> | </span><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/privacy">Privacy</a><span class="awsdocs-footer-text"> | </span><span class="awsdocs-footer-text">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</span></div>
+         <div id="footer-right">
+            <div id="feedback">
+               <div id="forums"><a id="forum_link" target="_blank" href="http://forums.aws.amazon.com/forum.jspa?forumID=30" class="awsdocs-footer-text">Have a question? Try the Forums.</a></div>
+               <div id="feedback-message" class="awsdocs-footer-text">Did this page help you?</div>
+               <div id="feedback-yesno-buttons"><a class="awstoc btn btn-default" target="_blank" href="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/using-network-security.html">Yes</a><a class="awstoc btn btn-default" target="_blank" href="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/using-network-security.html">No</a></div>
+               <div id="feedback-feedback-button"><a class="awstoc btn btn-default" target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2&amp;topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/using-network-security.html&amp;hidden_guide_name=User Guide for Linux Instances&amp;hidden_api_version=&amp;hidden_file_name=using-network-security">Feedback</a></div>
+            </div>
+         </div>
+      </div>
+      <!-- SiteCatalyst code version: H.25.2.
+            Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+            More info available at http://www.omniture.com --><script language="JavaScript" type="text/javascript" src="https://a0.awsstatic.com/s_code/js/1.0/awshome_s_code.js"></script><script language="JavaScript" type="text/javascript">
+         <!--
+
+            // Documentation Service Name
+            s.prop66='Amazon Elastic Compute Cloud';
+            s.eVar66='D=c66';
+  
+            // Documentation Guide Name                                                                 
+            s.prop65='User Guide for Linux Instances';
+            s.eVar65='D=c65';
+
+            var s_code=s.t();if(s_code)document.write(s_code)//--></script><script language="JavaScript" type="text/javascript">
+         <!--
+                if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+                //--></script><noscript><img src="https://amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.2--NS/0" height="1" width="1" border="0" alt="" /></noscript>
+      <!--/DO NOT REMOVE/-->
+      <!-- End SiteCatalyst code version: H.25.2. -->
+   </body>
+</html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Django’s release process | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+     
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/dev/internals/release-process/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/internals/release-process/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/internals/release-process/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/internals/release-process/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/internals/release-process/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/internals/release-process/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/internals/release-process/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/internals/release-process/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/internals/release-process/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/internals/release-process/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/internals/release-process/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/internals/release-process/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/internals/release-process/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/internals/release-process/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/internals/release-process/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/internals/release-process/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/internals/release-process/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/internals/release-process/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/internals/release-process/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/internals/release-process/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/internals/release-process/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/internals/release-process/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/internals/release-process/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/internals/release-process/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/internals/release-process/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/internals/release-process/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/internals/release-process/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/internals/release-process/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-django-s-release-process">
+<span id="django-s-release-process"></span><h1>Django’s release process<a class="headerlink" href="#django-s-release-process" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="s-official-releases">
+<span id="s-id1"></span><span id="official-releases"></span><span id="id1"></span><h2>Official releases<a class="headerlink" href="#official-releases" title="Permalink to this headline">¶</a></h2>
+<p>Since version 1.0, Django’s release numbering works as follows:</p>
+<ul class="simple">
+<li>Versions are numbered in the form <code class="docutils literal notranslate"><span class="pre">A.B</span></code> or <code class="docutils literal notranslate"><span class="pre">A.B.C</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">A.B</span></code> is the <em>feature release</em> version number. Each version will be mostly
+backwards compatible with the previous release. Exceptions to this rule will
+be listed in the release notes.</li>
+<li><code class="docutils literal notranslate"><span class="pre">C</span></code> is the <em>patch release</em> version number, which is incremented for bugfix
+and security releases. These releases will be 100% backwards-compatible with
+the previous patch release. The only exception is when a security or data
+loss issue can’t be fixed without breaking backwards-compatibility. If this
+happens, the release notes will provide detailed upgrade instructions.</li>
+<li>Before a new feature release, we’ll make alpha, beta, and release candidate
+releases. These are of the form <code class="docutils literal notranslate"><span class="pre">A.B</span> <span class="pre">alpha/beta/rc</span> <span class="pre">N</span></code>, which means the
+<code class="docutils literal notranslate"><span class="pre">Nth</span></code> alpha/beta/release candidate of version <code class="docutils literal notranslate"><span class="pre">A.B</span></code>.</li>
+</ul>
+<p>In git, each Django release will have a tag indicating its version number,
+signed with the Django release key. Additionally, each release series has its
+own branch, called <code class="docutils literal notranslate"><span class="pre">stable/A.B.x</span></code>, and bugfix/security releases will be
+issued from those branches.</p>
+<p>For more information about how the Django project issues new releases for
+security purposes, please see <a class="reference internal" href="../security/"><span class="doc">our security policies</span></a>.</p>
+<dl class="glossary docutils">
+<dt id="term-feature-release">Feature release</dt>
+<dd>Feature releases (A.B, A.B+1, etc.) will happen roughly every eight months
+– see <a class="reference internal" href="#id2">release process</a> for details. These releases will contain new
+features, improvements to existing features, and such.</dd>
+<dt id="term-patch-release">Patch release</dt>
+<dd><p class="first">Patch releases (A.B.C, A.B.C+1, etc.) will be issued as needed, to fix
+bugs and/or security issues.</p>
+<p class="last">These releases will be 100% compatible with the associated feature release,
+unless this is impossible for security reasons or to prevent data loss.
+So the answer to “should I upgrade to the latest patch release?” will always
+be “yes.”</p>
+</dd>
+<dt id="term-long-term-support-release">Long-term support release</dt>
+<dd><p class="first">Certain feature releases will be designated as long-term support (LTS)
+releases. These releases will get security and data loss fixes applied for
+a guaranteed period of time, typically three years.</p>
+<p class="last">See <a class="reference external" href="https://www.djangoproject.com/download/">the download page</a> for the releases that have been designated for
+long-term support.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="s-release-cadence">
+<span id="s-internal-release-cadence"></span><span id="release-cadence"></span><span id="internal-release-cadence"></span><h2>Release cadence<a class="headerlink" href="#release-cadence" title="Permalink to this headline">¶</a></h2>
+<p>Starting with Django 2.0, version numbers will use a loose form of <a class="reference external" href="https://semver.org/">semantic
+versioning</a> such that each version following an LTS will
+bump to the next “dot zero” version. For example: 2.0, 2.1, 2.2 (LTS), 3.0,
+3.1, 3.2 (LTS), etc.</p>
+<p>SemVer makes it easier to see at a glance how compatible releases are with each
+other. It also helps to anticipate when compatibility shims will be removed.
+It’s not a pure form of SemVer as each feature release will continue to have a
+few documented backwards incompatibilities where a deprecation path isn’t
+possible or not worth the cost. Also, deprecations started in an LTS release
+(X.2) will be dropped in a non-dot-zero release (Y.1) to accommodate our policy
+of keeping deprecation shims for at least two feature releases. Read on to the
+next section for an example.</p>
+</div>
+<div class="section" id="s-deprecation-policy">
+<span id="s-internal-release-deprecation-policy"></span><span id="deprecation-policy"></span><span id="internal-release-deprecation-policy"></span><h2>Deprecation policy<a class="headerlink" href="#deprecation-policy" title="Permalink to this headline">¶</a></h2>
+<p>A feature release may deprecate certain features from previous releases. If a
+feature is deprecated in feature release A.x, it will continue to work in all
+A.x versions (for all versions of x) but raise warnings. Deprecated features
+will be removed in the B.0 release, or B.1 for features deprecated in the last
+A.x feature release to ensure deprecations are done over at least 2 feature
+releases.</p>
+<p>So, for example, if we decided to start the deprecation of a function in
+Django 4.2:</p>
+<ul class="simple">
+<li>Django 4.2 will contain a backwards-compatible replica of the function which
+will raise a <code class="docutils literal notranslate"><span class="pre">RemovedInDjango51Warning</span></code>.</li>
+<li>Django 5.0 (the version that follows 4.2) will still contain the
+backwards-compatible replica.</li>
+<li>Django 5.1 will remove the feature outright.</li>
+</ul>
+<p>The warnings are silent by default. You can turn on display of these warnings
+with the <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-Wd</span></code> option.</p>
+<p>A more generic example:</p>
+<ul class="simple">
+<li>X.0</li>
+<li>X.1</li>
+<li>X.2 LTS</li>
+<li>Y.0: Drop deprecation shims added in X.0 and X.1.</li>
+<li>Y.1: Drop deprecation shims added in X.2.</li>
+<li>Y.2 LTS: No deprecation shims dropped (while Y.0 is no longer supported,
+third-party apps need to maintain compatibility back to X.2 LTS to ease
+LTS to LTS upgrades).</li>
+<li>Z.0: Drop deprecation shims added in Y.0 and Y.1.</li>
+</ul>
+</div>
+<div class="section" id="s-supported-versions">
+<span id="s-supported-versions-policy"></span><span id="supported-versions"></span><span id="supported-versions-policy"></span><h2>Supported versions<a class="headerlink" href="#supported-versions" title="Permalink to this headline">¶</a></h2>
+<p>At any moment in time, Django’s developer team will support a set of releases to
+varying levels. See <a class="reference external" href="https://www.djangoproject.com/download/#supported-versions">the supported versions section</a> of the download
+page for the current state of support for each version.</p>
+<ul>
+<li><p class="first">The current development master will get new features and bug fixes
+requiring non-trivial refactoring.</p>
+</li>
+<li><p class="first">Patches applied to the master branch must also be applied to the last feature
+release branch, to be released in the next patch release of that feature
+series, when they fix critical problems:</p>
+<ul class="simple">
+<li>Security issues.</li>
+<li>Data loss bugs.</li>
+<li>Crashing bugs.</li>
+<li>Major functionality bugs in new features of the latest stable release.</li>
+<li>Regressions from older versions of Django.</li>
+</ul>
+<p>The rule of thumb is that fixes will be backported to the last feature
+release for bugs that would have prevented a release in the first place
+(release blockers).</p>
+</li>
+<li><p class="first">Security fixes and data loss bugs will be applied to the current master, the
+last two feature release branches, and any other supported long-term
+support release branches.</p>
+</li>
+<li><p class="first">Documentation fixes generally will be more freely backported to the last
+release branch. That’s because it’s highly advantageous to have the docs for
+the last release be up-to-date and correct, and the risk of introducing
+regressions is much less of a concern.</p>
+</li>
+</ul>
+<p>As a concrete example, consider a moment in time halfway between the release of
+Django 5.1 and 5.2. At this point in time:</p>
+<ul class="simple">
+<li>Features will be added to development master, to be released as Django 5.2.</li>
+<li>Critical bug fixes will be applied to the <code class="docutils literal notranslate"><span class="pre">stable/5.1.x</span></code> branch, and
+released as 5.1.1, 5.1.2, etc.</li>
+<li>Security fixes and bug fixes for data loss issues will be applied to
+<code class="docutils literal notranslate"><span class="pre">master</span></code> and to the <code class="docutils literal notranslate"><span class="pre">stable/5.1.x</span></code>, <code class="docutils literal notranslate"><span class="pre">stable/5.0.x</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">stable/4.2.x</span></code> (LTS) branches. They will trigger the release of <code class="docutils literal notranslate"><span class="pre">5.1.1</span></code>,
+<code class="docutils literal notranslate"><span class="pre">5.0.5</span></code>, <code class="docutils literal notranslate"><span class="pre">4.2.8</span></code>, etc.</li>
+<li>Documentation fixes will be applied to master, and, if easily backported, to
+the latest stable branch, <code class="docutils literal notranslate"><span class="pre">5.1.x</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="s-release-process">
+<span id="s-id2"></span><span id="release-process"></span><span id="id2"></span><h2>Release process<a class="headerlink" href="#release-process" title="Permalink to this headline">¶</a></h2>
+<p>Django uses a time-based release schedule, with feature releases every eight
+months or so.</p>
+<p>After each feature release, the release manager will announce a timeline for
+the next feature release.</p>
+<div class="section" id="s-release-cycle">
+<span id="release-cycle"></span><h3>Release cycle<a class="headerlink" href="#release-cycle" title="Permalink to this headline">¶</a></h3>
+<p>Each release cycle consists of three parts:</p>
+<div class="section" id="s-phase-one-feature-proposal">
+<span id="phase-one-feature-proposal"></span><h4>Phase one: feature proposal<a class="headerlink" href="#phase-one-feature-proposal" title="Permalink to this headline">¶</a></h4>
+<p>The first phase of the release process will include figuring out what major
+features to include in the next version. This should include a good deal of
+preliminary work on those features – working code trumps grand design.</p>
+<p>Major features for an upcoming release will be added to the wiki roadmap page,
+e.g. <a class="reference external" href="https://code.djangoproject.com/wiki/Version1.11Roadmap">https://code.djangoproject.com/wiki/Version1.11Roadmap</a>.</p>
+</div>
+<div class="section" id="s-phase-two-development">
+<span id="phase-two-development"></span><h4>Phase two: development<a class="headerlink" href="#phase-two-development" title="Permalink to this headline">¶</a></h4>
+<p>The second part of the release schedule is the “heads-down” working period.
+Using the roadmap produced at the end of phase one, we’ll all work very hard to
+get everything on it done.</p>
+<p>At the end of phase two, any unfinished features will be postponed until the
+next release.</p>
+<p>Phase two will culminate with an alpha release. At this point, the
+<code class="docutils literal notranslate"><span class="pre">stable/A.B.x</span></code> branch will be forked from <code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+</div>
+<div class="section" id="s-phase-three-bugfixes">
+<span id="phase-three-bugfixes"></span><h4>Phase three: bugfixes<a class="headerlink" href="#phase-three-bugfixes" title="Permalink to this headline">¶</a></h4>
+<p>The last part of a release cycle is spent fixing bugs – no new features will
+be accepted during this time. We’ll try to release a beta release one month
+after the alpha and a release candidate one month after the beta.</p>
+<p>The release candidate marks the string freeze, and it happens at least two
+weeks before the final release. After this point, new translatable strings
+must not be added.</p>
+<p>During this phase, committers will be more and more conservative with
+backports, to avoid introducing regressions. After the release candidate, only
+release blockers and documentation fixes should be backported.</p>
+<p>In parallel to this phase, <code class="docutils literal notranslate"><span class="pre">master</span></code> can receive new features, to be released
+in the <code class="docutils literal notranslate"><span class="pre">A.B+1</span></code> cycle.</p>
+</div>
+</div>
+<div class="section" id="s-bug-fix-releases">
+<span id="bug-fix-releases"></span><h3>Bug-fix releases<a class="headerlink" href="#bug-fix-releases" title="Permalink to this headline">¶</a></h3>
+<p>After a feature release (e.g. A.B), the previous release will go into bugfix
+mode.</p>
+<p>The branch for the previous feature release (e.g. <code class="docutils literal notranslate"><span class="pre">stable/A.B-1.x</span></code>) will
+include bugfixes. Critical bugs fixed on master must <em>also</em> be fixed on the
+bugfix branch; this means that commits need to cleanly separate bug fixes from
+feature additions. The developer who commits a fix to master will be
+responsible for also applying the fix to the current bugfix branch.</p>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../security/"><i class="icon icon-chevron-left"></i> Django’s security policies</a></div>
+  
+  
+  <div class="right"><a href="../deprecation/">Django Deprecation Timeline <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Perfany GmbH donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Django’s release process</a><ul>
+<li><a class="reference internal" href="#official-releases">Official releases</a></li>
+<li><a class="reference internal" href="#release-cadence">Release cadence</a></li>
+<li><a class="reference internal" href="#deprecation-policy">Deprecation policy</a></li>
+<li><a class="reference internal" href="#supported-versions">Supported versions</a></li>
+<li><a class="reference internal" href="#release-process">Release process</a><ul>
+<li><a class="reference internal" href="#release-cycle">Release cycle</a><ul>
+<li><a class="reference internal" href="#phase-one-feature-proposal">Phase one: feature proposal</a></li>
+<li><a class="reference internal" href="#phase-two-development">Phase two: development</a></li>
+<li><a class="reference internal" href="#phase-three-bugfixes">Phase three: bugfixes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bug-fix-releases">Bug-fix releases</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../security/">Django’s security policies</a></li>
+    
+    
+    <li>Next: <a href="../deprecation/">Django Deprecation Timeline</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../">Django internals</a>
+      
+      <ul><li>Django’s release process</li></ul>
+      </li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

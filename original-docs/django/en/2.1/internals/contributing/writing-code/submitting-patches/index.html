@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Submitting patches | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+     
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/internals/contributing/writing-code/submitting-patches/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/internals/contributing/writing-code/submitting-patches/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/internals/contributing/writing-code/submitting-patches/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/internals/contributing/writing-code/submitting-patches/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/internals/contributing/writing-code/submitting-patches/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/internals/contributing/writing-code/submitting-patches/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/internals/contributing/writing-code/submitting-patches/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/internals/contributing/writing-code/submitting-patches/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/internals/contributing/writing-code/submitting-patches/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/internals/contributing/writing-code/submitting-patches/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/internals/contributing/writing-code/submitting-patches/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/internals/contributing/writing-code/submitting-patches/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/internals/contributing/writing-code/submitting-patches/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/internals/contributing/writing-code/submitting-patches/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/internals/contributing/writing-code/submitting-patches/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/internals/contributing/writing-code/submitting-patches/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/internals/contributing/writing-code/submitting-patches/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/internals/contributing/writing-code/submitting-patches/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/internals/contributing/writing-code/submitting-patches/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/internals/contributing/writing-code/submitting-patches/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/internals/contributing/writing-code/submitting-patches/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/internals/contributing/writing-code/submitting-patches/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/internals/contributing/writing-code/submitting-patches/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/internals/contributing/writing-code/submitting-patches/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/internals/contributing/writing-code/submitting-patches/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/internals/contributing/writing-code/submitting-patches/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/submitting-patches/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-submitting-patches">
+<span id="submitting-patches"></span><h1>Submitting patches<a class="headerlink" href="#submitting-patches" title="Permalink to this headline">¶</a></h1>
+<p>We’re always grateful for patches to Django’s code. Indeed, bug reports
+with associated patches will get fixed <em>far</em> more quickly than those
+without patches.</p>
+<div class="section" id="s-typo-fixes-and-trivial-documentation-changes">
+<span id="typo-fixes-and-trivial-documentation-changes"></span><h2>Typo fixes and trivial documentation changes<a class="headerlink" href="#typo-fixes-and-trivial-documentation-changes" title="Permalink to this headline">¶</a></h2>
+<p>If you are fixing a really trivial issue, for example changing a word in the
+documentation, the preferred way to provide the patch is using GitHub pull
+requests without a Trac ticket.</p>
+<p>See the <a class="reference internal" href="../working-with-git/"><span class="doc">Working with Git and GitHub</span></a> for more details on how to use pull requests.</p>
+</div>
+<div class="section" id="s-claiming-tickets">
+<span id="claiming-tickets"></span><h2>“Claiming” tickets<a class="headerlink" href="#claiming-tickets" title="Permalink to this headline">¶</a></h2>
+<p>In an open-source project with hundreds of contributors around the world, it’s
+important to manage communication efficiently so that work doesn’t get
+duplicated and contributors can be as effective as possible.</p>
+<p>Hence, our policy is for contributors to “claim” tickets in order to let other
+developers know that a particular bug or feature is being worked on.</p>
+<p>If you have identified a contribution you want to make and you’re capable of
+fixing it (as measured by your coding ability, knowledge of Django internals
+and time availability), claim it by following these steps:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://code.djangoproject.com/github/login">Login using your GitHub account</a> or <a class="reference external" href="https://www.djangoproject.com/accounts/register/">create an account</a> in our ticket
+system. If you have an account but have forgotten your password, you can
+reset it using the <a class="reference external" href="https://www.djangoproject.com/accounts/password/reset/">password reset page</a>.</li>
+<li>If a ticket for this issue doesn’t exist yet, create one in our
+<a class="reference external" href="https://code.djangoproject.com/">ticket tracker</a>.</li>
+<li>If a ticket for this issue already exists, make sure nobody else has
+claimed it. To do this, look at the “Owned by” section of the ticket.
+If it’s assigned to “nobody,” then it’s available to be claimed.
+Otherwise, somebody else may be working on this ticket. Either find another
+bug/feature to work on, or contact the developer working on the ticket to
+offer your help. If a ticket has been assigned for weeks or months without
+any activity, it’s probably safe to reassign it to yourself.</li>
+<li>Log into your account, if you haven’t already, by clicking “GitHub Login”
+or “DjangoProject Login” in the upper left of the ticket page.</li>
+<li>Claim the ticket by clicking the “assign to myself” radio button under
+“Action” near the bottom of the page, then click “Submit changes.”</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Django software foundation requests that anyone contributing more than
+a trivial patch to Django sign and submit a <a class="reference external" href="https://www.djangoproject.com/foundation/cla/">Contributor License
+Agreement</a>, this ensures that the Django Software Foundation has clear
+license to all contributions allowing for a clear license for all users.</p>
+</div>
+<div class="section" id="s-ticket-claimers-responsibility">
+<span id="ticket-claimers-responsibility"></span><h3>Ticket claimers’ responsibility<a class="headerlink" href="#ticket-claimers-responsibility" title="Permalink to this headline">¶</a></h3>
+<p>Once you’ve claimed a ticket, you have a responsibility to work on that ticket
+in a reasonably timely fashion. If you don’t have time to work on it, either
+unclaim it or don’t claim it in the first place!</p>
+<p>If there’s no sign of progress on a particular claimed ticket for a week or
+two, another developer may ask you to relinquish the ticket claim so that it’s
+no longer monopolized and somebody else can claim it.</p>
+<p>If you’ve claimed a ticket and it’s taking a long time (days or weeks) to code,
+keep everybody updated by posting comments on the ticket. If you don’t provide
+regular updates, and you don’t respond to a request for a progress report,
+your claim on the ticket may be revoked.</p>
+<p>As always, more communication is better than less communication!</p>
+</div>
+<div class="section" id="s-which-tickets-should-be-claimed">
+<span id="which-tickets-should-be-claimed"></span><h3>Which tickets should be claimed?<a class="headerlink" href="#which-tickets-should-be-claimed" title="Permalink to this headline">¶</a></h3>
+<p>Of course, going through the steps of claiming tickets is overkill in some
+cases.</p>
+<p>In the case of small changes, such as typos in the documentation or
+small bugs that will only take a few minutes to fix, you don’t need to jump
+through the hoops of claiming tickets. Just submit your patch and be done with
+it.</p>
+<p>Of course, it is <em>always</em> acceptable, regardless whether someone has claimed it
+or not, to submit patches to a ticket if you happen to have a patch ready.</p>
+</div>
+</div>
+<div class="section" id="s-patch-style">
+<span id="s-id1"></span><span id="patch-style"></span><span id="id1"></span><h2>Patch style<a class="headerlink" href="#patch-style" title="Permalink to this headline">¶</a></h2>
+<p>Make sure that any contribution you do fulfills at least the following
+requirements:</p>
+<ul class="simple">
+<li>The code required to fix a problem or add a feature is an essential part
+of a patch, but it is not the only part. A good patch should also include a
+<a class="reference internal" href="../unit-tests/"><span class="doc">regression test</span></a> to validate the behavior that has been
+fixed and to prevent the problem from arising again. Also, if some tickets
+are relevant to the code that you’ve written, mention the ticket numbers in
+some comments in the test so that one can easily trace back the relevant
+discussions after your patch gets committed, and the tickets get closed.</li>
+<li>If the code associated with a patch adds a new feature, or modifies
+behavior of an existing feature, the patch should also contain
+documentation.</li>
+</ul>
+<p>When you think your work is ready to be reviewed, send <a class="reference internal" href="../working-with-git/"><span class="doc">a GitHub pull
+request</span></a>. Please review the patch yourself using our
+<a class="reference internal" href="#patch-review-checklist"><span class="std std-ref">patch review checklist</span></a> first.</p>
+<p>If you can’t send a pull request for some reason, you can also use patches in
+Trac. When using this style, follow these guidelines.</p>
+<ul class="simple">
+<li>Submit patches in the format returned by the <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> command.</li>
+<li>Attach patches to a ticket in the <a class="reference external" href="https://code.djangoproject.com/">ticket tracker</a>, using the “attach
+file” button. Please <em>don’t</em> put the patch in the ticket description
+or comment unless it’s a single line patch.</li>
+<li>Name the patch file with a <code class="docutils literal notranslate"><span class="pre">.diff</span></code> extension; this will let the ticket
+tracker apply correct syntax highlighting, which is quite helpful.</li>
+</ul>
+<p>Regardless of the way you submit your work, follow these steps.</p>
+<ul class="simple">
+<li>Make sure your code fulfills the requirements in our <a class="reference internal" href="#patch-review-checklist"><span class="std std-ref">patch review
+checklist</span></a>.</li>
+<li>Check the “Has patch” box on the ticket and make sure the “Needs
+documentation”, “Needs tests”, and “Patch needs improvement” boxes aren’t
+checked. This makes the ticket appear in the “Patches needing review” queue
+on the <a class="reference external" href="https://dashboard.djangoproject.com/">Development dashboard</a>.</li>
+</ul>
+</div>
+<div class="section" id="s-non-trivial-patches">
+<span id="non-trivial-patches"></span><h2>Non-trivial patches<a class="headerlink" href="#non-trivial-patches" title="Permalink to this headline">¶</a></h2>
+<p>A “non-trivial” patch is one that is more than a simple bug fix. It’s a patch
+that introduces Django functionality and makes some sort of design decision.</p>
+<p>If you provide a non-trivial patch, include evidence that alternatives have
+been discussed on <a class="reference internal" href="../../../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a>.</p>
+<p>If you’re not sure whether your patch should be considered non-trivial, just
+ask.</p>
+</div>
+<div class="section" id="s-deprecating-a-feature">
+<span id="s-id2"></span><span id="deprecating-a-feature"></span><span id="id2"></span><h2>Deprecating a feature<a class="headerlink" href="#deprecating-a-feature" title="Permalink to this headline">¶</a></h2>
+<p>There are a couple reasons that code in Django might be deprecated:</p>
+<ul class="simple">
+<li>If a feature has been improved or modified in a backwards-incompatible way,
+the old feature or behavior will be deprecated.</li>
+<li>Sometimes Django will include a backport of a Python library that’s not
+included in a version of Python that Django currently supports. When Django
+no longer needs to support the older version of Python that doesn’t include
+the library, the library will be deprecated in Django.</li>
+</ul>
+<p>As the <a class="reference internal" href="../../../release-process/#internal-release-deprecation-policy"><span class="std std-ref">deprecation policy</span></a> describes,
+the first release of Django that deprecates a feature (<code class="docutils literal notranslate"><span class="pre">A.B</span></code>) should raise a
+<code class="docutils literal notranslate"><span class="pre">RemovedInDjangoXXWarning</span></code> (where XX is the Django version where the feature
+will be removed) when the deprecated feature is invoked. Assuming we have good
+test coverage, these warnings are converted to errors when <a class="reference internal" href="../unit-tests/#running-unit-tests"><span class="std std-ref">running the
+test suite</span></a> with warnings enabled:
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-Wa</span> <span class="pre">runtests.py</span></code>. Thus, when adding a <code class="docutils literal notranslate"><span class="pre">RemovedInDjangoXXWarning</span></code>
+you need to eliminate or silence any warnings generated when running the tests.</p>
+<p>The first step is to remove any use of the deprecated behavior by Django itself.
+Next you can silence warnings in tests that actually test the deprecated
+behavior by using the <code class="docutils literal notranslate"><span class="pre">ignore_warnings</span></code> decorator, either at the test or class
+level:</p>
+<ol class="arabic">
+<li><p class="first">In a particular test:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.test</span> <span class="k">import</span> <span class="n">ignore_warnings</span>
+<span class="kn">from</span> <span class="nn">django.utils.deprecation</span> <span class="k">import</span> <span class="n">RemovedInDjangoXXWarning</span>
+
+<span class="nd">@ignore_warnings</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="n">RemovedInDjangoXXWarning</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">For an entire test case:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.test</span> <span class="k">import</span> <span class="n">ignore_warnings</span>
+<span class="kn">from</span> <span class="nn">django.utils.deprecation</span> <span class="k">import</span> <span class="n">RemovedInDjangoXXWarning</span>
+
+<span class="nd">@ignore_warnings</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="n">RemovedInDjangoXXWarning</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MyDeprecatedTests</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>You can also add a test for the deprecation warning. You’ll have to disable the
+“warning as error” behavior in your test by doing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="k">def</span> <span class="nf">test_foo_deprecation_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">warns</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;always&#39;</span><span class="p">)</span>  <span class="c1"># prevent warnings from appearing as errors</span>
+        <span class="c1"># invoke deprecated behavior</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">warns</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">warns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s1">&#39;Expected deprecation message&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, there are a couple of updates to Django’s documentation to make:</p>
+<ol class="arabic simple">
+<li>If the existing feature is documented, mark it deprecated in documentation
+using the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">deprecated::</span> <span class="pre">A.B</span></code> annotation. Include a short description
+and a note about the upgrade path if applicable.</li>
+<li>Add a description of the deprecated behavior, and the upgrade path if
+applicable, to the current release notes (<code class="docutils literal notranslate"><span class="pre">docs/releases/A.B.txt</span></code>) under
+the “Features deprecated in A.B” heading.</li>
+<li>Add an entry in the deprecation timeline (<code class="docutils literal notranslate"><span class="pre">docs/internals/deprecation.txt</span></code>)
+under the appropriate version describing what code will be removed.</li>
+</ol>
+<p>Once you have completed these steps, you are finished with the deprecation.
+In each <a class="reference internal" href="../../../release-process/#term-feature-release"><span class="xref std std-term">feature release</span></a>, all <code class="docutils literal notranslate"><span class="pre">RemovedInDjangoXXWarning</span></code>s matching
+the new version are removed.</p>
+</div>
+<div class="section" id="s-javascript-patches">
+<span id="javascript-patches"></span><h2>JavaScript patches<a class="headerlink" href="#javascript-patches" title="Permalink to this headline">¶</a></h2>
+<p>For information on JavaScript patches, see the <a class="reference internal" href="../javascript/#javascript-patches"><span class="std std-ref">JavaScript patches</span></a>
+documentation.</p>
+</div>
+<div class="section" id="s-patch-review-checklist">
+<span id="s-id3"></span><span id="patch-review-checklist"></span><span id="id3"></span><h2>Patch review checklist<a class="headerlink" href="#patch-review-checklist" title="Permalink to this headline">¶</a></h2>
+<p>Use this checklist to review a pull request. If you are reviewing a pull
+request that is not your own and it passes all the criteria below, please set
+the “Triage Stage” on the corresponding Trac ticket to “Ready for checkin”.
+If you’ve left comments for improvement on the pull request, please tick the
+appropriate flags on the Trac ticket based on the results of your review:
+“Patch needs improvement”, “Needs documentation”, and/or “Needs tests”. As time
+and interest permits, committers do final reviews of “Ready for checkin”
+tickets and will either commit the patch or bump it back to “Accepted” if
+further works need to be done. If you’re looking to become a committer,
+doing thorough reviews of patches is a great way to earn trust.</p>
+<p>Looking for a patch to review? Check out the “Patches needing review” section
+of the <a class="reference external" href="https://dashboard.djangoproject.com/">Django Development Dashboard</a>.
+Looking to get your patch reviewed? Ensure the Trac flags on the ticket are
+set so that the ticket appears in that queue.</p>
+<div class="section" id="s-documentation">
+<span id="documentation"></span><h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Does the documentation build without any errors (<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">make.bat</span> <span class="pre">html</span></code> on Windows, from the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory)?</li>
+<li>Does the documentation follow the writing style guidelines in
+<a class="reference internal" href="../../writing-documentation/"><span class="doc">Writing documentation</span></a>?</li>
+<li>Are there any <a class="reference internal" href="../../writing-documentation/#documentation-spelling-check"><span class="std std-ref">spelling errors</span></a>?</li>
+</ul>
+</div>
+<div class="section" id="s-bugs">
+<span id="bugs"></span><h3>Bugs<a class="headerlink" href="#bugs" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Is there a proper regression test (the test should fail before the fix
+is applied)?</li>
+<li>If it’s a bug that <a class="reference internal" href="../../../release-process/#supported-versions-policy"><span class="std std-ref">qualifies for a backport</span></a>
+to the stable version of Django, is there a release note in
+<code class="docutils literal notranslate"><span class="pre">docs/releases/A.B.C.txt</span></code>? Bug fixes that will be applied only to the
+master branch don’t need a release note.</li>
+</ul>
+</div>
+<div class="section" id="s-new-features">
+<span id="new-features"></span><h3>New Features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Are there tests to “exercise” all of the new code?</li>
+<li>Is there a release note in <code class="docutils literal notranslate"><span class="pre">docs/releases/A.B.txt</span></code>?</li>
+<li>Is there documentation for the feature and is it <a class="reference internal" href="../../writing-documentation/#documenting-new-features"><span class="std std-ref">annotated
+appropriately</span></a> with
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">versionadded::</span> <span class="pre">A.B</span></code> or <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">versionchanged::</span> <span class="pre">A.B</span></code>?</li>
+</ul>
+</div>
+<div class="section" id="s-id4">
+<span id="id4"></span><h3>Deprecating a feature<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>See the <a class="reference internal" href="#deprecating-a-feature"><span class="std std-ref">Deprecating a feature</span></a> guide.</p>
+</div>
+<div class="section" id="s-all-code-changes">
+<span id="all-code-changes"></span><h3>All code changes<a class="headerlink" href="#all-code-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Does the <a class="reference internal" href="../coding-style/"><span class="doc">coding style</span></a> conform to our
+guidelines? Are there any <code class="docutils literal notranslate"><span class="pre">flake8</span></code> errors?</li>
+<li>If the change is backwards incompatible in any way, is there a note
+in the release notes (<code class="docutils literal notranslate"><span class="pre">docs/releases/A.B.txt</span></code>)?</li>
+<li>Is Django’s test suite passing?</li>
+</ul>
+</div>
+<div class="section" id="s-all-tickets">
+<span id="all-tickets"></span><h3>All tickets<a class="headerlink" href="#all-tickets" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Is the pull request a single squashed commit with a message that follows our
+<a class="reference internal" href="../../committing-code/#committing-guidelines"><span class="std std-ref">commit message format</span></a>?</li>
+<li>Are you the patch author and a new contributor? Please add yourself to the
+<code class="docutils literal notranslate"><span class="pre">AUTHORS</span></code> file and submit a <a class="reference external" href="https://www.djangoproject.com/foundation/cla/">Contributor License Agreement</a>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../unit-tests/"><i class="icon icon-chevron-left"></i> Unit tests</a></div>
+  
+  
+  <div class="right"><a href="../working-with-git/">Working with Git and GitHub <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Real Python donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Submitting patches</a><ul>
+<li><a class="reference internal" href="#typo-fixes-and-trivial-documentation-changes">Typo fixes and trivial documentation changes</a></li>
+<li><a class="reference internal" href="#claiming-tickets">“Claiming” tickets</a><ul>
+<li><a class="reference internal" href="#ticket-claimers-responsibility">Ticket claimers’ responsibility</a></li>
+<li><a class="reference internal" href="#which-tickets-should-be-claimed">Which tickets should be claimed?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#patch-style">Patch style</a></li>
+<li><a class="reference internal" href="#non-trivial-patches">Non-trivial patches</a></li>
+<li><a class="reference internal" href="#deprecating-a-feature">Deprecating a feature</a></li>
+<li><a class="reference internal" href="#javascript-patches">JavaScript patches</a></li>
+<li><a class="reference internal" href="#patch-review-checklist">Patch review checklist</a><ul>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#bugs">Bugs</a></li>
+<li><a class="reference internal" href="#new-features">New Features</a></li>
+<li><a class="reference internal" href="#id4">Deprecating a feature</a></li>
+<li><a class="reference internal" href="#all-code-changes">All code changes</a></li>
+<li><a class="reference internal" href="#all-tickets">All tickets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../unit-tests/">Unit tests</a></li>
+    
+    
+    <li>Next: <a href="../working-with-git/">Working with Git and GitHub</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../../">Django internals</a>
+      
+      <ul><li><a href="../../">Contributing to Django</a>
+      
+      <ul><li><a href="../">Writing code</a>
+      
+      <ul><li>Submitting patches</li></ul>
+      </li></ul></li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

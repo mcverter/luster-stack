@@ -1,0 +1,2166 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Tagging Your Amazon EC2 Resources - Amazon Elastic Compute Cloud</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="home" href="#top" />
+      <link rel="up" href="EC2_Resources.html" title="Resources and Tags" />
+      <link rel="prev" href="Using_Filtering.html" title="Listing and Filtering Your Resources" />
+      <link rel="next" href="ec2-resource-limits.html" title="Amazon EC2 Service Limits" />
+      <meta name="description" content="Assign your own metadata tags to each Amazon EC2 resource to manage your instances, images, and other resources." />
+      <meta name="keywords" content="EC2,Amazon EC2,EC2 instance,instance,VM,virtual machine" />
+      <meta name="deployment_region" content="IAD" />
+      <meta name="product" content="Amazon Elastic Compute Cloud" />
+      <meta name="guide" content="User Guide for Linux Instances" />
+      <meta name="guide-locale" content="en_us" />
+      <link rel="icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="canonical" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css" />
+      <link rel="stylesheet" type="text/css" href="/font/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="/css/google-font.css" />
+      <link id="code-style" rel="stylesheet" type="text/css" href="/css/code/light.css" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.theme.css" />
+      <link rel="stylesheet" type="text/css" href="/css/colorbox.css" />
+      <link rel="stylesheet" type="text/css" href="/css/awsdocs.css?v=20170615" /><script type="text/javascript" src="/js/highlight.pack.js"></script><script type="text/javascript" src="/js/jquery.min.js"></script><script type="text/javascript" src="/js/jquery-ui.min.js"></script><script type="text/javascript" src="/js/handlebars.js"></script><script type="text/javascript" src="/js/jquery.colorbox.js"></script><script type="text/javascript" src="/js/awsdocs.min.js?v=20170615"></script></head>
+   <body id="top">
+      <div xmlns:db="http://docbook.org/ns/docbook" id="aws-nav" class="aws-nav-header">
+         <div class="aws-nav-header-left">
+            <div id="aws-nav-flyout-trigger" class="aws-nav-flyout-trigger"><i class="fa fa-bars fa-2x"></i></div>
+            <div class="aws-nav-logo">
+               <!--aws_logo_105x39.png--><a href="http://aws.amazon.com"><img src="/images/aws_logo_105x39.png" alt="Amazon Web Services" /></a></div>
+         </div>
+         <div id="aws-nav-header-right" class="aws-nav-header-right">
+            <div class="aws-nav-cta-button-outer"><a id="aws-nav-cta-button" class="aws-nav-button" href="https://console.aws.amazon.com/console/home">Sign In to the Console</a></div>
+            <div class="aws-nav-popover-trigger" data-dropdown="aws-nav-dropdown-lang"><select id="languageSelection" onchange="SelectLanguage()">
+                  <option value="/de_de/AWSEC2/latest/UserGuide/Using_Tags.html">Deutsch</option>
+                  <option value="/en_us/AWSEC2/latest/UserGuide/Using_Tags.html" selected="selected">English</option>
+                  <option value="/es_es/AWSEC2/latest/UserGuide/Using_Tags.html">Español</option>
+                  <option value="/fr_fr/AWSEC2/latest/UserGuide/Using_Tags.html">Français</option>
+                  <option value="/it_it/AWSEC2/latest/UserGuide/Using_Tags.html">Italiano</option>
+                  <option value="/ja_jp/AWSEC2/latest/UserGuide/Using_Tags.html">日本語</option>
+                  <option value="/ko_kr/AWSEC2/latest/UserGuide/Using_Tags.html">한국어</option>
+                  <option value="/pt_br/AWSEC2/latest/UserGuide/Using_Tags.html">Português</option>
+                  <option value="/zh_cn/AWSEC2/latest/UserGuide/Using_Tags.html">中文 (简体)</option>
+                  <option value="/zh_tw/AWSEC2/latest/UserGuide/Using_Tags.html">中文 (繁體)</option></select></div><a class="btn btn-rss-link" id="rss-link-top" target="_blank" href="amazon-ec2-release-notes.rss" title="View RSS Feed"></a><a class="btn btn-kindle-link" id="kindle-link-top" target="_blank" href="http://www.amazon.com/dp/B076452RSZ" title="Open Kindle"></a><a class="btn btn-pdf-link" id="pdf-link-top" href="ec2-ug.pdf#Using_Tags" target="_blank" title="Open PDF"></a><a class="btn btn-github-link" id="github-link-top" href="https://github.com/awsdocs/amazon-ec2-user-guide/tree/master/doc_source/Using_Tags.md" target="_blank" title="Edit on GitHub"></a><div id="aws-nav-quicklinks-separator" class="aws-nav-quicklinks-separator">
+               <div class="aws-nav-left"></div>
+               <div class="aws-nav-right"></div>
+            </div>
+         </div>
+         <div xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" id="topnav-flyout-menu-container">
+            <ul id="topnav-flyout-menu"><script id="flyout-item-template" type="text/x-handlebars-template">
+                    {{#flyoutList}}
+
+                        {{#if topTarget}}
+                            <li class="awsdocs-flyout-link-wrapper"><a href="{{topTarget}}">{{listItem}}</a></li>
+                        {{else}}
+                            <li>{{listItem}}
+                                {{#if subList}}
+                                <ul>
+                                    {{#subList}}
+                                    <li class="awsdocs-flyout-link-wrapper"><a href="{{target}}">{{text}}</a></li>
+                                    {{/subList}}
+                                </ul>
+                                {{/if}}
+                            </li>
+                        {{/if}}
+
+                    {{/flyoutList}}
+                </script></ul>
+            <div id="topnav-flyout-menu-spacer"></div>
+         </div>
+      </div>
+      <div id="content-container">
+         <div id="left-column">
+            <div id="left-col-header">
+               <div xmlns:db="http://docbook.org/ns/docbook" id="left-col-top-content">
+                  <div id="service-name">Amazon Elastic Compute Cloud </div>
+                  <div id="search"><i id="search-icon" class="fa fa-search fa-2x"></i></div>
+                  <div id="guide-info">User Guide for Linux Instances
+                     <div id="content-button"><i id="toggle-contents" class="fa fa-bars"></i></div>
+                  </div>
+               </div>
+               <form id="finegrainedSearch" method="get" onsubmit="return searchFormSubmit(this);" action="/search/doc-search.html">
+                  <div id="search-form"><select id="search-select" name="searchPath">
+                        <option value="all">Entire Site</option>
+                        <option value="AWSMarketplace">AMIs from AWS Marketplace</option>
+                        <option value="amis">AMIs from All Sources</option>
+                        <option value="articles">Articles &amp; Tutorials</option>
+                        <option value="products_and_info">AWS Product Information</option>
+                        <option value="case_studies">Case Studies</option>
+                        <option value="customerapps">Customer Apps</option>
+                        <option value="documentation">Documentation</option>
+                        <option value="documentation-product">Documentation - This Product</option>
+                        <option value="documentation-guide" selected="selected">Documentation - This Guide</option>
+                        <option value="datasets">Public Data Sets</option>
+                        <option value="releasenotes">Release Notes</option>
+                        <option value="solution_providers">Partners</option>
+                        <option value="code">Sample Code &amp; Libraries</option></select><br /><input id="search-query" name="searchQuery" type="text" placeholder="Search" /><input id="search-button" src="/images/search-button.png" alt="Go" type="image" /></div><input type="hidden" name="this_doc_product" id="this_doc_product" value="Amazon Elastic Compute Cloud" /><input type="hidden" name="this_doc_guide" id="this_doc_guide" value="User Guide for Linux Instances" /><input type="hidden" name="doc_locale" value="en_us" /></form>
+            </div>
+            <div id="toc">
+               <ul class="awstoc">
+                  <li class="awstoc closed"><a class="awstoc" href="concepts.html">What Is Amazon EC2?</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-instances-and-amis.html">Instances and AMIs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-regions-availability-zones.html">Regions and Availability Zones</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="RootDeviceStorage.html">Root Device Volume</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="get-set-up-for-amazon-ec2.html">Setting Up</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="EC2_GetStarted.html">Getting Started</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="ec2-best-practices.html">Best Practices</a></li>
+                  <li class="awstoc closed"><a class="awstoc" href="ec2-tutorials.html">Tutorials</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-lamp-amazon-linux-2.html">Install a LAMP Server (Amazon Linux 2)</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="install-LAMP.html">Install a LAMP Server (Amazon Linux AMI)</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="hosting-wordpress.html">Tutorial: Hosting a WordPress Blog</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="SSL-on-an-instance.html">Tutorial: Configure Apache Web Server on Amazon Linux 2 to Use SSL/TLS</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-increase-availability.html">Tutorial: Increase the Availability of Your Application</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="tutorial_run_command.html">Tutorial: Remotely Manage Your Instances</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="AMIs.html">Amazon Machine Images</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ComponentsAMIs.html">AMI Types</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="virtualization_types.html">Virtualization Types</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="finding-an-ami.html">Finding a Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="sharing-amis.html">Shared AMIs</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="usingsharedamis-finding.html">Finding Shared AMIs</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="sharingamis-intro.html">Making an AMI Public</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="sharingamis-explicit.html">Sharing an AMI with Specific AWS Accounts</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="using-bookmarks.html">Using Bookmarks</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="building-shared-amis.html">Guidelines for Shared Linux AMIs</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="paid-amis.html">Paid AMIs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="creating-an-ami-ebs.html">Creating an Amazon EBS-Backed Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="creating-an-ami-instance-store.html">Creating an Instance Store-Backed Linux AMI</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="set-up-ami-tools.html">Setting Up the AMI Tools</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="create-instance-store-ami.html">Creating an AMI from an Instance Store-Backed Instance</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="Using_ConvertingS3toEBS.html">Converting to an Amazon EBS-Backed AMI</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ami-tools-commands.html">AMI Tools Reference</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AMIEncryption.html">AMIs with Encrypted Snapshots</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="CopyingAMIs.html">Copying an AMI</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="deregister-ami.html">Deregistering Your Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="amazon-linux-ami-basics.html">Amazon Linux</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="amazon-linux-2-virtual-machine.html">Running Amazon Linux 2 as a Virtual Machine On-Premises</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="UserProvidedKernels.html">User Provided Kernels</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Instances.html">Instances</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="instance-types.html">Instance Types</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances.html">Burstable Performance Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-credits-baseline-concepts.html">CPU Credits and Baseline Performance</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances-unlimited-mode.html">Unlimited Mode</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="unlimited-mode-examples.html">Examples</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances-standard-mode.html">Standard Mode</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="standard-mode-examples.html">Examples</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-performance-instances-how-to.html">Working with Burstable Performance Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-performance-instances-monitoring-cpu-credits.html">Monitoring Your CPU Credits</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="general-purpose-instances.html">General Purpose Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="compute-optimized-instances.html">Compute Optimized Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="memory-optimized-instances.html">Memory Optimized Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="storage-optimized-instances.html">Storage Optimized Instances</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="accelerated-computing-instances.html">Accelerated Computing Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-nvidia-driver.html">Installing the NVIDIA Driver on Linux Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="activate_grid.html">Activate NVIDIA GRID Virtual Applications (G3 Instances Only)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="optimize_gpu.html">Optimizing GPU Settings (P2, P3, and G3 Instances)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="fpga-getting-started.html">Getting Started with FPGA Development</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="concepts_micro_instances.html">T1 Micro Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-resize.html">Changing the Instance Type</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-optimize-cpu.html">Optimizing CPU Options</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="instance-purchasing-options.html">Instance Purchasing Options</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="ec2-reserved-instances.html">Reserved Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="reserved-instances-types.html">Types of Reserved Instances (Offering Classes)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="apply_ri.html">How Reserved Instances Are Applied</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="concepts-reserved-instances-application.html">How You Are Billed</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-market-concepts-buying.html">Buying Reserved Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-market-general.html">Selling on the Reserved Instance Marketplace</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-modifying.html">Modifying Reserved Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-convertible-exchange.html">Exchanging Convertible Reserved Instances</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-scheduled-instances.html">Scheduled Instances</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="using-spot-instances.html">Spot Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="how-spot-instances-work.html">How Spot Instances Work</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-fleet.html">How Spot Fleet Works</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="using-spot-instances-history.html">Spot Instance Pricing History</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-requests.html">Spot Instance Requests</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-request-examples.html">Example Launch Specifications</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-fleet-requests.html">Spot Fleet Requests</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-examples.html">Example Configurations</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-cloudwatch-metrics.html">CloudWatch Metrics for Spot Fleet</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-fleet-automatic-scaling.html">Automatic Scaling for Spot Fleet</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-target-tracking.html">Target Tracking Scaling Policies</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-step-scaling.html">Step Scaling Policies</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-scheduled-scaling.html">Scheduled Scaling</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-bid-status.html">Spot Request Status</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-interruptions.html">Spot Instance Interruptions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-data-feeds.html">Spot Instance Data Feed</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="using-spot-limits.html">Spot Instance Limits</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="dedicated-hosts-overview.html">Dedicated Hosts</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="how-dedicated-hosts-work.html">Working with Dedicated Hosts</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="dedicated-hosts-aws-config.html">Tracking Configuration Changes</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="dedicated-instance.html">Dedicated Instances</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="ec2-instance-lifecycle.html">Instance Lifecycle</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="LaunchingAndUsingInstances.html">Launch</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="launching-instance.html">Launching an Instance Using the Launch Instance Wizard</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ec2-launch-templates.html">Launching an Instance from a Launch Template</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="launch-more-like-this.html">Launching an Instance From an Existing Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="instance-launch-snapshot.html">Launching a Linux Instance from a Backup</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="launch-marketplace-console.html">Launching an AWS Marketplace Instance</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ec2-fleet.html">Launching an EC2 Fleet</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="ec2-fleet-configuration-strategies.html">EC2 Fleet Configuration Strategies</a></li>
+                                          <li class="awstoc closed"><a class="awstoc" href="manage-ec2-fleet.html">Managing an EC2 Fleet</a><ul class="awstoc">
+                                                <li class="awstoc leaf"><a class="awstoc" href="ec2-fleet-examples.html">Example Configurations</a></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="AccessingInstances.html">Connect</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="AccessingInstancesLinux.html">Connect Using SSH</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="putty.html">Connect Using PuTTY</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="WSL.html">Connect Using WSL</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="mindterm.html">Connect Using MindTerm</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="Stop_Start.html">Stop and Start</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-reboot.html">Reboot</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-retirement.html">Retire</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="terminating-instances.html">Terminate</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-recover.html">Recover</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="Configure_Instance.html">Configure Instances</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="managing-software.html">Managing Software</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-updates.html">Updating Instance Software</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="add-repositories.html">Adding Repositories</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="find-software.html">Finding Software Packages</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-software.html">Installing Software Packages</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="compile-software.html">Preparing to Compile Software</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="managing-users.html">Managing Users</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="processor_state_control.html">Processor State Control</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="set-time.html">Setting the Time</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="set-hostname.html">Changing the Hostname</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="dynamic-dns.html">Setting Up Dynamic DNS</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="user-data.html">Running Commands at Launch</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="ec2-instance-metadata.html">Instance Metadata and User Data</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="instance-identity-documents.html">Instance Identity Documents</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="identify_ec2_instances.html">Identify Instances</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="monitoring_ec2.html">Monitoring</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="monitoring_automated_manual.html">Automated and Manual Monitoring</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="monitoring_best_practices.html">Best Practices for Monitoring</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="monitoring-instances-status-check.html">Monitoring the Status of Your Instances</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="monitoring-system-instance-status-check.html">Instance Status Checks</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="monitoring-instances-status-check_sched.html">Scheduled Events</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-cloudwatch.html">Monitoring Your Instances Using CloudWatch</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="using-cloudwatch-new.html">Enable Detailed Monitoring</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="viewing_metrics_with_cloudwatch.html">List Available Metrics</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="monitoring_get_statistics.html">Get Statistics for Metrics</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="US_SingleMetricPerInstance.html">Get Statistics for a Specific Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="GetSingleMetricAllDimensions.html">Aggregate Statistics Across Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="GetMetricAutoScalingGroup.html">Aggregate Statistics by Auto Scaling Group</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="US_SingleMetricPerAMI.html">Aggregate Statistics by AMI</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="graphs-in-the-aws-management-console.html">Graph Metrics</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="using-cloudwatch-createalarm.html">Create an Alarm</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="UsingAlarmActions.html">Create Alarms That Stop, Terminate, Reboot, or Recover an Instance</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="automating_with_cloudwatch_events.html">Automating Amazon EC2 with CloudWatch Events</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="mon-scripts.html">Monitoring Memory and Disk Metrics</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="EC2_Network_and_Security.html">Network and Security</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-key-pairs.html">Key Pairs</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-network-security.html">Security Groups</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="security-group-rules-reference.html">Security Group Rules Reference</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="UsingIAM.html">Controlling Access</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="iam-policies-for-amazon-ec2.html">IAM Policies</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="iam-policy-structure.html">Policy Structure</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ec2-supported-iam-actions-resources.html">Supported Resource-Level Permissions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ExamplePolicies_EC2.html">Example Policies for CLI or SDK</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="iam-policies-ec2-console.html">Example Policies for the Console</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="iam-roles-for-amazon-ec2.html">IAM Roles</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="authorizing-access-to-an-instance.html">Network Access</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-instance-addressing.html">Instance IP Addressing</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="MultipleIP.html">Multiple IP Addresses</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="elastic-ip-addresses-eip.html">Elastic IP Addresses</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-eni.html">Network Interfaces</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="requester-managed-eni.html">Requester-Managed Network Interfaces</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="enhanced-networking.html">Enhanced Networking</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="sriov-networking.html">Enhanced Networking: Intel 82599 VF</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="enhanced-networking-ena.html">Enhanced Networking: ENA</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="troubleshooting-ena.html">Troubleshooting ENA</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="placement-groups.html">Placement Groups</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="network_mtu.html">Network MTU</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-vpc.html">Virtual Private Clouds</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="ec2-classic-platform.html">EC2-Classic</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="vpc-classiclink.html">ClassicLink</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="vpc-migrate.html">Migrating from EC2-Classic to a VPC</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Storage.html">Storage</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="AmazonEBS.html">Amazon EBS</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="EBSVolumes.html">EBS Volumes</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="EBSVolumeTypes.html">EBS Volume Types</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-creating-volume.html">Creating a Volume</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-restoring-volume.html">Restoring from a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-attaching-volume.html">Attaching a Volume to an Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-using-volumes.html">Making a Volume Available for Use</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-describing-volumes.html">Volume Information</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="monitoring-volume-status.html">Monitoring the Status of Your Volumes</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-detaching-volume.html">Detaching a Volume from an Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-deleting-volume.html">Deleting a Volume</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ebs-modify-volume.html">Modifying a Volume</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="volume_constraints.html">Volume Size Constraints</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="console-modify.html">Using the Console</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="cli-modify.html">Using the CLI</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="monitoring_mods.html">Monitoring Progress</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="expand-linux-partition.html">Expanding a Linux Partition</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="recognize-expanded-volume-linux.html">Extending Linux File Systems</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="limitations.html">Limitations</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="stop-start.html">Appendix: Manual Stop/Start Modification</a></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="EBSSnapshots.html">EBS Snapshots</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-creating-snapshot.html">Creating a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-deleting-snapshot.html">Deleting a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-copy-snapshot.html">Copying a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-describing-snapshots.html">Viewing Snapshot Information</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-modifying-snapshot-permissions.html">Sharing a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="snapshot-lifecycle.html">Automating Snapshots</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="EBSOptimized.html">EBS Optimization</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="EBSEncryption.html">EBS Encryption</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="nvme-ebs-volumes.html">EBS Volumes and NVMe</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="EBSPerformance.html">EBS Performance</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-ec2-config.html">EC2 Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-io-characteristics.html">I/O Characteristics and Monitoring</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-initialize.html">Initialize Volumes</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="raid-config.html">RAID Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="benchmark_procedures.html">Benchmark EBS Volumes</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ebs-cloud-watch-events.html">EBS CloudWatch Events</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="InstanceStorage.html">Instance Store</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="add-instance-store-volumes.html">Add Instance Store Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ssd-instance-store.html">SSD Instance Store Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-store-swap-volumes.html">Instance Store Swap Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="disk-performance.html">Optimizing Disk Performance</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AmazonEFS.html">Amazon EFS</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AmazonS3.html">Amazon S3</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="volume_limits.html">Instance Volume Limits</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="device_naming.html">Device Naming</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="block-device-mapping-concepts.html">Block Device Mapping</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-public-data-sets.html">Using Public Data Sets</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc opened"><a class="awstoc" href="EC2_Resources.html">Resources and Tags</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="resources.html">Resource Locations</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="resource-ids.html">Resource IDs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="Using_Filtering.html">Listing and Filtering Your Resources</a></li>
+                        <li class="awstoc leaf"><a class="awstoc selected" href="Using_Tags.html">Tagging Your Resources</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-resource-limits.html">Service Limits</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="usage-reports.html">Usage Reports</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Linux-Server-EC2Rescue.html">EC2Rescue for Linux</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_install.html">Installing EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_verify.html">(Optional) Verify the Signature of EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_working.html">Working with EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_moduledev.html">Developing EC2Rescue Modules</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="ec2-instance-troubleshoot.html">Troubleshooting</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="troubleshooting-launch.html">Troubleshooting Launch Issues</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesConnecting.html">Connecting to Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesStopping.html">Stopping Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesShuttingDown.html">Terminating Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstanceRecovery.html">Instance Recovery Failures</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstances.html">Failed Status Checks</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="instance-console.html">Getting Console Output and Rebooting Instances</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="instance-booting-from-wrong-volume.html">Booting from the Wrong Volume</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="DocumentHistory.html">Document History</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="glossary.html">AWS Glossary</a></li>
+                  <li id="toc-additional-links"><a class="btn btn-pdf-link" id="pdf-link-alt" href="ec2-ug.pdf#top" target="_blank" title="Open PDF"></a><a class="btn btn-kindle-link" id="kindle-link-alt" target="_blank" href="http://www.amazon.com/dp/B076452RSZ" title="Open Kindle"></a><a class="btn btn-rss-link" id="rss-link-alt" target="_blank" href="amazon-ec2-release-notes.rss" title="View RSS Feed"></a></li>
+               </ul>
+            </div>
+         </div>
+         <div id="main-column">
+            <div id="main">
+               <div id="main-content">
+                  <div id="main-col-body">
+                     <table summary="Breadcrumbs">
+                        <tr>
+                           <td>
+                              <div class="breadcrumb"><a href="/index.html">AWS Documentation</a> » <a href="/ec2/index.html">Amazon EC2</a> » <a href="index.html">User Guide for Linux Instances</a> » <a href="EC2_Resources.html">Resources and Tags</a> » <span class="breadcrumb">Tagging Your Amazon EC2 Resources</span></div>
+                           </td>
+                        </tr>
+                     </table>
+                     <div></div>
+                     <h1 class="topictitle" id="Using_Tags">Tagging Your Amazon EC2 Resources</h1>
+                     <p>To help you manage your instances, images, and other Amazon EC2 resources, you can
+                        optionally
+                        		assign your own metadata to each resource in the form of <em>tags</em>. This
+                        		topic describes tags and shows you how to create them.
+                     </p>
+                     <div class="highlights" id="inline-topiclist">
+                        <p><strong>Contents</strong></p>
+                        <ul>
+                           <li><a href="#tag-basics">Tag Basics</a></li>
+                           <li><a href="#tag-resources">Tagging Your Resources</a></li>
+                           <li><a href="#tag-restrictions">Tag Restrictions</a></li>
+                           <li><a href="#tag-resources-for-billing">Tagging Your Resources for Billing</a></li>
+                           <li><a href="#Using_Tags_Console">Working with Tags Using the Console</a></li>
+                           <li><a href="#Using_Tags_CLI">Working with Tags Using the CLI or API</a></li>
+                        </ul>
+                     </div>
+                     <h2 id="tag-basics">Tag Basics</h2>
+                     		
+                     <p>A tag is a label that you assign to an AWS resource. Each tag consists of a
+                        				<em>key</em> and an optional <em>value</em>, both of which
+                        			you define.
+                     </p>
+                     		
+                     		
+                     <p>Tags enable you to categorize your AWS resources in different ways, for example, by
+                        purpose,
+                        			owner, or environment. This is useful when you have many resources of the same
+                        			type—you can quickly identify a specific resource based on the tags you've
+                        			assigned to it. For example, you could define a set of tags for your account's
+                        Amazon EC2
+                        			instances that helps you track each instance's owner and stack level.
+                     </p>
+                     		
+                     <p>The following diagram illustrates how tagging works. In this example, you've assigned
+                        two
+                        			tags to each of your instances—one tag with the key <code class="code">Owner</code> and
+                        			another with the key <code class="code">Stack</code>. Each tag also has an associated value.
+                     </p>
+                     		
+                     			
+                     <div class="mediaobject">
+                        				
+                        					<img src="images/Tag_Example.png" alt="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Tag example&#xA;&#x9;&#x9;&#x9;&#x9;" />
+                        				
+                        				
+                        			
+                     </div>
+                     		
+                     		
+                     <p>We recommend that you devise a set of tag keys that meets your needs for each resource
+                        type.
+                        			Using a consistent set of tag keys makes it easier for you to manage your resources.
+                        You
+                        			can search and filter the resources based on the tags you add.
+                     </p>
+                     		
+                     <p>Tags don't have any semantic meaning to Amazon EC2 and are interpreted strictly as
+                        a string
+                        			of characters. Also, tags are not automatically assigned to your resources. You
+                        can edit
+                        			tag keys and values, and you can remove tags from a resource at any time. You can
+                        set
+                        			the value of a tag to an empty string, but you can't set the value of a tag to
+                        null. If
+                        			you add a tag that has the same key as an existing tag on that resource, the new
+                        value
+                        			overwrites the old value. If you delete a resource, any tags for the resource are
+                        also
+                        			deleted.
+                     </p>
+                     		
+                     <p>You can work with tags using the AWS Management Console, the AWS CLI, and the Amazon
+                        EC2 API.
+                     </p>
+                     		
+                     <p>If you're using AWS Identity and Access Management (IAM), you can control which users
+                        in your AWS account have
+                        			permission to create, edit, or delete tags. For more information, see <a href="UsingIAM.html">Controlling Access to Amazon EC2 Resources</a>.
+                     </p>
+                     	
+                     <h2 id="tag-resources">Tagging Your Resources</h2>
+                     			
+                     			
+                     <p>You can tag most Amazon EC2 resources that already exist in your account. The <a href="Using_Tags.html#tag-ec2-resources-table">table</a> below lists
+                        			the resources that support tagging.
+                     </p>
+                     		
+                     <p>If you're using the Amazon EC2 console, you can apply tags to resources by using the
+                        <b>Tags</b> tab on the relevant resource screen, or you can use the
+                        <b>Tags</b> screen. Some resource screens enable you to specify tags
+                        for a resource when you create the resource; for example, a tag with a key of
+                        <code class="code">Name</code> and a value that you specify. In most cases, the console applies
+                        the tags immediately after the resource is created (rather than during resource
+                        creation). The console may organize resources according to the <code class="code">Name</code> tag,
+                        but this tag doesn't have any semantic meaning to the Amazon EC2 service.
+                     </p>
+                     		
+                     <p>If you're using the Amazon EC2 API, the AWS CLI, or an AWS SDK, you can use the
+                        				<code class="code">CreateTags</code> EC2 API action to apply tags to existing resources.
+                        			Additionally, some resource-creating actions enable you to specify tags for a resource
+                        			when the resource is created. If tags cannot be applied during resource creation,
+                        we
+                        			roll back the resource creation process. This ensures that resources are either
+                        created
+                        			with tags or not created at all, and that no resources are left untagged at any
+                        time. By
+                        			tagging resources at the time of creation, you can eliminate the need to run custom
+                        			tagging scripts after resource creation.
+                     </p>
+                     			
+                     <p>The following table describes the Amazon EC2 resources that can be tagged, and the
+                        resources
+                        			that can be tagged on creation.
+                     </p>
+                     			
+                     			
+                     <div class="table">
+                        <p class="title"><b>Tagging Support for Amazon EC2 Resources</b></p><a id="tag-ec2-resources-table"></a><div class="table-contents">
+                           <table id="w228aac25c17b9c10">
+                              					
+                              <tr>
+                                 						
+                                 <th>Resource</th>
+                                 						
+                                 <th>Supports tags</th>
+                                 						
+                                 <th>Supports tagging on creation (Amazon EC2 API, AWS CLI, AWS SDK)</th>
+                                 					
+                              </tr>
+                              				
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>AFI</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>No</p>
+                                    						
+                                 </td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>AMI</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    <p>No</p>
+                                 </td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Bundle task</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>No</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Customer gateway</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              		  
+                              <tr>
+                                 
+                                 <td>
+                                    
+                                    <p>Dedicated Host</p>
+                                    
+                                 </td>
+                                 
+                                 <td>
+                                    	
+                                    <p>Yes</p>
+                                    	
+                                    
+                                 </td>
+                                 
+                                 <td>No</td>
+                                 
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>DHCP option</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>EBS snapshot</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>Yes</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>EBS volume</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>Yes</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>EC2 Fleet</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Egress-only internet gateway</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>No</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Elastic IP address</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Instance</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>Yes</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Instance store volume</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>N/A</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>N/A</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Internet gateway</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Key pair</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>No</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              
+                              <tr>
+                                 
+                                 <td>
+                                    
+                                    <p>Launch template</p>
+                                    
+                                 </td>
+                                 
+                                 <td>
+                                    
+                                    <p>Yes</p>
+                                    
+                                 </td>
+                                 
+                                 <td>
+                                    
+                                    <p>No</p>
+                                    
+                                 </td>
+                                 
+                              </tr>
+                              
+                              <tr>
+                                 
+                                 <td>
+                                    
+                                    <p>Launch template version</p>
+                                    
+                                 </td>
+                                 
+                                 <td>
+                                    
+                                    <p>No</p>
+                                    
+                                 </td>
+                                 
+                                 <td>
+                                    
+                                    <p>No</p>
+                                    
+                                 </td>
+                                 
+                              </tr>
+                              
+                              <tr>
+                                 
+                                 <td>
+                                    
+                                    <p>NAT gateway</p>
+                                    
+                                 </td>
+                                 
+                                 <td>
+                                    
+                                    <p>Yes</p>
+                                    
+                                 </td>
+                                 
+                                 <td>No</td>
+                                 
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Network ACL</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Network interface</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Placement group</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>No</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Reserved Instance</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Reserved Instance listing</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>No</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>Route table</td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Spot Instance request</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Security group</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Subnet</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Virtual private gateway</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>VPC</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    <p>VPC endpoint</p>
+                                 </td>
+                                 						
+                                 <td>
+                                    <p>No</p>
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              
+                              <tr>
+                                 
+                                 <td>
+                                    
+                                    <p>VPC endpoint service</p>
+                                    
+                                 </td>
+                                 
+                                 <td>
+                                    
+                                    <p>No</p>
+                                    
+                                 </td>
+                                 
+                                 <td>
+                                    
+                                    <p>No</p>
+                                    
+                                 </td>
+                                 
+                              </tr>
+                              
+                              <tr>
+                                 
+                                 <td>
+                                    
+                                    <p>VPC flow log</p>
+                                    
+                                 </td>
+                                 
+                                 <td>
+                                    
+                                    <p>No</p>
+                                    
+                                 </td>
+                                 
+                                 <td>No</td>
+                                 
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    <p>VPC peering connection</p>
+                                 </td>
+                                 						
+                                 <td>
+                                    <p>Yes</p>
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>VPN connection</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Yes</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>No</td>
+                                 					
+                              </tr>
+                              				
+                           </table>
+                        </div>
+                     </div>
+                     		
+                     <p>You can tag instances and volumes on creation using the Amazon EC2 Launch Instances
+                        wizard in the
+                        Amazon EC2 console. You can tag your EBS volumes on creation using the Volumes screen,
+                        or EBS
+                        snapshots using the Snapshots screen. Alternatively, use the resource-creating Amazon
+                        EC2
+                        APIs (for example, <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html" target="_blank">RunInstances</a>)
+                        to apply tags when creating your resource.
+                     </p>
+                     		
+                     <p>You can apply tag-based resource-level permissions in your IAM policies to the Amazon
+                        EC2 API
+                        actions that support tagging on creation to implement granular control over the users
+                        and groups that can tag resources on creation. Your resources are properly secured
+                        from
+                        creation—tags are applied immediately to your resources, therefore any tag-based
+                        resource-level permissions controlling the use of resources are immediately effective.
+                        Your resources can be tracked and reported on more accurately. You can enforce the
+                        use
+                        of tagging on new resources, and control which tag keys and values are set on your
+                        resources. 
+                     </p>
+                     		
+                     <p>You can also apply resource-level permissions to the <code class="code">CreateTags</code> and
+                        				<code class="code">DeleteTags</code> Amazon EC2 API actions in your IAM policies to control which
+                        			tag keys and values are set on your existing resources. For more information, see
+                        <a href="ec2-supported-iam-actions-resources.html">Supported Resource-Level Permissions for Amazon EC2 API Actions</a> and <a href="ExamplePolicies_EC2.html">Example Policies for Working with the AWS CLI or an AWS
+                           SDK</a>. 
+                     </p>
+                     		
+                     <p>For more information about tagging your resources for billing, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html" target="_blank">Using Cost Allocation Tags</a> in the
+                        				<em>AWS Billing and Cost Management User Guide</em>.
+                     </p>
+                     		
+                     <h2 id="tag-restrictions">Tag Restrictions</h2>
+                     		
+                     		
+                     <p>The following basic restrictions apply to tags:</p>
+                     		
+                     <div class="itemizedlist">
+                        			
+                        			
+                        			
+                        			
+                        			
+                        			
+                        			
+                        
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              				
+                              <p>Maximum number of tags per resource – 50</p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p>For each resource, each tag key must be unique, and each tag key can have only
+                                 					one value.
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p>Maximum key length – 128 Unicode characters in UTF-8</p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p>Maximum value length – 256 Unicode characters in UTF-8</p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              <p>If your tagging schema is used across multiple services and resources, remember that
+                                 other
+                                 					services may have restrictions on allowed characters. Generally allowed
+                                 					characters are: letters, numbers, and spaces representable in UTF-8, and the
+                                 					following characters: + - = . _ : / @.
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p>Tag keys and values are case-sensitive.</p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p>Don't use the <code class="code">aws:</code> prefix for either keys or values; it's
+                                 					reserved for AWS use. You can't edit or delete tag keys or values with this prefix.
+                                 Tags
+                                 					with this prefix do not count against your tags per resource limit.
+                              </p>
+                              			
+                           </li>
+                        </ul>
+                     </div>
+                     		
+                     		
+                     <p>You can't terminate, stop, or delete a resource based solely on its tags; you must
+                        specify
+                        			the resource identifier. For example, to delete snapshots that you tagged with
+                        a tag key
+                        			called <code class="code">DeleteMe</code>, you must use the <code class="code">DeleteSnapshots</code> action with
+                        			the resource identifiers of the snapshots, such as <code class="code">snap-1234567890abcdef0</code>. 
+                     </p>
+                     		
+                     <p>You can tag public or shared resources, but the tags you assign are available only
+                        to
+                        			your AWS account and not to the other accounts sharing the resource.
+                     </p>
+                     		
+                     <p>You can't tag all resources. For more information, see <a href="Using_Tags.html#tag-ec2-resources-table">Tagging Support for Amazon EC2 Resources</a>.
+                     </p>
+                     	
+                     <h2 id="tag-resources-for-billing">Tagging Your Resources for Billing</h2>
+                     		
+                     		
+                     <p>You can use tags to organize your AWS bill to reflect your own cost structure. To
+                        do
+                        			this, sign up to get your AWS account bill with tag key values included. For more
+                        			information about setting up a cost allocation report with tags, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html" target="_blank">The Monthly Cost Allocation
+                           				Report</a> in <em>AWS Billing and Cost Management User Guide</em>. To see the cost of
+                        			your combined resources, you can organize your billing information based on resources
+                        			that have the same tag key values. For example, you can tag several resources with
+                        a
+                        			specific application name, and then organize your billing information to see the
+                        total
+                        			cost of that application across several services. For more information, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html" target="_blank">Using Cost Allocation Tags</a> in the
+                        				<em>AWS Billing and Cost Management User Guide</em>.
+                     </p>
+                     		
+                     <p>Cost allocation tags can indicate which resources are contributing to costs, but
+                        			deleting or deactivating resources doesn't always reduce costs. For example, snapshot
+                        			data that is referenced by another snapshot is preserved, even if the snapshot
+                        that
+                        			contains the original data is deleted. For more information, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html#checkebsvolumes" target="_blank">Amazon Elastic Block Store
+                           				Volumes and Snapshots</a> in the <em>AWS Billing and Cost Management User Guide</em>.
+                     </p>
+                     		
+                     <div class="aws-note">
+                        <p class="aws-note">Note</p>
+                        <p>If you've just enabled reporting, data for the current month is available for
+                           				viewing after 24 hours.
+                        </p>
+                     </div>
+                     	
+                     <h2 id="Using_Tags_Console">Working with Tags Using the Console</h2>
+                     		
+                     		
+                     <p>Using the Amazon EC2 console, you can see which tags are in use across all of your
+                        Amazon EC2
+                        			resources in the same region. You can view tags by resource and by resource type,
+                        and
+                        			you can also view how many items of each resource type are associated with a specified
+                        			tag. You can also use the Amazon EC2 console to apply or remove tags from one or
+                        more
+                        			resources at a time.
+                     </p>
+                     		
+                     <p>For more information about using filters when listing your resources, see <a href="Using_Filtering.html">Listing and Filtering Your Resources</a>.
+                     </p>
+                     		
+                     <p>For ease of use and best results, use Tag Editor in the AWS Management Console, which
+                        provides a central, unified way to create and manage your
+                        			tags. For more information, see <a href="https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html" target="_blank">Working with Tag Editor</a> in <em>Getting Started with the AWS Management Console</em>.
+                     </p>
+                     		
+                     <div class="highlights" id="inline-topiclist">
+                        <p><strong>Contents</strong></p>
+                        <ul>
+                           <li><a href="#displaying-tags">Displaying Tags</a></li>
+                           <li><a href="#adding-or-deleting-tags">Adding and Deleting Tags on an Individual
+                                 				Resource</a></li>
+                           <li><a href="#adding-or-deleting-tags-group">Adding and Deleting Tags to a Group of
+                                 				Resources</a></li>
+                           <li><a href="#instance-details-tags">Adding a Tag When You Launch an Instance</a></li>
+                           <li><a href="#filtering-the-list-by-tag">Filtering a List of Resources by Tag</a></li>
+                        </ul>
+                     </div>
+                     		
+                     <h3 id="displaying-tags">Displaying Tags</h3>
+                     			
+                     			
+                     <p>You can display tags in two different ways in the Amazon EC2 console. You can display
+                        				the tags for an individual resource or for all resources.
+                     </p>
+                     			
+                     				
+                     <p class="title"><b>Displaying Tags for Individual Resources</b></p>
+                     				
+                     <p>When you select a resource-specific page in the Amazon EC2 console, it displays a
+                        list of those
+                        					resources. For example, if you select <b>Instances</b> from the
+                        					navigation pane, the console displays a list of Amazon EC2 instances. When you
+                        select
+                        					a resource from one of these lists (for example, an instance), if the resource
+                        					supports tags, you can view and manage its tags. On most resource pages, you
+                        can
+                        					view the tags in the <b>Tags</b> tab on the details pane.
+                     </p>
+                     			
+                     			
+                     			
+                     <p>You can add a column to the resource list that displays all values for tags with
+                        				the same key. This column enables you to sort and filter the resource list by
+                        the
+                        				tag. There are two ways to add a new column to the resource list to display your
+                        				tags.
+                     </p>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p>On the <b>Tags</b> tab, select <b>Show Column</b>. A new
+                                 						column is added to the console.
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p>Choose the <b>Show/Hide Columns</b> gear-shaped icon, and in the
+                                 							<b>Show/Hide Columns</b> dialog box, select the tag key
+                                 						under <b>Your Tag Keys</b>.
+                              </p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     			
+                     				
+                     <p class="title"><b>Displaying Tags for All Resources</b></p>
+                     				
+                     <p>You can display tags across all resources by selecting
+                        						<b>Tags</b> from the navigation pane in the Amazon EC2 console. The
+                        					following image shows the <b>Tags</b> pane, which lists all tags
+                        					in use by resource type.
+                     </p>
+                     			
+                     			
+                     				
+                     <div class="mediaobject">
+                        					
+                        						<img src="images/Tags_Pane.png" alt="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;The Tags pane in the Amazon EC2 console&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;" />
+                        					
+                        					
+                        				
+                     </div>
+                     			
+                     			
+                     		
+                     		
+                     <h3 id="adding-or-deleting-tags">Adding and Deleting Tags on an Individual
+                        				Resource
+                     </h3>
+                     			
+                     			
+                     <p>You can manage tags for an individual resource directly from the resource's page.
+                        
+                     </p>
+                     			
+                     <p class="title"><b>To add a tag to an individual resource</b></p>
+                     <ol>
+                        <li>
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p>
+                        </li>
+                        <li>
+                           					
+                           <p>From the navigation bar, select the region that meets your needs. This
+                              						choice is important because some Amazon EC2 resources can be shared between
+                              						regions, while others can't. For more information, see <a href="resources.html">Resource Locations</a>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>In the navigation pane, select a resource type (for example,
+                              							<b>Instances</b>).
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Select the resource from the resource list and choose
+                              							<b>Tags</b>, <b>Add/Edit Tags</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>In the <b>Add/Edit Tags</b> dialog box, specify the key and
+                              						value for each tag, and then choose <b>Save</b>.
+                           </p>
+                           				
+                        </li>
+                     </ol>
+                     			
+                     <p class="title"><b>To delete a tag from an individual resource</b></p>
+                     <ol>
+                        <li>
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p>
+                        </li>
+                        <li>
+                           					
+                           <p>From the navigation bar, select the region that meets your needs. This
+                              						choice is important because some Amazon EC2 resources can be shared between
+                              						regions, while others can't. For more information, see <a href="resources.html">Resource Locations</a>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>In the navigation pane, choose a resource type (for example,
+                              							<b>Instances</b>).
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Select the resource from the resource list and choose
+                              							<b>Tags</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Choose <b>Add/Edit Tags</b>, select the
+                              							<b>Delete</b> icon for the tag, and choose
+                              							<b>Save</b>.
+                           </p>
+                           				
+                        </li>
+                     </ol>
+                     		
+                     		
+                     <h3 id="adding-or-deleting-tags-group">Adding and Deleting Tags to a Group of
+                        				Resources
+                     </h3>
+                     			
+                     			
+                     <p class="title"><b>To add a tag to a group of resources</b></p>
+                     <ol>
+                        <li>
+                           					
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>From the navigation bar, select the region that meets your needs. This
+                              						choice is important because some Amazon EC2 resources can be shared between
+                              						regions, while others can't. For more information, see <a href="resources.html">Resource Locations</a>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>In the navigation pane, choose <b>Tags</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>At the top of the content pane, choose <b>Manage
+                                 						Tags</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>For <b>Filter</b>, select the type of resource (for example, instances) to
+                              						which to add tags.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>In the resources list, select the check box next to each resource to which to add
+                              						tags.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Under <b>Add Tag</b>, for <b>Key</b> and
+                              							<b>Value</b>, type the tag key and values, and then choose
+                              							<b>Add Tag</b>.
+                           </p>
+                           					
+                           <div class="aws-note">
+                              <p class="aws-note">Note</p>
+                              <p>If you add a new tag with the same tag key as an existing tag, the new
+                                 							tag overwrites the existing tag.
+                              </p>
+                           </div>
+                           				
+                        </li>
+                     </ol>
+                     			
+                     <p class="title"><b>To remove a tag from a group of resources</b></p>
+                     <ol>
+                        <li>
+                           					
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>From the navigation bar, select the region that meets your needs. This
+                              						choice is important because some Amazon EC2 resources can be shared between
+                              						regions, while others can't. For more information, see <a href="resources.html">Resource Locations</a>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>In the navigation pane, choose <b>Tags</b>, <b>Manage
+                                 							Tags</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>To view the tags in use, select the <b>Show/Hide Columns</b> gear-shaped
+                              						icon, and in the <b>Show/Hide Columns</b> dialog box, select
+                              						the tag keys to view and choose <b>Close</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>For <b>Filter</b>, select the type of resource (for example, instances)
+                              						from which to remove tags.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>In the resource list, select the check box next to each resource from which to remove
+                              						tags.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Under <b>Remove Tag</b>, for <b>Key</b>, type the tag's name
+                              						and choose <b>Remove Tag</b>.
+                           </p>
+                           				
+                        </li>
+                     </ol>
+                     		
+                     		
+                     <h3 id="instance-details-tags">Adding a Tag When You Launch an Instance</h3>
+                     			
+                     			
+                     			
+                     <p class="title"><b>To add a tag using the Launch Wizard</b></p>
+                     <ol>
+                        <li>
+                           					
+                           <p>From the navigation bar, select the region for the instance. This choice
+                              						is important because some Amazon EC2 resources can be shared between regions,
+                              						while others can't. Select the region that meets your needs. For more
+                              						information, see <a href="resources.html">Resource Locations</a>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Choose <b>Launch Instance</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>The <b>Choose an Amazon Machine Image (AMI)</b> page displays a list of
+                              						basic configurations called Amazon Machine Images (AMIs). Select the AMI to
+                              						use and choose <b>Select</b>. For more information about
+                              						selecting an AMI, see <a href="finding-an-ami.html">Finding a Linux AMI</a>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>On the <b>Configure Instance Details</b> page, configure the
+                              						instance settings as necessary, and then choose <b>Next: Add
+                                 							Storage</b>.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>On the <b>Add Storage</b> page, you can specify additional storage volumes
+                              						for your instance. Choose <b>Next: Add Tags</b> when
+                              						done.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>On the <b>Add Tags</b> page, specify tags for the instance, the volumes, or
+                              						both. Choose <b>Add another tag</b> to add more than one tag
+                              						to your instance. Choose <b>Next: Configure Security Group</b>
+                              						when you are done. 
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>On the <b>Configure Security Group</b> page, you can choose
+                              						from an existing security group that you own, or let the wizard create a new
+                              						security group for you. Choose <b>Review and Launch</b> when
+                              						you are done.
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Review your settings. When you're satisfied with your selections, choose
+                              							<b>Launch</b>. Select an existing key pair or create a new
+                              						one, select the acknowledgment check box, and then choose <b>Launch
+                                 							Instances</b>.
+                           </p>
+                           				
+                        </li>
+                     </ol>
+                     		
+                     		
+                     <h3 id="filtering-the-list-by-tag">Filtering a List of Resources by Tag</h3>
+                     			
+                     			
+                     <p>You can filter your list of resources based on one or more tag keys and tag
+                        				values.
+                     </p>
+                     			
+                     			
+                     <p class="title"><b>To filter a list of resources by tag</b></p>
+                     <ol>
+                        <li>
+                           					
+                           <p>Display a column for the tag as follows:</p>
+                           					
+                           <ol>
+                              <li>
+                                 							
+                                 <p>Select a resource.</p>
+                                 						
+                              </li>
+                              <li>
+                                 							
+                                 <p>In the details pane, choose <b>Tags</b>.
+                                 </p>
+                                 						
+                              </li>
+                              <li>
+                                 							
+                                 <p>Locate the tag in the list and choose <b>Show Column</b>.
+                                 </p>
+                                 						
+                              </li>
+                           </ol>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Choose the filter icon in the top right corner of the column for the tag to display
+                              the
+                              						filter list. 
+                           </p>
+                           				
+                        </li>
+                        <li>
+                           					
+                           <p>Select the tag values, and then choose <b>Apply Filter</b> to filter the
+                              						results list.
+                           </p>
+                           					
+                           <div class="aws-note">
+                              <p class="aws-note">Note</p>
+                              <p>For more information about filters, see <a href="Using_Filtering.html">Listing and Filtering Your Resources</a>.
+                              </p>
+                           </div>
+                           				
+                        </li>
+                     </ol>
+                     		
+                     	
+                     <h2 id="Using_Tags_CLI">Working with Tags Using the CLI or API</h2>
+                     		
+                     		
+                     <p>Use the following to add, update, list, and delete the tags for
+                        			your resources. The corresponding documentation provides examples.
+                     </p>
+                     		
+                     		
+                     <div class="table">
+                        <div class="table-contents">
+                           <table id="w228aac25c17c17b4">
+                              					
+                              <tr>
+                                 						
+                                 <th>Task</th>
+                                 						
+                                 <th>AWS CLI</th>
+                                 						
+                                 <th>AWS Tools for Windows PowerShell</th>
+                                 						
+                                 <th>API Action</th>
+                                 					
+                              </tr>
+                              				
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Add or overwrite one or more tags.</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html" target="_blank">create-tags</a></p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Tag.html" target="_blank">New-EC2Tag</a></p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateTags.html" target="_blank">CreateTags</a></p>
+                                    						
+                                 </td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Delete one or more tags.</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html" target="_blank">delete-tags</a></p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-EC2Tag.html" target="_blank">Remove-EC2Tag</a></p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DeleteTags.html" target="_blank">DeleteTags</a></p>
+                                    						
+                                 </td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Describe one or more tags.</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html" target="_blank">describe-tags</a></p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Get-EC2Tag.html" target="_blank">Get-EC2Tag</a></p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeTags.html" target="_blank">DescribeTags</a></p>
+                                    						
+                                 </td>
+                                 					
+                              </tr>
+                              				
+                           </table>
+                        </div>
+                     </div>
+                     		
+                     		
+                     <p>You can also filter a list of resources according to their tags. The following examples
+                        			demonstrate how to filter your instances using tags with the <a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html" target="_blank">describe-instances</a> command.
+                     </p>
+                     		
+                     <div class="aws-note">
+                        <p class="aws-note">Note</p>
+                        <p>The way you enter JSON-formatted parameters on the command line differs depending
+                           on your operating system. Linux, macOS, or Unix and 
+                           				Windows PowerShell use the single quote  (') to enclose the JSON data structure.
+                           Omit the single quotes when using the commands with the 
+                           				Windows command line. For more information, see <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html" target="_blank">Specifying Parameter Values for the AWS Command 
+                              					Line Interface</a>.
+                        </p>
+                     </div>
+                     
+                     
+                     	
+                     <p class="title"><b>Example 1: Describe instances with the specified tag key</b></p>
+                     	
+                     <p>The following command describes the instances with a Stack tag, regardless of the
+                        value
+                        		of the tag.
+                     </p>
+                     
+                     		<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">aws ec2 describe-instances --filters Name=tag-key,Values=Stack</code></pre>
+                     
+                     		
+                     			<p class="title"><b>Example 2: Describe instances with the specified tag</b></p>
+                     			
+                     <p>The following command describes the instances with the tag Stack=production.</p>
+                     		
+                     		<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">aws ec2 describe-instances --filters Name=tag:Stack,Values=production</code></pre>
+                     
+                     		
+                     			<p class="title"><b>Example 3: Describe instances with the specified tag value</b></p>
+                     			
+                     <p>The following command describes the instances with a tag with the value production,
+                        				regardless of the tag key.
+                     </p>
+                     		
+                     		<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">aws ec2 describe-instances --filters Name=tag-value,Values=production</code></pre>
+                     
+                     		<p>Some resource-creating actions enable you to specify tags when you create the
+                        			resource. The following actions support tagging on creation.
+                     </p>
+                     		
+                     <div class="table">
+                        <div class="table-contents">
+                           <table id="w228aac25c17c17c24">
+                              					
+                              <tr>
+                                 						
+                                 <th>Task</th>
+                                 						
+                                 <th>AWS CLI</th>
+                                 						
+                                 <th>AWS Tools for Windows PowerShell</th>
+                                 						
+                                 <th>API Action</th>
+                                 					
+                              </tr>
+                              				
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Launch one or more instances. </p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html" target="_blank">run-instances</a></p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Instance.html" target="_blank">New-EC2Instance</a></p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html" target="_blank">RunInstances</a></p>
+                                    						
+                                 </td>
+                                 					
+                              </tr>
+                              					
+                              <tr>
+                                 						
+                                 <td>
+                                    							
+                                    <p>Create an EBS volume.</p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/cli/latest/reference/ec2/create-volume.html" target="_blank">create-volume</a></p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/New-EC2Volume.html" target="_blank">New-EC2Volume</a></p>
+                                    						
+                                 </td>
+                                 						
+                                 <td>
+                                    							
+                                    <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateVolume.html" target="_blank">CreateVolume</a></p>
+                                    						
+                                 </td>
+                                 					
+                              </tr>
+                              				
+                           </table>
+                        </div>
+                     </div>
+                     		
+                     <p>The following examples demonstrate how to apply tags when you create resources.</p>
+                     		
+                     			
+                     <p class="title"><b>Example 4: Launch an instance and apply tags to the instance and volume</b></p>
+                     			
+                     <p>The following command launches an instance and applies a tag with a key of
+                        					<code class="code">webserver</code> and value of <code class="code">production</code> to the instance. The
+                        				command also applies a tag with a key of <code class="code">cost-center</code> and a value of
+                        					<code class="code">cc123</code> to any EBS volume that's created (in this case, the root
+                        				volume).
+                     </p>
+                     		
+                     		<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro --key-name MyKeyPair --subnet-id subnet-6e7f829e --tag-specifications 'ResourceType=instance,Tags=[{Key=webserver,Value=production}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]' </code></pre>
+                     		<p>You can apply the same tag keys and values to both instances and volumes during
+                        			launch. The following command launches an instance and applies a tag with a key
+                        of
+                        				<code class="code">cost-center</code> and a value of <code class="code">cc123</code> to both the instance and
+                        			any EBS volume that's created.
+                     </p>
+                     		<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">aws ec2 run-instances --image-id ami-abc12345 --count 1 --instance-type t2.micro --key-name MyKeyPair --subnet-id subnet-6e7f829e --tag-specifications 'ResourceType=instance,Tags=[{Key=cost-center,Value=cc123}]' 'ResourceType=volume,Tags=[{Key=cost-center,Value=cc123}]' </code></pre>
+                     		
+                     			<p class="title"><b>Example 5: Create a volume and apply a tag</b></p>
+                     			
+                     <p>The following command creates a volume and applies two tags: <code class="code">purpose</code> =
+                        					<code class="code">production</code>, and <code class="code">cost-center</code> =
+                        				<code class="code">cc123</code>.
+                     </p>
+                     		
+                     		<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">aws ec2 create-volume --availability-zone us-east-1a --volume-type gp2 --size 80 --tag-specifications 'ResourceType=volume,Tags=[{Key=purpose,Value=production},{Key=cost-center,Value=cc123}]'</code></pre>
+                     	</div>
+                  <noscript>
+                     <div>
+                        <div>
+                           <div>
+                              <div id="js_error_message">
+                                 <p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p>
+                                 <p>To use the AWS Documentation, Javascript must be enabled. Please refer to your browser's
+                                    Help pages for instructions.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </noscript>
+                  <div id="main-col-footer">
+                     <div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div>
+                     <div id="next"><a class="awstoc" accesskey="p" href="Using_Filtering.html">« Previous </a><a class="awstoc" accesskey="n" href="ec2-resource-limits.html">Next »</a></div>
+                     <div id="copyright-main-footer">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+                  </div>
+               </div>
+            </div>
+            <div id="right-expanded">
+               <div id="right-content-wrapper">
+                  <div id="pagetoc">
+                     <p>On this page:</p>
+                     <ul class="pagetoc">
+                        <li class="pagetoc" name="Tag Basics"><a class="pagetoc" href="#tag-basics">Tag Basics</a></li>
+                        <li class="pagetoc" name="Tagging Your Resources"><a class="pagetoc" href="#tag-resources">Tagging Your Resources</a></li>
+                        <li class="pagetoc" name="Tag Restrictions"><a class="pagetoc" href="#tag-restrictions">Tag Restrictions</a></li>
+                        <li class="pagetoc" name="Tagging Your Resources for Billing"><a class="pagetoc" href="#tag-resources-for-billing">Tagging Your Resources for Billing</a></li>
+                        <li class="pagetoc" name="Working with Tags Using the Console"><a class="pagetoc" href="#Using_Tags_Console">Working with Tags Using the Console</a></li>
+                        <li class="pagetoc" name="Working with Tags Using the CLI or API"><a class="pagetoc" href="#Using_Tags_CLI">Working with Tags Using the CLI or API</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="cookie-notice">
+         <div class="cookie-notice-text">We use cookies to provide and improve our services. By using our site, you consent
+            to cookies. <a href="http://aws.amazon.com/legal/cookies">Learn more</a></div>
+      </div>
+      <div id="footer">
+         <div id="footer_short_fb" class="hide" title="Feedback"><a target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2&amp;topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/Using_Tags.html&amp;hidden_guide_name=User Guide for Linux Instances&amp;hidden_api_version=&amp;hidden_file_name=Using_Tags"><i class="awsdocs-footer-text fa fa-envelope-o"></i></a></div>
+         <div id="footer_toggle" class="mediaobject">
+            <div id="footer_toggle_img" class="awsdocs-footer-text fa fa-caret-down"></div>
+            <div id="footer_toggle_img_collapse" class="hide awsdocs-footer-text fa fa-caret-right"></div>
+         </div>
+         <div id="footer-left"><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/terms">Terms of Use</a><span class="awsdocs-footer-text"> | </span><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/privacy">Privacy</a><span class="awsdocs-footer-text"> | </span><span class="awsdocs-footer-text">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</span></div>
+         <div id="footer-right">
+            <div id="feedback">
+               <div id="forums"><a id="forum_link" target="_blank" href="http://forums.aws.amazon.com/forum.jspa?forumID=30" class="awsdocs-footer-text">Have a question? Try the Forums.</a></div>
+               <div id="feedback-message" class="awsdocs-footer-text">Did this page help you?</div>
+               <div id="feedback-yesno-buttons"><a class="awstoc btn btn-default" target="_blank" href="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/Using_Tags.html">Yes</a><a class="awstoc btn btn-default" target="_blank" href="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/Using_Tags.html">No</a></div>
+               <div id="feedback-feedback-button"><a class="awstoc btn btn-default" target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2&amp;topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/Using_Tags.html&amp;hidden_guide_name=User Guide for Linux Instances&amp;hidden_api_version=&amp;hidden_file_name=Using_Tags">Feedback</a></div>
+            </div>
+         </div>
+      </div>
+      <!-- SiteCatalyst code version: H.25.2.
+            Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+            More info available at http://www.omniture.com --><script language="JavaScript" type="text/javascript" src="https://a0.awsstatic.com/s_code/js/1.0/awshome_s_code.js"></script><script language="JavaScript" type="text/javascript">
+         <!--
+
+            // Documentation Service Name
+            s.prop66='Amazon Elastic Compute Cloud';
+            s.eVar66='D=c66';
+  
+            // Documentation Guide Name                                                                 
+            s.prop65='User Guide for Linux Instances';
+            s.eVar65='D=c65';
+
+            var s_code=s.t();if(s_code)document.write(s_code)//--></script><script language="JavaScript" type="text/javascript">
+         <!--
+                if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+                //--></script><noscript><img src="https://amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.2--NS/0" height="1" width="1" border="0" alt="" /></noscript>
+      <!--/DO NOT REMOVE/-->
+      <!-- End SiteCatalyst code version: H.25.2. -->
+   </body>
+</html>

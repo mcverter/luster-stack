@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>How to install Django | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/topics/install/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/topics/install/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/topics/install/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/topics/install/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/topics/install/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/topics/install/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/topics/install/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/topics/install/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/topics/install/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/topics/install/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/topics/install/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/topics/install/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/topics/install/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/topics/install/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/topics/install/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/topics/install/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/topics/install/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/topics/install/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/topics/install/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/topics/install/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/topics/install/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/topics/install/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/topics/install/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/topics/install/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/topics/install/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/topics/install/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/topics/install/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/topics/install/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-how-to-install-django">
+<span id="how-to-install-django"></span><h1>How to install Django<a class="headerlink" href="#how-to-install-django" title="Permalink to this headline">¶</a></h1>
+<p>This document will get you up and running with Django.</p>
+<div class="section" id="s-install-python">
+<span id="install-python"></span><h2>Install Python<a class="headerlink" href="#install-python" title="Permalink to this headline">¶</a></h2>
+<p>Django is a Python Web framework. See <a class="reference internal" href="../../faq/install/#faq-python-version-support"><span class="std std-ref">What Python version can I use with Django?</span></a> for
+details.</p>
+<p>Get the latest version of Python at <a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a> or with
+your operating system’s package manager.</p>
+<div class="admonition-django-on-jython admonition">
+<p class="first admonition-title">Django on Jython</p>
+<p class="last"><a class="reference external" href="http://www.jython.org/">Jython</a> (a Python implementation for the Java platform) is not compatible
+with Python 3, so Django ≥ 2.0 cannot run on Jython.</p>
+</div>
+<div class="admonition-python-on-windows admonition">
+<p class="first admonition-title">Python on Windows</p>
+<p class="last">If you are just starting with Django and using Windows, you may find
+<a class="reference internal" href="../../howto/windows/"><span class="doc">How to install Django on Windows</span></a> useful.</p>
+</div>
+</div>
+<div class="section" id="s-install-apache-and-mod-wsgi">
+<span id="install-apache-and-mod-wsgi"></span><h2>Install Apache and <code class="docutils literal notranslate"><span class="pre">mod_wsgi</span></code><a class="headerlink" href="#install-apache-and-mod-wsgi" title="Permalink to this headline">¶</a></h2>
+<p>If you just want to experiment with Django, skip ahead to the next
+section; Django includes a lightweight web server you can use for
+testing, so you won’t need to set up Apache until you’re ready to
+deploy Django in production.</p>
+<p>If you want to use Django on a production site, use <a class="reference external" href="https://httpd.apache.org/">Apache</a> with
+<a class="reference external" href="http://www.modwsgi.org/">mod_wsgi</a>. mod_wsgi operates in one of two modes: embedded
+mode or daemon mode. In embedded mode, mod_wsgi is similar to
+mod_perl – it embeds Python within Apache and loads Python code into
+memory when the server starts. Code stays in memory throughout the
+life of an Apache process, which leads to significant performance
+gains over other server arrangements. In daemon mode, mod_wsgi spawns
+an independent daemon process that handles requests. The daemon
+process can run as a different user than the Web server, possibly
+leading to improved security. The daemon process can be restarted
+without restarting the entire Apache Web server, possibly making
+refreshing your codebase more seamless. Consult the mod_wsgi
+documentation to determine which mode is right for your setup. Make
+sure you have Apache installed with the mod_wsgi module activated.
+Django will work with any version of Apache that supports mod_wsgi.</p>
+<p>See <a class="reference internal" href="../../howto/deployment/wsgi/modwsgi/"><span class="doc">How to use Django with mod_wsgi</span></a>
+for information on how to configure mod_wsgi once you have it
+installed.</p>
+<p>If you can’t use mod_wsgi for some reason, fear not: Django supports many other
+deployment options. One is <a class="reference internal" href="../../howto/deployment/wsgi/uwsgi/"><span class="doc">uWSGI</span></a>; it works
+very well with <a class="reference external" href="https://nginx.org/">nginx</a>. Additionally, Django follows the WSGI spec
+(<span class="target" id="index-0"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-3333"><strong>PEP 3333</strong></a>), which allows it to run on a variety of server platforms.</p>
+</div>
+<div class="section" id="s-get-your-database-running">
+<span id="s-database-installation"></span><span id="get-your-database-running"></span><span id="database-installation"></span><h2>Get your database running<a class="headerlink" href="#get-your-database-running" title="Permalink to this headline">¶</a></h2>
+<p>If you plan to use Django’s database API functionality, you’ll need to make
+sure a database server is running. Django supports many different database
+servers and is officially supported with <a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a>, <a class="reference external" href="https://www.mysql.com/">MySQL</a>, <a class="reference external" href="https://www.oracle.com/">Oracle</a> and
+<a class="reference external" href="https://www.sqlite.org/">SQLite</a>.</p>
+<p>If you are developing a simple project or something you don’t plan to deploy
+in a production environment, SQLite is generally the simplest option as it
+doesn’t require running a separate server. However, SQLite has many differences
+from other databases, so if you are working on something substantial, it’s
+recommended to develop with the same database that you plan on using in
+production.</p>
+<p>In addition to the officially supported databases, there are <a class="reference internal" href="../../ref/databases/#third-party-notes"><span class="std std-ref">backends
+provided by 3rd parties</span></a> that allow you to use other
+databases with Django.</p>
+<p>In addition to a database backend, you’ll need to make sure your Python
+database bindings are installed.</p>
+<ul class="simple">
+<li>If you’re using PostgreSQL, you’ll need the <a class="reference external" href="http://initd.org/psycopg/">psycopg2</a> package. Refer to the
+<a class="reference internal" href="../../ref/databases/#postgresql-notes"><span class="std std-ref">PostgreSQL notes</span></a> for further details.</li>
+<li>If you’re using MySQL, you’ll need a <a class="reference internal" href="../../ref/databases/#mysql-db-api-drivers"><span class="std std-ref">DB API driver</span></a> like <code class="docutils literal notranslate"><span class="pre">mysqlclient</span></code>. See <a class="reference internal" href="../../ref/databases/#mysql-notes"><span class="std std-ref">notes for the MySQL
+backend</span></a> for details.</li>
+<li>If you’re using SQLite you might want to read the <a class="reference internal" href="../../ref/databases/#sqlite-notes"><span class="std std-ref">SQLite backend notes</span></a>.</li>
+<li>If you’re using Oracle, you’ll need a copy of <a class="reference external" href="https://oracle.github.io/python-cx_Oracle/">cx_Oracle</a>, but please
+read the <a class="reference internal" href="../../ref/databases/#oracle-notes"><span class="std std-ref">notes for the Oracle backend</span></a> for details
+regarding supported versions of both Oracle and <code class="docutils literal notranslate"><span class="pre">cx_Oracle</span></code>.</li>
+<li>If you’re using an unofficial 3rd party backend, please consult the
+documentation provided for any additional requirements.</li>
+</ul>
+<p>If you plan to use Django’s <code class="docutils literal notranslate"><span class="pre">manage.py</span> <span class="pre">migrate</span></code> command to automatically
+create database tables for your models (after first installing Django and
+creating a project), you’ll need to ensure that Django has permission to create
+and alter tables in the database you’re using; if you plan to manually create
+the tables, you can simply grant Django <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> and
+<code class="docutils literal notranslate"><span class="pre">DELETE</span></code> permissions. After creating a database user with these
+permissions, you’ll specify the details in your project’s settings file,
+see <a class="reference internal" href="../../ref/settings/#std:setting-DATABASES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DATABASES</span></code></a> for details.</p>
+<p>If you’re using Django’s <a class="reference internal" href="../testing/"><span class="doc">testing framework</span></a> to test
+database queries, Django will need permission to create a test database.</p>
+</div>
+<div class="section" id="s-install-the-django-code">
+<span id="s-install-django-code"></span><span id="install-the-django-code"></span><span id="install-django-code"></span><h2>Install the Django code<a class="headerlink" href="#install-the-django-code" title="Permalink to this headline">¶</a></h2>
+<p>Installation instructions are slightly different depending on whether you’re
+installing a distribution-specific package, downloading the latest official
+release, or fetching the latest development version.</p>
+<p>It’s easy, no matter which way you choose.</p>
+<div class="section" id="s-installing-an-official-release-with-pip">
+<span id="s-installing-official-release"></span><span id="installing-an-official-release-with-pip"></span><span id="installing-official-release"></span><h3>Installing an official release with <code class="docutils literal notranslate"><span class="pre">pip</span></code><a class="headerlink" href="#installing-an-official-release-with-pip" title="Permalink to this headline">¶</a></h3>
+<p>This is the recommended way to install Django.</p>
+<ol class="arabic simple">
+<li>Install <a class="reference external" href="https://pip.pypa.io/">pip</a>. The easiest is to use the <a class="reference external" href="https://pip.pypa.io/en/latest/installing/#installing-with-get-pip-py">standalone pip installer</a>. If your
+distribution already has <code class="docutils literal notranslate"><span class="pre">pip</span></code> installed, you might need to update it if
+it’s outdated. If it’s outdated, you’ll know because installation won’t
+work.</li>
+<li>Take a look at <a class="reference external" href="https://virtualenv.pypa.io/">virtualenv</a> and <a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/">virtualenvwrapper</a>. These tools provide
+isolated Python environments, which are more practical than installing
+packages systemwide. They also allow installing packages without
+administrator privileges. The <a class="reference internal" href="../../intro/contributing/"><span class="doc">contributing tutorial</span></a> walks through how to create a virtualenv.</li>
+<li>After you’ve created and activated a virtual environment, enter the command
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">Django</span></code> at the shell prompt.</li>
+</ol>
+</div>
+<div class="section" id="s-installing-a-distribution-specific-package">
+<span id="s-installing-distribution-package"></span><span id="installing-a-distribution-specific-package"></span><span id="installing-distribution-package"></span><h3>Installing a distribution-specific package<a class="headerlink" href="#installing-a-distribution-specific-package" title="Permalink to this headline">¶</a></h3>
+<p>Check the <a class="reference internal" href="../../misc/distributions/"><span class="doc">distribution specific notes</span></a> to see if
+your platform/distribution provides official Django packages/installers.
+Distribution-provided packages will typically allow for automatic installation
+of dependencies and easy upgrade paths; however, these packages will rarely
+contain the latest release of Django.</p>
+</div>
+<div class="section" id="s-installing-the-development-version">
+<span id="s-installing-development-version"></span><span id="installing-the-development-version"></span><span id="installing-development-version"></span><h3>Installing the development version<a class="headerlink" href="#installing-the-development-version" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-tracking-django-development admonition">
+<p class="first admonition-title">Tracking Django development</p>
+<p class="last">If you decide to use the latest development version of Django,
+you’ll want to pay close attention to <a class="reference external" href="https://code.djangoproject.com/timeline">the development timeline</a>,
+and you’ll want to keep an eye on the <a class="reference internal" href="../../releases/#development-release-notes"><span class="std std-ref">release notes for the
+upcoming release</span></a>. This will help you stay
+on top of any new features you might want to use, as well as any changes
+you’ll need to make to your code when updating your copy of Django.
+(For stable releases, any necessary changes are documented in the
+release notes.)</p>
+</div>
+<p>If you’d like to be able to update your Django code occasionally with the
+latest bug fixes and improvements, follow these instructions:</p>
+<ol class="arabic">
+<li><p class="first">Make sure that you have <a class="reference external" href="https://git-scm.com/">Git</a> installed and that you can run its commands
+from a shell. (Enter <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">help</span></code> at a shell prompt to test this.)</p>
+</li>
+<li><p class="first">Check out Django’s main development branch like so:</p>
+<div class="console-block" id="console-block-0">
+<input class="c-tab-unix" id="c-tab-0-unix" type="radio" name="console-0" checked>
+<label for="c-tab-0-unix" title="Linux/macOS">&#xf17c/&#xf179</label>
+<input class="c-tab-win" id="c-tab-0-win" type="radio" name="console-0">
+<label for="c-tab-0-win" title="Windows">&#xf17a</label>
+<section class="c-content-unix" id="c-content-0-unix">
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone https://github.com/django/django.git
+</pre></div>
+</div>
+</section>
+<section class="c-content-win" id="c-content-0-win">
+<div class="highlight"><pre><span></span><span class="gp">...\&gt;</span> git clone https://github.com/django/django.git
+</pre></div>
+</section>
+</div>
+<p>This will create a directory <code class="docutils literal notranslate"><span class="pre">django</span></code> in your current directory.</p>
+</li>
+<li><p class="first">Make sure that the Python interpreter can load Django’s code. The most
+convenient way to do this is to use <a class="reference external" href="https://virtualenv.pypa.io/">virtualenv</a>, <a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/">virtualenvwrapper</a>, and
+<a class="reference external" href="https://pip.pypa.io/">pip</a>. The <a class="reference internal" href="../../intro/contributing/"><span class="doc">contributing tutorial</span></a> walks through
+how to create a virtualenv.</p>
+</li>
+<li><p class="first">After setting up and activating the virtualenv, run the following command:</p>
+<div class="console-block" id="console-block-1">
+<input class="c-tab-unix" id="c-tab-1-unix" type="radio" name="console-1" checked>
+<label for="c-tab-1-unix" title="Linux/macOS">&#xf17c/&#xf179</label>
+<input class="c-tab-win" id="c-tab-1-win" type="radio" name="console-1">
+<label for="c-tab-1-win" title="Windows">&#xf17a</label>
+<section class="c-content-unix" id="c-content-1-unix">
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install -e django/
+</pre></div>
+</div>
+</section>
+<section class="c-content-win" id="c-content-1-win">
+<div class="highlight"><pre><span></span><span class="gp">...\&gt;</span> pip install -e django\
+</pre></div>
+</section>
+</div>
+<p>This will make Django’s code importable, and will also make the
+<code class="docutils literal notranslate"><span class="pre">django-admin</span></code> utility command available. In other words, you’re all
+set!</p>
+</li>
+</ol>
+<p>When you want to update your copy of the Django source code, just run the
+command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> from within the <code class="docutils literal notranslate"><span class="pre">django</span></code> directory. When you do this,
+Git will automatically download any changes.</p>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../"><i class="icon icon-chevron-left"></i> Using Django</a></div>
+  
+  
+  <div class="right"><a href="../db/">Models and databases <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Adam Joseph Cook donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">How to install Django</a><ul>
+<li><a class="reference internal" href="#install-python">Install Python</a></li>
+<li><a class="reference internal" href="#install-apache-and-mod-wsgi">Install Apache and <code class="docutils literal notranslate"><span class="pre">mod_wsgi</span></code></a></li>
+<li><a class="reference internal" href="#get-your-database-running">Get your database running</a></li>
+<li><a class="reference internal" href="#install-the-django-code">Install the Django code</a><ul>
+<li><a class="reference internal" href="#installing-an-official-release-with-pip">Installing an official release with <code class="docutils literal notranslate"><span class="pre">pip</span></code></a></li>
+<li><a class="reference internal" href="#installing-a-distribution-specific-package">Installing a distribution-specific package</a></li>
+<li><a class="reference internal" href="#installing-the-development-version">Installing the development version</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../">Using Django</a></li>
+    
+    
+    <li>Next: <a href="../db/">Models and databases</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../">Using Django</a>
+      
+      <ul><li>How to install Django</li></ul>
+      </li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

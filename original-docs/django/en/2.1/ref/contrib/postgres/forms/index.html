@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>PostgreSQL specific form fields and widgets | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/forms/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/ref/contrib/postgres/forms/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/forms/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/ref/contrib/postgres/forms/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/ref/contrib/postgres/forms/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/ref/contrib/postgres/forms/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/ref/contrib/postgres/forms/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/ref/contrib/postgres/forms/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/ref/contrib/postgres/forms/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/ref/contrib/postgres/forms/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/ref/contrib/postgres/forms/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/ref/contrib/postgres/forms/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/ref/contrib/postgres/forms/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/ref/contrib/postgres/forms/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/ref/contrib/postgres/forms/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/ref/contrib/postgres/forms/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/ref/contrib/postgres/forms/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/ref/contrib/postgres/forms/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/ref/contrib/postgres/forms/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/ref/contrib/postgres/forms/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/ref/contrib/postgres/forms/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/ref/contrib/postgres/forms/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/ref/contrib/postgres/forms/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/ref/contrib/postgres/forms/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/ref/contrib/postgres/forms/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/ref/contrib/postgres/forms/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/ref/contrib/postgres/forms/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-postgresql-specific-form-fields-and-widgets">
+<span id="postgresql-specific-form-fields-and-widgets"></span><h1>PostgreSQL specific form fields and widgets<a class="headerlink" href="#postgresql-specific-form-fields-and-widgets" title="Permalink to this headline">¶</a></h1>
+<p>All of these fields and widgets are available from the
+<code class="docutils literal notranslate"><span class="pre">django.contrib.postgres.forms</span></code> module.</p>
+<div class="section" id="s-fields">
+<span id="fields"></span><h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="s-simplearrayfield">
+<span id="simplearrayfield"></span><h3><code class="docutils literal notranslate"><span class="pre">SimpleArrayField</span></code><a class="headerlink" href="#simplearrayfield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.postgres.forms.SimpleArrayField">
+<em class="property">class </em><code class="descname">SimpleArrayField</code>(<em>base_field</em>, <em>delimiter='</em>, <em>'</em>, <em>max_length=None</em>, <em>min_length=None</em>)<a class="reference internal" href="../../../../_modules/django/contrib/postgres/forms/array/#SimpleArrayField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.postgres.forms.SimpleArrayField" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple field which maps to an array. It is represented by an HTML
+<code class="docutils literal notranslate"><span class="pre">&lt;input&gt;</span></code>.</p>
+<dl class="attribute">
+<dt id="django.contrib.postgres.forms.SimpleArrayField.base_field">
+<code class="descname">base_field</code><a class="headerlink" href="#django.contrib.postgres.forms.SimpleArrayField.base_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a required argument.</p>
+<p>It specifies the underlying form field for the array. This is not used
+to render any HTML, but it is used to process the submitted data and
+validate it. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django</span> <span class="k">import</span> <span class="n">forms</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.contrib.postgres.forms</span> <span class="k">import</span> <span class="n">SimpleArrayField</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">NumberListForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">numbers</span> <span class="o">=</span> <span class="n">SimpleArrayField</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">())</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span> <span class="o">=</span> <span class="n">NumberListForm</span><span class="p">({</span><span class="s1">&#39;numbers&#39;</span><span class="p">:</span> <span class="s1">&#39;1,2,3&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span>
+<span class="go">{&#39;numbers&#39;: [1, 2, 3]}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span> <span class="o">=</span> <span class="n">NumberListForm</span><span class="p">({</span><span class="s1">&#39;numbers&#39;</span><span class="p">:</span> <span class="s1">&#39;1,2,a&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.postgres.forms.SimpleArrayField.delimiter">
+<code class="descname">delimiter</code><a class="headerlink" href="#django.contrib.postgres.forms.SimpleArrayField.delimiter" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is an optional argument which defaults to a comma: <code class="docutils literal notranslate"><span class="pre">,</span></code>. This
+value is used to split the submitted data. It allows you to chain
+<code class="docutils literal notranslate"><span class="pre">SimpleArrayField</span></code> for multidimensional data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django</span> <span class="k">import</span> <span class="n">forms</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.contrib.postgres.forms</span> <span class="k">import</span> <span class="n">SimpleArrayField</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">GridForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">places</span> <span class="o">=</span> <span class="n">SimpleArrayField</span><span class="p">(</span><span class="n">SimpleArrayField</span><span class="p">(</span><span class="n">IntegerField</span><span class="p">()),</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span> <span class="o">=</span> <span class="n">GridForm</span><span class="p">({</span><span class="s1">&#39;places&#39;</span><span class="p">:</span> <span class="s1">&#39;1,2|2,1|4,3&#39;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span>
+<span class="go">{&#39;places&#39;: [[1, 2], [2, 1], [4, 3]]}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The field does not support escaping of the delimiter, so be careful
+in cases where the delimiter is a valid character in the underlying
+field. The delimiter does not need to be only one character.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.postgres.forms.SimpleArrayField.max_length">
+<code class="descname">max_length</code><a class="headerlink" href="#django.contrib.postgres.forms.SimpleArrayField.max_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is an optional argument which validates that the array does not
+exceed the stated length.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.postgres.forms.SimpleArrayField.min_length">
+<code class="descname">min_length</code><a class="headerlink" href="#django.contrib.postgres.forms.SimpleArrayField.min_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is an optional argument which validates that the array reaches at
+least the stated length.</p>
+</dd></dl>
+
+<div class="admonition-user-friendly-forms admonition">
+<p class="first admonition-title">User friendly forms</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">SimpleArrayField</span></code> is not particularly user friendly in most cases,
+however it is a useful way to format data from a client-side widget for
+submission to the server.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="s-splitarrayfield">
+<span id="splitarrayfield"></span><h3><code class="docutils literal notranslate"><span class="pre">SplitArrayField</span></code><a class="headerlink" href="#splitarrayfield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.postgres.forms.SplitArrayField">
+<em class="property">class </em><code class="descname">SplitArrayField</code>(<em>base_field</em>, <em>size</em>, <em>remove_trailing_nulls=False</em>)<a class="reference internal" href="../../../../_modules/django/contrib/postgres/forms/array/#SplitArrayField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.postgres.forms.SplitArrayField" title="Permalink to this definition">¶</a></dt>
+<dd><p>This field handles arrays by reproducing the underlying field a fixed
+number of times.</p>
+<dl class="attribute">
+<dt id="django.contrib.postgres.forms.SplitArrayField.base_field">
+<code class="descname">base_field</code><a class="headerlink" href="#django.contrib.postgres.forms.SplitArrayField.base_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a required argument. It specifies the form field to be
+repeated.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.postgres.forms.SplitArrayField.size">
+<code class="descname">size</code><a class="headerlink" href="#django.contrib.postgres.forms.SplitArrayField.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the fixed number of times the underlying field will be used.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="django.contrib.postgres.forms.SplitArrayField.remove_trailing_nulls">
+<code class="descname">remove_trailing_nulls</code><a class="headerlink" href="#django.contrib.postgres.forms.SplitArrayField.remove_trailing_nulls" title="Permalink to this definition">¶</a></dt>
+<dd><p>By default, this is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>. When <code class="docutils literal notranslate"><span class="pre">False</span></code>, each value from
+the repeated fields is stored. When set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, any trailing
+values which are blank will be stripped from the result. If the
+underlying field has <code class="docutils literal notranslate"><span class="pre">required=True</span></code>, but <code class="docutils literal notranslate"><span class="pre">remove_trailing_nulls</span></code>
+is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then null values are only allowed at the end, and will be
+stripped.</p>
+<p>Some examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SplitArrayField</span><span class="p">(</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">remove_trailing_nulls</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; [1, 2, 3]</span>
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; ValidationError - third entry required.</span>
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; ValidationError - second entry required.</span>
+<span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; ValidationError - first and third entries required.</span>
+
+<span class="n">SplitArrayField</span><span class="p">(</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">remove_trailing_nulls</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; [1, 2, 3]</span>
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; [1, 2, None]</span>
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; [1, None, 3]</span>
+<span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; [None, 2, None]</span>
+
+<span class="n">SplitArrayField</span><span class="p">(</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">remove_trailing_nulls</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; [1, 2, 3]</span>
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; [1, 2]</span>
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; ValidationError - second entry required.</span>
+<span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; ValidationError - first entry required.</span>
+
+<span class="n">SplitArrayField</span><span class="p">(</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">remove_trailing_nulls</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; [1, 2, 3]</span>
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; [1, 2]</span>
+<span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; [1, None, 3]</span>
+<span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>  <span class="c1"># -&gt; [None, 2]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="s-hstorefield">
+<span id="hstorefield"></span><h3><code class="docutils literal notranslate"><span class="pre">HStoreField</span></code><a class="headerlink" href="#hstorefield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.postgres.forms.HStoreField">
+<em class="property">class </em><code class="descname">HStoreField</code><a class="reference internal" href="../../../../_modules/django/contrib/postgres/forms/hstore/#HStoreField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.postgres.forms.HStoreField" title="Permalink to this definition">¶</a></dt>
+<dd><p>A field which accepts JSON encoded data for an
+<a class="reference internal" href="../fields/#django.contrib.postgres.fields.HStoreField" title="django.contrib.postgres.fields.HStoreField"><code class="xref py py-class docutils literal notranslate"><span class="pre">HStoreField</span></code></a>. It casts all values
+(except nulls) to strings. It is represented by an HTML <code class="docutils literal notranslate"><span class="pre">&lt;textarea&gt;</span></code>.</p>
+<div class="admonition-user-friendly-forms admonition">
+<p class="first admonition-title">User friendly forms</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">HStoreField</span></code> is not particularly user friendly in most cases,
+however it is a useful way to format data from a client-side widget for
+submission to the server.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On occasions it may be useful to require or restrict the keys which are
+valid for a given field. This can be done using the
+<a class="reference internal" href="../validators/#django.contrib.postgres.validators.KeysValidator" title="django.contrib.postgres.validators.KeysValidator"><code class="xref py py-class docutils literal notranslate"><span class="pre">KeysValidator</span></code></a>.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="s-jsonfield">
+<span id="jsonfield"></span><h3><code class="docutils literal notranslate"><span class="pre">JSONField</span></code><a class="headerlink" href="#jsonfield" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.postgres.forms.JSONField">
+<em class="property">class </em><code class="descname">JSONField</code><a class="reference internal" href="../../../../_modules/django/contrib/postgres/forms/jsonb/#JSONField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.postgres.forms.JSONField" title="Permalink to this definition">¶</a></dt>
+<dd><p>A field which accepts JSON encoded data for a
+<a class="reference internal" href="../fields/#django.contrib.postgres.fields.JSONField" title="django.contrib.postgres.fields.JSONField"><code class="xref py py-class docutils literal notranslate"><span class="pre">JSONField</span></code></a>. It is represented by an
+HTML <code class="docutils literal notranslate"><span class="pre">&lt;textarea&gt;</span></code>.</p>
+<div class="admonition-user-friendly-forms admonition">
+<p class="first admonition-title">User friendly forms</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">JSONField</span></code> is not particularly user friendly in most cases, however
+it is a useful way to format data from a client-side widget for
+submission to the server.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="s-range-fields">
+<span id="range-fields"></span><h3>Range Fields<a class="headerlink" href="#range-fields" title="Permalink to this headline">¶</a></h3>
+<p>This group of fields all share similar functionality for accepting range data.
+They are based on <a class="reference internal" href="../../../forms/fields/#django.forms.MultiValueField" title="django.forms.MultiValueField"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiValueField</span></code></a>. They treat one
+omitted value as an unbounded range. They also validate that the lower bound is
+not greater than the upper bound. All of these fields use
+<a class="reference internal" href="#django.contrib.postgres.forms.RangeWidget" title="django.contrib.postgres.forms.RangeWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">RangeWidget</span></code></a>.</p>
+<div class="section" id="s-integerrangefield">
+<span id="integerrangefield"></span><h4><code class="docutils literal notranslate"><span class="pre">IntegerRangeField</span></code><a class="headerlink" href="#integerrangefield" title="Permalink to this headline">¶</a></h4>
+<dl class="class">
+<dt id="django.contrib.postgres.forms.IntegerRangeField">
+<em class="property">class </em><code class="descname">IntegerRangeField</code><a class="reference internal" href="../../../../_modules/django/contrib/postgres/forms/ranges/#IntegerRangeField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.postgres.forms.IntegerRangeField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Based on <a class="reference internal" href="../../../forms/fields/#django.forms.IntegerField" title="django.forms.IntegerField"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerField</span></code></a> and translates its input into
+<a class="reference external" href="http://initd.org/psycopg/docs/extras.html#psycopg2.extras.NumericRange" title="(in Psycopg v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericRange</span></code></a>. Default for
+<a class="reference internal" href="../fields/#django.contrib.postgres.fields.IntegerRangeField" title="django.contrib.postgres.fields.IntegerRangeField"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerRangeField</span></code></a> and
+<a class="reference internal" href="../fields/#django.contrib.postgres.fields.BigIntegerRangeField" title="django.contrib.postgres.fields.BigIntegerRangeField"><code class="xref py py-class docutils literal notranslate"><span class="pre">BigIntegerRangeField</span></code></a>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="s-floatrangefield">
+<span id="floatrangefield"></span><h4><code class="docutils literal notranslate"><span class="pre">FloatRangeField</span></code><a class="headerlink" href="#floatrangefield" title="Permalink to this headline">¶</a></h4>
+<dl class="class">
+<dt id="django.contrib.postgres.forms.FloatRangeField">
+<em class="property">class </em><code class="descname">FloatRangeField</code><a class="reference internal" href="../../../../_modules/django/contrib/postgres/forms/ranges/#FloatRangeField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.postgres.forms.FloatRangeField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Based on <a class="reference internal" href="../../../forms/fields/#django.forms.FloatField" title="django.forms.FloatField"><code class="xref py py-class docutils literal notranslate"><span class="pre">FloatField</span></code></a> and translates its input into
+<a class="reference external" href="http://initd.org/psycopg/docs/extras.html#psycopg2.extras.NumericRange" title="(in Psycopg v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericRange</span></code></a>. Default for
+<a class="reference internal" href="../fields/#django.contrib.postgres.fields.FloatRangeField" title="django.contrib.postgres.fields.FloatRangeField"><code class="xref py py-class docutils literal notranslate"><span class="pre">FloatRangeField</span></code></a>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="s-datetimerangefield">
+<span id="datetimerangefield"></span><h4><code class="docutils literal notranslate"><span class="pre">DateTimeRangeField</span></code><a class="headerlink" href="#datetimerangefield" title="Permalink to this headline">¶</a></h4>
+<dl class="class">
+<dt id="django.contrib.postgres.forms.DateTimeRangeField">
+<em class="property">class </em><code class="descname">DateTimeRangeField</code><a class="reference internal" href="../../../../_modules/django/contrib/postgres/forms/ranges/#DateTimeRangeField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.postgres.forms.DateTimeRangeField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Based on <a class="reference internal" href="../../../forms/fields/#django.forms.DateTimeField" title="django.forms.DateTimeField"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateTimeField</span></code></a> and translates its input into
+<a class="reference external" href="http://initd.org/psycopg/docs/extras.html#psycopg2.extras.DateTimeTZRange" title="(in Psycopg v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateTimeTZRange</span></code></a>. Default for
+<a class="reference internal" href="../fields/#django.contrib.postgres.fields.DateTimeRangeField" title="django.contrib.postgres.fields.DateTimeRangeField"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateTimeRangeField</span></code></a>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="s-daterangefield">
+<span id="daterangefield"></span><h4><code class="docutils literal notranslate"><span class="pre">DateRangeField</span></code><a class="headerlink" href="#daterangefield" title="Permalink to this headline">¶</a></h4>
+<dl class="class">
+<dt id="django.contrib.postgres.forms.DateRangeField">
+<em class="property">class </em><code class="descname">DateRangeField</code><a class="reference internal" href="../../../../_modules/django/contrib/postgres/forms/ranges/#DateRangeField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.postgres.forms.DateRangeField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Based on <a class="reference internal" href="../../../forms/fields/#django.forms.DateField" title="django.forms.DateField"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateField</span></code></a> and translates its input into
+<a class="reference external" href="http://initd.org/psycopg/docs/extras.html#psycopg2.extras.DateRange" title="(in Psycopg v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateRange</span></code></a>. Default for
+<a class="reference internal" href="../fields/#django.contrib.postgres.fields.DateRangeField" title="django.contrib.postgres.fields.DateRangeField"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateRangeField</span></code></a>.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="s-widgets">
+<span id="widgets"></span><h2>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="s-rangewidget">
+<span id="rangewidget"></span><h3><code class="docutils literal notranslate"><span class="pre">RangeWidget</span></code><a class="headerlink" href="#rangewidget" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.contrib.postgres.forms.RangeWidget">
+<em class="property">class </em><code class="descname">RangeWidget</code>(<em>base_widget</em>, <em>attrs=None</em>)<a class="reference internal" href="../../../../_modules/django/contrib/postgres/forms/ranges/#RangeWidget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.postgres.forms.RangeWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Widget used by all of the range fields.
+Based on <a class="reference internal" href="../../../forms/widgets/#django.forms.MultiWidget" title="django.forms.MultiWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiWidget</span></code></a>.</p>
+<p><a class="reference internal" href="#django.contrib.postgres.forms.RangeWidget" title="django.contrib.postgres.forms.RangeWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">RangeWidget</span></code></a> has one required argument:</p>
+<dl class="attribute">
+<dt id="django.contrib.postgres.forms.RangeWidget.base_widget">
+<code class="descname">base_widget</code><a class="headerlink" href="#django.contrib.postgres.forms.RangeWidget.base_widget" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference internal" href="#django.contrib.postgres.forms.RangeWidget" title="django.contrib.postgres.forms.RangeWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">RangeWidget</span></code></a> comprises a 2-tuple of <code class="docutils literal notranslate"><span class="pre">base_widget</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="django.contrib.postgres.forms.RangeWidget.decompress">
+<code class="descname">decompress</code>(<em>value</em>)<a class="reference internal" href="../../../../_modules/django/contrib/postgres/forms/ranges/#RangeWidget.decompress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.contrib.postgres.forms.RangeWidget.decompress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a single “compressed” value of a field, for example a
+<a class="reference internal" href="../fields/#django.contrib.postgres.fields.DateRangeField" title="django.contrib.postgres.fields.DateRangeField"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateRangeField</span></code></a>,
+and returns a tuple representing and lower and upper bound.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../fields/"><i class="icon icon-chevron-left"></i> PostgreSQL specific model fields</a></div>
+  
+  
+  <div class="right"><a href="../functions/">PostgreSQL specific database functions <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          exana.io donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">PostgreSQL specific form fields and widgets</a><ul>
+<li><a class="reference internal" href="#fields">Fields</a><ul>
+<li><a class="reference internal" href="#simplearrayfield"><code class="docutils literal notranslate"><span class="pre">SimpleArrayField</span></code></a></li>
+<li><a class="reference internal" href="#splitarrayfield"><code class="docutils literal notranslate"><span class="pre">SplitArrayField</span></code></a></li>
+<li><a class="reference internal" href="#hstorefield"><code class="docutils literal notranslate"><span class="pre">HStoreField</span></code></a></li>
+<li><a class="reference internal" href="#jsonfield"><code class="docutils literal notranslate"><span class="pre">JSONField</span></code></a></li>
+<li><a class="reference internal" href="#range-fields">Range Fields</a><ul>
+<li><a class="reference internal" href="#integerrangefield"><code class="docutils literal notranslate"><span class="pre">IntegerRangeField</span></code></a></li>
+<li><a class="reference internal" href="#floatrangefield"><code class="docutils literal notranslate"><span class="pre">FloatRangeField</span></code></a></li>
+<li><a class="reference internal" href="#datetimerangefield"><code class="docutils literal notranslate"><span class="pre">DateTimeRangeField</span></code></a></li>
+<li><a class="reference internal" href="#daterangefield"><code class="docutils literal notranslate"><span class="pre">DateRangeField</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#widgets">Widgets</a><ul>
+<li><a class="reference internal" href="#rangewidget"><code class="docutils literal notranslate"><span class="pre">RangeWidget</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../fields/">PostgreSQL specific model fields</a></li>
+    
+    
+    <li>Next: <a href="../functions/">PostgreSQL specific database functions</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../../">API Reference</a>
+      
+      <ul><li><a href="../../"><code class="docutils literal notranslate"><span class="pre">contrib</span></code> packages</a>
+      
+      <ul><li><a href="../"><code class="docutils literal notranslate"><span class="pre">django.contrib.postgres</span></code></a>
+      
+      <ul><li>PostgreSQL specific form fields and widgets</li></ul>
+      </li></ul></li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

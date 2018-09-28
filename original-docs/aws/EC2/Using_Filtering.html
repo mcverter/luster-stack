@@ -1,0 +1,923 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Listing and Filtering Your Resources - Amazon Elastic Compute Cloud</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="home" href="#top" />
+      <link rel="up" href="EC2_Resources.html" title="Resources and Tags" />
+      <link rel="prev" href="resource-ids.html" title="Resource IDs" />
+      <link rel="next" href="Using_Tags.html" title="Tagging Your Amazon EC2 Resources" />
+      <meta name="description" content="List and filter your different AWS resources available." />
+      <meta name="keywords" content="EC2,Amazon EC2,EC2 instance,instance,VM,virtual machine" />
+      <meta name="deployment_region" content="IAD" />
+      <meta name="product" content="Amazon Elastic Compute Cloud" />
+      <meta name="guide" content="User Guide for Linux Instances" />
+      <meta name="guide-locale" content="en_us" />
+      <link rel="icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="canonical" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Filtering.html" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css" />
+      <link rel="stylesheet" type="text/css" href="/font/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="/css/google-font.css" />
+      <link id="code-style" rel="stylesheet" type="text/css" href="/css/code/light.css" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.theme.css" />
+      <link rel="stylesheet" type="text/css" href="/css/colorbox.css" />
+      <link rel="stylesheet" type="text/css" href="/css/awsdocs.css?v=20170615" /><script type="text/javascript" src="/js/highlight.pack.js"></script><script type="text/javascript" src="/js/jquery.min.js"></script><script type="text/javascript" src="/js/jquery-ui.min.js"></script><script type="text/javascript" src="/js/handlebars.js"></script><script type="text/javascript" src="/js/jquery.colorbox.js"></script><script type="text/javascript" src="/js/awsdocs.min.js?v=20170615"></script></head>
+   <body id="top">
+      <div xmlns:db="http://docbook.org/ns/docbook" id="aws-nav" class="aws-nav-header">
+         <div class="aws-nav-header-left">
+            <div id="aws-nav-flyout-trigger" class="aws-nav-flyout-trigger"><i class="fa fa-bars fa-2x"></i></div>
+            <div class="aws-nav-logo">
+               <!--aws_logo_105x39.png--><a href="http://aws.amazon.com"><img src="/images/aws_logo_105x39.png" alt="Amazon Web Services" /></a></div>
+         </div>
+         <div id="aws-nav-header-right" class="aws-nav-header-right">
+            <div class="aws-nav-cta-button-outer"><a id="aws-nav-cta-button" class="aws-nav-button" href="https://console.aws.amazon.com/console/home">Sign In to the Console</a></div>
+            <div class="aws-nav-popover-trigger" data-dropdown="aws-nav-dropdown-lang"><select id="languageSelection" onchange="SelectLanguage()">
+                  <option value="/de_de/AWSEC2/latest/UserGuide/Using_Filtering.html">Deutsch</option>
+                  <option value="/en_us/AWSEC2/latest/UserGuide/Using_Filtering.html" selected="selected">English</option>
+                  <option value="/es_es/AWSEC2/latest/UserGuide/Using_Filtering.html">Español</option>
+                  <option value="/fr_fr/AWSEC2/latest/UserGuide/Using_Filtering.html">Français</option>
+                  <option value="/it_it/AWSEC2/latest/UserGuide/Using_Filtering.html">Italiano</option>
+                  <option value="/ja_jp/AWSEC2/latest/UserGuide/Using_Filtering.html">日本語</option>
+                  <option value="/ko_kr/AWSEC2/latest/UserGuide/Using_Filtering.html">한국어</option>
+                  <option value="/pt_br/AWSEC2/latest/UserGuide/Using_Filtering.html">Português</option>
+                  <option value="/zh_cn/AWSEC2/latest/UserGuide/Using_Filtering.html">中文 (简体)</option>
+                  <option value="/zh_tw/AWSEC2/latest/UserGuide/Using_Filtering.html">中文 (繁體)</option></select></div><a class="btn btn-rss-link" id="rss-link-top" target="_blank" href="amazon-ec2-release-notes.rss" title="View RSS Feed"></a><a class="btn btn-kindle-link" id="kindle-link-top" target="_blank" href="http://www.amazon.com/dp/B076452RSZ" title="Open Kindle"></a><a class="btn btn-pdf-link" id="pdf-link-top" href="ec2-ug.pdf#Using_Filtering" target="_blank" title="Open PDF"></a><a class="btn btn-github-link" id="github-link-top" href="https://github.com/awsdocs/amazon-ec2-user-guide/tree/master/doc_source/Using_Filtering.md" target="_blank" title="Edit on GitHub"></a><div id="aws-nav-quicklinks-separator" class="aws-nav-quicklinks-separator">
+               <div class="aws-nav-left"></div>
+               <div class="aws-nav-right"></div>
+            </div>
+         </div>
+         <div xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" id="topnav-flyout-menu-container">
+            <ul id="topnav-flyout-menu"><script id="flyout-item-template" type="text/x-handlebars-template">
+                    {{#flyoutList}}
+
+                        {{#if topTarget}}
+                            <li class="awsdocs-flyout-link-wrapper"><a href="{{topTarget}}">{{listItem}}</a></li>
+                        {{else}}
+                            <li>{{listItem}}
+                                {{#if subList}}
+                                <ul>
+                                    {{#subList}}
+                                    <li class="awsdocs-flyout-link-wrapper"><a href="{{target}}">{{text}}</a></li>
+                                    {{/subList}}
+                                </ul>
+                                {{/if}}
+                            </li>
+                        {{/if}}
+
+                    {{/flyoutList}}
+                </script></ul>
+            <div id="topnav-flyout-menu-spacer"></div>
+         </div>
+      </div>
+      <div id="content-container">
+         <div id="left-column">
+            <div id="left-col-header">
+               <div xmlns:db="http://docbook.org/ns/docbook" id="left-col-top-content">
+                  <div id="service-name">Amazon Elastic Compute Cloud </div>
+                  <div id="search"><i id="search-icon" class="fa fa-search fa-2x"></i></div>
+                  <div id="guide-info">User Guide for Linux Instances
+                     <div id="content-button"><i id="toggle-contents" class="fa fa-bars"></i></div>
+                  </div>
+               </div>
+               <form id="finegrainedSearch" method="get" onsubmit="return searchFormSubmit(this);" action="/search/doc-search.html">
+                  <div id="search-form"><select id="search-select" name="searchPath">
+                        <option value="all">Entire Site</option>
+                        <option value="AWSMarketplace">AMIs from AWS Marketplace</option>
+                        <option value="amis">AMIs from All Sources</option>
+                        <option value="articles">Articles &amp; Tutorials</option>
+                        <option value="products_and_info">AWS Product Information</option>
+                        <option value="case_studies">Case Studies</option>
+                        <option value="customerapps">Customer Apps</option>
+                        <option value="documentation">Documentation</option>
+                        <option value="documentation-product">Documentation - This Product</option>
+                        <option value="documentation-guide" selected="selected">Documentation - This Guide</option>
+                        <option value="datasets">Public Data Sets</option>
+                        <option value="releasenotes">Release Notes</option>
+                        <option value="solution_providers">Partners</option>
+                        <option value="code">Sample Code &amp; Libraries</option></select><br /><input id="search-query" name="searchQuery" type="text" placeholder="Search" /><input id="search-button" src="/images/search-button.png" alt="Go" type="image" /></div><input type="hidden" name="this_doc_product" id="this_doc_product" value="Amazon Elastic Compute Cloud" /><input type="hidden" name="this_doc_guide" id="this_doc_guide" value="User Guide for Linux Instances" /><input type="hidden" name="doc_locale" value="en_us" /></form>
+            </div>
+            <div id="toc">
+               <ul class="awstoc">
+                  <li class="awstoc closed"><a class="awstoc" href="concepts.html">What Is Amazon EC2?</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-instances-and-amis.html">Instances and AMIs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-regions-availability-zones.html">Regions and Availability Zones</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="RootDeviceStorage.html">Root Device Volume</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="get-set-up-for-amazon-ec2.html">Setting Up</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="EC2_GetStarted.html">Getting Started</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="ec2-best-practices.html">Best Practices</a></li>
+                  <li class="awstoc closed"><a class="awstoc" href="ec2-tutorials.html">Tutorials</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-lamp-amazon-linux-2.html">Install a LAMP Server (Amazon Linux 2)</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="install-LAMP.html">Install a LAMP Server (Amazon Linux AMI)</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="hosting-wordpress.html">Tutorial: Hosting a WordPress Blog</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="SSL-on-an-instance.html">Tutorial: Configure Apache Web Server on Amazon Linux 2 to Use SSL/TLS</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-increase-availability.html">Tutorial: Increase the Availability of Your Application</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="tutorial_run_command.html">Tutorial: Remotely Manage Your Instances</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="AMIs.html">Amazon Machine Images</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ComponentsAMIs.html">AMI Types</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="virtualization_types.html">Virtualization Types</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="finding-an-ami.html">Finding a Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="sharing-amis.html">Shared AMIs</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="usingsharedamis-finding.html">Finding Shared AMIs</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="sharingamis-intro.html">Making an AMI Public</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="sharingamis-explicit.html">Sharing an AMI with Specific AWS Accounts</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="using-bookmarks.html">Using Bookmarks</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="building-shared-amis.html">Guidelines for Shared Linux AMIs</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="paid-amis.html">Paid AMIs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="creating-an-ami-ebs.html">Creating an Amazon EBS-Backed Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="creating-an-ami-instance-store.html">Creating an Instance Store-Backed Linux AMI</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="set-up-ami-tools.html">Setting Up the AMI Tools</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="create-instance-store-ami.html">Creating an AMI from an Instance Store-Backed Instance</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="Using_ConvertingS3toEBS.html">Converting to an Amazon EBS-Backed AMI</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ami-tools-commands.html">AMI Tools Reference</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AMIEncryption.html">AMIs with Encrypted Snapshots</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="CopyingAMIs.html">Copying an AMI</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="deregister-ami.html">Deregistering Your Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="amazon-linux-ami-basics.html">Amazon Linux</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="amazon-linux-2-virtual-machine.html">Running Amazon Linux 2 as a Virtual Machine On-Premises</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="UserProvidedKernels.html">User Provided Kernels</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Instances.html">Instances</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="instance-types.html">Instance Types</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances.html">Burstable Performance Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-credits-baseline-concepts.html">CPU Credits and Baseline Performance</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances-unlimited-mode.html">Unlimited Mode</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="unlimited-mode-examples.html">Examples</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances-standard-mode.html">Standard Mode</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="standard-mode-examples.html">Examples</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-performance-instances-how-to.html">Working with Burstable Performance Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-performance-instances-monitoring-cpu-credits.html">Monitoring Your CPU Credits</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="general-purpose-instances.html">General Purpose Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="compute-optimized-instances.html">Compute Optimized Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="memory-optimized-instances.html">Memory Optimized Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="storage-optimized-instances.html">Storage Optimized Instances</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="accelerated-computing-instances.html">Accelerated Computing Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-nvidia-driver.html">Installing the NVIDIA Driver on Linux Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="activate_grid.html">Activate NVIDIA GRID Virtual Applications (G3 Instances Only)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="optimize_gpu.html">Optimizing GPU Settings (P2, P3, and G3 Instances)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="fpga-getting-started.html">Getting Started with FPGA Development</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="concepts_micro_instances.html">T1 Micro Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-resize.html">Changing the Instance Type</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-optimize-cpu.html">Optimizing CPU Options</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="instance-purchasing-options.html">Instance Purchasing Options</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="ec2-reserved-instances.html">Reserved Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="reserved-instances-types.html">Types of Reserved Instances (Offering Classes)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="apply_ri.html">How Reserved Instances Are Applied</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="concepts-reserved-instances-application.html">How You Are Billed</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-market-concepts-buying.html">Buying Reserved Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-market-general.html">Selling on the Reserved Instance Marketplace</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-modifying.html">Modifying Reserved Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-convertible-exchange.html">Exchanging Convertible Reserved Instances</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-scheduled-instances.html">Scheduled Instances</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="using-spot-instances.html">Spot Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="how-spot-instances-work.html">How Spot Instances Work</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-fleet.html">How Spot Fleet Works</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="using-spot-instances-history.html">Spot Instance Pricing History</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-requests.html">Spot Instance Requests</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-request-examples.html">Example Launch Specifications</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-fleet-requests.html">Spot Fleet Requests</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-examples.html">Example Configurations</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-cloudwatch-metrics.html">CloudWatch Metrics for Spot Fleet</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-fleet-automatic-scaling.html">Automatic Scaling for Spot Fleet</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-target-tracking.html">Target Tracking Scaling Policies</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-step-scaling.html">Step Scaling Policies</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-scheduled-scaling.html">Scheduled Scaling</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-bid-status.html">Spot Request Status</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-interruptions.html">Spot Instance Interruptions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-data-feeds.html">Spot Instance Data Feed</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="using-spot-limits.html">Spot Instance Limits</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="dedicated-hosts-overview.html">Dedicated Hosts</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="how-dedicated-hosts-work.html">Working with Dedicated Hosts</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="dedicated-hosts-aws-config.html">Tracking Configuration Changes</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="dedicated-instance.html">Dedicated Instances</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="ec2-instance-lifecycle.html">Instance Lifecycle</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="LaunchingAndUsingInstances.html">Launch</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="launching-instance.html">Launching an Instance Using the Launch Instance Wizard</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ec2-launch-templates.html">Launching an Instance from a Launch Template</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="launch-more-like-this.html">Launching an Instance From an Existing Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="instance-launch-snapshot.html">Launching a Linux Instance from a Backup</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="launch-marketplace-console.html">Launching an AWS Marketplace Instance</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ec2-fleet.html">Launching an EC2 Fleet</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="ec2-fleet-configuration-strategies.html">EC2 Fleet Configuration Strategies</a></li>
+                                          <li class="awstoc closed"><a class="awstoc" href="manage-ec2-fleet.html">Managing an EC2 Fleet</a><ul class="awstoc">
+                                                <li class="awstoc leaf"><a class="awstoc" href="ec2-fleet-examples.html">Example Configurations</a></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="AccessingInstances.html">Connect</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="AccessingInstancesLinux.html">Connect Using SSH</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="putty.html">Connect Using PuTTY</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="WSL.html">Connect Using WSL</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="mindterm.html">Connect Using MindTerm</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="Stop_Start.html">Stop and Start</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-reboot.html">Reboot</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-retirement.html">Retire</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="terminating-instances.html">Terminate</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-recover.html">Recover</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="Configure_Instance.html">Configure Instances</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="managing-software.html">Managing Software</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-updates.html">Updating Instance Software</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="add-repositories.html">Adding Repositories</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="find-software.html">Finding Software Packages</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-software.html">Installing Software Packages</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="compile-software.html">Preparing to Compile Software</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="managing-users.html">Managing Users</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="processor_state_control.html">Processor State Control</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="set-time.html">Setting the Time</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="set-hostname.html">Changing the Hostname</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="dynamic-dns.html">Setting Up Dynamic DNS</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="user-data.html">Running Commands at Launch</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="ec2-instance-metadata.html">Instance Metadata and User Data</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="instance-identity-documents.html">Instance Identity Documents</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="identify_ec2_instances.html">Identify Instances</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="monitoring_ec2.html">Monitoring</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="monitoring_automated_manual.html">Automated and Manual Monitoring</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="monitoring_best_practices.html">Best Practices for Monitoring</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="monitoring-instances-status-check.html">Monitoring the Status of Your Instances</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="monitoring-system-instance-status-check.html">Instance Status Checks</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="monitoring-instances-status-check_sched.html">Scheduled Events</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-cloudwatch.html">Monitoring Your Instances Using CloudWatch</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="using-cloudwatch-new.html">Enable Detailed Monitoring</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="viewing_metrics_with_cloudwatch.html">List Available Metrics</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="monitoring_get_statistics.html">Get Statistics for Metrics</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="US_SingleMetricPerInstance.html">Get Statistics for a Specific Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="GetSingleMetricAllDimensions.html">Aggregate Statistics Across Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="GetMetricAutoScalingGroup.html">Aggregate Statistics by Auto Scaling Group</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="US_SingleMetricPerAMI.html">Aggregate Statistics by AMI</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="graphs-in-the-aws-management-console.html">Graph Metrics</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="using-cloudwatch-createalarm.html">Create an Alarm</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="UsingAlarmActions.html">Create Alarms That Stop, Terminate, Reboot, or Recover an Instance</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="automating_with_cloudwatch_events.html">Automating Amazon EC2 with CloudWatch Events</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="mon-scripts.html">Monitoring Memory and Disk Metrics</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="EC2_Network_and_Security.html">Network and Security</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-key-pairs.html">Key Pairs</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-network-security.html">Security Groups</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="security-group-rules-reference.html">Security Group Rules Reference</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="UsingIAM.html">Controlling Access</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="iam-policies-for-amazon-ec2.html">IAM Policies</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="iam-policy-structure.html">Policy Structure</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ec2-supported-iam-actions-resources.html">Supported Resource-Level Permissions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ExamplePolicies_EC2.html">Example Policies for CLI or SDK</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="iam-policies-ec2-console.html">Example Policies for the Console</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="iam-roles-for-amazon-ec2.html">IAM Roles</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="authorizing-access-to-an-instance.html">Network Access</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-instance-addressing.html">Instance IP Addressing</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="MultipleIP.html">Multiple IP Addresses</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="elastic-ip-addresses-eip.html">Elastic IP Addresses</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-eni.html">Network Interfaces</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="requester-managed-eni.html">Requester-Managed Network Interfaces</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="enhanced-networking.html">Enhanced Networking</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="sriov-networking.html">Enhanced Networking: Intel 82599 VF</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="enhanced-networking-ena.html">Enhanced Networking: ENA</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="troubleshooting-ena.html">Troubleshooting ENA</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="placement-groups.html">Placement Groups</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="network_mtu.html">Network MTU</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-vpc.html">Virtual Private Clouds</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="ec2-classic-platform.html">EC2-Classic</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="vpc-classiclink.html">ClassicLink</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="vpc-migrate.html">Migrating from EC2-Classic to a VPC</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Storage.html">Storage</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="AmazonEBS.html">Amazon EBS</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="EBSVolumes.html">EBS Volumes</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="EBSVolumeTypes.html">EBS Volume Types</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-creating-volume.html">Creating a Volume</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-restoring-volume.html">Restoring from a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-attaching-volume.html">Attaching a Volume to an Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-using-volumes.html">Making a Volume Available for Use</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-describing-volumes.html">Volume Information</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="monitoring-volume-status.html">Monitoring the Status of Your Volumes</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-detaching-volume.html">Detaching a Volume from an Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-deleting-volume.html">Deleting a Volume</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ebs-modify-volume.html">Modifying a Volume</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="volume_constraints.html">Volume Size Constraints</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="console-modify.html">Using the Console</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="cli-modify.html">Using the CLI</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="monitoring_mods.html">Monitoring Progress</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="expand-linux-partition.html">Expanding a Linux Partition</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="recognize-expanded-volume-linux.html">Extending Linux File Systems</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="limitations.html">Limitations</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="stop-start.html">Appendix: Manual Stop/Start Modification</a></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="EBSSnapshots.html">EBS Snapshots</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-creating-snapshot.html">Creating a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-deleting-snapshot.html">Deleting a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-copy-snapshot.html">Copying a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-describing-snapshots.html">Viewing Snapshot Information</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-modifying-snapshot-permissions.html">Sharing a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="snapshot-lifecycle.html">Automating Snapshots</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="EBSOptimized.html">EBS Optimization</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="EBSEncryption.html">EBS Encryption</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="nvme-ebs-volumes.html">EBS Volumes and NVMe</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="EBSPerformance.html">EBS Performance</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-ec2-config.html">EC2 Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-io-characteristics.html">I/O Characteristics and Monitoring</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-initialize.html">Initialize Volumes</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="raid-config.html">RAID Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="benchmark_procedures.html">Benchmark EBS Volumes</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ebs-cloud-watch-events.html">EBS CloudWatch Events</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="InstanceStorage.html">Instance Store</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="add-instance-store-volumes.html">Add Instance Store Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ssd-instance-store.html">SSD Instance Store Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-store-swap-volumes.html">Instance Store Swap Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="disk-performance.html">Optimizing Disk Performance</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AmazonEFS.html">Amazon EFS</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AmazonS3.html">Amazon S3</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="volume_limits.html">Instance Volume Limits</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="device_naming.html">Device Naming</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="block-device-mapping-concepts.html">Block Device Mapping</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-public-data-sets.html">Using Public Data Sets</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc opened"><a class="awstoc" href="EC2_Resources.html">Resources and Tags</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="resources.html">Resource Locations</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="resource-ids.html">Resource IDs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc selected" href="Using_Filtering.html">Listing and Filtering Your Resources</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="Using_Tags.html">Tagging Your Resources</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-resource-limits.html">Service Limits</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="usage-reports.html">Usage Reports</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Linux-Server-EC2Rescue.html">EC2Rescue for Linux</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_install.html">Installing EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_verify.html">(Optional) Verify the Signature of EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_working.html">Working with EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_moduledev.html">Developing EC2Rescue Modules</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="ec2-instance-troubleshoot.html">Troubleshooting</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="troubleshooting-launch.html">Troubleshooting Launch Issues</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesConnecting.html">Connecting to Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesStopping.html">Stopping Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesShuttingDown.html">Terminating Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstanceRecovery.html">Instance Recovery Failures</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstances.html">Failed Status Checks</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="instance-console.html">Getting Console Output and Rebooting Instances</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="instance-booting-from-wrong-volume.html">Booting from the Wrong Volume</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="DocumentHistory.html">Document History</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="glossary.html">AWS Glossary</a></li>
+                  <li id="toc-additional-links"><a class="btn btn-pdf-link" id="pdf-link-alt" href="ec2-ug.pdf#top" target="_blank" title="Open PDF"></a><a class="btn btn-kindle-link" id="kindle-link-alt" target="_blank" href="http://www.amazon.com/dp/B076452RSZ" title="Open Kindle"></a><a class="btn btn-rss-link" id="rss-link-alt" target="_blank" href="amazon-ec2-release-notes.rss" title="View RSS Feed"></a></li>
+               </ul>
+            </div>
+         </div>
+         <div id="main-column">
+            <div id="main">
+               <div id="main-content">
+                  <div id="main-col-body">
+                     <table summary="Breadcrumbs">
+                        <tr>
+                           <td>
+                              <div class="breadcrumb"><a href="/index.html">AWS Documentation</a> » <a href="/ec2/index.html">Amazon EC2</a> » <a href="index.html">User Guide for Linux Instances</a> » <a href="EC2_Resources.html">Resources and Tags</a> » <span class="breadcrumb">Listing and Filtering Your Resources</span></div>
+                           </td>
+                        </tr>
+                     </table>
+                     <div></div>
+                     <div id="language-filter" class="page-header" style="display:none">
+                        <form> Filter View: 
+                           <select name="filter-select" id="filter-select">
+                              <option selected="1">All</option>
+                              <option value="Listing and Filtering Using the CLI and API" selected="">Listing and Filtering Using the CLI and API</option></select></form>
+                     </div>
+                     <h1 class="topictitle" id="Using_Filtering">Listing and Filtering Your Resources</h1>
+                     <p>You can get a list of some types of resource using the Amazon EC2 console. You can
+                        get a list of
+                        each type of resource using its corresponding command or API action. If you have many
+                        resources,
+                        you can filter the results to include only the resources that match certain criteria.
+                     </p>
+                     <div class="highlights" id="inline-topiclist">
+                        <p><strong>Contents</strong></p>
+                        <ul>
+                           <li><a href="#advancedsearch">Advanced Search</a></li>
+                           <li><a href="#listing-resources">Listing
+                                 Resources Using the Console</a></li>
+                           <li><a href="#filtering-resources">Filtering Resources Using the Console</a></li>
+                           <li><a href="#Filtering_Resources_CLI">Listing and Filtering Using the CLI and API</a></li>
+                        </ul>
+                     </div>
+                     <h2 id="advancedsearch">Advanced Search</h2>
+                     
+                     
+                     <p>Advanced search allows you to search using a combination of filters to achieve precise
+                        results. You can filter by keywords, user-defined tag keys,
+                        and predefined resource attributes.
+                     </p>
+                     
+                     
+                     <p>The specific search types available are:</p> 
+                     
+                     <div class="itemizedlist">         
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                         
+                        
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              <p><b>Search by keyword</b></p>
+                              
+                              <p>To search by keyword, type or paste what you’re looking for in the search
+                                 box, and then choose Enter. For example, to search for a specific instance, you
+                                 can type the instance ID.
+                              </p>
+                              
+                           </li>
+                           <li class="listitem">
+                              <p><b>Search by fields</b></p>
+                              
+                              <p>You can also search by fields, tags, and attributes associated with a
+                                 resource. For example, to find all instances in the stopped state:
+                              </p>
+                              <div class="orderedlist">
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 <ol>
+                                    <li>
+                                       
+                                       <p>In the search box, start typing <strong class="userinput"><code>Instance
+                                                State</code></strong>. As you type, you'll see a list of suggested
+                                          fields.
+                                       </p>
+                                       
+                                    </li>
+                                    <li>
+                                       
+                                       <p>Select <b>Instance State </b>from the list.
+                                       </p>
+                                       
+                                    </li>
+                                    <li>
+                                       
+                                       <p>Select <b>Stopped</b> from the list of suggested
+                                          values.
+                                       </p>
+                                       
+                                    </li>
+                                    <li>
+                                       
+                                       <p>To further refine your list, select the search box for more search
+                                          options.
+                                       </p>
+                                       
+                                    </li>
+                                 </ol>
+                              </div>
+                           </li>
+                           <li class="listitem">
+                              <p><b>Advanced search</b></p> 
+                              
+                              <p>You can create advanced queries by adding multiple filters. For example, you
+                                 can search by tags and see instances for the Flying Mountain project running in
+                                 the Production stack, and then search by attributes to see all t2.micro
+                                 instances, or all instances in us-west-2a, or both. 
+                              </p>
+                           </li>
+                           <li class="listitem">
+                              <p><b>Inverse search</b></p>
+                              
+                              <p>You can search for resources that do not match a specified value. For
+                                 example, to list all instances that are not terminated, search by the
+                                 <b>Instance State</b> field, and prefix the Terminated value
+                                 with an exclamation mark (!).
+                              </p>
+                           </li>
+                           <li class="listitem">
+                              <p><b>Partial search</b></p>
+                              
+                              <p>When searching by field, you can also enter a partial string to find all
+                                 resources that contain the string in that field. For example, search by
+                                 <b>Instance Type</b>, and then type <strong class="userinput"><code>t2</code></strong>
+                                 to find all t2.micro, t2.small or t2.medium instances.
+                              </p>
+                           </li>
+                           <li class="listitem">
+                              <p><b>Regular expression</b></p>
+                              
+                              <p>Regular expressions are useful when you need to match the values in a field
+                                 with a specific pattern. For example, search by the Name tag, and then type
+                                 <strong class="userinput"><code>^s.*</code></strong> to see all instances with a Name tag that starts
+                                 with an 's'. Regular expression search is not case-sensitive.
+                              </p>
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     
+                     <p>After you have the precise results of your search, you can bookmark the URL for easy
+                        reference. In situations where you have thousands of instances, filters and bookmarks
+                        can
+                        save you a great deal of time; you don’t have to run  searches repeatedly.
+                     </p>
+                     
+                     
+                     <p><b>Combining search filters</b></p>
+                     
+                     <p>In general, multiple filters with the same key field (for example, tag:Name, search,
+                        Instance State) are automatically joined with OR. 
+                        This is intentional, as the vast majority of filters would not be logical if they
+                        were joined with AND. For example, you would get zero 
+                        results for a search on Instance State=running AND Instance State=stopped. In many
+                        cases, you can granulate the results by using complementary 
+                        search terms on different key fields, where the AND rule is automatically applied
+                        instead. If  you search for tag: Name:=All values and
+                        tag:Instance State=running, you get search results that contain both those criteria.
+                        To fine-tune your results, simply remove one filter in the 
+                        string until the results fit your requirements.
+                     </p>
+                     
+                     <h2 id="listing-resources">Listing
+                        Resources Using the Console
+                     </h2>
+                     
+                     
+                     
+                     <p>You can view the most common Amazon EC2 resource types using the console. To view
+                        additional
+                        resources, use the command line interface or the API actions.
+                     </p>
+                     
+                     <p class="title"><b>To list EC2 resources using the console</b></p>
+                     <ol>
+                        <li>
+                           
+                           <p>Open the Amazon EC2 console at
+                              <a href="https://console.aws.amazon.com/ec2/" target="_blank">https://console.aws.amazon.com/ec2/</a>.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>In the navigation pane, choose the option that corresponds to the resource,
+                              such as <b>AMIs</b> or <b>Instances</b>.
+                           </p>
+                           
+                           <div class="mediaobject">
+                              
+                              <img src="images/EC2_navigation.png" alt="&#xA;                     Amazon EC2 console navigation pane&#xA;                  " />
+                              
+                              
+                              
+                           </div>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>The page displays all the available resources.</p>
+                           
+                        </li>
+                     </ol>
+                     
+                     
+                     <h2 id="filtering-resources">Filtering Resources Using the Console</h2>
+                     
+                     
+                     
+                     <p>You can perform filtering and sorting of the most common resource types using the
+                        Amazon EC2 console. For example, you can use the search bar on the instances page
+                        to sort
+                        instances by tags, attributes, or keywords. 
+                     </p>
+                     
+                     <p>You can also use the search field on each page to find resources with specific
+                        attributes or values. You can use regular expressions to search on partial or multiple
+                        strings. For example, to find all instances that are using the MySG security group,
+                        enter
+                        <code class="code">MySG</code> in the search field. The results will include any values that contain
+                        <code class="code">MySG</code> as a part of the string, such as <code class="code">MySG2</code> and<code class="code">
+                           MySG3</code>. To limit your results to MySG only, enter <code class="code">\bMySG\b</code> in the
+                        search field. To list all the instances whose type is either <code class="code">m1.small</code> or
+                        <code class="code">m1.large</code>, enter <code class="code">m1.small|m1.large</code> in the search field. 
+                     </p>
+                     
+                     
+                     
+                     
+                     
+                     <p class="title"><b>To list volumes in the <code class="code">us-east-1b</code> Availability Zone
+                           with a status of <code class="code">available</code></b></p>
+                     <ol>
+                        <li>
+                           
+                           <p>In the navigation pane, choose <b>Volumes</b>.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Click on the search box, select <b>Attachment
+                                 Status</b> from the menu, and then select <b>Detached</b>. (A detached volume is available to be attached to an
+                              instance in the same Availability Zone.)
+                           </p>
+                        </li>
+                        <li>
+                           
+                           <p>Click on the search box again, select <b>State</b>, and then select <b>Available</b>. 
+                           </p> 
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Click on the search box again, select <b>Availability
+                                 Zone</b>, and then select <code class="code">us-east-1b</code>.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Any volumes that meet this criteria are displayed.</p>
+                           
+                        </li>
+                     </ol>
+                     
+                     <p class="title"><b>To list public 64-bit <span>Linux</span> AMIs backed by Amazon EBS</b></p>
+                     <ol>
+                        <li>
+                           
+                           <p>In the navigation pane, choose <b>AMIs</b>.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>In the <b>Filter</b> pane, select <b>Public
+                                 images</b>, <b>EBS images</b>, and then
+                              <span>your Linux distribution</span> 
+                              from the <b>Filter</b> lists.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Type <code class="code">x86_64</code> in the search field.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Any AMIs that meet this criteria are displayed.</p>
+                           
+                        </li>
+                     </ol>
+                     
+                     <div id="Listing and Filtering Using the CLI and API" name="Listing and Filtering Using the CLI and API" class="section langfilter">
+                        <h2 id="Filtering_Resources_CLI">Listing and Filtering Using the CLI and API</h2>
+                        
+                        
+                        <p>Each resource type has a corresponding CLI command or API request that you use to
+                           list
+                           resources of that type. For example, you can list Amazon Machine Images (AMIs) using
+                           <code class="code">ec2-describe-images</code> or <code class="code">DescribeImages</code>. The response contains
+                           information for all your resources. 
+                        </p>
+                        
+                        <p>The resulting lists of resources can be long, so you might want to filter the results
+                           to
+                           include only the resources that match certain criteria. You can specify multiple filter
+                           values, and you can also specify multiple filters. For example, you can list all the
+                           instances whose type is either <code class="code">m1.small</code> or <code class="code">m1.large</code>, and that
+                           have an attached EBS volume that is set to delete when the instance terminates. The
+                           instance must match all your filters to be included in the results. 
+                        </p>
+                        
+                        <p>You can also use wildcards with the filter values. An asterisk (*) matches zero or
+                           more
+                           characters, and a question mark (?) matches zero or one character.
+                        </p>
+                        
+                        <p>For example, you can use <code class="code">database</code> as the filter value to get only the EBS
+                           snapshots whose description equals <code class="code">database</code>. If you specify
+                           <code class="code">*database*</code>, then all snapshots whose description includes
+                           <code class="code">database</code> are returned. If you specify <code class="code">database?</code>, then only the
+                           snapshots whose description matches one of the following patterns are returned: equals
+                           <code class="code">database</code> or equals <code class="code">database</code> followed by one character.
+                        </p>
+                        
+                        <p>The number of question marks determines the maximum number of characters to include
+                           in
+                           results. For example, if you specify <code class="code">database????</code>, then only the snapshots
+                           whose description equals <code class="code">database</code> followed by up to four characters are
+                           returned. Descriptions with five or more characters following <code class="code">database</code> are
+                           excluded from the search results.
+                        </p>
+                        
+                        <p>Filter values are case sensitive. We support only exact string matching, or substring
+                           matching (with wildcards). If a resulting list of resources is long, using an exact
+                           string
+                           filter may return the response faster. 
+                        </p>
+                        
+                        <p>Your search can include the literal values of the wildcard characters; you just need
+                           to
+                           escape them with a backslash before the character. For example, a value of
+                           <code class="code">\*amazon\?\\</code> searches for the literal string <code class="code">*amazon?\</code>.
+                        </p>
+                        
+                        <p>For a list of supported filters per Amazon EC2 resource, see the relevant documentation:</p>
+                        
+                        
+                        <div class="itemizedlist">
+                           
+                           
+                           
+                           
+                           <ul class="itemizedlist" type="disc">
+                              <li class="listitem">
+                                 
+                                 <p>For the AWS CLI, see the relevant <code class="code">describe</code> command in the
+                                    <em><a href="https://docs.aws.amazon.com/cli/latest/reference/" target="_blank">AWS CLI Command Reference</a></em>.
+                                 </p>
+                                 
+                              </li>
+                              <li class="listitem">
+                                 
+                                 <p>For Windows PowerShell, see the relevant <code class="code">Get</code> command in the <em><a href="https://docs.aws.amazon.com/powershell/latest/reference/items/Amazon_Elastic_Compute_Cloud_cmdlets.html" target="_blank">AWS Tools for PowerShell Cmdlet Reference</a></em>.
+                                 </p>
+                                 
+                              </li>
+                              <li class="listitem">
+                                 
+                                 <p>For the Query API, see the relevant <code class="code">Describe</code> API action in the
+                                    <em><a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/" target="_blank">Amazon EC2 API Reference</a></em>.
+                                 </p>
+                                 
+                              </li>
+                           </ul>
+                        </div>
+                        
+                     </div>
+                  </div>
+                  <noscript>
+                     <div>
+                        <div>
+                           <div>
+                              <div id="js_error_message">
+                                 <p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p>
+                                 <p>To use the AWS Documentation, Javascript must be enabled. Please refer to your browser's
+                                    Help pages for instructions.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </noscript>
+                  <div id="main-col-footer">
+                     <div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div>
+                     <div id="next"><a class="awstoc" accesskey="p" href="resource-ids.html">« Previous </a><a class="awstoc" accesskey="n" href="Using_Tags.html">Next »</a></div>
+                     <div id="copyright-main-footer">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+                  </div>
+               </div>
+            </div>
+            <div id="right-expanded">
+               <div id="right-content-wrapper">
+                  <div id="pagetoc">
+                     <p>On this page:</p>
+                     <ul class="pagetoc">
+                        <li class="pagetoc" name="Advanced Search"><a class="pagetoc" href="#advancedsearch">Advanced Search</a></li>
+                        <li class="pagetoc" name="Listing&#xA;         Resources Using the Console"><a class="pagetoc" href="#listing-resources">Listing
+                              Resources Using the Console</a></li>
+                        <li class="pagetoc" name="Filtering Resources Using the Console"><a class="pagetoc" href="#filtering-resources">Filtering Resources Using the Console</a></li>
+                        <li class="pagetoc" name="Listing and Filtering Using the CLI and API"><a class="pagetoc" href="#Filtering_Resources_CLI">Listing and Filtering Using the CLI and API</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="cookie-notice">
+         <div class="cookie-notice-text">We use cookies to provide and improve our services. By using our site, you consent
+            to cookies. <a href="http://aws.amazon.com/legal/cookies">Learn more</a></div>
+      </div>
+      <div id="footer">
+         <div id="footer_short_fb" class="hide" title="Feedback"><a target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2&amp;topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/Using_Filtering.html&amp;hidden_guide_name=User Guide for Linux Instances&amp;hidden_api_version=&amp;hidden_file_name=Using_Filtering"><i class="awsdocs-footer-text fa fa-envelope-o"></i></a></div>
+         <div id="footer_toggle" class="mediaobject">
+            <div id="footer_toggle_img" class="awsdocs-footer-text fa fa-caret-down"></div>
+            <div id="footer_toggle_img_collapse" class="hide awsdocs-footer-text fa fa-caret-right"></div>
+         </div>
+         <div id="footer-left"><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/terms">Terms of Use</a><span class="awsdocs-footer-text"> | </span><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/privacy">Privacy</a><span class="awsdocs-footer-text"> | </span><span class="awsdocs-footer-text">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</span></div>
+         <div id="footer-right">
+            <div id="feedback">
+               <div id="forums"><a id="forum_link" target="_blank" href="http://forums.aws.amazon.com/forum.jspa?forumID=30" class="awsdocs-footer-text">Have a question? Try the Forums.</a></div>
+               <div id="feedback-message" class="awsdocs-footer-text">Did this page help you?</div>
+               <div id="feedback-yesno-buttons"><a class="awstoc btn btn-default" target="_blank" href="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/Using_Filtering.html">Yes</a><a class="awstoc btn btn-default" target="_blank" href="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/Using_Filtering.html">No</a></div>
+               <div id="feedback-feedback-button"><a class="awstoc btn btn-default" target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2&amp;topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/Using_Filtering.html&amp;hidden_guide_name=User Guide for Linux Instances&amp;hidden_api_version=&amp;hidden_file_name=Using_Filtering">Feedback</a></div>
+            </div>
+         </div>
+      </div>
+      <!-- SiteCatalyst code version: H.25.2.
+            Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+            More info available at http://www.omniture.com --><script language="JavaScript" type="text/javascript" src="https://a0.awsstatic.com/s_code/js/1.0/awshome_s_code.js"></script><script language="JavaScript" type="text/javascript">
+         <!--
+
+            // Documentation Service Name
+            s.prop66='Amazon Elastic Compute Cloud';
+            s.eVar66='D=c66';
+  
+            // Documentation Guide Name                                                                 
+            s.prop65='User Guide for Linux Instances';
+            s.eVar65='D=c65';
+
+            var s_code=s.t();if(s_code)document.write(s_code)//--></script><script language="JavaScript" type="text/javascript">
+         <!--
+                if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+                //--></script><noscript><img src="https://amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.2--NS/0" height="1" width="1" border="0" alt="" /></noscript>
+      <!--/DO NOT REMOVE/-->
+      <!-- End SiteCatalyst code version: H.25.2. -->
+   </body>
+</html>

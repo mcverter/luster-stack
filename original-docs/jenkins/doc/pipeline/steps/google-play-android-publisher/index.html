@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Google Play Android Publisher Plugin
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Google Play Android Publisher Plugin' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Google Play Android Publisher Plugin' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Google Play Android Publisher Plugin' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/pipeline/steps/google-play-android-publisher/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Google Play Android Publisher Plugin' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<p>
+<a href="https://jenkins.io/doc" class="">Jenkins User Documentation Home</a>
+</p>
+<h4>
+Guided Tour
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/getting-started" class="">Getting started</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/hello-world" class="">Creating your first Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps" class="">Running multiple steps</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/agents" class="">Defining execution environments</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/environment" class="">Using environment variables</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/tests-and-artifacts" class="">Recording test results and artifacts</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/post" class="">Cleaning up and notifications</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/deployment" class="">Deployment</a>
+</li>
+</ul>
+<h4>
+Tutorials
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/tutorials" class="">Overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-java-app-with-maven" class="">Build a Java app with Maven</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm" class="">Build a Node.js and React app with npm</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller" class="">Build a Python app with PyInstaller</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean" class="">Create a Pipeline in Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project" class="">End-to-End Multibranch Pipeline Project Creation</a>
+</li>
+</ul>
+<h4>
+User Handbook
+<span style='font-size: 0.6rem; vertical-align: middle;'>
+<a href='/user-handbook.pdf'>
+(PDF)
+</a>
+</span>
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/getting-started" class="">User Handbook overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/installing" class="">Installing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/using" class="">Using Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline" class="">Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean" class="">Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing" class="">Managing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/system-administration" class="">System Administration</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/scaling" class="">Scaling Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/appendix" class="">Appendix</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/glossary" class="">Glossary</a>
+</li>
+</ul>
+<h4>
+Resources
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/steps" class="">Pipeline Steps reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/upgrade-guide" class="">LTS Upgrade Guide</a>
+</li>
+</ul>
+<h5>
+Recent Tutorial Blog Posts
+</h5>
+<ul>
+<li>
+<a href='/blog/2017/11/27/tutorials-in-the-jenkins-user-documentation/'>
+Introducing Tutorials in the Jenkins User Documentation
+</a>
+</li>
+<li>
+<a href='/blog/2017/05/18/pipeline-dev-tools/'>
+Pipeline Development Tools
+</a>
+</li>
+<li>
+<a href='/blog/2017/04/12/welcome-to-blue-ocean-dashboard/'>
+Getting Started with the Blue Ocean Dashboard
+</a>
+</li>
+</ul>
+<div class='small'>
+<a href='/node/tags/tutorial'>
+View all tutorial blog posts
+</a>
+</div>
+<p></p>
+</div>
+</div>
+<div class='col-lg-9'>
+<p>
+The following plugin provides functionality available through
+Pipeline-compatible steps. Read more about how to integrate steps into your
+Pipeline in the
+<a href='https://jenkins.io/doc/book/pipeline/syntax/#declarative-steps'>Steps</a>
+section of the
+<a href='https://jenkins.io/doc/book/pipeline/syntax'>Pipeline Syntax</a>
+page.
+</p>
+<p>
+For a list of other such plugins, see the
+<a href='https://jenkins.io/doc/pipeline/steps/'>Pipeline Steps Reference</a>
+page.
+</p>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#google-play-android-publisher-plugin">Google Play Android Publisher Plugin</a>
+<ul class="sectlevel2">
+<li><a href="#androidapkupload-upload-android-apk-to-google-play"><code>androidApkUpload</code>: Upload Android APK to Google Play</a></li>
+<li><a href="#androidapkmove-move-android-apks-to-a-different-release-track"><code>androidApkMove</code>: Move Android APKs to a different release track</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="google-play-android-publisher-plugin"><a class="anchor" href="#google-play-android-publisher-plugin"></a>Google Play Android Publisher Plugin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://plugins.jenkins.io/google-play-android-publisher">View this plugin on the Plugins Index</a></p>
+</div>
+<div class="sect2">
+<h3 id="androidapkupload-upload-android-apk-to-google-play"><a class="anchor" href="#androidapkupload-upload-android-apk-to-google-play"></a><code>androidApkUpload</code>: Upload Android APK to Google Play</h3>
+<ul><li><code>apkFilesPattern</code> (optional)
+<div><div>
+  Specifies filenames or patterns matching one or more APKs that should be uploaded to Google Play.
+ <p></p> You can use wildcards like "**/build/outputs/*/*-release.apk".
+ <br> See
+ <a href="https://ant.apache.org/manual/Types/fileset.html" rel="nofollow"> the 'includes' attribute of Ant's FileSet</a> for the exact format.
+ <br> Note that multiple entries must be comma-separated.
+ <p></p> The base directory is
+ <a rel="nofollow">the build's workspace</a>. You can only upload APKs that are located in your workspace.
+ <p></p> Applications which have several APKs per release, taking advantage of
+ <a href="https://developer.android.com/google/play/publishing/multiple-apks.html" rel="nofollow"> Multiple APK Support</a>, must have all of their APKs uploaded together, and all APKs must have the same application identifier (APK package name).
+ <br>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>deobfuscationFilesPattern</code> (optional)
+<div><div>
+  Specifies filenames or patterns matching one or more ProGuard mapping files that should be uploaded to Google Play, so that it can automatically deobfuscate stacktraces from crash reports.
+ <p></p> You can use wildcards like "**/build/**/mapping.txt".
+ <br> See
+ <a href="https://ant.apache.org/manual/Types/fileset.html" rel="nofollow"> the 'includes' attribute of Ant's FileSet</a> for the exact format.
+ <br> Note that multiple entries must be comma-separated.
+ <p></p> The base directory is
+ <a rel="nofollow">the build's workspace</a>. You can only upload mapping files that are located in your workspace.
+ <p></p> If there are multiple APKs being uploaded, and only one mapping.txt file is found, then this file will be associated with each of the APKs being uploaded. If there are multiple mapping.txt files, this plugin will make a basic attempt to associate each mapping file with the corresponding APK.
+ <br> Otherwise, if the number of mapping files found is not equal to the number of APKs being uploaded, the build will fail, as this situation is not supported.
+ <p></p> For more information on deobfuscating crash stacktraces, see the Google Play documentation:
+ <br>
+ <a href="https://support.google.com/googleplay/android-developer/answer/6295281" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/6295281 </a>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>expansionFilesPattern</code> (optional)
+<div><div>
+  Specifies filenames or patterns matching zero or more
+ <a href="https://developer.android.com/google/play/expansion-files.html" rel="nofollow"> expansion files</a> that should be associated with the APK files being uploaded to Google Play.
+ <p></p> You can list as many or as few expansion files as you like — you have the option of associating previously-uploaded expansion files with the new APKs being uploading here.
+ <h2>Naming</h2> Files
+ <b>must</b> be named in the format [main|patch].&lt;expansion-version&gt;.&lt;application-id&gt;.obb
+ <p></p> For example:
+ <ul>
+  <li>main.1000.com.example.mygame.obb</li>
+  <li>patch.1002.com.example.mygame.obb</li>
+ </ul>
+ <h2>Patterns</h2> You can use wildcards like "**/build/**/*.obb".
+ <br> See
+ <a href="https://ant.apache.org/manual/Types/fileset.html" rel="nofollow"> the 'includes' attribute of Ant's FileSet</a> for the exact format.
+ <br> Note that multiple entries must be comma-separated.
+ <p></p> The base directory is
+ <a rel="nofollow">the build's workspace</a>. You can only upload OBB files that are located in your workspace.
+ <h2>Re-using existing expansion files</h2> If you don't provide a main or patch expansion file for every APK that you want to upload, enabling the "Re-use expansion files from existing APKs where necessary" option will automatically associate existing expansion file(s) with the APK(s) being uploaded.
+ <p></p> With this option enabled, if not enough expansion files are provided for all of the APK(s) being uploaded, this plugin will search for the
+ <i>newest</i>, previously-uploaded APKs on Google Play with main or patch expansion files, and will associate those files with the new APK(s) being uploaded here.
+ <p></p> For example: If you want to upload a new APK, but the expansion files have not changed at all, you should leave the "Expansion files" field blank, but enable the checkbox.
+ <br> At build time, the latest existing main (and patch, if available) expansion files will be associated with the newly-uploaded APK.
+ <p></p> Similarly, if you have a new build, but only want to change the patch file, then just provide the patch expansion file and make sure this option is checked. The uploaded APK will have the existing main expansion file associated with it, along with the newly-uploaded patch file.  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>googleCredentialsId</code> (optional)
+<div><div>
+  Specifies which credential to use in order to connect to Google Play.
+ <p></p> The selected credential must be a "Google Service Account from private key" — if you have not added one already, refer to the documentation on
+ <a href="https://plugins.jenkins.io/google-play-android-publisher" rel="nofollow">this plugin's page</a>.
+ <p></p> By choosing the "Parameter expression" option, you can also provide a credential at build time, either from an environment variable, or from a build parameter, e.g. the Credentials Parameter type.
+ <br> But you can use any type of expression, so long as it expands to the name of a "Google Service Account from private key" credential at build time.  This field supports substituting environment variables in the form ${SOME_VARIABLE} at build time.
+ <br> Note that variables in the form $SOME_VARIABLE are
+ <em>not</em> accepted by the Credentials Plugin.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>recentChangeList</code> (optional)
+<div><div>
+  You can optionally apply "What's new" text to the uploaded APK(s), in order to inform your user of changes contained in the new app version.
+ <p></p> You add entries for as many or as few of your supported language as you wish, but each language must already have been added to your app, under the "Store Listing" section in the Google Play Developer Console.
+ <p></p> The language must match the language code shown in the Developer Console, e.g. "en-GB" for British English, or "ar" for Arabic.
+ <p></p> The text may be between zero and 500 characters.
+ <p></p> For more information on describing what's new in your app, see the Google Play documentation:
+ <br>
+ <a href="https://support.google.com/googleplay/android-developer/answer/189724" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/189724 </a>  Both fields support substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time.
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<b>Nested Object</b>
+<li><code>language</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>text</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul></li>
+<li><code>rolloutPercentage</code> (optional)
+<div><div>
+  The percentage of existing production users to which the uploaded APK(s) should be rolled out.
+ <p></p> If you enter no value here, or 100%, the app will be rolled out to all users.
+ <p></p> This field is ignored if you choose a release track other than 'production'; releases to other tracks are always rolled out to 100% of the existing users.
+ <p></p> For more information on staged rollouts, see the Google Play documentation:
+ <br>
+ <a href="https://support.google.com/googleplay/android-developer/answer/3131213" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/3131213 </a>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>trackName</code> (optional)
+<div><div>
+  The release track to which the given APK file(s) will be assigned.
+ <p></p> This can be one of:
+ <ul>
+  <li>internal</li>
+  <li>alpha</li>
+  <li>beta</li>
+  <li>production</li>
+ </ul> For production releases, you have the choice of rolling your new version out to all existing users simultaneously, or doing a staged rollout so that only a fraction of your existing userbase will be able to download the new version.
+ <p></p> For more information on internal, alpha and beta testing, or staged rollouts, see the Google Play documentation:
+ <br>
+ <a href="https://support.google.com/googleplay/android-developer/answer/3131213" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/3131213 </a>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>usePreviousExpansionFilesIfMissing</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="androidapkmove-move-android-apks-to-a-different-release-track"><a class="anchor" href="#androidapkmove-move-android-apks-to-a-different-release-track"></a><code>androidApkMove</code>: Move Android APKs to a different release track</h3>
+<div><div>
+  If you have already uploaded APKs to Google Play, whether manually, via the "Upload Android APK to Google Play" post-build action, or by other means, this build step allows you to change the release track for specific APKs.
+ <p></p> For example, you can use this to promote an app currently in alpha testing to the beta release track, once you've decided it's ready for a wider audience.
+ <p></p> Similarly, once you're ready for release, you can move from beta to a staged rollout, or directly to production.
+ <p></p> Note that "downgrading" release tracks, e.g. from production to alpha is not possible.
+</div></div>
+<ul><li><code>apkFilesPattern</code> (optional)
+<div><div>
+  Specifies filenames or patterns matching one or more APK files from which the version codes should be read, in order to determine which APK versions should be re-assigned to a new release track.
+ <p></p> Note that these APKs should have already been uploaded — this build step will not do any uploading of APKs; it will only move existing APKs from one release track to another. To upload APKs, use the "Upload Android APK to Google Play" post-build action.
+ <p></p> You can use wildcards like "**/build/outputs/*/*-release.apk".
+ <br> See
+ <a href="https://ant.apache.org/manual/Types/fileset.html" rel="nofollow"> the 'includes' attribute of Ant's FileSet</a> for the exact format.
+ <br> Note that multiple entries must be comma-separated.
+ <p></p> The base directory is
+ <a rel="nofollow">the build's workspace</a>. You can only reference APKs that are located in your workspace.
+ <p></p> Applications which have several APKs per release, taking advantage of
+ <a href="https://developer.android.com/google/play/publishing/multiple-apks.html" rel="nofollow"> Multiple APK Support</a>, should list all of the APK files here.
+ <br>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>applicationId</code> (optional)
+<div><div>
+  Application ID (i.e. APK package name) of the app being assigned to a new release track.  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fromVersionCode</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>googleCredentialsId</code> (optional)
+<div><div>
+  Specifies which credential to use in order to connect to Google Play.
+ <p></p> The selected credential must be a "Google Service Account from private key" — if you have not added one already, refer to the documentation on
+ <a href="https://plugins.jenkins.io/google-play-android-publisher" rel="nofollow">this plugin's page</a>.
+ <p></p> By choosing the "Parameter expression" option, you can also provide a credential at build time, either from an environment variable, or from a build parameter, e.g. the Credentials Parameter type.
+ <br> But you can use any type of expression, so long as it expands to the name of a "Google Service Account from private key" credential at build time.  This field supports substituting environment variables in the form ${SOME_VARIABLE} at build time.
+ <br> Note that variables in the form $SOME_VARIABLE are
+ <em>not</em> accepted by the Credentials Plugin.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>rolloutPercentage</code> (optional)
+<div><div>
+  The percentage of existing production users to which the given version code(s) should be rolled out.
+ <p></p> If you enter no value here, or 100%, the app will be rolled out to all users.
+ <p></p> This field is ignored if you choose a release track other than 'production'; releases to other tracks are always rolled out to 100% of the existing users.
+ <p></p> For more information on staged rollouts, see the Google Play documentation:
+ <br>
+ <a href="https://support.google.com/googleplay/android-developer/answer/3131213" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/3131213 </a>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>trackName</code> (optional)
+<div><div>
+  The release track to which the given APK version(s) will be re-assigned.
+ <p></p> This can be one of:
+ <ul>
+  <li>internal</li>
+  <li>alpha</li>
+  <li>beta</li>
+  <li>production</li>
+ </ul> For production releases, you have the choice of rolling the version(s) out to all existing users simultaneously, or doing a staged rollout so that only a fraction of your existing userbase will be able to download the new version.
+ <p></p> For more information on internal, alpha and beta testing, or staged rollouts, see the Google Play documentation:
+ <br>
+ <a href="https://support.google.com/googleplay/android-developer/answer/3131213" rel="nofollow"> https://support.google.com/googleplay/android-developer/answer/3131213 </a>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>versionCodes</code> (optional)
+<div><div>
+  This specifies which APK versions should be assigned to a new release track.
+ <br> Note that multiple entries must be comma-separated.
+ <p></p> Applications which have several APKs in production, taking advantage of
+ <a href="https://developer.android.com/google/play/publishing/multiple-apks.html" rel="nofollow"> Multiple APK Support</a>, should list the version codes of all APKs here.
+ <br>  This field supports substituting environment variables in the form ${SOME_VARIABLE} or $SOME_VARIABLE at build time.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'></div>
+<!-- starting partial _feedback-footer.html -->
+<!-- HTML inclusion for chapter and section layouts (i.e. as footers) as well as
+     for use in AsciiDoc file inclusions. -->
+
+<!--
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+-->
+
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(window.location.href);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<p><a href="#feedback" data-toggle="collapse">Was this page helpful?</a></p>
+
+<div id="feedback" class="collapse">
+
+<p>Please submit your feedback about this page through this
+<a href="/doc/feedback-form/">quick form</a>.</p>
+
+<p>Alternatively, if you don't wish to complete the quick form, you can simply
+indicate if you found this page helpful?</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the current URL into the form. -->
+<input type="hidden" name="entry.1246830226" id="current-url" value=""/>
+
+<!-- The answer bit -->
+<p><input type="radio" name="entry.790002525" id="h1" value="Yes" required/>
+<label for="h1">Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="entry.790002525" id="h2" value="No"/>
+<label for="h2">No</label></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+</form>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1IIdpVs39JDYKg0sLQIv-MNO928qcGApAIfdW5ohfD78" target="_blank">here</a>.</p>
+
+</div>
+
+<!-- ending partial _feedback-footer.html -->
+
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

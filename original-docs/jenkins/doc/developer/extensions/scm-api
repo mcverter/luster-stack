@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Extension Points defined in SCM API Plugin
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Extension Points defined in SCM API Plugin' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Extension Points defined in SCM API Plugin' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Extension Points defined in SCM API Plugin' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/developer/extensions/scm-api/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Extension Points defined in SCM API Plugin' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<style>
+  .container .row.body {
+    margin-right: 5em;
+    margin-left: 5em;
+  }
+  .toc {
+      float: right;
+  }
+</style>
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row.body h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-12'>
+<h1>
+Extension Points defined in SCM API Plugin
+</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#scmeventlistener">SCMEventListener</a></li>
+<li><a href="#scmfilesystem-builder">SCMFileSystem.<wbr/>Builder</a></li>
+<li><a href="#scmhead-headbyitem">SCMHead.<wbr/>HeadByItem</a></li>
+<li><a href="#scmheadmigration">SCMHeadMigration</a></li>
+<li><a href="#scmnavigator">SCMNavigator</a></li>
+<li><a href="#scmnavigatorowners">SCMNavigatorOwners</a></li>
+<li><a href="#scmnavigatorowners-enumerator">SCMNavigatorOwners.<wbr/>Enumerator</a></li>
+<li><a href="#scmsource">SCMSource</a></li>
+<li><a href="#scmsource-sourcebyitem">SCMSource.<wbr/>SourceByItem</a></li>
+<li><a href="#scmsourceowners">SCMSourceOwners</a></li>
+<li><a href="#scmsourceowners-enumerator">SCMSourceOwners.<wbr/>Enumerator</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://plugins.jenkins.io/scm-api">SCM API Plugin</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scmeventlistener"><a class="anchor" href="#scmeventlistener"></a>SCMEventListener</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/scm-api/jenkins/scm/api/SCMEventListener.html" title="Javadoc for jenkins.scm.api.SCMEventListener">jenkins.scm.api.SCMEventListener in scm-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Base class for listeners to <a href="http://javadoc.jenkins.io/byShortName/SCMEvent" title="Javadoc for SCMEvent">SCMEvent</a> s</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/branch-api">Branch API Plugin</a>: jenkins.<wbr/>branch.<wbr/><strong>MultiBranchProject.<wbr/>SCMEventListenerImpl</strong> (<a href="https://github.com/jenkinsci/branch-api-plugin/search?q=MultiBranchProject.SCMEventListenerImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/branch-api">Branch API Plugin</a>: jenkins.<wbr/>branch.<wbr/><strong>OrganizationFolder.<wbr/>SCMEventListenerImpl</strong> (<a href="https://github.com/jenkinsci/branch-api-plugin/search?q=OrganizationFolder.SCMEventListenerImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/scm-api">SCM API Plugin</a>: jenkins.<wbr/>scm.<wbr/>impl.<wbr/><strong>SCMTriggerListener</strong> (<a href="https://github.com/jenkinsci/scm-api-plugin/search?q=SCMTriggerListener&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scmfilesystem-builder"><a class="anchor" href="#scmfilesystem-builder"></a>SCMFileSystem.<wbr/>Builder</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/scm-api/jenkins/scm/api/SCMFileSystem.Builder.html" title="Javadoc for jenkins.scm.api.SCMFileSystem.Builder">jenkins.scm.api.SCMFileSystem.Builder in scm-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Extension point that allows different plugins to implement <a href="http://javadoc.jenkins.io/byShortName/SCMFileSystem" title="Javadoc for SCMFileSystem">SCMFileSystem</a> classes for the same <a href="http://javadoc.jenkins.io/byShortName/SCM" title="Javadoc for SCM">SCM</a>   or <a href="http://javadoc.jenkins.io/byShortName/SCMSource" title="Javadoc for SCMSource">SCMSource</a> and let Jenkins pick the most capable for any specific <a href="http://javadoc.jenkins.io/byShortName/SCM" title="Javadoc for SCM">SCM</a> implementation.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/cloudbees-bitbucket-branch-source">Bitbucket Branch Source Plugin</a>: com.<wbr/>cloudbees.<wbr/>jenkins.<wbr/>plugins.<wbr/>bitbucket.<wbr/>filesystem.<wbr/><strong>BitbucketSCMFileSystem.<wbr/>BuilderImpl</strong> (<a href="https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=BitbucketSCMFileSystem.BuilderImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/git">Git Plugin</a>: jenkins.<wbr/>plugins.<wbr/>git.<wbr/><strong>GitSCMFileSystem.<wbr/>BuilderImpl</strong> (<a href="https://github.com/jenkinsci/git-plugin/search?q=GitSCMFileSystem.BuilderImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/git">Git Plugin</a>: jenkins.<wbr/>plugins.<wbr/>git.<wbr/><strong>GitSCMTelescope</strong> (<a href="https://github.com/jenkinsci/git-plugin/search?q=GitSCMTelescope&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitea">Gitea Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugin.<wbr/>gitea.<wbr/><strong>GiteaSCMFileSystem.<wbr/>BuilderImpl</strong> (<a href="https://github.com/jenkinsci/gitea-plugin/search?q=GiteaSCMFileSystem.BuilderImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/github-branch-source">GitHub Branch Source Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>github_branch_source.<wbr/><strong>GitHubSCMFileSystem.<wbr/>BuilderImpl</strong> (<a href="https://github.com/jenkinsci/github-branch-source-plugin/search?q=GitHubSCMFileSystem.BuilderImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/github-pullrequest">GitHub Integration Plugin</a>: com.<wbr/>github.<wbr/>kostyasha.<wbr/>github.<wbr/>integration.<wbr/>multibranch.<wbr/>fs.<wbr/><strong>GitHubSCMFileSystemBuilder</strong> (<a href="https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubSCMFileSystemBuilder&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/p4">P4 Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>p4.<wbr/>scm.<wbr/><strong>P4SCMFileSystem.<wbr/>BuilderImpl</strong> (<a href="https://github.com/jenkinsci/p4-plugin/search?q=P4SCMFileSystem.BuilderImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/plasticscm-plugin">PlasticSCM Plugin</a>: com.<wbr/>codicesoftware.<wbr/>plugins.<wbr/>jenkins.<wbr/><strong>PlasticSCMFileSystem.<wbr/>BuilderImpl</strong> (<a href="https://github.com/jenkinsci/plasticscm-plugin/search?q=PlasticSCMFileSystem.BuilderImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scmhead-headbyitem"><a class="anchor" href="#scmhead-headbyitem"></a>SCMHead.<wbr/>HeadByItem</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/scm-api/jenkins/scm/api/SCMHead.HeadByItem.html" title="Javadoc for jenkins.scm.api.SCMHead.HeadByItem">jenkins.scm.api.SCMHead.HeadByItem in scm-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Means of locating a head given an item.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/branch-api">Branch API Plugin</a>: jenkins.<wbr/>branch.<wbr/><strong>BranchProjectFactory.<wbr/>HeadByItemImpl</strong> (<a href="https://github.com/jenkinsci/branch-api-plugin/search?q=BranchProjectFactory.HeadByItemImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scmheadmigration"><a class="anchor" href="#scmheadmigration"></a>SCMHeadMigration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/scm-api/jenkins/scm/api/SCMHeadMigration.html" title="Javadoc for jenkins.scm.api.SCMHeadMigration">jenkins.scm.api.SCMHeadMigration in scm-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> If a <a href="http://javadoc.jenkins.io/byShortName/SCMSource" title="Javadoc for SCMSource">SCMSource</a> plugin needs to migrate the implementation classes for <a href="http://javadoc.jenkins.io/byShortName/SCMHead" title="Javadoc for SCMHead">SCMHead</a> this extension  point allows the plugin to register type migrations. For speed of migration implementations should just jump directly  to the final end-point and not expect recursive chain walking.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/cloudbees-bitbucket-branch-source">Bitbucket Branch Source Plugin</a>: com.<wbr/>cloudbees.<wbr/>jenkins.<wbr/>plugins.<wbr/>bitbucket.<wbr/><strong>PullRequestSCMHead.<wbr/>FixLegacyMigration1</strong> (<a href="https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=PullRequestSCMHead.FixLegacyMigration1&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/cloudbees-bitbucket-branch-source">Bitbucket Branch Source Plugin</a>: com.<wbr/>cloudbees.<wbr/>jenkins.<wbr/>plugins.<wbr/>bitbucket.<wbr/><strong>PullRequestSCMHead.<wbr/>FixLegacyMigration2</strong> (<a href="https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=PullRequestSCMHead.FixLegacyMigration2&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/cloudbees-bitbucket-branch-source">Bitbucket Branch Source Plugin</a>: com.<wbr/>cloudbees.<wbr/>jenkins.<wbr/>plugins.<wbr/>bitbucket.<wbr/><strong>SCMHeadWithOwnerAndRepo.<wbr/>GitMigrationImpl</strong> (<a href="https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=SCMHeadWithOwnerAndRepo.GitMigrationImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/cloudbees-bitbucket-branch-source">Bitbucket Branch Source Plugin</a>: com.<wbr/>cloudbees.<wbr/>jenkins.<wbr/>plugins.<wbr/>bitbucket.<wbr/><strong>SCMHeadWithOwnerAndRepo.<wbr/>HgMigrationImpl</strong> (<a href="https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=SCMHeadWithOwnerAndRepo.HgMigrationImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/git">Git Plugin</a>: jenkins.<wbr/>plugins.<wbr/>git.<wbr/><strong>GitBranchSCMHead.<wbr/>SCMHeadMigrationImpl</strong> (<a href="https://github.com/jenkinsci/git-plugin/search?q=GitBranchSCMHead.SCMHeadMigrationImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/github-branch-source">GitHub Branch Source Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>github_branch_source.<wbr/><strong>BranchSCMHead.<wbr/>MigrationImpl</strong> (<a href="https://github.com/jenkinsci/github-branch-source-plugin/search?q=BranchSCMHead.MigrationImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/github-branch-source">GitHub Branch Source Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>github_branch_source.<wbr/><strong>PullRequestSCMHead.<wbr/>FixMetadataMigration</strong> (<a href="https://github.com/jenkinsci/github-branch-source-plugin/search?q=PullRequestSCMHead.FixMetadataMigration&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/github-branch-source">GitHub Branch Source Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>github_branch_source.<wbr/><strong>PullRequestSCMHead.<wbr/>FixOriginMigration</strong> (<a href="https://github.com/jenkinsci/github-branch-source-plugin/search?q=PullRequestSCMHead.FixOriginMigration&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scmnavigator"><a class="anchor" href="#scmnavigator"></a>SCMNavigator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/scm-api/jenkins/scm/api/SCMNavigator.html" title="Javadoc for jenkins.scm.api.SCMNavigator">jenkins.scm.api.SCMNavigator in scm-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> An API for discovering new and navigating already discovered <a href="http://javadoc.jenkins.io/byShortName/SCMSource" title="Javadoc for SCMSource">SCMSource</a> s within an organization.  An implementation does not need to cache existing discoveries, but some form of caching is strongly recommended  where the backing provider of repositories has a rate limiter on API calls.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/aws-codecommit-jobs">AWS Code Commit Jobs Plugin</a>: com.<wbr/>jenkins.<wbr/>plugins.<wbr/>awscodecommit.<wbr/>navigator.<wbr/><strong>AWSCodeCommitSCMNavigator</strong> (<a href="https://github.com/jenkinsci/aws-codecommit-jobs-plugin/search?q=AWSCodeCommitSCMNavigator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/cloudbees-bitbucket-branch-source">Bitbucket Branch Source Plugin</a>: com.<wbr/>cloudbees.<wbr/>jenkins.<wbr/>plugins.<wbr/>bitbucket.<wbr/><strong>BitbucketSCMNavigator</strong> (<a href="https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=BitbucketSCMNavigator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitea">Gitea Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugin.<wbr/>gitea.<wbr/><strong>GiteaSCMNavigator</strong> (<a href="https://github.com/jenkinsci/gitea-plugin/search?q=GiteaSCMNavigator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/github-branch-source">GitHub Branch Source Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>github_branch_source.<wbr/><strong>GitHubSCMNavigator</strong> (<a href="https://github.com/jenkinsci/github-branch-source-plugin/search?q=GitHubSCMNavigator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/scm-api">SCM API Plugin</a>: jenkins.<wbr/>scm.<wbr/>impl.<wbr/><strong>SingleSCMNavigator</strong> (<a href="https://github.com/jenkinsci/scm-api-plugin/search?q=SingleSCMNavigator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scmnavigatorowners"><a class="anchor" href="#scmnavigatorowners"></a>SCMNavigatorOwners</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/scm-api/jenkins/scm/api/SCMNavigatorOwners.html" title="Javadoc for jenkins.scm.api.SCMNavigatorOwners">jenkins.scm.api.SCMNavigatorOwners in scm-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Provides a means to lookup the <a href="http://javadoc.jenkins.io/byShortName/SCMNavigatorOwners" title="Javadoc for SCMNavigatorOwners">SCMNavigatorOwners</a> that own <a href="http://javadoc.jenkins.io/byShortName/SCMNavigatorOwner" title="Javadoc for SCMNavigatorOwner">SCMNavigatorOwner</a> instances.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="paragraph">
+<p><em>(no known implementations)</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scmnavigatorowners-enumerator"><a class="anchor" href="#scmnavigatorowners-enumerator"></a>SCMNavigatorOwners.<wbr/>Enumerator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/scm-api/jenkins/scm/api/SCMNavigatorOwners.Enumerator.html" title="Javadoc for jenkins.scm.api.SCMNavigatorOwners.Enumerator">jenkins.scm.api.SCMNavigatorOwners.Enumerator in scm-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Extension point to allow for access to embedded <a href="http://javadoc.jenkins.io/byShortName/SCMSourceOwner" title="Javadoc for SCMSourceOwner">SCMSourceOwner</a> instances that  <a href="http://javadoc.jenkins.io/byShortName/SCMNavigatorOwners.JenkinsItemEnumerator" title="Javadoc for SCMNavigatorOwners.JenkinsItemEnumerator">SCMNavigatorOwners.JenkinsItemEnumerator</a> will not find.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/scm-api">SCM API Plugin</a>: jenkins.<wbr/>scm.<wbr/>api.<wbr/><strong>SCMNavigatorOwners.<wbr/>JenkinsItemEnumerator</strong> (<a href="https://github.com/jenkinsci/scm-api-plugin/search?q=SCMNavigatorOwners.JenkinsItemEnumerator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scmsource"><a class="anchor" href="#scmsource"></a>SCMSource</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/scm-api/jenkins/scm/api/SCMSource.html" title="Javadoc for jenkins.scm.api.SCMSource">jenkins.scm.api.SCMSource in scm-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> A <a href="http://javadoc.jenkins.io/byShortName/SCMSource" title="Javadoc for SCMSource">SCMSource</a> is responsible for fetching <a href="http://javadoc.jenkins.io/byShortName/SCMHead" title="Javadoc for SCMHead">SCMHead</a> and corresponding <a href="http://javadoc.jenkins.io/byShortName/SCMRevision" title="Javadoc for SCMRevision">SCMRevision</a> instances from  which it can build <a href="http://javadoc.jenkins.io/byShortName/SCM" title="Javadoc for SCM">SCM</a> instances that are configured to check out the specific <a href="http://javadoc.jenkins.io/byShortName/SCMHead" title="Javadoc for SCMHead">SCMHead</a> at the  specified <a href="http://javadoc.jenkins.io/byShortName/SCMRevision" title="Javadoc for SCMRevision">SCMRevision</a> .</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/backlog">Backlog Plugin</a>: hudson.<wbr/>plugins.<wbr/>backlog.<wbr/>pipeline.<wbr/><strong>BacklogPullRequestSCMSource</strong> (<a href="https://github.com/jenkinsci/backlog-plugin/search?q=BacklogPullRequestSCMSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/cloudbees-bitbucket-branch-source">Bitbucket Branch Source Plugin</a>: com.<wbr/>cloudbees.<wbr/>jenkins.<wbr/>plugins.<wbr/>bitbucket.<wbr/><strong>BitbucketSCMSource</strong> (<a href="https://github.com/jenkinsci/bitbucket-branch-source-plugin/search?q=BitbucketSCMSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/git">Git Plugin</a>: jenkins.<wbr/>plugins.<wbr/>git.<wbr/><strong>AbstractGitSCMSource</strong> (<a href="https://github.com/jenkinsci/git-plugin/search?q=AbstractGitSCMSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/git">Git Plugin</a>: jenkins.<wbr/>plugins.<wbr/>git.<wbr/><strong>GitSCMSource</strong> (<a href="https://github.com/jenkinsci/git-plugin/search?q=GitSCMSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitea">Gitea Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugin.<wbr/>gitea.<wbr/><strong>GiteaSCMSource</strong> (<a href="https://github.com/jenkinsci/gitea-plugin/search?q=GiteaSCMSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/github-branch-source">GitHub Branch Source Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>github_branch_source.<wbr/><strong>GitHubSCMSource</strong> (<a href="https://github.com/jenkinsci/github-branch-source-plugin/search?q=GitHubSCMSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/github-pullrequest">GitHub Integration Plugin</a>: com.<wbr/>github.<wbr/>kostyasha.<wbr/>github.<wbr/>integration.<wbr/>multibranch.<wbr/><strong>GitHubSCMSource</strong> (<a href="https://github.com/jenkinsci/github-integration-plugin/search?q=GitHubSCMSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/mercurial">Mercurial Plugin</a>: hudson.<wbr/>plugins.<wbr/>mercurial.<wbr/><strong>MercurialSCMSource</strong> (<a href="https://github.com/jenkinsci/mercurial-plugin/search?q=MercurialSCMSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/p4">P4 Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>p4.<wbr/>scm.<wbr/><strong>AbstractP4ScmSource</strong> (<a href="https://github.com/jenkinsci/p4-plugin/search?q=AbstractP4ScmSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/p4">P4 Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>p4.<wbr/>scm.<wbr/><strong>BranchesScmSource</strong> (<a href="https://github.com/jenkinsci/p4-plugin/search?q=BranchesScmSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/p4">P4 Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>p4.<wbr/>scm.<wbr/><strong>GlobalLibraryScmSource</strong> (<a href="https://github.com/jenkinsci/p4-plugin/search?q=GlobalLibraryScmSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/p4">P4 Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>p4.<wbr/>scm.<wbr/><strong>GraphScmSource</strong> (<a href="https://github.com/jenkinsci/p4-plugin/search?q=GraphScmSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/p4">P4 Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>p4.<wbr/>scm.<wbr/><strong>StreamsScmSource</strong> (<a href="https://github.com/jenkinsci/p4-plugin/search?q=StreamsScmSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/p4">P4 Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>p4.<wbr/>scm.<wbr/><strong>SwarmScmSource</strong> (<a href="https://github.com/jenkinsci/p4-plugin/search?q=SwarmScmSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/scm-api">SCM API Plugin</a>: jenkins.<wbr/>scm.<wbr/>impl.<wbr/><strong>NullSCMSource</strong> (<a href="https://github.com/jenkinsci/scm-api-plugin/search?q=NullSCMSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/scm-api">SCM API Plugin</a>: jenkins.<wbr/>scm.<wbr/>impl.<wbr/><strong>SingleSCMSource</strong> (<a href="https://github.com/jenkinsci/scm-api-plugin/search?q=SingleSCMSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/subversion">Subversion Plugin</a>: jenkins.<wbr/>scm.<wbr/>impl.<wbr/>subversion.<wbr/><strong>SubversionSCMSource</strong> (<a href="https://github.com/jenkinsci/subversion-plugin/search?q=SubversionSCMSource&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scmsource-sourcebyitem"><a class="anchor" href="#scmsource-sourcebyitem"></a>SCMSource.<wbr/>SourceByItem</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/scm-api/jenkins/scm/api/SCMSource.SourceByItem.html" title="Javadoc for jenkins.scm.api.SCMSource.SourceByItem">jenkins.scm.api.SCMSource.SourceByItem in scm-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Means of locating a head given an item.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/branch-api">Branch API Plugin</a>: jenkins.<wbr/>branch.<wbr/><strong>BranchProjectFactory.<wbr/>SourceByItemImpl</strong> (<a href="https://github.com/jenkinsci/branch-api-plugin/search?q=BranchProjectFactory.SourceByItemImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scmsourceowners"><a class="anchor" href="#scmsourceowners"></a>SCMSourceOwners</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/scm-api/jenkins/scm/api/SCMSourceOwners.html" title="Javadoc for jenkins.scm.api.SCMSourceOwners">jenkins.scm.api.SCMSourceOwners in scm-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Provides a means to lookup the <a href="http://javadoc.jenkins.io/byShortName/SCMSourceOwners" title="Javadoc for SCMSourceOwners">SCMSourceOwners</a> that own <a href="http://javadoc.jenkins.io/byShortName/SCMSource" title="Javadoc for SCMSource">SCMSource</a> instances.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="paragraph">
+<p><em>(no known implementations)</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scmsourceowners-enumerator"><a class="anchor" href="#scmsourceowners-enumerator"></a>SCMSourceOwners.<wbr/>Enumerator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/scm-api/jenkins/scm/api/SCMSourceOwners.Enumerator.html" title="Javadoc for jenkins.scm.api.SCMSourceOwners.Enumerator">jenkins.scm.api.SCMSourceOwners.Enumerator in scm-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Extension point to allow for access to embedded <a href="http://javadoc.jenkins.io/byShortName/SCMSourceOwner" title="Javadoc for SCMSourceOwner">SCMSourceOwner</a> instances that  <a href="http://javadoc.jenkins.io/byShortName/SCMSourceOwners.JenkinsItemEnumerator" title="Javadoc for SCMSourceOwners.JenkinsItemEnumerator">SCMSourceOwners.JenkinsItemEnumerator</a> will not find.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/scm-api">SCM API Plugin</a>: jenkins.<wbr/>scm.<wbr/>api.<wbr/><strong>SCMSourceOwners.<wbr/>JenkinsItemEnumerator</strong> (<a href="https://github.com/jenkinsci/scm-api-plugin/search?q=SCMSourceOwners.JenkinsItemEnumerator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

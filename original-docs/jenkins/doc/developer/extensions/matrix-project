@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Extension Points defined in Matrix Project Plugin
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Extension Points defined in Matrix Project Plugin' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Extension Points defined in Matrix Project Plugin' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Extension Points defined in Matrix Project Plugin' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/developer/extensions/matrix-project/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Extension Points defined in Matrix Project Plugin' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<style>
+  .container .row.body {
+    margin-right: 5em;
+    margin-left: 5em;
+  }
+  .toc {
+      float: right;
+  }
+</style>
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row.body h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-12'>
+<h1>
+Extension Points defined in Matrix Project Plugin
+</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#axis">Axis</a></li>
+<li><a href="#matrixaggregatable">MatrixAggregatable</a></li>
+<li><a href="#matrixaggregator">MatrixAggregator</a></li>
+<li><a href="#matrixbuildlistener">MatrixBuildListener</a></li>
+<li><a href="#matrixconfigurationsorter">MatrixConfigurationSorter</a></li>
+<li><a href="#matrixexecutionstrategy">MatrixExecutionStrategy</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://plugins.jenkins.io/matrix-project">Matrix Project Plugin</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="axis"><a class="anchor" href="#axis"></a>Axis</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/matrix-project/hudson/matrix/Axis.html" title="Javadoc for hudson.matrix.Axis">hudson.matrix.Axis in matrix-project</a></code></p>
+</div>
+<div class="paragraph">
+<p> Configuration axis.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/browser-axis-plugin">Browser axis Plugin</a>: jenkinsci.<wbr/>plugin.<wbr/>browseraxis.<wbr/><strong>BrowserAxis</strong> (<a href="https://github.com/jenkinsci/browser-axis-plugin/search?q=BrowserAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/browser-axis-plugin">Browser axis Plugin</a>: jenkinsci.<wbr/>plugin.<wbr/>browseraxis.<wbr/><strong>BrowserExpAxis</strong> (<a href="https://github.com/jenkinsci/browser-axis-plugin/search?q=BrowserExpAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dynamic-axis">Dynamic Axis Plugin</a>: ca.<wbr/>silvermaplesolutions.<wbr/>jenkins.<wbr/>plugins.<wbr/>daxis.<wbr/><strong>DynamicAxis</strong> (<a href="https://github.com/jenkinsci/dynamic-axis-plugin/search?q=DynamicAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/ec2-cloud-axis">ec2-cloud-axis Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>ec2axis.<wbr/><strong>EC2Axis</strong> (<a href="https://github.com/jenkinsci/ec2-cloud-axis-plugin/search?q=EC2Axis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/elastic-axis">elastic-axis Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>elasticaxisplugin.<wbr/><strong>ElasticAxis</strong> (<a href="https://github.com/jenkinsci/elastic-axis-plugin/search?q=ElasticAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/matrix-project">Matrix Project Plugin</a>: hudson.<wbr/>matrix.<wbr/><strong>JDKAxis</strong> (<a href="https://github.com/jenkinsci/matrix-project-plugin/search?q=JDKAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/matrix-project">Matrix Project Plugin</a>: hudson.<wbr/>matrix.<wbr/><strong>LabelAxis</strong> (<a href="https://github.com/jenkinsci/matrix-project-plugin/search?q=LabelAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/matrix-project">Matrix Project Plugin</a>: hudson.<wbr/>matrix.<wbr/><strong>LabelExpAxis</strong> (<a href="https://github.com/jenkinsci/matrix-project-plugin/search?q=LabelExpAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/matrix-project">Matrix Project Plugin</a>: hudson.<wbr/>matrix.<wbr/><strong>TextAxis</strong> (<a href="https://github.com/jenkinsci/matrix-project-plugin/search?q=TextAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/sauce-ondemand">Sauce OnDemand Plugin</a>: hudson.<wbr/>plugins.<wbr/>sauce_ondemand.<wbr/><strong>AppiumAxis</strong> (<a href="https://github.com/jenkinsci/sauce-ondemand-plugin/search?q=AppiumAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/sauce-ondemand">Sauce OnDemand Plugin</a>: hudson.<wbr/>plugins.<wbr/>sauce_ondemand.<wbr/><strong>BrowserAxis</strong> (<a href="https://github.com/jenkinsci/sauce-ondemand-plugin/search?q=BrowserAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/sauce-ondemand">Sauce OnDemand Plugin</a>: hudson.<wbr/>plugins.<wbr/>sauce_ondemand.<wbr/><strong>WebDriverAxis</strong> (<a href="https://github.com/jenkinsci/sauce-ondemand-plugin/search?q=WebDriverAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/shiningpanda">ShiningPanda Plugin</a>: jenkins.<wbr/>plugins.<wbr/>shiningpanda.<wbr/>matrix.<wbr/><strong>PythonAxis</strong> (<a href="https://github.com/jenkinsci/shiningpanda-plugin/search?q=PythonAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/shiningpanda">ShiningPanda Plugin</a>: jenkins.<wbr/>plugins.<wbr/>shiningpanda.<wbr/>matrix.<wbr/><strong>ToxAxis</strong> (<a href="https://github.com/jenkinsci/shiningpanda-plugin/search?q=ToxAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/yaml-axis">Yaml Axis Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>yamlaxis.<wbr/><strong>YamlAxis</strong> (<a href="https://github.com/jenkinsci/yaml-axis-plugin/search?q=YamlAxis&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="matrixaggregatable"><a class="anchor" href="#matrixaggregatable"></a>MatrixAggregatable</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/matrix-project/hudson/matrix/MatrixAggregatable.html" title="Javadoc for hudson.matrix.MatrixAggregatable">hudson.matrix.MatrixAggregatable in matrix-project</a></code></p>
+</div>
+<div class="paragraph">
+<p> <a href="http://javadoc.jenkins.io/byShortName/Publisher" title="Javadoc for Publisher">Publisher</a> , <a href="http://javadoc.jenkins.io/byShortName/JobProperty" title="Javadoc for JobProperty">JobProperty</a> , <a href="http://javadoc.jenkins.io/byShortName/BuildWrapper" title="Javadoc for BuildWrapper">BuildWrapper</a> can optionally implement this interface  to perform result aggregation across <a href="http://javadoc.jenkins.io/byShortName/MatrixRun" title="Javadoc for MatrixRun">MatrixRun</a> .</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/android-lint">Android Lint Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>android_lint.<wbr/><strong>LintPublisher</strong> (<a href="https://github.com/jenkinsci/android-lint-plugin/search?q=LintPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/brakeman">Brakeman Plugin</a>: hudson.<wbr/>plugins.<wbr/>brakeman.<wbr/><strong>BrakemanPublisher</strong> (<a href="https://github.com/jenkinsci/brakeman-plugin/search?q=BrakemanPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/build-alias-setter">Build Alias Setter Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>buildaliassetter.<wbr/><strong>BuildAliasSetter</strong> (<a href="https://github.com/jenkinsci/build-alias-setter-plugin/search?q=BuildAliasSetter&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/build-failure-analyzer">Build Failure Analyzer Plugin</a>: com.<wbr/>sonyericsson.<wbr/>jenkins.<wbr/>plugins.<wbr/>bfa.<wbr/>model.<wbr/><strong>ScannerJobProperty</strong> (<a href="https://github.com/jenkinsci/build-failure-analyzer-plugin/search?q=ScannerJobProperty&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/build-name-setter">build-name-setter Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>buildnamesetter.<wbr/><strong>BuildNameSetter</strong> (<a href="https://github.com/jenkinsci/build-name-setter-plugin/search?q=BuildNameSetter&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/build-publisher">Build-Publisher Plugin</a>: hudson.<wbr/>plugins.<wbr/>build_publisher.<wbr/><strong>BuildPublisher</strong> (<a href="https://github.com/jenkinsci/build-publisher-plugin/search?q=BuildPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/ccm">CCM Plugin</a>: hudson.<wbr/>plugins.<wbr/>ccm.<wbr/><strong>CcmPublisher</strong> (<a href="https://github.com/jenkinsci/ccm-plugin/search?q=CcmPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/CFLint">CFLint Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>cflint.<wbr/><strong>LintPublisher</strong> (<a href="https://github.com/jenkinsci/CFLint-plugin/search?q=LintPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/checkstyle">Checkstyle Plugin</a>: hudson.<wbr/>plugins.<wbr/>checkstyle.<wbr/><strong>CheckStylePublisher</strong> (<a href="https://github.com/jenkinsci/checkstyle-plugin/search?q=CheckStylePublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/chef-identity">Chef Identity Plugin</a>: io.<wbr/>chef.<wbr/>jenkins.<wbr/><strong>ChefIdentityCleanup</strong> (<a href="https://github.com/jenkinsci/chef-identity-plugin/search?q=ChefIdentityCleanup&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/codeclimate-plugin">Codeclimate Plugin</a>: suryagaddipati.<wbr/>codeclimate.<wbr/><strong>CodeClimatePublisher</strong> (<a href="https://github.com/jenkinsci/codeclimate-plugin/search?q=CodeClimatePublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/cucumber-testresult-plugin">Cucumber json test reporting. Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>cucumber.<wbr/>jsontestsupport.<wbr/><strong>CucumberTestResultArchiver</strong> (<a href="https://github.com/jenkinsci/cucumber-testresult-plugin//search?q=CucumberTestResultArchiver&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/description-setter">description setter Plugin</a>: hudson.<wbr/>plugins.<wbr/>descriptionsetter.<wbr/><strong>DescriptionSetterPublisher</strong> (<a href="https://github.com/jenkinsci/description-setter-plugin/search?q=DescriptionSetterPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/downstream-ext">Downstream-Ext Plugin</a>: hudson.<wbr/>plugins.<wbr/>downstream_ext.<wbr/><strong>DownstreamTrigger</strong> (<a href="https://github.com/jenkinsci/downstream-ext-plugin/search?q=DownstreamTrigger&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/doxygen">Doxygen Plugin</a>: hudson.<wbr/>plugins.<wbr/>doxygen.<wbr/><strong>DoxygenArchiver</strong> (<a href="https://github.com/jenkinsci/doxygen-plugin/search?q=DoxygenArchiver&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dry">DRY Plugin</a>: hudson.<wbr/>plugins.<wbr/>dry.<wbr/><strong>DryPublisher</strong> (<a href="https://github.com/jenkinsci/dry-plugin/search?q=DryPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/environment-script">Environment Script Plugin</a>: com.<wbr/>lookout.<wbr/>jenkins.<wbr/><strong>EnvironmentScript</strong> (<a href="https://github.com/jenkinsci/environment-script-plugin/search?q=EnvironmentScript&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/findbugs">FindBugs Plugin</a>: hudson.<wbr/>plugins.<wbr/>findbugs.<wbr/><strong>FindBugsPublisher</strong> (<a href="https://github.com/jenkinsci/findbugs-plugin/search?q=FindBugsPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/flexible-publish">Flexible Publish Plugin</a>: org.<wbr/>jenkins_ci.<wbr/>plugins.<wbr/>flexible_publish.<wbr/><strong>FlexiblePublisher</strong> (<a href="https://github.com/jenkinsci/flexible-publish-plugin/search?q=FlexiblePublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/git">Git Plugin</a>: jenkins.<wbr/>plugins.<wbr/>git.<wbr/><strong>MatrixGitPublisher</strong> (<a href="https://github.com/jenkinsci/git-plugin/search?q=MatrixGitPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitee">Gitee Plugin</a>: com.<wbr/>gitee.<wbr/>jenkins.<wbr/>publisher.<wbr/><strong>GiteeAcceptPullRequestPublisher</strong> (<a href="https://github.com/jenkinsci/gitee-plugin/search?q=GiteeAcceptPullRequestPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitee">Gitee Plugin</a>: com.<wbr/>gitee.<wbr/>jenkins.<wbr/>publisher.<wbr/><strong>GiteeMessagePublisher</strong> (<a href="https://github.com/jenkinsci/gitee-plugin/search?q=GiteeMessagePublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitee">Gitee Plugin</a>: com.<wbr/>gitee.<wbr/>jenkins.<wbr/>publisher.<wbr/><strong>PullRequestNotifier</strong> (<a href="https://github.com/jenkinsci/gitee-plugin/search?q=PullRequestNotifier&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitlab-plugin">GitLab Plugin</a>: com.<wbr/>dabsquared.<wbr/>gitlabjenkins.<wbr/>publisher.<wbr/><strong>GitLabAcceptMergeRequestPublisher</strong> (<a href="https://github.com/jenkinsci/gitlab-plugin/search?q=GitLabAcceptMergeRequestPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitlab-plugin">GitLab Plugin</a>: com.<wbr/>dabsquared.<wbr/>gitlabjenkins.<wbr/>publisher.<wbr/><strong>GitLabCommitStatusPublisher</strong> (<a href="https://github.com/jenkinsci/gitlab-plugin/search?q=GitLabCommitStatusPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitlab-plugin">GitLab Plugin</a>: com.<wbr/>dabsquared.<wbr/>gitlabjenkins.<wbr/>publisher.<wbr/><strong>GitLabMessagePublisher</strong> (<a href="https://github.com/jenkinsci/gitlab-plugin/search?q=GitLabMessagePublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitlab-plugin">GitLab Plugin</a>: com.<wbr/>dabsquared.<wbr/>gitlabjenkins.<wbr/>publisher.<wbr/><strong>GitLabVotePublisher</strong> (<a href="https://github.com/jenkinsci/gitlab-plugin/search?q=GitLabVotePublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitlab-plugin">GitLab Plugin</a>: com.<wbr/>dabsquared.<wbr/>gitlabjenkins.<wbr/>publisher.<wbr/><strong>MergeRequestNotifier</strong> (<a href="https://github.com/jenkinsci/gitlab-plugin/search?q=MergeRequestNotifier&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/groovy-postbuild">Groovy Postbuild Plugin</a>: org.<wbr/>jvnet.<wbr/>hudson.<wbr/>plugins.<wbr/>groovypostbuild.<wbr/><strong>GroovyPostbuildRecorder</strong> (<a href="https://github.com/jenkinsci/groovy-postbuild-plugin/search?q=GroovyPostbuildRecorder&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/hipchat">HipChat Plugin</a>: jenkins.<wbr/>plugins.<wbr/>hipchat.<wbr/><strong>HipChatNotifier</strong> (<a href="https://github.com/jenkinsci/hipchat-plugin/search?q=HipChatNotifier&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/instant-messaging">instant-messaging Plugin</a>: hudson.<wbr/>plugins.<wbr/>im.<wbr/><strong>IMPublisher</strong> (<a href="https://github.com/jenkinsci/instant-messaging-plugin/search?q=IMPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/ircbot">IRC Plugin</a>: hudson.<wbr/>plugins.<wbr/>ircbot.<wbr/><strong>IrcPublisher</strong> (<a href="https://github.com/jenkinsci/ircbot-plugin/search?q=IrcPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/jenkins-reviewbot">jenkins-reviewbot Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>jenkinsreviewbot.<wbr/><strong>ReviewboardNotifier</strong></p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/jira">JIRA Plugin</a>: hudson.<wbr/>plugins.<wbr/>jira.<wbr/><strong>JiraIssueUpdater</strong> (<a href="https://github.com/jenkinsci/jira-plugin/search?q=JiraIssueUpdater&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/join">Join Plugin</a>: join.<wbr/><strong>JoinTrigger</strong> (<a href="https://github.com/jenkinsci/join-plugin/search?q=JoinTrigger&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/labeled-test-groups-publisher">Labeled Test Groups Publisher Plugin</a>: hudson.<wbr/>plugins.<wbr/>labeledgroupedtests.<wbr/><strong>LabeledTestResultGroupPublisher</strong> (<a href="https://github.com/jenkinsci/labeled-test-groups-publisher-plugin/search?q=LabeledTestResultGroupPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dependency-check-jenkins-plugin">OWASP Dependency-Check Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>DependencyCheck.<wbr/><strong>DependencyCheckPublisher</strong> (<a href="https://github.com/jenkinsci/dependency-check-plugin/search?q=DependencyCheckPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/perfpublisher">Performance Publisher Plugin</a>: hudson.<wbr/>plugins.<wbr/>PerfPublisher.<wbr/><strong>PerfPublisherPublisher</strong> (<a href="https://github.com/jenkinsci/perfpublisher-plugin/search?q=PerfPublisherPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/pmd">PMD Plugin</a>: hudson.<wbr/>plugins.<wbr/>pmd.<wbr/><strong>PmdPublisher</strong> (<a href="https://github.com/jenkinsci/pmd-plugin/search?q=PmdPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/pretested-integration">Pretested Integration Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>pretestedintegration.<wbr/><strong>PretestedIntegrationPostCheckout</strong> (<a href="https://github.com/jenkinsci/pretested-integration-plugin/search?q=PretestedIntegrationPostCheckout&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/project-description-setter">Project Description Setter Plugin</a>: org.<wbr/>jenkinsCi.<wbr/>plugins.<wbr/>projectDescriptionSetter.<wbr/><strong>DescriptionSetterWrapper</strong> (<a href="https://github.com/jenkinsci/project-description-setter-plugin/search?q=DescriptionSetterWrapper&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/qc">Quality Center Plugin</a>: com.<wbr/>michelin.<wbr/>cio.<wbr/>hudson.<wbr/>plugins.<wbr/>qc.<wbr/><strong>QualityCenterResultArchiver</strong> (<a href="https://github.com/jenkinsci/qc-plugin/search?q=QualityCenterResultArchiver&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/release">Release Plugin</a>: hudson.<wbr/>plugins.<wbr/>release.<wbr/><strong>ReleaseWrapper</strong> (<a href="https://github.com/jenkinsci/release-plugin/search?q=ReleaseWrapper&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/robot">Robot Framework Plugin</a>: hudson.<wbr/>plugins.<wbr/>robot.<wbr/><strong>RobotPublisher</strong> (<a href="https://github.com/jenkinsci/robot-plugin/search?q=RobotPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/secondary-timestamper-plugin">secondary timestamper Plugin</a>: org.<wbr/>jenkins.<wbr/>plugins.<wbr/>secondarytimestamper.<wbr/><strong>SecondaryTimestampPostBuildAction</strong> (<a href="https://github.com/jenkinsci/secondary-timestamper-plugin/search?q=SecondaryTimestampPostBuildAction&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/skype-notifier">Skype notifier Plugin</a>: hudson.<wbr/>plugins.<wbr/>skype.<wbr/>im.<wbr/>transport.<wbr/><strong>SkypePublisher</strong> (<a href="https://github.com/jenkinsci/skype-im-plugin/search?q=SkypePublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-collector">Static Analysis Collector Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>collector.<wbr/><strong>AnalysisPublisher</strong> (<a href="https://github.com/jenkinsci/analysis-collector-plugin/search?q=AnalysisPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-core">Static Analysis Utilities Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>core.<wbr/><strong>HealthAwarePublisher</strong> (<a href="https://github.com/jenkinsci/analysis-core-plugin/search?q=HealthAwarePublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-core">Static Analysis Utilities Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>core.<wbr/><strong>HealthAwareRecorder</strong> (<a href="https://github.com/jenkinsci/analysis-core-plugin/search?q=HealthAwareRecorder&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/suite-test-groups-publisher">suite-test-groups-publisher Plugin</a>: com.<wbr/>cwctravel.<wbr/>hudson.<wbr/>plugins.<wbr/>suitegroupedtests.<wbr/><strong>SuiteGroupResultPublisher</strong> (<a href="https://github.com/jenkinsci/suite-test-groups-publisher-plugin/search?q=SuiteGroupResultPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/tap">TAP Plugin</a>: org.<wbr/>tap4j.<wbr/>plugin.<wbr/><strong>TapPublisher</strong> (<a href="https://github.com/jenkinsci/tap-plugin/search?q=TapPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/tasks">Task Scanner Plugin</a>: hudson.<wbr/>plugins.<wbr/>tasks.<wbr/><strong>TasksPublisher</strong> (<a href="https://github.com/jenkinsci/tasks-plugin/search?q=TasksPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/ws-cleanup">Workspace Cleanup Plugin</a>: hudson.<wbr/>plugins.<wbr/>ws_cleanup.<wbr/><strong>WsCleanup</strong> (<a href="https://github.com/jenkinsci/ws-cleanup-plugin/search?q=WsCleanup&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="matrixaggregator"><a class="anchor" href="#matrixaggregator"></a>MatrixAggregator</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/matrix-project/hudson/matrix/MatrixAggregator.html" title="Javadoc for hudson.matrix.MatrixAggregator">hudson.matrix.MatrixAggregator in matrix-project</a></code></p>
+</div>
+<div class="paragraph">
+<p> Performs the aggregation of <a href="http://javadoc.jenkins.io/byShortName/MatrixRun" title="Javadoc for MatrixRun">MatrixRun</a> results  into <a href="http://javadoc.jenkins.io/byShortName/MatrixBuild" title="Javadoc for MatrixBuild">MatrixBuild</a> .</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/android-lint">Android Lint Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>android_lint.<wbr/><strong>LintAnnotationsAggregator</strong> (<a href="https://github.com/jenkinsci/android-lint-plugin/search?q=LintAnnotationsAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/build-alias-setter">Build Alias Setter Plugin</a>: Anonymous class in org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>buildaliassetter.<wbr/><strong>BuildAliasSetter</strong> (<a href="https://github.com/jenkinsci/build-alias-setter-plugin/search?q=BuildAliasSetter.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/build-failure-analyzer">Build Failure Analyzer Plugin</a>: com.<wbr/>sonyericsson.<wbr/>jenkins.<wbr/>plugins.<wbr/>bfa.<wbr/><strong>FailureCauseMatrixAggregator</strong> (<a href="https://github.com/jenkinsci/build-failure-analyzer-plugin/search?q=FailureCauseMatrixAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/build-name-setter">build-name-setter Plugin</a>: Anonymous class in org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>buildnamesetter.<wbr/><strong>BuildNameSetter</strong> (<a href="https://github.com/jenkinsci/build-name-setter-plugin/search?q=BuildNameSetter.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/build-publisher">Build-Publisher Plugin</a>: Anonymous class in hudson.<wbr/>plugins.<wbr/>build_publisher.<wbr/><strong>BuildPublisher</strong> (<a href="https://github.com/jenkinsci/build-publisher-plugin/search?q=BuildPublisher.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/ccm">CCM Plugin</a>: hudson.<wbr/>plugins.<wbr/>ccm.<wbr/><strong>CcmAnnotationsAggregator</strong> (<a href="https://github.com/jenkinsci/ccm-plugin/search?q=CcmAnnotationsAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/CFLint">CFLint Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>cflint.<wbr/><strong>LintAnnotationsAggregator</strong> (<a href="https://github.com/jenkinsci/CFLint-plugin/search?q=LintAnnotationsAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/checkstyle">Checkstyle Plugin</a>: hudson.<wbr/>plugins.<wbr/>checkstyle.<wbr/><strong>CheckStyleAnnotationsAggregator</strong> (<a href="https://github.com/jenkinsci/checkstyle-plugin/search?q=CheckStyleAnnotationsAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/chef-identity">Chef Identity Plugin</a>: Anonymous class in io.<wbr/>chef.<wbr/>jenkins.<wbr/><strong>ChefIdentityCleanup</strong> (<a href="https://github.com/jenkinsci/chef-identity-plugin/search?q=ChefIdentityCleanup.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/conditional-buildstep">Conditional BuildStep Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>conditionalbuildstep.<wbr/>matrix.<wbr/><strong>DummyMatrixAggregator</strong> (<a href="https://github.com/jenkinsci/conditional-buildstep-plugin/search?q=DummyMatrixAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/conditional-buildstep">Conditional BuildStep Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>conditionalbuildstep.<wbr/>matrix.<wbr/><strong>MatrixAggregatorChain</strong> (<a href="https://github.com/jenkinsci/conditional-buildstep-plugin/search?q=MatrixAggregatorChain&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/description-setter">description setter Plugin</a>: Anonymous class in hudson.<wbr/>plugins.<wbr/>descriptionsetter.<wbr/><strong>DescriptionSetterPublisher</strong> (<a href="https://github.com/jenkinsci/description-setter-plugin/search?q=DescriptionSetterPublisher.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/downstream-ext">Downstream-Ext Plugin</a>: Anonymous class in hudson.<wbr/>plugins.<wbr/>downstream_ext.<wbr/><strong>DownstreamTrigger</strong> (<a href="https://github.com/jenkinsci/downstream-ext-plugin/search?q=DownstreamTrigger.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/doxygen">Doxygen Plugin</a>: Anonymous class in hudson.<wbr/>plugins.<wbr/>doxygen.<wbr/><strong>DoxygenArchiver</strong> (<a href="https://github.com/jenkinsci/doxygen-plugin/search?q=DoxygenArchiver.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dry">DRY Plugin</a>: hudson.<wbr/>plugins.<wbr/>dry.<wbr/><strong>DryAnnotationsAggregator</strong> (<a href="https://github.com/jenkinsci/dry-plugin/search?q=DryAnnotationsAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/environment-script">Environment Script Plugin</a>: Anonymous class in com.<wbr/>lookout.<wbr/>jenkins.<wbr/><strong>EnvironmentScript</strong> (<a href="https://github.com/jenkinsci/environment-script-plugin/search?q=EnvironmentScript.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/findbugs">FindBugs Plugin</a>: hudson.<wbr/>plugins.<wbr/>findbugs.<wbr/><strong>FindBugsAnnotationsAggregator</strong> (<a href="https://github.com/jenkinsci/findbugs-plugin/search?q=FindBugsAnnotationsAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/flexible-publish">Flexible Publish Plugin</a>: org.<wbr/>jenkins_ci.<wbr/>plugins.<wbr/>flexible_publish.<wbr/><strong>ConditionalMatrixAggregator</strong> (<a href="https://github.com/jenkinsci/flexible-publish-plugin/search?q=ConditionalMatrixAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/flexible-publish">Flexible Publish Plugin</a>: org.<wbr/>jenkins_ci.<wbr/>plugins.<wbr/>flexible_publish.<wbr/><strong>FlexibleMatrixAggregator</strong> (<a href="https://github.com/jenkinsci/flexible-publish-plugin/search?q=FlexibleMatrixAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/git">Git Plugin</a>: Anonymous class in jenkins.<wbr/>plugins.<wbr/>git.<wbr/><strong>MatrixGitPublisher</strong> (<a href="https://github.com/jenkinsci/git-plugin/search?q=MatrixGitPublisher.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitee">Gitee Plugin</a>: Anonymous class in com.<wbr/>gitee.<wbr/>jenkins.<wbr/>publisher.<wbr/><strong>PullRequestNotifier</strong> (<a href="https://github.com/jenkinsci/gitee-plugin/search?q=PullRequestNotifier.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitlab-plugin">GitLab Plugin</a>: Anonymous class in com.<wbr/>dabsquared.<wbr/>gitlabjenkins.<wbr/>publisher.<wbr/><strong>GitLabCommitStatusPublisher</strong> (<a href="https://github.com/jenkinsci/gitlab-plugin/search?q=GitLabCommitStatusPublisher.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/gitlab-plugin">GitLab Plugin</a>: Anonymous class in com.<wbr/>dabsquared.<wbr/>gitlabjenkins.<wbr/>publisher.<wbr/><strong>MergeRequestNotifier</strong> (<a href="https://github.com/jenkinsci/gitlab-plugin/search?q=MergeRequestNotifier.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/groovy-postbuild">Groovy Postbuild Plugin</a>: Anonymous class in org.<wbr/>jvnet.<wbr/>hudson.<wbr/>plugins.<wbr/>groovypostbuild.<wbr/><strong>GroovyPostbuildRecorder</strong> (<a href="https://github.com/jenkinsci/groovy-postbuild-plugin/search?q=GroovyPostbuildRecorder.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/hipchat">HipChat Plugin</a>: Anonymous class in jenkins.<wbr/>plugins.<wbr/>hipchat.<wbr/><strong>HipChatNotifier</strong> (<a href="https://github.com/jenkinsci/hipchat-plugin/search?q=HipChatNotifier.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/instant-messaging">instant-messaging Plugin</a>: Anonymous class in hudson.<wbr/>plugins.<wbr/>im.<wbr/><strong>IMPublisher</strong> (<a href="https://github.com/jenkinsci/instant-messaging-plugin/search?q=IMPublisher.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/jenkins-reviewbot">jenkins-reviewbot Plugin</a>: Anonymous class in org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>jenkinsreviewbot.<wbr/><strong>ReviewboardNotifier</strong></p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/jira">JIRA Plugin</a>: Anonymous class in hudson.<wbr/>plugins.<wbr/>jira.<wbr/><strong>JiraIssueUpdater</strong> (<a href="https://github.com/jenkinsci/jira-plugin/search?q=JiraIssueUpdater.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/join">Join Plugin</a>: Anonymous class in join.<wbr/><strong>JoinTrigger</strong> (<a href="https://github.com/jenkinsci/join-plugin/search?q=JoinTrigger.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/matrix-project">Matrix Project Plugin</a>: hudson.<wbr/>tasks.<wbr/>test.<wbr/><strong>TestResultAggregator</strong> (<a href="https://github.com/jenkinsci/matrix-project-plugin/search?q=TestResultAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/dependency-check-jenkins-plugin">OWASP Dependency-Check Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>DependencyCheck.<wbr/><strong>DependencyCheckAnnotationsAggregator</strong> (<a href="https://github.com/jenkinsci/dependency-check-plugin/search?q=DependencyCheckAnnotationsAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/perfpublisher">Performance Publisher Plugin</a>: hudson.<wbr/>plugins.<wbr/>PerfPublisher.<wbr/><strong>PerfPublisherResultAggregator</strong> (<a href="https://github.com/jenkinsci/perfpublisher-plugin/search?q=PerfPublisherResultAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/pmd">PMD Plugin</a>: hudson.<wbr/>plugins.<wbr/>pmd.<wbr/><strong>PmdAnnotationsAggregator</strong> (<a href="https://github.com/jenkinsci/pmd-plugin/search?q=PmdAnnotationsAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/pretested-integration">Pretested Integration Plugin</a>: Anonymous class in org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>pretestedintegration.<wbr/><strong>PretestedIntegrationPostCheckout</strong> (<a href="https://github.com/jenkinsci/pretested-integration-plugin/search?q=PretestedIntegrationPostCheckout.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/project-description-setter">Project Description Setter Plugin</a>: Anonymous class in org.<wbr/>jenkinsCi.<wbr/>plugins.<wbr/>projectDescriptionSetter.<wbr/><strong>DescriptionSetterWrapper</strong> (<a href="https://github.com/jenkinsci/project-description-setter-plugin/search?q=DescriptionSetterWrapper.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/release">Release Plugin</a>: hudson.<wbr/>plugins.<wbr/>release.<wbr/><strong>ReleaseWrapper.<wbr/>ReleaseAggregator</strong> (<a href="https://github.com/jenkinsci/release-plugin/search?q=ReleaseWrapper.ReleaseAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/robot">Robot Framework Plugin</a>: hudson.<wbr/>plugins.<wbr/>robot.<wbr/><strong>RobotResultAggregator</strong> (<a href="https://github.com/jenkinsci/robot-plugin/search?q=RobotResultAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/secondary-timestamper-plugin">secondary timestamper Plugin</a>: Anonymous class in org.<wbr/>jenkins.<wbr/>plugins.<wbr/>secondarytimestamper.<wbr/><strong>SecondaryTimestampPostBuildAction</strong> (<a href="https://github.com/jenkinsci/secondary-timestamper-plugin/search?q=SecondaryTimestampPostBuildAction.createAggregator.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-collector">Static Analysis Collector Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>collector.<wbr/><strong>AnalysisAnnotationsAggregator</strong> (<a href="https://github.com/jenkinsci/analysis-collector-plugin/search?q=AnalysisAnnotationsAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/analysis-core">Static Analysis Utilities Plugin</a>: hudson.<wbr/>plugins.<wbr/>analysis.<wbr/>core.<wbr/><strong>AnnotationsAggregator</strong> (<a href="https://github.com/jenkinsci/analysis-core-plugin/search?q=AnnotationsAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/tasks">Task Scanner Plugin</a>: hudson.<wbr/>plugins.<wbr/>tasks.<wbr/><strong>TasksAnnotationsAggregator</strong> (<a href="https://github.com/jenkinsci/tasks-plugin/search?q=TasksAnnotationsAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/ws-cleanup">Workspace Cleanup Plugin</a>: hudson.<wbr/>plugins.<wbr/>ws_cleanup.<wbr/><strong>WsCleanupMatrixAggregator</strong> (<a href="https://github.com/jenkinsci/ws-cleanup-plugin/search?q=WsCleanupMatrixAggregator&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="matrixbuildlistener"><a class="anchor" href="#matrixbuildlistener"></a>MatrixBuildListener</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/matrix-project/hudson/matrix/listeners/MatrixBuildListener.html" title="Javadoc for hudson.matrix.listeners.MatrixBuildListener">hudson.matrix.listeners.MatrixBuildListener in matrix-project</a></code></p>
+</div>
+<div class="paragraph">
+<p> Controls which subset of <a href="http://javadoc.jenkins.io/byShortName/MatrixRun" title="Javadoc for MatrixRun">MatrixRun</a> s to rebuild.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/matrix-combinations-parameter">Matrix Configuration Parameter Plugin</a>: hudson.<wbr/>plugins.<wbr/>matrix_configuration_parameter.<wbr/><strong>MatrixCombinationsParameterMatrixBuildListener</strong> (<a href="https://github.com/jenkinsci/matrix-combinations-plugin/search?q=MatrixCombinationsParameterMatrixBuildListener&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/naginator">Naginator Plugin</a>: com.<wbr/>chikli.<wbr/>hudson.<wbr/>plugin.<wbr/>naginator.<wbr/><strong>NaginatorMatrixBuildListner</strong> (<a href="https://github.com/jenkinsci/naginator-plugin/search?q=NaginatorMatrixBuildListner&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/parameterized-trigger">Parameterized Trigger Plugin</a>: hudson.<wbr/>plugins.<wbr/>parameterizedtrigger.<wbr/>matrix.<wbr/><strong>MatrixBuildListenerImpl</strong> (<a href="https://github.com/jenkinsci/parameterized-trigger-plugin/search?q=MatrixBuildListenerImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="matrixconfigurationsorter"><a class="anchor" href="#matrixconfigurationsorter"></a>MatrixConfigurationSorter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/matrix-project/hudson/matrix/MatrixConfigurationSorter.html" title="Javadoc for hudson.matrix.MatrixConfigurationSorter">hudson.matrix.MatrixConfigurationSorter in matrix-project</a></code></p>
+</div>
+<div class="paragraph">
+<p> Add sorting for configurations <a href="http://javadoc.jenkins.io/byShortName/MatrixConfiguration" title="Javadoc for MatrixConfiguration">MatrixConfiguration</a> s of matrix job <a href="http://javadoc.jenkins.io/byShortName/MatrixProject" title="Javadoc for MatrixProject">MatrixProject</a> </p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/matrix-project">Matrix Project Plugin</a>: hudson.<wbr/>matrix.<wbr/><strong>NoopMatrixConfigurationSorter</strong> (<a href="https://github.com/jenkinsci/matrix-project-plugin/search?q=NoopMatrixConfigurationSorter&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/Matrix-sorter-plugin">Matrix sorter Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugin.<wbr/>matrixconfigsorter.<wbr/><strong>LastAxisSorter</strong> (<a href="https://github.com/jenkinsci/Matrix-sorter-plugin/search?q=LastAxisSorter&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/Matrix-sorter-plugin">Matrix sorter Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugin.<wbr/>matrixconfigsorter.<wbr/><strong>ShorterFirstAxisSorter</strong> (<a href="https://github.com/jenkinsci/Matrix-sorter-plugin/search?q=ShorterFirstAxisSorter&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/Matrix-sorter-plugin">Matrix sorter Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugin.<wbr/>matrixconfigsorter.<wbr/><strong>TimeStampAxisSorter</strong> (<a href="https://github.com/jenkinsci/Matrix-sorter-plugin/search?q=TimeStampAxisSorter&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="matrixexecutionstrategy"><a class="anchor" href="#matrixexecutionstrategy"></a>MatrixExecutionStrategy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/matrix-project/hudson/matrix/MatrixExecutionStrategy.html" title="Javadoc for hudson.matrix.MatrixExecutionStrategy">hudson.matrix.MatrixExecutionStrategy in matrix-project</a></code></p>
+</div>
+<div class="paragraph">
+<p> Controls the execution sequence of <a href="http://javadoc.jenkins.io/byShortName/MatrixConfiguration" title="Javadoc for MatrixConfiguration">MatrixConfiguration</a> when <a href="http://javadoc.jenkins.io/byShortName/MatrixProject" title="Javadoc for MatrixProject">MatrixProject</a> builds,  including what degree it gets serialized/parallelled, how the whole build is abandoned when  some fails, etc.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/matrix-project">Matrix Project Plugin</a>: hudson.<wbr/>matrix.<wbr/><strong>DefaultMatrixExecutionStrategyImpl</strong> (<a href="https://github.com/jenkinsci/matrix-project-plugin/search?q=DefaultMatrixExecutionStrategyImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/p4">P4 Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>p4.<wbr/>matrix.<wbr/><strong>MatrixOptions</strong> (<a href="https://github.com/jenkinsci/p4-plugin/search?q=MatrixOptions&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/yaml-axis">Yaml Axis Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>yamlaxis.<wbr/><strong>BaseMES</strong> (<a href="https://github.com/jenkinsci/yaml-axis-plugin/search?q=BaseMES&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/yaml-axis">Yaml Axis Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>yamlaxis.<wbr/><strong>YamlMatrixExecutionStrategy</strong> (<a href="https://github.com/jenkinsci/yaml-axis-plugin/search?q=YamlMatrixExecutionStrategy&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

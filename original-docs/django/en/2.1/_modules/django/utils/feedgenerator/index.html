@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>django.utils.feedgenerator | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/_modules/django/utils/feedgenerator/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/_modules/django/utils/feedgenerator/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/_modules/django/utils/feedgenerator/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/_modules/django/utils/feedgenerator/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/_modules/django/utils/feedgenerator/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/_modules/django/utils/feedgenerator/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/_modules/django/utils/feedgenerator/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/_modules/django/utils/feedgenerator/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/_modules/django/utils/feedgenerator/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/_modules/django/utils/feedgenerator/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/_modules/django/utils/feedgenerator/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/_modules/django/utils/feedgenerator/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/_modules/django/utils/feedgenerator/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/_modules/django/utils/feedgenerator/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/_modules/django/utils/feedgenerator/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/_modules/django/utils/feedgenerator/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/_modules/django/utils/feedgenerator/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/_modules/django/utils/feedgenerator/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/_modules/django/utils/feedgenerator/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/_modules/django/utils/feedgenerator/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/_modules/django/utils/feedgenerator/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/_modules/django/utils/feedgenerator/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/_modules/django/utils/feedgenerator/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/_modules/django/utils/feedgenerator/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/_modules/django/utils/feedgenerator/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/_modules/django/utils/feedgenerator/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/_modules/django/utils/feedgenerator/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/_modules/django/utils/feedgenerator/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<h1>Source code for django.utils.feedgenerator</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Syndication feed generation library -- used for generating RSS, etc.</span>
+
+<span class="sd">Sample usage:</span>
+
+<span class="sd">&gt;&gt;&gt; from django.utils import feedgenerator</span>
+<span class="sd">&gt;&gt;&gt; feed = feedgenerator.Rss201rev2Feed(</span>
+<span class="sd">...     title=&quot;Poynter E-Media Tidbits&quot;,</span>
+<span class="sd">...     link=&quot;http://www.poynter.org/column.asp?id=31&quot;,</span>
+<span class="sd">...     description=&quot;A group Weblog by the sharpest minds in online media/journalism/publishing.&quot;,</span>
+<span class="sd">...     language=&quot;en&quot;,</span>
+<span class="sd">... )</span>
+<span class="sd">&gt;&gt;&gt; feed.add_item(</span>
+<span class="sd">...     title=&quot;Hello&quot;,</span>
+<span class="sd">...     link=&quot;http://www.holovaty.com/test/&quot;,</span>
+<span class="sd">...     description=&quot;Testing.&quot;</span>
+<span class="sd">... )</span>
+<span class="sd">&gt;&gt;&gt; with open(&#39;test.rss&#39;, &#39;w&#39;) as fp:</span>
+<span class="sd">...     feed.write(fp, &#39;utf-8&#39;)</span>
+
+<span class="sd">For definitions of the different versions of RSS, see:</span>
+<span class="sd">http://web.archive.org/web/20110718035220/http://diveintomark.org/archives/2004/02/04/incompatible-rss</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">email</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">StringIO</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="n">urlparse</span>
+
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="k">import</span> <span class="n">datetime_safe</span>
+<span class="kn">from</span> <span class="nn">django.utils.encoding</span> <span class="k">import</span> <span class="n">iri_to_uri</span>
+<span class="kn">from</span> <span class="nn">django.utils.timezone</span> <span class="k">import</span> <span class="n">utc</span>
+<span class="kn">from</span> <span class="nn">django.utils.xmlutils</span> <span class="k">import</span> <span class="n">SimplerXMLGenerator</span>
+
+
+<span class="k">def</span> <span class="nf">rfc2822_date</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">):</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">email</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">format_datetime</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">rfc3339_date</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">):</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;Z&#39;</span> <span class="k">if</span> <span class="n">date</span><span class="o">.</span><span class="n">utcoffset</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="get_tag_uri"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.get_tag_uri">[docs]</a><span class="k">def</span> <span class="nf">get_tag_uri</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a TagURI.</span>
+
+<span class="sd">    See http://web.archive.org/web/20110514113830/http://diveintomark.org/archives/2004/05/28/howto-atom-id</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bits</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="s1">&#39;,</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">datetime_safe</span><span class="o">.</span><span class="n">new_datetime</span><span class="p">(</span><span class="n">date</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;tag:</span><span class="si">%s%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">bits</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">bits</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">bits</span><span class="o">.</span><span class="n">fragment</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SyndicationFeed"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.SyndicationFeed">[docs]</a><span class="k">class</span> <span class="nc">SyndicationFeed</span><span class="p">:</span>
+    <span class="s2">&quot;Base class for all syndication feeds. Subclasses should provide write()&quot;</span>
+<div class="viewcode-block" id="SyndicationFeed.__init__"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.SyndicationFeed.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">link</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">author_email</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">author_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">author_link</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subtitle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">feed_url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">feed_copyright</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">feed_guid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ttl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">to_str</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">s</span>
+        <span class="n">categories</span> <span class="o">=</span> <span class="n">categories</span> <span class="ow">and</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feed</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">title</span><span class="p">),</span>
+            <span class="s1">&#39;link&#39;</span><span class="p">:</span> <span class="n">iri_to_uri</span><span class="p">(</span><span class="n">link</span><span class="p">),</span>
+            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">description</span><span class="p">),</span>
+            <span class="s1">&#39;language&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">language</span><span class="p">),</span>
+            <span class="s1">&#39;author_email&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">author_email</span><span class="p">),</span>
+            <span class="s1">&#39;author_name&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">author_name</span><span class="p">),</span>
+            <span class="s1">&#39;author_link&#39;</span><span class="p">:</span> <span class="n">iri_to_uri</span><span class="p">(</span><span class="n">author_link</span><span class="p">),</span>
+            <span class="s1">&#39;subtitle&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">subtitle</span><span class="p">),</span>
+            <span class="s1">&#39;categories&#39;</span><span class="p">:</span> <span class="n">categories</span> <span class="ow">or</span> <span class="p">(),</span>
+            <span class="s1">&#39;feed_url&#39;</span><span class="p">:</span> <span class="n">iri_to_uri</span><span class="p">(</span><span class="n">feed_url</span><span class="p">),</span>
+            <span class="s1">&#39;feed_copyright&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">feed_copyright</span><span class="p">),</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">feed_guid</span> <span class="ow">or</span> <span class="n">link</span><span class="p">,</span>
+            <span class="s1">&#39;ttl&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">ttl</span><span class="p">),</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+<div class="viewcode-block" id="SyndicationFeed.add_item"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.SyndicationFeed.add_item">[docs]</a>    <span class="k">def</span> <span class="nf">add_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">link</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">author_email</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">author_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">author_link</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pubdate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">unique_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unique_id_is_permalink</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="p">(),</span>
+                 <span class="n">item_copyright</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ttl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">updateddate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">enclosures</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add an item to the feed. All args are expected to be strings except</span>
+<span class="sd">        pubdate and updateddate, which are datetime.datetime objects, and</span>
+<span class="sd">        enclosures, which is an iterable of instances of the Enclosure class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">to_str</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">s</span>
+        <span class="n">categories</span> <span class="o">=</span> <span class="n">categories</span> <span class="ow">and</span> <span class="p">[</span><span class="n">to_str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">title</span><span class="p">),</span>
+            <span class="s1">&#39;link&#39;</span><span class="p">:</span> <span class="n">iri_to_uri</span><span class="p">(</span><span class="n">link</span><span class="p">),</span>
+            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">description</span><span class="p">),</span>
+            <span class="s1">&#39;author_email&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">author_email</span><span class="p">),</span>
+            <span class="s1">&#39;author_name&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">author_name</span><span class="p">),</span>
+            <span class="s1">&#39;author_link&#39;</span><span class="p">:</span> <span class="n">iri_to_uri</span><span class="p">(</span><span class="n">author_link</span><span class="p">),</span>
+            <span class="s1">&#39;pubdate&#39;</span><span class="p">:</span> <span class="n">pubdate</span><span class="p">,</span>
+            <span class="s1">&#39;updateddate&#39;</span><span class="p">:</span> <span class="n">updateddate</span><span class="p">,</span>
+            <span class="s1">&#39;comments&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">comments</span><span class="p">),</span>
+            <span class="s1">&#39;unique_id&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">unique_id</span><span class="p">),</span>
+            <span class="s1">&#39;unique_id_is_permalink&#39;</span><span class="p">:</span> <span class="n">unique_id_is_permalink</span><span class="p">,</span>
+            <span class="s1">&#39;enclosures&#39;</span><span class="p">:</span> <span class="n">enclosures</span> <span class="ow">or</span> <span class="p">(),</span>
+            <span class="s1">&#39;categories&#39;</span><span class="p">:</span> <span class="n">categories</span> <span class="ow">or</span> <span class="p">(),</span>
+            <span class="s1">&#39;item_copyright&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">item_copyright</span><span class="p">),</span>
+            <span class="s1">&#39;ttl&#39;</span><span class="p">:</span> <span class="n">to_str</span><span class="p">(</span><span class="n">ttl</span><span class="p">),</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">})</span></div>
+
+<div class="viewcode-block" id="SyndicationFeed.num_items"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.SyndicationFeed.num_items">[docs]</a>    <span class="k">def</span> <span class="nf">num_items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SyndicationFeed.root_attributes"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.SyndicationFeed.root_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">root_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return extra attributes to place on the root (i.e. feed/channel) element.</span>
+<span class="sd">        Called from write().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{}</span></div>
+
+<div class="viewcode-block" id="SyndicationFeed.add_root_elements"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.SyndicationFeed.add_root_elements">[docs]</a>    <span class="k">def</span> <span class="nf">add_root_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add elements in the root (i.e. feed/channel) element. Called</span>
+<span class="sd">        from write().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="SyndicationFeed.item_attributes"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.SyndicationFeed.item_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">item_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return extra attributes to place on each item (i.e. item/entry) element.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{}</span></div>
+
+<div class="viewcode-block" id="SyndicationFeed.add_item_elements"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.SyndicationFeed.add_item_elements">[docs]</a>    <span class="k">def</span> <span class="nf">add_item_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add elements on each item (i.e. item/entry) element.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="SyndicationFeed.write"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.SyndicationFeed.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Output the feed in the given encoding to outfile, which is a file-like</span>
+<span class="sd">        object. Subclasses should override this.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;subclasses of SyndicationFeed must provide a write() method&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SyndicationFeed.writeString"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.SyndicationFeed.writeString">[docs]</a>    <span class="k">def</span> <span class="nf">writeString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the feed in the given encoding as a string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SyndicationFeed.latest_post_date"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.SyndicationFeed.latest_post_date">[docs]</a>    <span class="k">def</span> <span class="nf">latest_post_date</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the latest item&#39;s pubdate or updateddate. If no items</span>
+<span class="sd">        have either of these attributes this return the current UTC date/time.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">latest_date</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">date_keys</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;updateddate&#39;</span><span class="p">,</span> <span class="s1">&#39;pubdate&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">date_key</span> <span class="ow">in</span> <span class="n">date_keys</span><span class="p">:</span>
+                <span class="n">item_date</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">date_key</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">item_date</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">latest_date</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">item_date</span> <span class="o">&gt;</span> <span class="n">latest_date</span><span class="p">:</span>
+                        <span class="n">latest_date</span> <span class="o">=</span> <span class="n">item_date</span>
+
+        <span class="c1"># datetime.now(tz=utc) is slower, as documented in django.utils.timezone.now</span>
+        <span class="k">return</span> <span class="n">latest_date</span> <span class="ow">or</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">tzinfo</span><span class="o">=</span><span class="n">utc</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Enclosure"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.Enclosure">[docs]</a><span class="k">class</span> <span class="nc">Enclosure</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;An RSS enclosure&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">):</span>
+        <span class="s2">&quot;All args are expected to be strings&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mime_type</span> <span class="o">=</span> <span class="n">length</span><span class="p">,</span> <span class="n">mime_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">iri_to_uri</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RssFeed"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.RssFeed">[docs]</a><span class="k">class</span> <span class="nc">RssFeed</span><span class="p">(</span><span class="n">SyndicationFeed</span><span class="p">):</span>
+    <span class="n">content_type</span> <span class="o">=</span> <span class="s1">&#39;application/rss+xml; charset=utf-8&#39;</span>
+
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+        <span class="n">handler</span> <span class="o">=</span> <span class="n">SimplerXMLGenerator</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">startDocument</span><span class="p">()</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">startElement</span><span class="p">(</span><span class="s2">&quot;rss&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rss_attributes</span><span class="p">())</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">startElement</span><span class="p">(</span><span class="s2">&quot;channel&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_attributes</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_root_elements</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_items</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endChannelElement</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">endElement</span><span class="p">(</span><span class="s2">&quot;rss&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">rss_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_version</span><span class="p">,</span>
+                <span class="s2">&quot;xmlns:atom&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">write_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">startElement</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_attributes</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_item_elements</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">endElement</span><span class="p">(</span><span class="s2">&quot;item&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_root_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">])</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;feed_url&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;atom:link&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;feed_url&#39;</span><span class="p">]})</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;language&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;language&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;language&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;categories&#39;</span><span class="p">]:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="n">cat</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;feed_copyright&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;feed_copyright&#39;</span><span class="p">])</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;lastBuildDate&quot;</span><span class="p">,</span> <span class="n">rfc2822_date</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latest_post_date</span><span class="p">()))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;ttl&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;ttl&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;ttl&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">endChannelElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">endElement</span><span class="p">(</span><span class="s2">&quot;channel&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RssUserland091Feed"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.RssUserland091Feed">[docs]</a><span class="k">class</span> <span class="nc">RssUserland091Feed</span><span class="p">(</span><span class="n">RssFeed</span><span class="p">):</span>
+    <span class="n">_version</span> <span class="o">=</span> <span class="s2">&quot;0.91&quot;</span>
+
+    <span class="k">def</span> <span class="nf">add_item_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="Rss201rev2Feed"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.Rss201rev2Feed">[docs]</a><span class="k">class</span> <span class="nc">Rss201rev2Feed</span><span class="p">(</span><span class="n">RssFeed</span><span class="p">):</span>
+    <span class="c1"># Spec: http://blogs.law.harvard.edu/tech/rss</span>
+    <span class="n">_version</span> <span class="o">=</span> <span class="s2">&quot;2.0&quot;</span>
+
+    <span class="k">def</span> <span class="nf">add_item_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">])</span>
+
+        <span class="c1"># Author information.</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;author_name&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;author_email&quot;</span><span class="p">]:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;author_email&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;author_name&#39;</span><span class="p">]))</span>
+        <span class="k">elif</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;author_email&quot;</span><span class="p">]:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;author_email&quot;</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;author_name&quot;</span><span class="p">]:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span>
+                <span class="s2">&quot;dc:creator&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;author_name&quot;</span><span class="p">],</span> <span class="p">{</span><span class="s2">&quot;xmlns:dc&quot;</span><span class="p">:</span> <span class="s2">&quot;http://purl.org/dc/elements/1.1/&quot;</span><span class="p">}</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;pubDate&quot;</span><span class="p">,</span> <span class="n">rfc2822_date</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;comments&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;comments&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">guid_attrs</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;unique_id_is_permalink&#39;</span><span class="p">),</span> <span class="nb">bool</span><span class="p">):</span>
+                <span class="n">guid_attrs</span><span class="p">[</span><span class="s1">&#39;isPermaLink&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;unique_id_is_permalink&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;guid&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">],</span> <span class="n">guid_attrs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;ttl&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;ttl&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;ttl&#39;</span><span class="p">])</span>
+
+        <span class="c1"># Enclosure.</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;enclosures&#39;</span><span class="p">]:</span>
+            <span class="n">enclosures</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;enclosures&#39;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">enclosures</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;RSS feed items may only have one enclosure, see &quot;</span>
+                    <span class="s2">&quot;http://www.rssboard.org/rss-profile#element-channel-item-enclosure&quot;</span>
+                <span class="p">)</span>
+            <span class="n">enclosure</span> <span class="o">=</span> <span class="n">enclosures</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s1">&#39;enclosure&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">enclosure</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+                <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="n">enclosure</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">enclosure</span><span class="o">.</span><span class="n">mime_type</span><span class="p">,</span>
+            <span class="p">})</span>
+
+        <span class="c1"># Categories.</span>
+        <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;categories&#39;</span><span class="p">]:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="n">cat</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Atom1Feed"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.feedgenerator.Atom1Feed">[docs]</a><span class="k">class</span> <span class="nc">Atom1Feed</span><span class="p">(</span><span class="n">SyndicationFeed</span><span class="p">):</span>
+    <span class="c1"># Spec: https://tools.ietf.org/html/rfc4287</span>
+    <span class="n">content_type</span> <span class="o">=</span> <span class="s1">&#39;application/atom+xml; charset=utf-8&#39;</span>
+    <span class="n">ns</span> <span class="o">=</span> <span class="s2">&quot;http://www.w3.org/2005/Atom&quot;</span>
+
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+        <span class="n">handler</span> <span class="o">=</span> <span class="n">SimplerXMLGenerator</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">startDocument</span><span class="p">()</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">startElement</span><span class="p">(</span><span class="s1">&#39;feed&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_attributes</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_root_elements</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_items</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">endElement</span><span class="p">(</span><span class="s2">&quot;feed&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">root_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;language&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;xmlns&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ns</span><span class="p">,</span> <span class="s2">&quot;xml:lang&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;language&#39;</span><span class="p">]}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;xmlns&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ns</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">add_root_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;alternate&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">]})</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;feed_url&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;feed_url&#39;</span><span class="p">]})</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;updated&quot;</span><span class="p">,</span> <span class="n">rfc3339_date</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latest_post_date</span><span class="p">()))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;author_name&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">startElement</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;author_name&#39;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;author_email&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;author_email&#39;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;author_link&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;uri&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;author_link&#39;</span><span class="p">])</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">endElement</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;subtitle&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;subtitle&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;subtitle&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;categories&#39;</span><span class="p">]:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;term&quot;</span><span class="p">:</span> <span class="n">cat</span><span class="p">})</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;feed_copyright&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;rights&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;feed_copyright&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">write_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">startElement</span><span class="p">(</span><span class="s2">&quot;entry&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">item_attributes</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_item_elements</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">endElement</span><span class="p">(</span><span class="s2">&quot;entry&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_item_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">],</span> <span class="s2">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;alternate&quot;</span><span class="p">})</span>
+
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s1">&#39;published&#39;</span><span class="p">,</span> <span class="n">rfc3339_date</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">]))</span>
+
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;updateddate&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s1">&#39;updated&#39;</span><span class="p">,</span> <span class="n">rfc3339_date</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;updateddate&#39;</span><span class="p">]))</span>
+
+        <span class="c1"># Author information.</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;author_name&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">startElement</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;author_name&#39;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;author_email&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;author_email&#39;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;author_link&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;uri&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;author_link&#39;</span><span class="p">])</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">endElement</span><span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Unique ID.</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">unique_id</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;unique_id&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">unique_id</span> <span class="o">=</span> <span class="n">get_tag_uri</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;link&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;pubdate&#39;</span><span class="p">])</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">unique_id</span><span class="p">)</span>
+
+        <span class="c1"># Summary.</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;summary&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">],</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;html&quot;</span><span class="p">})</span>
+
+        <span class="c1"># Enclosures.</span>
+        <span class="k">for</span> <span class="n">enclosure</span> <span class="ow">in</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;enclosures&#39;</span><span class="p">]:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s1">&#39;link&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="s1">&#39;rel&#39;</span><span class="p">:</span> <span class="s1">&#39;enclosure&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;href&#39;</span><span class="p">:</span> <span class="n">enclosure</span><span class="o">.</span><span class="n">url</span><span class="p">,</span>
+                <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="n">enclosure</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">enclosure</span><span class="o">.</span><span class="n">mime_type</span><span class="p">,</span>
+            <span class="p">})</span>
+
+        <span class="c1"># Categories.</span>
+        <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;categories&#39;</span><span class="p">]:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;term&quot;</span><span class="p">:</span> <span class="n">cat</span><span class="p">})</span>
+
+        <span class="c1"># Rights.</span>
+        <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;item_copyright&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">handler</span><span class="o">.</span><span class="n">addQuickElement</span><span class="p">(</span><span class="s2">&quot;rights&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;item_copyright&#39;</span><span class="p">])</span></div>
+
+
+<span class="c1"># This isolates the decision of what the system default is, so calling code can</span>
+<span class="c1"># do &quot;feedgenerator.DefaultFeed&quot; instead of &quot;feedgenerator.Rss201rev2Feed&quot;.</span>
+<span class="n">DefaultFeed</span> <span class="o">=</span> <span class="n">Rss201rev2Feed</span>
+</pre></div>
+</div>
+
+
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Bostjan Kaluza donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../../">Module code</a>
+      
+      <ul><li><a href="../../">django</a>
+      
+      <ul><li>django.utils.feedgenerator</li></ul>
+      </li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

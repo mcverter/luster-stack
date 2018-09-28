@@ -1,0 +1,1536 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Introduction to Amazon S3 - Amazon Simple Storage Service</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="home" href="#top" />
+      <link rel="up" href="Welcome.html" title="What Is Amazon S3?" />
+      <link rel="prev" href="Welcome.html" title="What Is Amazon S3?" />
+      <link rel="next" href="MakingRequests.html" title="Making Requests" />
+      <meta name="description" content="Store and retrieve any amount of data, at any time, from anywhere on the web using Amazon S3." />
+      <meta name="deployment_region" content="IAD" />
+      <meta name="product" content="Amazon Simple Storage Service" />
+      <meta name="guide" content="Developer Guide" />
+      <meta name="guide-locale" content="en_us" />
+      <link rel="icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="canonical" href="https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css" />
+      <link rel="stylesheet" type="text/css" href="/font/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="/css/google-font.css" />
+      <link id="code-style" rel="stylesheet" type="text/css" href="/css/code/light.css" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.theme.css" />
+      <link rel="stylesheet" type="text/css" href="/css/colorbox.css" />
+      <link rel="stylesheet" type="text/css" href="/css/awsdocs.css?v=20170615" /><script type="text/javascript" src="/js/highlight.pack.js"></script><script type="text/javascript" src="/js/jquery.min.js"></script><script type="text/javascript" src="/js/jquery-ui.min.js"></script><script type="text/javascript" src="/js/handlebars.js"></script><script type="text/javascript" src="/js/jquery.colorbox.js"></script><script type="text/javascript" src="/js/awsdocs.min.js?v=20170615"></script></head>
+   <body id="top">
+      <div xmlns:db="http://docbook.org/ns/docbook" id="aws-nav" class="aws-nav-header">
+         <div class="aws-nav-header-left">
+            <div id="aws-nav-flyout-trigger" class="aws-nav-flyout-trigger"><i class="fa fa-bars fa-2x"></i></div>
+            <div class="aws-nav-logo">
+               <!--aws_logo_105x39.png--><a href="http://aws.amazon.com"><img src="/images/aws_logo_105x39.png" alt="Amazon Web Services" /></a></div>
+         </div>
+         <div id="aws-nav-header-right" class="aws-nav-header-right">
+            <div class="aws-nav-cta-button-outer"><a id="aws-nav-cta-button" class="aws-nav-button" href="https://console.aws.amazon.com/console/home">Sign In to the Console</a></div>
+            <div class="aws-nav-popover-trigger" data-dropdown="aws-nav-dropdown-lang"><select id="languageSelection" onchange="SelectLanguage()">
+                  <option value="/de_de/AmazonS3/latest/dev/Introduction.html">Deutsch</option>
+                  <option value="/en_us/AmazonS3/latest/dev/Introduction.html" selected="selected">English</option>
+                  <option value="/es_es/AmazonS3/latest/dev/Introduction.html">Español</option>
+                  <option value="/fr_fr/AmazonS3/latest/dev/Introduction.html">Français</option>
+                  <option value="/it_it/AmazonS3/latest/dev/Introduction.html">Italiano</option>
+                  <option value="/ja_jp/AmazonS3/latest/dev/Introduction.html">日本語</option>
+                  <option value="/ko_kr/AmazonS3/latest/dev/Introduction.html">한국어</option>
+                  <option value="/pt_br/AmazonS3/latest/dev/Introduction.html">Português</option>
+                  <option value="/zh_cn/AmazonS3/latest/dev/Introduction.html">中文 (简体)</option>
+                  <option value="/zh_tw/AmazonS3/latest/dev/Introduction.html">中文 (繁體)</option></select></div><a class="btn btn-rss-link" id="rss-link-top" target="_blank" href="s3-dev-guide-rss-updates.rss" title="View RSS Feed"></a><a class="btn btn-kindle-link" id="kindle-link-top" target="_blank" href="http://www.amazon.com/dp/B0763Z4YVV" title="Open Kindle"></a><a class="btn btn-pdf-link" id="pdf-link-top" href="s3-dg.pdf#Introduction" target="_blank" title="Open PDF"></a><a class="btn btn-github-link" id="github-link-top" href="https://github.com/awsdocs/amazon-s3-developer-guide/tree/master/doc_source/Introduction.md" target="_blank" title="Edit on GitHub"></a><div id="aws-nav-quicklinks-separator" class="aws-nav-quicklinks-separator">
+               <div class="aws-nav-left"></div>
+               <div class="aws-nav-right"></div>
+            </div>
+         </div>
+         <div xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" id="topnav-flyout-menu-container">
+            <ul id="topnav-flyout-menu"><script id="flyout-item-template" type="text/x-handlebars-template">
+                    {{#flyoutList}}
+
+                        {{#if topTarget}}
+                            <li class="awsdocs-flyout-link-wrapper"><a href="{{topTarget}}">{{listItem}}</a></li>
+                        {{else}}
+                            <li>{{listItem}}
+                                {{#if subList}}
+                                <ul>
+                                    {{#subList}}
+                                    <li class="awsdocs-flyout-link-wrapper"><a href="{{target}}">{{text}}</a></li>
+                                    {{/subList}}
+                                </ul>
+                                {{/if}}
+                            </li>
+                        {{/if}}
+
+                    {{/flyoutList}}
+                </script></ul>
+            <div id="topnav-flyout-menu-spacer"></div>
+         </div>
+      </div>
+      <div id="content-container">
+         <div id="left-column">
+            <div id="left-col-header">
+               <div xmlns:db="http://docbook.org/ns/docbook" id="left-col-top-content">
+                  <div id="service-name">Amazon Simple Storage Service </div>
+                  <div id="search"><i id="search-icon" class="fa fa-search fa-2x"></i></div>
+                  <div id="guide-info">Developer Guide (API Version 2006-03-01)
+                     <div id="content-button"><i id="toggle-contents" class="fa fa-bars"></i></div>
+                  </div>
+               </div>
+               <form id="finegrainedSearch" method="get" onsubmit="return searchFormSubmit(this);" action="/search/doc-search.html">
+                  <div id="search-form"><select id="search-select" name="searchPath">
+                        <option value="all">Entire Site</option>
+                        <option value="AWSMarketplace">AMIs from AWS Marketplace</option>
+                        <option value="amis">AMIs from All Sources</option>
+                        <option value="articles">Articles &amp; Tutorials</option>
+                        <option value="products_and_info">AWS Product Information</option>
+                        <option value="case_studies">Case Studies</option>
+                        <option value="customerapps">Customer Apps</option>
+                        <option value="documentation">Documentation</option>
+                        <option value="documentation-product">Documentation - This Product</option>
+                        <option value="documentation-guide" selected="selected">Documentation - This Guide</option>
+                        <option value="datasets">Public Data Sets</option>
+                        <option value="releasenotes">Release Notes</option>
+                        <option value="solution_providers">Partners</option>
+                        <option value="code">Sample Code &amp; Libraries</option></select><br /><input id="search-query" name="searchQuery" type="text" placeholder="Search" /><input id="search-button" src="/images/search-button.png" alt="Go" type="image" /></div><input type="hidden" name="this_doc_product" id="this_doc_product" value="Amazon Simple Storage Service" /><input type="hidden" name="this_doc_guide" id="this_doc_guide" value="Developer Guide" /><input type="hidden" name="doc_locale" value="en_us" /></form>
+            </div>
+            <div id="toc">
+               <ul class="awstoc">
+                  <li class="awstoc leaf"><a class="awstoc" href="Welcome.html">What Is Amazon S3?</a></li>
+                  <li class="awstoc leaf"><a class="awstoc selected" href="Introduction.html">Introduction</a></li>
+                  <li class="awstoc closed"><a class="awstoc" href="MakingRequests.html">Making Requests</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="ipv6-access.html">Making Requests over IPv6</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="dual-stack-endpoints.html">Using Dual-Stack Endpoints</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="MakingAuthenticatedRequests.html">Making Requests Using the AWS SDKs</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="AuthUsingAcctOrUserCredentials.html">Using AWS Account or IAM User Credentials</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingAcctOrUserCredJava.html">Making Requests Using AWS Account or IAM User Credentials - AWS SDK for Java</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingAcctOrUserCredDotNet.html">Making Requests Using AWS Account or IAM User Credentials - AWS SDK for .NET</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingAcctOrUserCredPHP3.html">Making Requests Using AWS Account or IAM User Credentials - AWS SDK for PHP</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingAcctOrUserCredRuby.html">Making Requests Using AWS Account or IAM User Credentials - AWS SDK for Ruby</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="AuthUsingTempSessionToken.html">Using IAM User Temporary Credentials</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingTempSessionTokenJava.html">Making Requests Using IAM User Temporary Credentials - AWS SDK for Java</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingTempSessionTokenDotNet.html">Making Requests Using IAM User Temporary Credentials - AWS SDK for .NET</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingTempSessionTokenPHP.html">Making Requests Using AWS Account or IAM User Temporary Credentials - AWS SDK for
+                                          PHP</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingTempSessionTokenRuby.html">Making Requests Using IAM User Temporary Credentials - AWS SDK for Ruby</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="AuthUsingTempFederationToken.html">Using Federated User Temporary Credentials</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingTempFederationTokenJava.html">Making Requests Using Federated User Temporary Credentials - AWS SDK for Java</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingTempFederationTokenDotNet.html">Making Requests Using Federated User Temporary Credentials - AWS SDK for .NET</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingTempFederationTokenPHP.html">Making Requests Using Federated User Temporary Credentials - AWS SDK for PHP</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="AuthUsingTempFederationTokenRuby.html">Making Requests Using Federated User Temporary Credentials - AWS SDK for Ruby</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="RESTAPI.html">Making Requests Using the REST API</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="VirtualHosting.html">Virtual Hosting of Buckets</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="RESTRedirect.html">Request Redirection and the REST API</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="UsingBucket.html">Buckets</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="BucketRestrictions.html">Restrictions and Limitations</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="create-bucket-get-location-example.html">Examples of Creating a Bucket</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="delete-or-empty-bucket.html">Deleting or Emptying a Bucket</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="bucket-encryption.html">Default Encryption for a Bucket</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="ManagingBucketWebsiteConfig.html">Bucket Website Configuration</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="ConfigWebSiteConsole.html">Using the AWS Management Console</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ConfigWebSiteJava.html">Using the AWS SDK for Java</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ConfigWebSiteDotNet.html">Using the AWS SDK for .NET</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ConfigWebSitePHP.html">Using the SDK for PHP</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ConfigWebSiteREST.html">Using the REST API</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="transfer-acceleration.html">Transfer Acceleration</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="transfer-acceleration-examples.html">Transfer Acceleration Examples</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="RequesterPaysBuckets.html">Requester Pays Buckets</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="configure-requester-pays-console.html">Configure with the Console</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="configure-requester-pays-rest.html">Configure with the REST API</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="RequesterPaysBucketConfiguration.html">Setting the requestPayment Bucket Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="BucketPayerValues.html">Retrieving the requestPayment Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ObjectsinRequesterPaysBuckets.html">Downloading Objects in Requester Pays Buckets</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="BucketAccess.html">Access Control</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="BucketBilling.html">Billing and Usage Reporting</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="aws-billing-reports.html">Billing Reports</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="aws-usage-report.html">Usage Report</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="aws-usage-report-understand.html">Understanding Billing and Usage Reports</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="CostAllocTagging.html">Using Cost Allocation Tags</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="UsingObjects.html">Objects</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="UsingMetadata.html">Object Key and Metadata</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="storage-class-intro.html">Storage Classes</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ObjectAndSoubResource.html">Subresources</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ObjectVersioning.html">Versioning</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="object-tagging.html">Object Tagging</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="tagging-managing.html">Managing Object Tags</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="tagging-manage-console.html">Managing Object Tags the Console</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="tagging-manage-javasdk.html">Managing Tags Using the AWS SDK for Java</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="tagging-manage-dotnet.html">Managing Tags Using the AWS SDK for .NET</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="object-lifecycle-mgmt.html">Lifecycle Management</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="lifecycle-additional-considerations.html">Additional Considerations</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="lifecycle-transition-general-considerations.html">Transitioning Objects</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="lifecycle-expire-general-considerations.html">Configuring Object Expiration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="lifecycle-and-other-bucket-config.html">Lifecycle and Other Bucket Configurations</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="intro-lifecycle-rules.html">Lifecycle Configuration Elements</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="lifecycle-configuration-examples.html">Examples of Lifecycle Configuration</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="how-to-set-lifecycle-configuration-intro.html">Setting Lifecycle Configuration</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="manage-lifecycle-using-console.html">Using the Amazon S3 console</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="set-lifecycle-cli.html">Using the AWS CLI</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="manage-lifecycle-using-java.html">Using the AWS SDK for Java</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="manage-lifecycle-using-dot-net.html">Using the AWS SDK for .NET</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="manage-lifecycle-using-ruby.html">Using the AWS SDK for Ruby</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="manage-lifecycle-using-rest.html">Using the REST API</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="cors.html">Cross-Origin Resource Sharing (CORS)</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="ManageCorsUsing.html">Enabling CORS</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ManageCorsUsingConsole.html">Using the AWS Management Console</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ManageCorsUsingJava.html">Using the SDK for Java</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ManageCorsUsingDotNet.html">Using the AWS SDK for .NET</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="EnableCorsUsingREST.html">Using the REST API</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="cors-troubleshooting.html">Troubleshooting CORS</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="ObjectOperations.html">Operations on Objects</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="GettingObjectsUsingAPIs.html">Getting Objects</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="RetrievingObjectUsingJava.html">Using the SDK for Java</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="RetrievingObjectUsingNetSDK.html">Using the AWS SDK for .NET</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="RetrieveObjSingleOpPHP.html">Using the SDK for PHP</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="RetrieveObjSingleOpREST.html">Using the REST API</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ShareObjectPreSignedURL.html">Share an Object with Others</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="ShareObjectPreSignedURLVSExplorer.html">Generate a Pre-signed Object URL using AWS Explorer for Visual Studio</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="ShareObjectPreSignedURLJavaSDK.html">Generate a Pre-signed Object URL Using the AWS SDK for Java</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="ShareObjectPreSignedURLDotNetSDK.html">Generate a Pre-signed Object URL Using AWS SDK for .NET</a></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="UploadingObjects.html">Uploading Objects</a><ul class="awstoc">
+                                    <li class="awstoc closed"><a class="awstoc" href="UploadInSingleOp.html">Uploading Objects in a Single Operation</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="UploadObjSingleOpJava.html">Using the SDK for Java</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="UploadObjSingleOpNET.html">Using the AWS SDK for .NET</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="UploadObjSingleOpPHP.html">Using the SDK for PHP</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="UploadObjSingleOpRuby.html">Using the SDK for Ruby</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="UploadObjSingleOpREST.html">Using the REST API</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="uploadobjusingmpu.html">Uploading Objects Using Multipart Upload API</a><ul class="awstoc">
+                                          <li class="awstoc closed"><a class="awstoc" href="mpuoverview.html">Multipart Upload Overview</a><ul class="awstoc">
+                                                <li class="awstoc leaf"><a class="awstoc" href="qfacts.html">Multipart Upload Limits</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="sdksupportformpu.html">API Support for Multipart Upload</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="mpuAndPermissions.html">Multipart Upload API and Permissions</a></li>
+                                             </ul>
+                                          </li>
+                                          <li class="awstoc closed"><a class="awstoc" href="usingHLmpuJava.html">Using the AWS Java SDK (High-Level API)</a><ul class="awstoc">
+                                                <li class="awstoc leaf"><a class="awstoc" href="HLuploadFileJava.html">Upload a File</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="HLAbortMPUploadsJava.html">Abort Multipart Uploads</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="HLTrackProgressMPUJava.html">Track Multipart Upload Progress</a></li>
+                                             </ul>
+                                          </li>
+                                          <li class="awstoc closed"><a class="awstoc" href="mpListPartsJavaAPI.html">Using the AWS Java SDK (Low-Level API)</a><ul class="awstoc">
+                                                <li class="awstoc leaf"><a class="awstoc" href="llJavaUploadFile.html">Upload a File</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="LLlistMPuploadsJava.html">List Multipart Uploads</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="LLAbortMPUJava.html">Abort a Multipart Upload</a></li>
+                                             </ul>
+                                          </li>
+                                          <li class="awstoc closed"><a class="awstoc" href="usingHLmpuDotNet.html">Using the AWS .NET SDK (High-Level API)</a><ul class="awstoc">
+                                                <li class="awstoc leaf"><a class="awstoc" href="HLuploadFileDotNet.html">Upload a File</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="HLuploadDirDotNet.html">Upload a Directory</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="HLAbortDotNet.html">Abort Multipart Uploads</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="HLTrackProgressMPUDotNet.html">Track Multipart Upload Progress</a></li>
+                                             </ul>
+                                          </li>
+                                          <li class="awstoc closed"><a class="awstoc" href="usingLLmpuDotNet.html">Using the AWS .NET SDK (Low-Level API)</a><ul class="awstoc">
+                                                <li class="awstoc leaf"><a class="awstoc" href="LLuploadFileDotNet.html">Upload a File</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="LLlistMPuploadsDotNet.html">List Multipart Uploads</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="LLTrackProgressMPUNet.html">Track Multipart Upload Progress</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="LLAbortMPUnet.html">Abort a Multipart Upload</a></li>
+                                             </ul>
+                                          </li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="usingHLmpuPHP.html">Using the AWS PHP SDK (High-Level API)</a></li>
+                                          <li class="awstoc closed"><a class="awstoc" href="usingLLmpuPHP.html">Using the AWS PHP SDK (Low-Level API)</a><ul class="awstoc">
+                                                <li class="awstoc leaf"><a class="awstoc" href="LLuploadFilePHP.html">Upload a File</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="LLlistMPuploadsPHP.html">List Multipart Uploads</a></li>
+                                                <li class="awstoc leaf"><a class="awstoc" href="LLAbortMPUphp.html">Abort a Multipart Upload</a></li>
+                                             </ul>
+                                          </li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="uploadobjusingmpu-ruby-sdk.html">Using the SDK for Ruby</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="UsingRESTAPImpUpload.html">Using the REST API</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="PresignedUrlUploadObject.html">Uploading Objects Using Pre-Signed URLs</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="PresignedUrlUploadObjectJavaSDK.html">Using the SDK for Java</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="UploadObjectPreSignedURLDotNetSDK.html">Using the AWS SDK for .NET</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="UploadObjectPreSignedURLRubySDK.html">Using the AWS SDK for Ruby</a></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="CopyingObjectsExamples.html">Copying Objects</a><ul class="awstoc">
+                                    <li class="awstoc closed"><a class="awstoc" href="CopyingObjectsUsingAPIs.html">Copying Objects in a Single Operation</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="CopyingObjectUsingJava.html">Using the SDK for Java</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="CopyingObjectUsingNetSDK.html">Using the AWS SDK for .NET</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="CopyingObjectUsingPHP.html">Using the SDK for PHP</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="CopyingObjectUsingRuby.html">Using the SDK for Ruby</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="CopyingObjectUsingREST.html">Using the REST API</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="CopyingObjctsMPUapi.html">Copying Objects Using the Multipart Upload API</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="CopyingObjctsUsingLLJavaMPUapi.html">Using the SDK for Java</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="CopyingObjctsUsingLLNetMPUapi.html">Copy an Object Using the AWS SDK for .NET</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="CopyingObjctsUsingRESTMPUapi.html">Using the REST API</a></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="ListingKeysUsingAPIs.html">Listing Object Keys</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ListingKeysHierarchy.html">Using a Prefix and Delimiter</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ListingObjectKeysUsingJava.html">Using the SDK for Java</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ListingObjectKeysUsingNetSDK.html">Using the AWS SDK for .NET</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ListingObjectKeysUsingPHP.html">Using the SDK for PHP</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ListingObjectKeysUsingREST.html">Using the REST API</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="DeletingObjects.html">Deleting Objects</a><ul class="awstoc">
+                                    <li class="awstoc closed"><a class="awstoc" href="DeletingOneObject.html">Deleting One Object Per Request</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="DeletingOneObjectUsingJava.html">Using the SDK for Java</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="DeletingOneObjectUsingNetSDK.html">Using the AWS SDK for .NET</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="DeletingOneObjectUsingPHPSDK.html">Using the SDK for PHP</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="DeletingAnObjectsUsingREST.html">Using the REST API</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="DeletingMultipleObjects.html">Deleting Multiple Objects Per Request</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="DeletingMultipleObjectsUsingJava.html">Using the SDK for Java</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="DeletingMultipleObjectsUsingNetSDK.html">Using the AWS SDK for .NET</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="DeletingMultipleObjectsUsingPHPSDK.html">Using the SDK for PHP</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="DeletingMultipleObjectsUsingREST.html">Using the REST API</a></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="selecting-content-from-objects.html">Selecting Content from Objects</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="SelectObjectContentUsingJava.html">Using the SDK for Java</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="SelectObjectContentUsingRestApi.html">Using the REST API</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="SelectObjectContentUsingOtherSDKs.html">Using Other SDKs</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="restoring-objects.html">Restoring Archived Objects</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="restoring-objects-console.html">Using the Console</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="restoring-objects-java.html">Using the SDK for Java</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="restore-object-dotnet.html">Using the AWS SDK for .NET</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="restoring-objects-rest.html">Using the REST API</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="querying-glacier-archives.html">Querying Archived Objects</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="analytics-storage-class.html">Storage Class Analysis</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="storage-inventory.html">Inventory</a></li>
+                  <li class="awstoc closed"><a class="awstoc" href="s3-access-control.html">Managing Access</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="intro-managing-access-s3-resources.html">Introduction</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="access-control-overview.html">Overview</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="how-s3-evaluates-access-control.html">How Amazon S3 Authorizes a Request</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="access-control-auth-workflow-bucket-operation.html">For a Bucket Operation</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="access-control-auth-workflow-object-operation.html">For an Object Operation</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="access-policy-alternatives-guidelines.html">Guidelines for Using the Available Access Policy Options</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="example-walkthroughs-managing-access.html">Example Walkthroughs: Managing Access</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="policy-eval-walkthrough-download-awscli.html">Setting Up Tools</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="example-walkthroughs-managing-access-example1.html">Example 1: Bucket Owner Granting Its Users Bucket Permissions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="example-walkthroughs-managing-access-example2.html">Example 2: Bucket Owner Granting Cross-Account Bucket Permissions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="example-walkthroughs-managing-access-example3.html">Example 3: Bucket Owner Granting Its Users Permissions to Objects It Does Not Own</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="example-walkthroughs-managing-access-example4.html">Example 4: Bucket Owner Granting Cross-account Permission to Objects It Does Not Own</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-iam-policies.html">Using Bucket Policies and User Policies</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="access-policy-language-overview.html">Access Policy Language Overview</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="s3-arn-format.html">Specifying Resources</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="s3-bucket-user-policy-specifying-principal-intro.html">Specifying a Principal</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="using-with-s3-actions.html">Specifying Permissions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="amazon-s3-policy-keys.html">Specifying Conditions</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="example-bucket-policies.html">Bucket Policy Examples</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="example-bucket-policies-vpc-endpoint.html">Example Bucket Policies for VPC Endpoints</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="example-policies-s3.html">User Policy Examples</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="walkthrough1.html">An Example Walkthrough: Using user policies to control access to your bucket</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="S3_ACLs_UsingACLs.html">Managing Access with ACLs</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="acl-overview.html">Access Control List (ACL) Overview</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="managing-acls.html">Managing ACLs</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="manage-acls-using-console.html">Managing ACLs in the AWS Management Console</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="acl-using-java-sdk.html">Managing ACLs Using the AWS SDK for Java</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="acl-using-dot-net-sdk.html">Managing ACLs Using the AWS SDK for .NET</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="acl-using-rest-api.html">Managing ACLs Using the REST API</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="DataDurability.html">Protecting Data</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="UsingEncryption.html">Data Encryption</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="serv-side-encryption.html">Server-Side Encryption</a><ul class="awstoc">
+                                    <li class="awstoc closed"><a class="awstoc" href="UsingKMSEncryption.html">KMS-Managed Encryption Keys</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="kms-using-sdks.html">SSE-KMS and AWS SDKs</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="KMSUsingRESTAPI.html">SSE-KMS REST API</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="UsingServerSideEncryption.html">Amazon S3-Managed Encryption Keys</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="SSEUsingJavaSDK.html">AWS SDK for Java</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="SSEUsingDotNetSDK.html">AWS SDK for .NET</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="SSEUsingPHPSDK.html">AWS SDK for PHP</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="SSEUsingRubySDK.html">AWS SDK for Ruby</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="SSEUsingRESTAPI.html">REST API</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="SSEUsingConsole.html">AWS Management Console</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ServerSideEncryptionCustomerKeys.html">Customer-Provided Encryption Keys</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="sse-c-using-java-sdk.html">Specifying Server-Side Encryption with Customer-Provided Encryption Keys Using the
+                                                AWS SDK for Java</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="sse-c-using-dot-net-sdk.html">AWS SDK for .NET</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="ServerSideEncryptionCustomerKeysSSEUsingRESTAPI.html">REST API</a></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="UsingClientSideEncryption.html">Client-Side Encryption</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="Versioning.html">Versioning</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="manage-versioning-examples.html">Examples</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="manage-objects-versioned-bucket.html">Managing Objects in a Versioning-Enabled Bucket</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="AddingObjectstoVersioningEnabledBuckets.html">Adding Objects to Versioning-Enabled Buckets</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="list-obj-version-enabled-bucket.html">Listing Objects in a Versioning-Enabled Bucket</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="RetrievingObjectVersions.html">Retrieving Object Versions</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="RetMetaOfObjVersion.html">Retrieving the Metadata of an Object Version</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="DeletingObjectVersions.html">Deleting Object Versions</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="UsingMFADelete.html">Using MFA Delete</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="DeleteMarker.html">Working with Delete Markers</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="RemDelMarker.html">Removing Delete Markers</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="transitioning-object-versions.html">Transitioning Object Versions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="RestoringPreviousVersions.html">Restoring Previous Versions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="VersionedObjectPermissionsandACLs.html">Versioned Object Permissions</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="VersionSuspendedBehavior.html">Managing Objects in a Versioning-Suspended Bucket</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="AddingObjectstoVersionSuspendedBuckets.html">Adding Objects to Versioning-Suspended Buckets</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="RetrievingObjectsfromVersioningSuspendedBuckets.html">Retrieving Objects from Versioning-Suspended Buckets</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="DeletingObjectsfromVersioningSuspendedBuckets.html">Deleting Objects from Versioning-Suspended Buckets</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="WebsiteHosting.html">Hosting a Static Website</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="WebsiteEndpoints.html">Website Endpoints</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="HowDoIWebsiteConfiguration.html">Configuring a Bucket for Website Hosting</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="EnableWebsiteHosting.html">Enabling Website Hosting</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="IndexDocumentSupport.html">Configuring Index Document Support</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="WebsiteAccessPermissionsReqd.html">Permissions Required for Website Access</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="LoggingWebsiteTraffic.html">(Optional) Configuring Web Traffic Logging</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="CustomErrorDocSupport.html">(Optional) Custom Error Document Support</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="how-to-page-redirect.html">(Optional) Configuring a Redirect</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="hosting-websites-on-s3-examples.html">Example Walkthroughs</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="HostingWebsiteOnS3Setup.html">Example: Setting up a Static Website</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="website-hosting-custom-domain-walkthrough.html">Example: Setting up a Static Website Using a Custom Domain</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="website-hosting-cloudfront-walkthrough.html">Example: Speed Up Your Website with Amazon CloudFront</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="getting-started-cleanup.html">Clean Up Example Resources</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="NotificationHowTo.html">Notifications</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ways-to-add-notification-config-to-bucket.html">Example Walkthrough 1</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="notification-walkthrough-2.html">Example Walkthrough 2</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="notification-content-structure.html">Event Message Structure</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="crr.html">Cross-Region Replication</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="crr-what-is-isnot-replicated.html">What Does Amazon S3 Replicate?</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="crr-how-setup.html">Overview of Setting Up CRR</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="crr-add-config.html">Replication Configuration Overview</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="setting-repl-config-perm-overview.html">Setting Up Permissions for CRR</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="crr-additional-configs.html">Additional CRR Configurations</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="crr-change-owner.html">CRR Additional Configuration: Changing Replica Owner</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="crr-replication-config-for-kms-objects.html">CRR Additional Configuration: Replicating Encrypted Objects</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="crr-example-walkthroughs.html">CRR Walkthroughs</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="crr-walkthrough1.html">CRR Example 1: Same AWS Account</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="crr-walkthrough-2.html">CRR Example 2: Different AWS Accounts</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="crr-walkthrough-3.html">CRR Example 3: Change Replica Owner</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="crr-walkthrough-4.html">CRR Example 4: Replicating Encrypted Objects</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="crr-status.html">CRR: Status Information</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="crr-troubleshoot.html">CRR: Troubleshooting</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="crr-and-other-bucket-configs.html">CRR: Additional Considerations</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="UsingRouting.html">Request Routing</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="Redirects.html">Request Redirection and the REST API</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="DNSConsiderations.html">DNS Considerations</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="PerformanceOptimization.html">Performance Optimization</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="request-rate-perf-considerations.html">Request Rate and Performance Guidelines</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TCPWindowScaling.html">TCP Window Scaling</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TCPSelectiveAcknowledgement.html">TCP Selective Acknowledgement</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="monitoring-overview.html">Monitoring</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="monitoring-automated-manual.html">Monitoring Tools</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="cloudwatch-monitoring.html">Monitoring Metrics with CloudWatch</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="metrics-configurations.html">Metrics Configurations for Buckets</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="cloudtrail-logging.html">Logging API Calls with AWS CloudTrail</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="S3Torrent.html">BitTorrent</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="S3TorrentCharge.html">How You are Charged for BitTorrent Delivery</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="S3TorrentRetrieve.html">Using BitTorrent to Retrieve Objects Stored in Amazon S3</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="S3TorrentPublish.html">Publishing Content Using Amazon S3 and BitTorrent</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="HandlingErrors.html">Error Handling</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="UsingRESTError.html">The REST Error Response</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="ErrorResponse.html">Error Response</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ErrorCode.html">Error Code</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ErrorMessage.html">Error Message</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ErrorDetails.html">Further Details</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="UsingSOAPError.html">The SOAP Error Response</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ErrorBestPractices.html">Amazon S3 Error Best Practices</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="troubleshooting.html">Troubleshooting Amazon S3</a></li>
+                  <li class="awstoc closed"><a class="awstoc" href="ServerLogs.html">Server Access Logging</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="enable-logging-console.html">Enabling Logging Using the Console</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="enable-logging-programming.html">Enabling Logging Programmatically</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="LogFormat.html">Log Format</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="deleting-log-files-lifecycle.html">Deleting Log Files</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="UsingAWSSDK.html">AWS SDKs and Explorers</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="setup-aws-cli.html">Setting Up the AWS CLI</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="UsingTheMPJavaAPI.html">Using the AWS SDK for Java</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="UsingTheMPDotNetAPI.html">Using the AWS SDK for .NET</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="UsingTheMPphpAPI.html">Using the AWS SDK for PHP and Running PHP Examples</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="UsingTheMPRubyAPI.html">Using the AWS SDK for Ruby - Version 3</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="UsingTheBotoAPI.html">Using the AWS SDK for Python (Boto)</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-mobile-sdks.html">Using the AWS Mobile SDKs for iOS and Android</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-aws-amplify.html">Using the AWS Amplify JavaScript Library</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Appendices.html">Appendices</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="SOAPAPI3.html">Appendix A: Using the SOAP API</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="UsingSOAPOperations.html">Common SOAP API Elements</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="SOAPAuthentication.html">Authenticating SOAP Requests</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="SOAPAccessPolicy.html">Setting Access Policy with SOAP</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="auth-request-sig-v2.html">Appendix B: Authenticating Requests (AWS Signature Version 2)</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="S3_Authentication2.html">Authenticating Requests Using the REST API</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="RESTAuthentication.html">Signing and Authenticating REST Requests</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="UsingHTTPPOST.html">Browser-Based Uploads Using POST</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="HTTPPOSTForms.html">HTML Forms</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="HTTPPOSTExamples.html">Upload Examples</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="HTTPPOSTFlash.html">POST with Adobe Flash</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="RelatedResources012.html">Resources</a></li>
+                  <li class="awstoc closed"><a class="awstoc" href="s3-glacier-select-sql-reference.html">SQL Reference</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="s3-glacier-select-sql-reference-select.html">SELECT Command</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="s3-glacier-select-sql-reference-data-types.html">Data Types</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="s3-glacier-select-sql-reference-operators.html">Operators</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="s3-glacier-select-sql-reference-keyword-list.html">Reserved Keywords</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="s3-glacier-select-sql-reference-sql-functions.html">SQL Functions</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="s3-glacier-select-sql-reference-aggregate.html">Aggregate Functions (Amazon S3 Select only)</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="s3-glacier-select-sql-reference-conditional.html">Conditional Functions</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="s3-glacier-select-sql-reference-conversion.html">Conversion Functions</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="s3-glacier-select-sql-reference-date.html">Date Functions</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="s3-glacier-select-sql-reference-string.html">String Functions</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="WhatsNew.html">Document History</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="glossary.html">AWS Glossary</a></li>
+                  <li id="toc-additional-links"><a class="btn btn-pdf-link" id="pdf-link-alt" href="s3-dg.pdf#top" target="_blank" title="Open PDF"></a><a class="btn btn-kindle-link" id="kindle-link-alt" target="_blank" href="http://www.amazon.com/dp/B0763Z4YVV" title="Open Kindle"></a><a class="btn btn-rss-link" id="rss-link-alt" target="_blank" href="s3-dev-guide-rss-updates.rss" title="View RSS Feed"></a></li>
+               </ul>
+            </div>
+         </div>
+         <div id="main-column">
+            <div id="main">
+               <div id="main-content">
+                  <div id="main-col-body">
+                     <table summary="Breadcrumbs">
+                        <tr>
+                           <td>
+                              <div class="breadcrumb"><a href="/index.html">AWS Documentation</a> » <a href="/s3/index.html">Amazon Simple Storage Service (S3)</a> » <a href="index.html">Developer Guide</a> » <span class="breadcrumb">Introduction to Amazon S3</span></div>
+                           </td>
+                        </tr>
+                     </table>
+                     <div></div>
+                     <h1 class="topictitle" id="Introduction">Introduction to Amazon S3</h1>
+                     <p>This introduction to Amazon Simple Storage Service is intended to give you a detailed
+                        summary of this web
+                        		service. After reading this section, you should have a good idea of what it offers
+                        and how
+                        		it can fit in with your business.
+                     </p>
+                     <div class="highlights" id="inline-topiclist">
+                        <p><strong>Topics</strong></p>
+                        <ul>
+                           <li><a href="#overview">Overview of Amazon S3 and This Guide</a></li>
+                           <li><a href="#features">Advantages to Amazon S3</a></li>
+                           <li><a href="#CoreConcepts">Amazon S3 Concepts</a></li>
+                           <li><a href="#S3Features">Amazon S3 Features</a></li>
+                           <li><a href="#API">Amazon S3 Application Programming Interfaces (API)</a></li>
+                           <li><a href="#PayingforStorage">Paying for Amazon S3</a></li>
+                           <li><a href="#RelatedAmazonWebServices">Related Services </a></li>
+                        </ul>
+                     </div>
+                     <h2 id="overview">Overview of Amazon S3 and This Guide</h2>
+                     		
+                     		
+                     <p>Amazon S3 has a simple web services interface that you can use to store and retrieve
+                        			any amount of data, at any time, from anywhere on the web.
+                     </p>
+                     		
+                     <p>This guide describes how you send requests to create buckets, store and retrieve your
+                        
+                        			objects, and manage permissions on your resources. The guide also describes access
+                        
+                        			control and the authentication process. Access control defines who can access objects
+                        
+                        			and buckets within Amazon S3, and the type of access (e.g., READ and WRITE). The
+                        
+                        			authentication process verifies the identity of a user who is trying to access
+                        Amazon 
+                        			Web Services (AWS).
+                     </p>
+                     	
+                     <h2 id="features">Advantages to Amazon S3</h2>
+                     		
+                     		
+                     <p>Amazon S3 is intentionally built with a minimal feature set that focuses on simplicity
+                        			and robustness. Following are some of advantages of the Amazon S3 service:
+                     </p>
+                     		
+                     <div class="itemizedlist">
+                        			
+                        			
+                        			
+                        			
+                        			
+                        		
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              				
+                              <p><span class="topcom">Create Buckets</span> – Create and name a bucket
+                                 					that stores data. Buckets are the fundamental container in Amazon S3 for data
+                                 					storage.
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p><span class="topcom">Store data in Buckets</span> – Store an infinite
+                                 					amount of data in a bucket. Upload as many objects as you like into an Amazon
+                                 S3 bucket. Each object can contain up
+                                 					to 5 TB of data. Each object is stored and retrieved using a unique
+                                 					developer-assigned key.
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p><span class="topcom">Download data</span> – Download your data or
+                                 					enable others to do so. Download your data any time you like or allow others
+                                 to do the
+                                 					same.
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p><span class="topcom">Permissions</span> – Grant or deny access to
+                                 					others who want to upload or download data into your Amazon S3 bucket. Grant
+                                 upload and download permissions to three types of users.
+                                 					Authentication mechanisms can help keep data secure from unauthorized access.
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p><span class="topcom">Standard interfaces</span> – Use standards-based
+                                 					REST and SOAP interfaces designed to work with any Internet-development
+                                 					toolkit.
+                              </p>
+                              				
+                              
+                              <div class="aws-note">
+                                 <p class="aws-note">Note</p>
+                                 <p>
+                                    SOAP support over HTTP is deprecated, but it is still available over HTTPS. 
+                                    New Amazon S3 features will not be supported for SOAP. We recommend that you use 
+                                    either the REST API or the AWS SDKs.
+                                    
+                                 </p>
+                              </div>
+                              
+                              			
+                           </li>
+                        </ul>
+                     </div>
+                     	
+                     <h2 id="CoreConcepts">Amazon S3 Concepts</h2>
+                     		
+                     		
+                     <div class="highlights" id="inline-topiclist">
+                        <p><strong>Topics</strong></p>
+                        <ul>
+                           <li><a href="#BasicsBucket">Buckets</a></li>
+                           <li><a href="#BasicsObjects">Objects</a></li>
+                           <li><a href="#BasicsKeys">Keys</a></li>
+                           <li><a href="#Regions">Regions</a></li>
+                           <li><a href="#ConsistencyModel">Amazon S3 Data Consistency Model</a></li>
+                        </ul>
+                     </div>
+                     		
+                     <p>This section describes key concepts and terminology you need to understand to use
+                        Amazon S3
+                        			effectively. They are presented in the order you will most likely encounter them.
+                     </p>
+                     		
+                     <h3 id="BasicsBucket">Buckets</h3>
+                     			
+                     			
+                     <p> A bucket is a container for objects stored in Amazon S3. Every object is
+                        				contained in a bucket. For example, if the object named
+                        					<code class="code">photos/puppy.jpg</code> is stored in the <code class="code">johnsmith</code> bucket,
+                        				then it is addressable using the URL
+                        					<code class="code">http://johnsmith.s3.amazonaws.com/photos/puppy.jpg</code>
+                        			
+                     </p>
+                     			
+                     <p> Buckets serve several purposes: they organize the Amazon S3 namespace at the
+                        				highest level, they identify the account responsible for storage and data transfer
+                        				charges, they play a role in access control, and they serve as the unit of
+                        				aggregation for usage reporting. 
+                     </p>
+                     			
+                     <p>You can configure buckets so that they are created in a specific region. For more
+                        				information, see <a href="UsingBucket.html#access-bucket-intro">Buckets and Regions</a>. You
+                        				can also configure a bucket so that every time an object is added to it, Amazon
+                        S3
+                        				generates a unique version ID and assigns it to the object. For more information,
+                        				see <a href="Versioning.html">Versioning</a>.
+                     </p>
+                     			
+                     <p> For more information about buckets, see <a href="UsingBucket.html">Working with Amazon S3 Buckets</a>. 
+                     </p>
+                     		
+                     		
+                     <h3 id="BasicsObjects">Objects</h3>
+                     			
+                     			
+                     <p>Objects are the fundamental entities stored in Amazon S3. Objects consist of
+                        				object data and metadata. The data portion is opaque to Amazon S3. The metadata
+                        is a
+                        				set of name-value pairs that describe the object. These include some default
+                        				metadata, such as the date last modified, and standard HTTP metadata, such as
+                        				Content-Type. You can also specify custom metadata at the time the object
+                        				is stored.
+                     </p>
+                     			
+                     <p>An object is uniquely identified within a bucket by a key (name) and a version ID.
+                        				For more information, see <a href="Introduction.html#BasicsKeys">Keys</a> and <a href="Versioning.html">Versioning</a>.
+                     </p>
+                     		
+                     		
+                     <h3 id="BasicsKeys">Keys</h3>
+                     			
+                     			
+                     <p>A key is the unique identifier for an object within a bucket. Every object in a
+                        				bucket has exactly one key. Because the combination of a bucket, key, and version
+                        ID
+                        				uniquely identify each object, Amazon S3 can be thought of as a basic data map
+                        				between "bucket + key + version" and the object itself. Every object in Amazon
+                        S3
+                        				can be uniquely addressed through the combination of the web service endpoint,
+                        				bucket name, key, and optionally, a version. For example, in the URL http://doc.s3.amazonaws.com/2006-03-01/AmazonS3.wsdl,
+                        				"doc" is the name of the bucket and "2006-03-01/AmazonS3.wsdl" is the key.
+                     </p>
+                     			
+                     <p>
+                        				For more information about object keys, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys" target="_blank">Object Keys</a>.
+                        			
+                     </p>
+                     		
+                     		
+                     <h3 id="Regions">Regions</h3>
+                     		  
+                     			
+                     <p>You can choose the geographical region where Amazon S3 will store the buckets you
+                        				create. You might choose a region to optimize latency, minimize costs, or address
+                        				regulatory requirements. Objects stored in a region never leave the region unless
+                        you explicitly transfer
+                        				them to another region. <span>For example, objects stored in the EU (Ireland) region never
+                           					leave it.</span> 
+                     </p>
+                     			
+                     <p>
+                        				For a list of Amazon S3 regions and endpoints, see <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region" target="_blank">Regions and Endpoints</a> in the
+                        				<em>AWS General Reference</em>.	
+                     </p>
+                     
+                     		
+                     <h3 id="ConsistencyModel">Amazon S3 Data Consistency Model</h3>
+                     			
+                     
+                     			
+                     <p>Amazon S3 provides read-after-write consistency for PUTS of new objects in your S3
+                        bucket in all
+                        				regions with one caveat. The caveat is that if you make a HEAD or GET request
+                        to the
+                        				key name (to find if the object exists) before creating the object, Amazon S3
+                        				provides eventual consistency for read-after-write. 
+                     </p>
+                     			
+                     <p>Amazon S3 offers eventual consistency for overwrite PUTS and DELETES in all regions.
+                        
+                     </p>
+                     			
+                     <p> Updates to a single key are atomic. For example, if you PUT to an existing key, a
+                        				subsequent read might return the old data or the updated data, but it will never
+                        				return corrupted or partial data. 
+                     </p>
+                     			
+                     <p>Amazon S3 achieves high availability by replicating data across multiple servers
+                        				within Amazon's data centers. If a PUT request is successful, your data is safely
+                        				stored. However, information about the changes must replicate
+                        				across Amazon S3, which can take some time, and so you might observe the following
+                        behaviors:
+                     </p>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        				
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p> A process writes a new object to Amazon S3 and immediately lists keys
+                                 						within its bucket. Until the change is fully propagated, the object might
+                                 						not appear in the list. 
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p> A process replaces an existing object and immediately attempts to read
+                                 						it. Until the change is fully propagated, Amazon S3 might return the prior
+                                 						data. 
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p> A process deletes an existing object and immediately attempts to read it.
+                                 						Until the deletion is fully propagated, Amazon S3 might return the deleted
+                                 						data. 
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p> A process deletes an existing object and immediately lists keys within
+                                 						its bucket. Until the deletion is fully propagated, Amazon S3 might list the
+                                 						deleted object. 
+                              </p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     			
+                     <div class="aws-note">
+                        <p class="aws-note">Note</p>
+                        <p>Amazon S3 does not currently support object locking. If two PUT requests are
+                           					simultaneously made to the same key, the request with the latest time stamp wins.
+                           If
+                           					this is an issue, you will need to build an object-locking mechanism into your
+                           					application. 
+                        </p>
+                        <p>Updates are key-based; there is no way to make atomic updates across keys.
+                           					For example, you cannot make the update of one key dependent on the update of
+                           					another key unless you design this functionality into your
+                           					application.
+                        </p>
+                     </div>
+                     			
+                     <p>The following table describes the characteristics of eventually consistent read
+                        				and consistent read.
+                     </p>
+                     			
+                     <div class="table">
+                        <div class="table-contents">
+                           <table id="w77aab7c11c14c16">
+                              						
+                              <tr>
+                                 							
+                                 <th>Eventually Consistent Read</th>
+                                 							
+                                 <th>Consistent Read</th>
+                                 						
+                              </tr>
+                              					
+                              						
+                              <tr>
+                                 							
+                                 <td>Stale reads possible</td>
+                                 							
+                                 <td>No stale reads</td>
+                                 						
+                              </tr>
+                              						
+                              <tr>
+                                 							
+                                 <td>Lowest read latency</td>
+                                 							
+                                 <td>Potential higher read latency</td>
+                                 						
+                              </tr>
+                              						
+                              <tr>
+                                 							
+                                 <td>Highest read throughput</td>
+                                 							
+                                 <td>Potential lower read throughput</td>
+                                 						
+                              </tr>
+                              					
+                           </table>
+                        </div>
+                     </div>
+                     
+                     			
+                     				
+                     <h4 id="ApplicationConcurrency">Concurrent Applications</h4>
+                     				
+                     				
+                     <p>This section provides examples of eventually consistent and consistent read
+                        					requests when multiple clients are writing to the same items.
+                     </p>
+                     				
+                     <p>In this example, both W1 (write 1) and W2 (write 2) complete before the start
+                        					of R1 (read 1) and R2 (read 2). For a consistent read, R1 and R2 both return
+                        						<code class="code">color = ruby</code>. For an eventually consistent read, R1 and R2
+                        					might return <code class="code">color = red</code>, <code class="code">color = ruby</code>, or no results,
+                        					depending on the amount of time that has elapsed. 
+                     </p>
+                     				
+                     <div class="mediaobject">
+                        					
+                        						<img src="images/consistency1.png" />
+                        					
+                        				
+                     </div>
+                     				
+                     				
+                     <p>In the next example, W2 does not complete before the start of R1. Therefore,
+                        					R1 might return <code class="code">color = ruby</code> or <code class="code">color = garnet</code> for
+                        					either a consistent read or an eventually consistent read. Also, depending on
+                        					the amount of time that has elapsed, an eventually consistent read might return
+                        					no results.
+                     </p>
+                     				
+                     <p> For a consistent read, R2 returns <code class="code">color = garnet</code>. For an
+                        					eventually consistent read, R2 might return <code class="code">color = ruby</code>,
+                        						<code class="code">color = garnet</code>, or no results depending on the amount of time
+                        					that has elapsed. 
+                     </p>
+                     				
+                     <div class="mediaobject">
+                        					
+                        						<img src="images/consistency2.png" />
+                        					
+                        				
+                     </div>
+                     				
+                     				
+                     <p>In the last example, Client 2 performs W2 before Amazon S3 returns a success
+                        					for W1, so the outcome of the final value is unknown (<code class="code">color =
+                           						garnet</code> or <code class="code">color = brick</code>). Any subsequent reads
+                        					(consistent read or eventually consistent) might return either value. Also,
+                        					depending on the amount of time that has elapsed, an eventually consistent read
+                        					might return no results. 
+                     </p>
+                     				
+                     <div class="mediaobject">
+                        					
+                        						<img src="images/consistency3.png" />
+                        					
+                        				
+                     </div>
+                     				
+                     			
+                     		
+                     	
+                     <h2 id="S3Features">Amazon S3 Features</h2>
+                     		
+                     		
+                     <div class="highlights" id="inline-topiclist">
+                        <p><strong>Topics</strong></p>
+                        <ul>
+                           <li><a href="#RRS">Storage Classes</a></li>
+                           <li><a href="#BucketPolicies">Bucket Policies</a></li>
+                           <li><a href="#AWSIdentityandAccessManagement">AWS Identity and Access Management</a></li>
+                           <li><a href="#S3_ACLs">Access Control Lists</a></li>
+                           <li><a href="#Versions">Versioning</a></li>
+                           <li><a href="#BasicsOperations">Operations</a></li>
+                        </ul>
+                     </div>
+                     		
+                     <p>This section describes important Amazon S3 features.</p>
+                     		
+                     			
+                     <h3 id="RRS">Storage Classes</h3>
+                     			
+                     <p> Amazon S3 offers a range of storage classes designed for different use cases. These
+                        include
+                        				Amazon S3 STANDARD for general-purpose storage of frequently accessed data, Amazon
+                        S3
+                        				STANDARD_IA for long-lived, but less frequently accessed data, and GLACIER for
+                        				long-term archive.
+                     </p>
+                     			
+                     <p>For more information, see <a href="storage-class-intro.html">Storage Classes</a>.
+                     </p>
+                     		
+                     		
+                     <h3 id="BucketPolicies">Bucket Policies</h3> 
+                     			
+                     			
+                     <p>Bucket policies provide centralized access control to buckets and objects based
+                        				on a variety of conditions, including Amazon S3 operations, requesters, resources,
+                        				and aspects of the request (e.g., IP address). The policies are expressed in our
+                        					<em>access policy language</em> and enable centralized
+                        				management of permissions. The permissions attached to a bucket apply to all of
+                        the
+                        				objects in that bucket. 
+                     </p>
+                     			
+                     <p>Individuals as well as companies can use bucket policies. When companies register
+                        				with Amazon S3 they create an <em>account</em>.
+                        				Thereafter, the company becomes synonymous with the account. Accounts are
+                        				financially responsible for the Amazon resources they (and their employees) create.
+                        				Accounts have the power to grant bucket policy permissions and assign employees
+                        				permissions based on a variety of conditions. For example, an account could create
+                        a
+                        				policy that gives a user write access:
+                     </p>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p>To a particular S3 bucket</p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p>From an account's corporate network</p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p>During business hours</p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     			
+                     <p>An account can grant one user limited read and write access, but allow another to
+                        create
+                        				and delete buckets as well. An account could allow several field offices to store
+                        				their daily reports in a single bucket, allowing each office to write only to
+                        a
+                        				certain set of names (e.g., "Nevada/*" or "Utah/*") and only from the office's
+                        IP
+                        				address range.
+                     </p>
+                     			
+                     <p>Unlike access control lists (described below), which can add (grant) permissions only
+                        on individual
+                        				objects, policies can either add or deny permissions across all (or a subset)
+                        of
+                        				objects within a bucket. With one request an account can set the permissions of
+                        any
+                        				number of objects in a bucket. An account can use wildcards (similar to regular
+                        				expression operators) on Amazon resource names (ARNs) and other values, so that
+                        an
+                        				account can control access to groups of objects that begin with a common prefix
+                        or
+                        				end with a given extension such as .<em>html</em>.
+                     </p>
+                     			
+                     <p>Only the bucket owner is allowed to associate a policy with a bucket. Policies,
+                        				written in the access policy language, <em>allow</em> or
+                        					<em>deny</em> requests based on:
+                     </p>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p>Amazon S3 bucket operations (such as <code class="code">PUT ?acl)</code>, and
+                                 						object operations (such as <code class="code">PUT Object</code>, or <code class="code">GET
+                                    							Object</code>)
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p>Requester</p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p>Conditions specified in the policy</p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     			
+                     <p>An account can control access based on specific Amazon S3 operations, such as
+                        					<code class="code">GetObject</code>, <code class="code">GetObjectVersion</code>, <code class="code">DeleteObject</code>, or <code class="code">DeleteBucket</code>.
+                     </p>
+                     			
+                     <p>The conditions can be such things as IP addresses, IP address ranges in CIDR
+                        				notation, dates, user agents, HTTP referrer and transports (HTTP and HTTPS). 
+                     </p>
+                     			
+                     			
+                     			
+                     <p>For more information, see <a href="using-iam-policies.html">Using Bucket Policies and User Policies</a>.
+                     </p>
+                     		
+                     		
+                     <h3 id="AWSIdentityandAccessManagement">AWS Identity and Access Management</h3> 
+                     			
+                     			
+                     			
+                     			
+                     			
+                     			
+                     			
+                     <p>For example, you can use IAM with Amazon S3 to control 
+                        the type of access a user or group of users has to 
+                        specific parts of an Amazon S3 bucket your AWS account owns.  
+                     </p>
+                     			
+                     
+                     <p>For more information about IAM, see the following:</p>
+                     
+                     <div class="itemizedlist">
+                        
+                        
+                        
+                        
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              
+                              <p><a href="https://aws.amazon.com/iam/" target="_blank">AWS Identity and Access Management (IAM)</a></p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html" target="_blank">Getting Started</a></p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/" target="_blank">IAM User Guide</a></p>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     
+                     		
+                     		
+                     		
+                     
+                     		
+                     
+                     			
+                     <h3 id="S3_ACLs">Access Control Lists</h3>
+                     
+                     			
+                     			
+                     <p>For more information, see <a href="S3_ACLs_UsingACLs.html">Managing Access with ACLs</a></p>
+                     
+                     			
+                     		
+                     		
+                     <h3 id="Versions">Versioning</h3>
+                     		  
+                     			
+                     <p>For more information, see <a href="ObjectVersioning.html">Object Versioning</a>.
+                     </p>
+                     			
+                     		
+                     		
+                     <h3 id="BasicsOperations">Operations</h3>
+                     			
+                     			
+                     <p>Following are the most common operations
+                        				you'll execute through the API.
+                     </p>
+                     			
+                     <div class="itemizedlist">
+                        				
+                        <p class="title"><b>Common Operations</b></p>
+                        				
+                        				
+                        				
+                        				
+                        				
+                        			
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              					
+                              <p><span class="topcom">Create a Bucket</span> – Create and name your
+                                 						own bucket in which to store your objects.
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p><span class="topcom">Write an Object</span> – Store data by
+                                 						creating or overwriting an object. When you write an object, you specify a 
+                                 						unique key in the namespace of your bucket. This is also a good time to 
+                                 						specify any access control you want on the object.
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p><span class="topcom">Read an Object</span> – Read data back. You can 
+                                 						download the data via HTTP or BitTorrent.
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p><span class="topcom">Deleting an Object</span> – Delete some of
+                                 						your data.
+                              </p>
+                              				
+                           </li>
+                           <li class="listitem">
+                              					
+                              <p><span class="topcom">Listing Keys</span> – List the keys contained
+                                 						in one of your buckets. You can filter the key list based on a prefix.
+                              </p>
+                              				
+                           </li>
+                        </ul>
+                     </div>
+                     			
+                     <p>Details on this and all other functionality are described in detail later in this
+                        				guide.
+                     </p>
+                     		
+                     	
+                     <h2 id="API">Amazon S3 Application Programming Interfaces (API)</h2>
+                     		
+                     		
+                     <p>The Amazon S3 architecture is designed to be programming language-neutral, using our
+                        			supported interfaces to store and retrieve objects. 
+                     </p>
+                     		
+                     <p>Amazon S3 provides a REST and a SOAP interface. They are similar, but there are some
+                        			differences. For example, in the REST interface, metadata is returned in HTTP headers.
+                        			Because we only support HTTP requests of up to 4 KB (not including the body), the
+                        amount
+                        			of metadata you can supply is restricted. 
+                     </p>
+                     		
+                     
+                     <div class="aws-note">
+                        <p class="aws-note">Note</p>
+                        <p>
+                           SOAP support over HTTP is deprecated, but it is still available over HTTPS. 
+                           New Amazon S3 features will not be supported for SOAP. We recommend that you use 
+                           either the REST API or the AWS SDKs.
+                           
+                        </p>
+                     </div>
+                     
+                     		
+                     <h3 id="UsingRESTAPI">The REST Interface</h3>
+                     			
+                     			
+                     <p>The REST API is an HTTP interface to Amazon S3. Using REST, you use standard HTTP
+                        				requests to create, fetch, and delete buckets and objects.
+                     </p>
+                     			
+                     <p>You can use any toolkit that supports HTTP to use the REST API. You can even use a
+                        				browser to fetch objects, as long as they are anonymously readable.
+                     </p>
+                     			
+                     <p>The REST API uses the standard HTTP headers and status codes, so that standard
+                        				browsers and toolkits work as expected. In some areas, we have added functionality
+                        				to HTTP (for example, we added headers to support access control). In these cases,
+                        				we have done our best to add the new functionality in a way that matched the style
+                        				of standard HTTP usage.
+                     </p>
+                     		
+                     		
+                     <h3 id="UsingSOAPAPI">The SOAP Interface</h3>
+                     			
+                     			
+                     
+                     <div class="aws-note">
+                        <p class="aws-note">Note</p>
+                        <p>
+                           SOAP support over HTTP is deprecated, but it is still available over HTTPS. 
+                           New Amazon S3 features will not be supported for SOAP. We recommend that you use 
+                           either the REST API or the AWS SDKs.
+                           
+                        </p>
+                     </div>
+                     
+                     			
+                     <p>The SOAP API provides a SOAP 1.1 interface using document literal encoding. The
+                        				most common way to use SOAP is to download the WSDL (go to <a href="http://doc.s3.amazonaws.com/2006-03-01/AmazonS3.wsdl" target="_blank">http://doc.s3.amazonaws.com/2006-03-01/AmazonS3.wsdl</a>), use a SOAP toolkit such as Apache Axis or Microsoft .NET to
+                        				create bindings, and then write code that uses the bindings to call Amazon
+                        				S3.
+                     </p>
+                     		
+                     	
+                     <h2 id="PayingforStorage">Paying for Amazon S3</h2>
+                     		
+                     		
+                     <p>Pricing for Amazon S3 is designed so that you don't have to plan for the storage
+                        			requirements of your application. Most storage providers force you to purchase
+                        a
+                        			predetermined amount of storage and network transfer capacity: If you exceed that
+                        			capacity, your service is shut off or you are charged high overage fees. If you
+                        do not
+                        			exceed that capacity, you pay as though you used it all. 
+                     </p>
+                     		
+                     <p>Amazon S3 charges you only for what you actually use, with no hidden fees and no
+                        			overage charges. This gives developers a variable-cost service that can grow with
+                        their
+                        			business while enjoying the cost advantages of Amazon's infrastructure.
+                     </p>
+                     		
+                     <p>Before storing anything in Amazon S3, you need to register with the service and
+                        			provide a payment instrument that will be charged at the end of each month. There
+                        are no
+                        			set-up fees to begin using the service. At the end of the month, your payment instrument
+                        			is automatically charged for that month's usage.
+                     </p>
+                     		
+                     <p>For information about paying for Amazon S3 storage, 
+                        			see <a href="https://aws.amazon.com/s3/pricing/" target="_blank">Amazon S3 Pricing</a>.
+                     </p>
+                     		
+                     	
+                     <h2 id="RelatedAmazonWebServices">Related Services </h2>
+                     		
+                     		
+                     <p>Once you load your data into Amazon S3, you can use it with other services that we
+                        provide. The following
+                        			services are the ones you might use most frequently:
+                     </p>
+                     		
+                     <div class="itemizedlist">
+                        			
+                        			
+                        			
+                        		
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              				
+                              <p><span class="topcom">Amazon Elastic Compute Cloud</span> – This web
+                                 					service provides virtual compute resources in the cloud. For more 
+                                 					information, go to the <a href="https://aws.amazon.com/ec2/" target="_blank">Amazon EC2 product details page</a>.
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p><span class="topcom">Amazon EMR</span> – This web service
+                                 					enables businesses, researchers, data analysts, and developers to easily and
+                                 					cost-effectively process vast amounts of data. It utilizes a hosted Hadoop framework
+                                 running on the web-scale
+                                 					infrastructure of Amazon EC2 and Amazon S3. For more information, go to the <a href="https://aws.amazon.com/elasticmapreduce/" target="_blank">Amazon EMR product details 
+                                    					page</a>.
+                              </p>
+                              			
+                           </li>
+                           <li class="listitem">
+                              				
+                              <p><span class="topcom">AWS Import/Export</span> – AWS Import/Export enables you to mail
+                                 					a storage device, such as a RAID drive, to Amazon so that we can upload your
+                                 					(terabytes) of data into Amazon S3. For more information, go to the <a href="https://docs.aws.amazon.com/AWSImportExport/latest/DG/" target="_blank">AWS Import/Export Developer Guide</a>.
+                                 				
+                              </p>
+                              			
+                           </li>
+                        </ul>
+                     </div>
+                     	
+                  </div>
+                  <noscript>
+                     <div>
+                        <div>
+                           <div>
+                              <div id="js_error_message">
+                                 <p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p>
+                                 <p>To use the AWS Documentation, Javascript must be enabled. Please refer to your browser's
+                                    Help pages for instructions.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </noscript>
+                  <div id="main-col-footer">
+                     <div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div>
+                     <div id="next"><a class="awstoc" accesskey="p" href="Welcome.html">« Previous </a><a class="awstoc" accesskey="n" href="MakingRequests.html">Next »</a></div>
+                     <div id="copyright-main-footer">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+                  </div>
+               </div>
+            </div>
+            <div id="right-expanded">
+               <div id="right-content-wrapper">
+                  <div id="pagetoc">
+                     <p>On this page:</p>
+                     <ul class="pagetoc">
+                        <li class="pagetoc" name="Overview of Amazon S3 and This Guide"><a class="pagetoc" href="#overview">Overview of Amazon S3 and This Guide</a></li>
+                        <li class="pagetoc" name="Advantages to Amazon S3"><a class="pagetoc" href="#features">Advantages to Amazon S3</a></li>
+                        <li class="pagetoc" name="Amazon S3 Concepts"><a class="pagetoc" href="#CoreConcepts">Amazon S3 Concepts</a></li>
+                        <li class="pagetoc" name="Amazon S3 Features"><a class="pagetoc" href="#S3Features">Amazon S3 Features</a></li>
+                        <li class="pagetoc" name="Amazon S3 Application Programming Interfaces (API)"><a class="pagetoc" href="#API">Amazon S3 Application Programming Interfaces (API)</a></li>
+                        <li class="pagetoc" name="Paying for Amazon S3"><a class="pagetoc" href="#PayingforStorage">Paying for Amazon S3</a></li>
+                        <li class="pagetoc" name="Related Services "><a class="pagetoc" href="#RelatedAmazonWebServices">Related Services </a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="cookie-notice">
+         <div class="cookie-notice-text">We use cookies to provide and improve our services. By using our site, you consent
+            to cookies. <a href="http://aws.amazon.com/legal/cookies">Learn more</a></div>
+      </div>
+      <div id="footer">
+         <div id="footer_short_fb" class="hide" title="Feedback"><a target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=http://docs.aws.amazon.com/en_us/AmazonS3/latest/dev/Introduction.html&amp;hidden_guide_name=Developer Guide&amp;hidden_api_version=2006-03-01&amp;hidden_file_name=Introduction"><i class="awsdocs-footer-text fa fa-envelope-o"></i></a></div>
+         <div id="footer_toggle" class="mediaobject">
+            <div id="footer_toggle_img" class="awsdocs-footer-text fa fa-caret-down"></div>
+            <div id="footer_toggle_img_collapse" class="hide awsdocs-footer-text fa fa-caret-right"></div>
+         </div>
+         <div id="footer-left"><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/terms">Terms of Use</a><span class="awsdocs-footer-text"> | </span><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/privacy">Privacy</a><span class="awsdocs-footer-text"> | </span><span class="awsdocs-footer-text">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</span></div>
+         <div id="footer-right">
+            <div id="feedback">
+               <div id="forums"><a id="forum_link" target="_blank" href="http://forums.aws.amazon.com/forum.jspa?forumID=24" class="awsdocs-footer-text">Have a question? Try the Forums.</a></div>
+               <div id="feedback-message" class="awsdocs-footer-text">Did this page help you?</div>
+               <div id="feedback-yesno-buttons"><a class="awstoc btn btn-default" target="_blank" href="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/AmazonS3/latest/dev/Introduction.html">Yes</a><a class="awstoc btn btn-default" target="_blank" href="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/AmazonS3/latest/dev/Introduction.html">No</a></div>
+               <div id="feedback-feedback-button"><a class="awstoc btn btn-default" target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=http://docs.aws.amazon.com/en_us/AmazonS3/latest/dev/Introduction.html&amp;hidden_guide_name=Developer Guide&amp;hidden_api_version=2006-03-01&amp;hidden_file_name=Introduction">Feedback</a></div>
+            </div>
+         </div>
+      </div>
+      <!-- SiteCatalyst code version: H.25.2.
+            Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+            More info available at http://www.omniture.com --><script language="JavaScript" type="text/javascript" src="https://a0.awsstatic.com/s_code/js/1.0/awshome_s_code.js"></script><script language="JavaScript" type="text/javascript">
+         <!--
+
+            // Documentation Service Name
+            s.prop66='Amazon Simple Storage Service';
+            s.eVar66='D=c66';
+  
+            // Documentation Guide Name                                                                 
+            s.prop65='Developer Guide';
+            s.eVar65='D=c65';
+
+            var s_code=s.t();if(s_code)document.write(s_code)//--></script><script language="JavaScript" type="text/javascript">
+         <!--
+                if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+                //--></script><noscript><img src="https://amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.2--NS/0" height="1" width="1" border="0" alt="" /></noscript>
+      <!--/DO NOT REMOVE/-->
+      <!-- End SiteCatalyst code version: H.25.2. -->
+   </body>
+</html>

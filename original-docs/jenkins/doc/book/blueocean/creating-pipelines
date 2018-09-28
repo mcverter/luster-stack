@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Creating a Pipeline
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Creating a Pipeline' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Creating a Pipeline' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Creating a Pipeline' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/book/blueocean/creating-pipelines/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Creating a Pipeline' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<p>
+<a href="https://jenkins.io/doc" class="">Jenkins User Documentation Home</a>
+</p>
+<h4>
+Guided Tour
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/getting-started" class="">Getting started</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/hello-world" class="">Creating your first Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps" class="">Running multiple steps</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/agents" class="">Defining execution environments</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/environment" class="">Using environment variables</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/tests-and-artifacts" class="">Recording test results and artifacts</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/post" class="">Cleaning up and notifications</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/deployment" class="">Deployment</a>
+</li>
+</ul>
+<h4>
+Tutorials
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/tutorials" class="">Overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-java-app-with-maven" class="">Build a Java app with Maven</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm" class="">Build a Node.js and React app with npm</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller" class="">Build a Python app with PyInstaller</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean" class="">Create a Pipeline in Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project" class="">End-to-End Multibranch Pipeline Project Creation</a>
+</li>
+</ul>
+<h4>
+User Handbook
+<span style='font-size: 0.6rem; vertical-align: middle;'>
+<a href='/user-handbook.pdf'>
+(PDF)
+</a>
+</span>
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/getting-started" class="">User Handbook overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/installing" class="">Installing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/using" class="">Using Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline" class="">Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean" class="active">Blue Ocean</a>
+<small>
+<ul style='padding-left: 1rem;'>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/getting-started" class="">Getting started with Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/creating-pipelines" class="active">Creating a Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/dashboard" class="">Dashboard</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/activity" class="">Activity View</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/pipeline-run-details" class="">Pipeline Run Details View</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean/pipeline-editor" class="">Pipeline Editor</a>
+</li>
+</ul>
+</small>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing" class="">Managing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/system-administration" class="">System Administration</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/scaling" class="">Scaling Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/appendix" class="">Appendix</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/glossary" class="">Glossary</a>
+</li>
+</ul>
+<h4>
+Resources
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/steps" class="">Pipeline Steps reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/upgrade-guide" class="">LTS Upgrade Guide</a>
+</li>
+</ul>
+<h5>
+Recent Tutorial Blog Posts
+</h5>
+<ul>
+<li>
+<a href='/blog/2017/11/27/tutorials-in-the-jenkins-user-documentation/'>
+Introducing Tutorials in the Jenkins User Documentation
+</a>
+</li>
+<li>
+<a href='/blog/2017/05/18/pipeline-dev-tools/'>
+Pipeline Development Tools
+</a>
+</li>
+<li>
+<a href='/blog/2017/04/12/welcome-to-blue-ocean-dashboard/'>
+Getting Started with the Blue Ocean Dashboard
+</a>
+</li>
+</ul>
+<div class='small'>
+<a href='/node/tags/tutorial'>
+View all tutorial blog posts
+</a>
+</div>
+<p></p>
+</div>
+</div>
+<div class='col-lg-9'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='row'>
+<a class='prev doc-page-link' href='../getting-started'>
+⇐ Getting started with Blue Ocean
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='up doc-page-link' href='../'>
+⇑ Blue Ocean
+</a>
+</div>
+<div class='row'>
+<a class='index doc-page-link' href='../../'>
+Index
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='next doc-page-link' href='../dashboard'>
+Dashboard ⇒
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class='container'>
+<div class='row body'>
+<div class='section'>
+<h1>
+Creating a Pipeline
+</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#setting-up-your-pipeline-project">Setting up your Pipeline project</a>
+<ul class="sectlevel2">
+<li><a href="#for-a-git-repository">For a Git repository</a>
+<ul class="sectlevel3">
+<li><a href="#local-repository">Local repository</a></li>
+<li><a href="#remote-repository">Remote repository</a></li>
+</ul>
+</li>
+<li><a href="#for-a-repository-on-github">For a repository on GitHub</a>
+<ul class="sectlevel3">
+<li><a href="#create-your-access-token">Create your access token</a></li>
+<li><a href="#choose-your-github-accountorganization-and-repository">Choose your GitHub account/organization and repository</a></li>
+</ul>
+</li>
+<li><a href="#for-a-repository-on-bitbucket-cloud">For a repository on Bitbucket Cloud</a>
+<ul class="sectlevel3">
+<li><a href="#choose-your-bitbucket-accountteam-and-repository">Choose your Bitbucket account/team and repository</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Blue Ocean makes it easy to create a Pipeline project in Jenkins.</p>
+</div>
+<div class="paragraph">
+<p>A Pipeline can be generated from an existing <code>Jenkinsfile</code> in source control, or
+you can use the <a href="../pipeline-editor">Blue Ocean Pipeline editor</a> to create a
+new Pipeline for you (as a <code>Jenkinsfile</code> that will be committed to source
+control).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-your-pipeline-project"><a class="anchor" href="#setting-up-your-pipeline-project"></a>Setting up your Pipeline project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To start setting up your Pipeline project in Blue Ocean, at the top-right of the
+<a href="../dashboard">Blue Ocean Dashboard</a>, click the <strong>New Pipeline</strong> button.</p>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/blueocean/creating-pipelines/new-pipeline-button.png" alt="New Pipeline Button" width="50%"></span></p>
+</div>
+<div class="paragraph">
+<p>If your Jenkins instance is new or has no Pipeline projects or other items
+configured (and the Dashboard is empty), Blue Ocean displays a <strong>Welcome to
+Jenkins</strong> message box on which you can click the <strong>Create a new Pipeline</strong> button
+to start setting up your Pipeline project.</p>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/blueocean/creating-pipelines/create-a-new-pipeline-box.png" alt="Welcome to Jenkins - Create a New Pipeline message box" width="50%"></span></p>
+</div>
+<div class="paragraph">
+<p>You now have a choice of creating your new Pipeline project from a:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#for-a-git-repository">standard Git repository</a></p>
+</li>
+<li>
+<p><a href="#for-a-repository-on-github">repository on GitHub</a> or GitHub Enterprise</p>
+</li>
+<li>
+<p><a href="#for-a-repository-on-bitbucket-cloud">repository on Bitbucket Cloud</a> or
+Bitbucket Server</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="for-a-git-repository"><a class="anchor" href="#for-a-git-repository"></a>For a Git repository</h3>
+<div class="paragraph">
+<p>To create your Pipeline project for a Git repository, click the <strong>Git</strong> button
+under <strong>Where do you store your code?</strong></p>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/blueocean/creating-pipelines/where-do-you-store-your-code.png" alt="Where do you store your code" width="70%"></span></p>
+</div>
+<div class="paragraph">
+<p>In the <strong>Connect to a Git repository</strong> section, enter the URL for your Git
+repository in the <strong>Repository URL</strong> field.</p>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/blueocean/creating-pipelines/connect-to-a-git-repository.png" alt="Connect to a Git repository" width="70%"></span></p>
+</div>
+<div class="paragraph">
+<p>You now need to specify a <a href="#local-repository">local</a> or a
+<a href="#remote-repository">remote</a> repository from which to build your Pipeline
+project.</p>
+</div>
+<div class="sect3">
+<h4 id="local-repository"><a class="anchor" href="#local-repository"></a>Local repository</h4>
+<div class="paragraph">
+<p>If your URL is a local directory path (e.g. beginning with a forward slash <code>/</code>
+such as <code>/home/cloned-git-repos/my-git-repo.git</code>), you can proceed to click the
+<strong>Create Pipeline</strong> button.</p>
+</div>
+<div class="paragraph">
+<p>Blue Ocean will then scan your local repository&#8217;s branches for a <code>Jenkinsfile</code>
+and will commence a Pipeline run for each branch containing a <code>Jenkinsfile</code>. If
+Blue Ocean cannot find any <code>Jenkinsfile</code>, you will be prompted to begin creating
+one through the <a href="../pipeline-editor/">Pipeline editor</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remote-repository"><a class="anchor" href="#remote-repository"></a>Remote repository</h4>
+<div class="paragraph">
+<p>Since the Pipeline editor saves edited Pipelines to Git repositories as
+<code>Jenkinsfile</code>&zwj;s, Blue Ocean only supports connections to remote Git
+repositories over the SSH protocol.</p>
+</div>
+<div class="paragraph">
+<p>If your URL is for a remote Git repository, then as soon as you begin typing
+the URL, starting with either:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ssh://</code> - e.g.
+<code>ssh://gituser@git-server-url/git-server-repos-group/my-git-repo.git</code><br>
+or</p>
+</li>
+<li>
+<p><code>user@host:path/to/git/repo.git</code> - e.g.
+<code>gituser@git-server-url:git-server-repos-group/my-git-repo.git</code>,</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Blue Ocean automatically generates an SSH public/private key pair (or presents
+you with an existing one) for your current/logged in Jenkins user. This
+credential is automatically registered in Jenkins with the following details for
+this Jenkins user:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Domain</strong>: <code>blueocean-private-key-domain</code></p>
+</li>
+<li>
+<p><strong>ID</strong>: <code>jenkins-generated-ssh-key</code></p>
+</li>
+<li>
+<p><strong>Name</strong>: <code>&lt;jenkins-username&gt; (jenkins-generated-ssh-key)</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You need to ensure that this SSH public/private key pair has been registered
+with your Git server before continuing. If you have not already done this,
+follow these 2 steps. Otherwise, <a href="#continuing-on">continue on</a>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure the SSH public key component of this key pair (which you can copy
+and paste from the Blue Ocean interface) for the remote Git server&#8217;s user
+account (e.g. within the <code>authorized_keys</code> file of the machine&#8217;s
+<code>gituser/.ssh</code> directory).<br>
+<a id="continuing-on"></a>
+<strong>Note:</strong> This process allows your Jenkins user to access the repositories that
+your Git server&#8217;s user account (e.g. <code>gituser</code>) has access to. Read more about
+this in
+<a href="https://git-scm.com/book/en/v2/Git-on-the-Server-Setting-Up-the-Server">Setting Up the Server</a>
+of the <a href="https://git-scm.com/book/en/v2/">Pro Git documentation</a>.</p>
+</li>
+<li>
+<p>When done, return to the Blue Ocean interface.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Click the <strong>Create Pipeline</strong> button.</p>
+</div>
+<div class="paragraph">
+<p>Blue Ocean will then scan your local repository&#8217;s branches for a <code>Jenkinsfile</code>
+and will commence a Pipeline run for each branch containing a <code>Jenkinsfile</code>. If
+Blue Ocean cannot find any <code>Jenkinsfile</code>, you will be prompted to begin creating
+one through the <a href="../pipeline-editor">Pipeline editor</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="for-a-repository-on-github"><a class="anchor" href="#for-a-repository-on-github"></a>For a repository on GitHub</h3>
+<div class="paragraph">
+<p>To create your Pipeline project directly for a repository on GitHub, click the
+<strong>GitHub</strong> button under <strong>Where do you store your code?</strong></p>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/blueocean/creating-pipelines/where-do-you-store-your-code.png" alt="Where do you store your code" width="70%"></span></p>
+</div>
+<div class="paragraph">
+<p>In the <strong>Connect to GitHub</strong> section, enter your GitHub access token into the
+<strong>Your GitHub access token</strong> field.<br>
+If you previously configured Blue Ocean to connect to GitHub using a personal
+access token, Blue Ocean takes you directly to the
+<a href="#choose-your-github-account-organization-and-repository">choosing your GitHub account/organization and repository</a>
+steps below.</p>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/blueocean/creating-pipelines/connect-to-github.png" alt="Connect to GitHub" width="70%"></span></p>
+</div>
+<div class="paragraph">
+<p>If you do not have a GitHub access token, click the <strong>Create an access key here</strong>
+link to open GitHub to the
+<strong><a href="#create-your-access-token">New personal access token</a></strong> page.</p>
+</div>
+<div class="sect3">
+<h4 id="create-your-access-token"><a class="anchor" href="#create-your-access-token"></a>Create your access token</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the new tab, sign in to your GitHub account (if necessary) and on the
+GitHub <strong>New Personal Access Token</strong> page, specify a brief <strong>Token description</strong>
+for your GitHub access token (e.g. <code>Blue Ocean</code>).<br>
+<strong>Note:</strong> An access token is usually an alphanumeric string that respresents
+your GitHub account along with permissions to access various GitHub features
+and areas through your GitHub account. The new access token process (triggered
+through the <strong>Create an access key here</strong> link above) has the appropriate
+permissions pre-selected, which Blue Ocean requires to access and interact
+with your GitHub account.</p>
+</li>
+<li>
+<p>Scroll down to the end of the page and click <strong>Generate token</strong>.</p>
+</li>
+<li>
+<p>On the resulting <strong>Personal access tokens</strong> page, copy your newly generated
+access token.</p>
+</li>
+<li>
+<p>Back in Blue Ocean, paste the access token into the <strong>Your GitHub access token</strong>
+field and click <strong>Connect</strong>.<br>
+Your current/logged in Jenkins user now has access to your GitHub account
+(provided by your access token), so you can now
+<a href="#choose-your-github-account-organization-and-repository">choose your GitHub account/organization and repository</a>.<br>
+Jenkins registers this credential with the following details
+for this Jenkins user:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Domain</strong>: <code>blueocean-github-domain</code></p>
+</li>
+<li>
+<p><strong>ID</strong>: <code>github</code></p>
+</li>
+<li>
+<p><strong>Name</strong>: <code>&lt;jenkins-username&gt;/****** (GitHub Access Token)</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="choose-your-github-accountorganization-and-repository"><a class="anchor" href="#choose-your-github-accountorganization-and-repository"></a>Choose your GitHub account/organization and repository</h4>
+<div class="paragraph">
+<p>At this point, Blue Ocean prompts you to choose your GitHub account or an
+organization you are a member of, as well as the repository it contains from
+which to build your Pipeline project.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the <strong>Which organization does the repository belong to?</strong> section, click
+either:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Your GitHub account to create a Pipeline project for one of your own GitHub
+repositories or one which you have forked from elsewhere on GitHub.</p>
+</li>
+<li>
+<p>An organization you are a member of to create a Pipeline project for a GitHub
+repository located within this organization.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>In the <strong>Choose a repository</strong> section, click the repository (within your GitHub
+account or organization) from which to build your Pipeline project.<br>
+<strong>Tip:</strong> If your list of repositories is long, you can filter this list using
+the <strong>Search</strong> option.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/blueocean/creating-pipelines/choose-a-repository.png" alt="Choose a repository" width="70%"></span></p>
+</div>
+</li>
+<li>
+<p>Click <strong>Create Pipeline</strong>.<br>
+Blue Ocean will then scan your local repository&#8217;s branches for a <code>Jenkinsfile</code>
+and will commence a Pipeline run for each branch containing a <code>Jenkinsfile</code>.
+If Blue Ocean cannot find any <code>Jenkinsfile</code>, you will be prompted to begin
+creating one through the <a href="../pipeline-editor">Pipeline editor</a> (by clicking
+<strong>Create Pipeline</strong> again).<br>
+<strong>Note:</strong> Under the hood, a Pipeline project created through Blue Ocean is
+actually "multibranch Pipeline". Therefore, Jenkins looks for the presence of
+at least one Jenkinsfile in any branch of your repository.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="for-a-repository-on-bitbucket-cloud"><a class="anchor" href="#for-a-repository-on-bitbucket-cloud"></a>For a repository on Bitbucket Cloud</h3>
+<div class="paragraph">
+<p>To create your Pipeline project directly for a Git or Mercurial repository on
+Bitbucket Cloud, click the <strong>Bitbucket Cloud</strong> button under <strong>Where do you store
+your code?</strong></p>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/blueocean/creating-pipelines/where-do-you-store-your-code.png" alt="Where do you store your code" width="70%"></span></p>
+</div>
+<div class="paragraph">
+<p>In the <strong>Connect to Bitbucket</strong> section, enter your Bitbucket email address and
+password into the <strong>Username</strong> and <strong>Password</strong> fields, respectively. Note that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you previously configured Blue Ocean to connect to Bitbucket with your
+email address and password, Blue Ocean takes you directly to the
+<a href="#choose-your-bitbucket-account-team-and-repository">choosing your Bitbucket account/team and repository</a>
+steps below.</p>
+</li>
+<li>
+<p>If you entered these credentials, Jenkins registers them with the following
+details for this Jenkins user:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Domain</strong>: <code>blueocean-bitbucket-cloud-domain</code></p>
+</li>
+<li>
+<p><strong>ID</strong>: <code>bitbucket-cloud</code></p>
+</li>
+<li>
+<p><strong>Name</strong>: <code>&lt;bitbucket-user@email.address&gt;/****** (Bitbucket server credentials)</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/blueocean/creating-pipelines/connect-to-bitbucket.png" alt="Connect to Bitbucket" width="70%"></span></p>
+</div>
+<div class="paragraph">
+<p>Click <strong>Connect</strong> and your current/logged in Jenkins user will now have access to
+your Bitbucket account. You can now
+<a href="#choose-your-bitbucket-account-team-and-repository">choose your Bitbucket
+account/team and repository</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="choose-your-bitbucket-accountteam-and-repository"><a class="anchor" href="#choose-your-bitbucket-accountteam-and-repository"></a>Choose your Bitbucket account/team and repository</h4>
+<div class="paragraph">
+<p>At this point, Blue Ocean prompts you to choose your Bitbucket account or a team
+you are a member of, as well as the repository it contains from which to build
+your Pipeline project.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the <strong>Which team does the repository belong to?</strong> section, click either:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Your Bitbucket account to create a Pipeline project for one of your own
+Bitbucket repositories or one which you have forked from elsewhere on
+Bitbucket.</p>
+</li>
+<li>
+<p>A team you are a member of to create a Pipeline project for a Bitbucket
+repository located within this team.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>In the <strong>Choose a repository</strong> section, click the repository (within your
+Bitbucket account or team) from which to build your Pipeline project.<br>
+<strong>Tip:</strong> If your list of repositories is long, you can filter this list using
+the <strong>Search</strong> option.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../resources/blueocean/creating-pipelines/choose-a-repository.png" alt="Choose a repository" width="70%"></span></p>
+</div>
+</li>
+<li>
+<p>Click <strong>Create Pipeline</strong>.<br>
+Blue Ocean will then scan your local repository&#8217;s branches for a <code>Jenkinsfile</code>
+and will commence a Pipeline run for each branch containing a <code>Jenkinsfile</code>.
+If Blue Ocean cannot find any <code>Jenkinsfile</code>, you will be prompted to begin
+creating one through the <a href="../pipeline-editor">Pipeline editor</a> (by clicking
+<strong>Create Pipeline</strong> again).<br>
+<strong>Note:</strong> Under the hood, a Pipeline project created through Blue Ocean is
+actually "multibranch Pipeline". Therefore, Jenkins looks for the presence of
+at least one Jenkinsfile in any branch of your repository.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='row'>
+<a class='prev doc-page-link' href='../getting-started'>
+⇐ Getting started with Blue Ocean
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='up doc-page-link' href='../'>
+⇑ Blue Ocean
+</a>
+</div>
+<div class='row'>
+<a class='index doc-page-link' href='../../'>
+Index
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='next doc-page-link' href='../dashboard'>
+Dashboard ⇒
+</a>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'></div>
+<!-- starting partial _feedback-footer.html -->
+<!-- HTML inclusion for chapter and section layouts (i.e. as footers) as well as
+     for use in AsciiDoc file inclusions. -->
+
+<!--
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+-->
+
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(window.location.href);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<p><a href="#feedback" data-toggle="collapse">Was this page helpful?</a></p>
+
+<div id="feedback" class="collapse">
+
+<p>Please submit your feedback about this page through this
+<a href="/doc/feedback-form/">quick form</a>.</p>
+
+<p>Alternatively, if you don't wish to complete the quick form, you can simply
+indicate if you found this page helpful?</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the current URL into the form. -->
+<input type="hidden" name="entry.1246830226" id="current-url" value=""/>
+
+<!-- The answer bit -->
+<p><input type="radio" name="entry.790002525" id="h1" value="Yes" required/>
+<label for="h1">Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="entry.790002525" id="h2" value="No"/>
+<label for="h2">No</label></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+</form>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1IIdpVs39JDYKg0sLQIv-MNO928qcGApAIfdW5ohfD78" target="_blank">here</a>.</p>
+
+</div>
+
+<!-- ending partial _feedback-footer.html -->
+
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<p class='box'>
+<a href='https://github.com/jenkins-infra/jenkins.io/edit/master/content//doc/book/blueocean/creating-pipelines.adoc' title='Edit /doc/book/blueocean/creating-pipelines.adoc on GitHub'>
+Improve this page
+</a>
+|
+<a href='https://github.com/jenkins-infra/jenkins.io/commits/master/content//doc/book/blueocean/creating-pipelines.adoc' title='View /doc/book/blueocean/creating-pipelines.adoc history on GitHub'>
+Page history
+</a>
+</p>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

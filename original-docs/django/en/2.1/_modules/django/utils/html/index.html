@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>django.utils.html | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/_modules/django/utils/html/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/_modules/django/utils/html/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/_modules/django/utils/html/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/_modules/django/utils/html/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/_modules/django/utils/html/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/_modules/django/utils/html/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/_modules/django/utils/html/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/_modules/django/utils/html/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/_modules/django/utils/html/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/_modules/django/utils/html/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/_modules/django/utils/html/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/_modules/django/utils/html/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/_modules/django/utils/html/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/_modules/django/utils/html/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/_modules/django/utils/html/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/_modules/django/utils/html/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/_modules/django/utils/html/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/_modules/django/utils/html/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/_modules/django/utils/html/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/_modules/django/utils/html/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/_modules/django/utils/html/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/_modules/django/utils/html/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/_modules/django/utils/html/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/_modules/django/utils/html/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/_modules/django/utils/html/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/_modules/django/utils/html/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/_modules/django/utils/html/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<h1>Source code for django.utils.html</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;HTML utilities suitable for global use.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">html.parser</span> <span class="k">import</span> <span class="n">HTMLParser</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">parse_qsl</span><span class="p">,</span> <span class="n">quote</span><span class="p">,</span> <span class="n">unquote</span><span class="p">,</span> <span class="n">urlencode</span><span class="p">,</span> <span class="n">urlsplit</span><span class="p">,</span> <span class="n">urlunsplit</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">django.utils.functional</span> <span class="k">import</span> <span class="n">Promise</span><span class="p">,</span> <span class="n">keep_lazy</span><span class="p">,</span> <span class="n">keep_lazy_text</span>
+<span class="kn">from</span> <span class="nn">django.utils.http</span> <span class="k">import</span> <span class="n">RFC3986_GENDELIMS</span><span class="p">,</span> <span class="n">RFC3986_SUBDELIMS</span>
+<span class="kn">from</span> <span class="nn">django.utils.safestring</span> <span class="k">import</span> <span class="n">SafeData</span><span class="p">,</span> <span class="n">SafeText</span><span class="p">,</span> <span class="n">mark_safe</span>
+<span class="kn">from</span> <span class="nn">django.utils.text</span> <span class="k">import</span> <span class="n">normalize_newlines</span>
+
+<span class="c1"># Configuration for urlize() function.</span>
+<span class="n">TRAILING_PUNCTUATION_CHARS</span> <span class="o">=</span> <span class="s1">&#39;.,:;!&#39;</span>
+<span class="n">WRAPPING_PUNCTUATION</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;)&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;&lt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="s1">&#39;]&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;&amp;lt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;gt;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">)]</span>
+
+<span class="c1"># List of possible strings used for bullets in bulleted lists.</span>
+<span class="n">DOTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&amp;middot;&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\u2022</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;#149;&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;bull;&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;#8226;&#39;</span><span class="p">]</span>
+
+<span class="n">unencoded_ampersands_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&amp;(?!(\w+|#\d+);)&#39;</span><span class="p">)</span>
+<span class="n">word_split_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;&#39;([\s&lt;&gt;&quot;&#39;]+)&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="n">simple_url_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^https?://\[?\w&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="n">simple_url_2_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^www\.|^(?!http)\w[^@]+\.(com|edu|gov|int|mil|net|org)($|/.*)$&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+
+<span class="n">_html_escapes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;&amp;&#39;</span><span class="p">):</span> <span class="s1">&#39;&amp;amp;&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span><span class="p">):</span> <span class="s1">&#39;&amp;lt;&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">):</span> <span class="s1">&#39;&amp;gt;&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">):</span> <span class="s1">&#39;&amp;quot;&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">):</span> <span class="s1">&#39;&amp;#39;&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="escape"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.html.escape">[docs]</a><span class="nd">@keep_lazy</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">SafeText</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">escape</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the given text with ampersands, quotes and angle brackets encoded</span>
+<span class="sd">    for use in HTML.</span>
+
+<span class="sd">    Always escape input, even if it&#39;s already escaped and marked as such.</span>
+<span class="sd">    This may result in double-escaping. If this is a concern, use</span>
+<span class="sd">    conditional_escape() instead.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">mark_safe</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">_html_escapes</span><span class="p">))</span></div>
+
+
+<span class="n">_js_escapes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u005C&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u0027&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u0022&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u003E&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u003C&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;&amp;&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u0026&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u003D&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u002D&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u003B&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;`&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u0060&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\u2028</span><span class="s1">&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u2028&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\u2029</span><span class="s1">&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u2029&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Escape every ASCII character with a value less than 32.</span>
+<span class="n">_js_escapes</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%c</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">z</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u</span><span class="si">%04X</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">z</span><span class="p">)</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+
+
+<span class="nd">@keep_lazy</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">SafeText</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">escapejs</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hex encode characters for use in JavaScript strings.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">mark_safe</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">_js_escapes</span><span class="p">))</span>
+
+
+<span class="n">_json_script_escapes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u003E&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u003C&#39;</span><span class="p">,</span>
+    <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;&amp;&#39;</span><span class="p">):</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">u0026&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">json_script</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">element_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Escape all the HTML/XML special characters with their unicode escapes, so</span>
+<span class="sd">    value is safe to be output anywhere except for inside a tag attribute. Wrap</span>
+<span class="sd">    the escaped JSON in a script tag.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">django.core.serializers.json</span> <span class="k">import</span> <span class="n">DjangoJSONEncoder</span>
+    <span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">DjangoJSONEncoder</span><span class="p">)</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">_json_script_escapes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">format_html</span><span class="p">(</span>
+        <span class="s1">&#39;&lt;script id=&quot;</span><span class="si">{}</span><span class="s1">&quot; type=&quot;application/json&quot;&gt;</span><span class="si">{}</span><span class="s1">&lt;/script&gt;&#39;</span><span class="p">,</span>
+        <span class="n">element_id</span><span class="p">,</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="conditional_escape"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.html.conditional_escape">[docs]</a><span class="k">def</span> <span class="nf">conditional_escape</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Similar to escape(), except that it doesn&#39;t operate on pre-escaped strings.</span>
+
+<span class="sd">    This function relies on the __html__ convention used both by Django&#39;s</span>
+<span class="sd">    SafeData class and by third-party libraries like markupsafe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">Promise</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;__html__&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">__html__</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">escape</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="format_html"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.html.format_html">[docs]</a><span class="k">def</span> <span class="nf">format_html</span><span class="p">(</span><span class="n">format_string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Similar to str.format, but pass all arguments through conditional_escape(),</span>
+<span class="sd">    and call mark_safe() on the result. This function should be used instead</span>
+<span class="sd">    of str.format or % interpolation to build up small HTML fragments.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">args_safe</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">conditional_escape</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">kwargs_safe</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">conditional_escape</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">return</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">format_string</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">args_safe</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs_safe</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="format_html_join"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.html.format_html_join">[docs]</a><span class="k">def</span> <span class="nf">format_html_join</span><span class="p">(</span><span class="n">sep</span><span class="p">,</span> <span class="n">format_string</span><span class="p">,</span> <span class="n">args_generator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A wrapper of format_html, for the common case of a group of arguments that</span>
+<span class="sd">    need to be formatted using the same format string, and then joined using</span>
+<span class="sd">    &#39;sep&#39;. &#39;sep&#39; is also passed through conditional_escape.</span>
+
+<span class="sd">    &#39;args_generator&#39; should be an iterator that returns the sequence of &#39;args&#39;</span>
+<span class="sd">    that will be passed to format_html.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">      format_html_join(&#39;\n&#39;, &quot;&lt;li&gt;{} {}&lt;/li&gt;&quot;, ((u.first_name, u.last_name)</span>
+<span class="sd">                                                  for u in users))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">conditional_escape</span><span class="p">(</span><span class="n">sep</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">format_html</span><span class="p">(</span><span class="n">format_string</span><span class="p">,</span> <span class="o">*</span><span class="nb">tuple</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">args</span> <span class="ow">in</span> <span class="n">args_generator</span><span class="p">))</span></div>
+
+
+<span class="nd">@keep_lazy_text</span>
+<span class="k">def</span> <span class="nf">linebreaks</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">autoescape</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert newlines into &lt;p&gt; and &lt;br&gt;s.&quot;&quot;&quot;</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">normalize_newlines</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">paras</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">{2,}&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">autoescape</span><span class="p">:</span>
+        <span class="n">paras</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;p&gt;</span><span class="si">%s</span><span class="s1">&lt;/p&gt;&#39;</span> <span class="o">%</span> <span class="n">escape</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paras</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">paras</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&lt;p&gt;</span><span class="si">%s</span><span class="s1">&lt;/p&gt;&#39;</span> <span class="o">%</span> <span class="n">p</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paras</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paras</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">MLStripper</span><span class="p">(</span><span class="n">HTMLParser</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">convert_charrefs</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fed</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">handle_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">handle_entityref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&amp;</span><span class="si">%s</span><span class="s1">;&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">handle_charref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&amp;#</span><span class="si">%s</span><span class="s1">;&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fed</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_strip_once</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Internal tag stripping utility used by strip_tags.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">MLStripper</span><span class="p">()</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="strip_tags"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.html.strip_tags">[docs]</a><span class="nd">@keep_lazy_text</span>
+<span class="k">def</span> <span class="nf">strip_tags</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the given HTML with all tags stripped.&quot;&quot;&quot;</span>
+    <span class="c1"># Note: in typical case this loop executes _strip_once once. Loop condition</span>
+    <span class="c1"># is redundant, but helps to reduce number of executions of _strip_once.</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">while</span> <span class="s1">&#39;&lt;&#39;</span> <span class="ow">in</span> <span class="n">value</span> <span class="ow">and</span> <span class="s1">&#39;&gt;&#39;</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+        <span class="n">new_value</span> <span class="o">=</span> <span class="n">_strip_once</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="c1"># _strip_once was not able to detect more tags</span>
+            <span class="k">break</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">new_value</span>
+    <span class="k">return</span> <span class="n">value</span></div>
+
+
+<span class="nd">@keep_lazy_text</span>
+<span class="k">def</span> <span class="nf">strip_spaces_between_tags</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the given HTML with spaces between tags removed.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&gt;\s+&lt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&lt;&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">smart_urlquote</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Quote a URL if it isn&#39;t already quoted.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">unquote_quote</span><span class="p">(</span><span class="n">segment</span><span class="p">):</span>
+        <span class="n">segment</span> <span class="o">=</span> <span class="n">unquote</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
+        <span class="c1"># Tilde is part of RFC3986 Unreserved Characters</span>
+        <span class="c1"># http://tools.ietf.org/html/rfc3986#section-2.3</span>
+        <span class="c1"># See also http://bugs.python.org/issue16285</span>
+        <span class="k">return</span> <span class="n">quote</span><span class="p">(</span><span class="n">segment</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="n">RFC3986_SUBDELIMS</span> <span class="o">+</span> <span class="n">RFC3986_GENDELIMS</span> <span class="o">+</span> <span class="s1">&#39;~&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Handle IDN before quoting.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">scheme</span><span class="p">,</span> <span class="n">netloc</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">fragment</span> <span class="o">=</span> <span class="n">urlsplit</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="c1"># invalid IPv6 URL (normally square brackets in hostname part).</span>
+        <span class="k">return</span> <span class="n">unquote_quote</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">netloc</span> <span class="o">=</span> <span class="n">netloc</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;idna&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>  <span class="c1"># IDN -&gt; ACE</span>
+    <span class="k">except</span> <span class="ne">UnicodeError</span><span class="p">:</span>  <span class="c1"># invalid domain part</span>
+        <span class="k">return</span> <span class="n">unquote_quote</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">query</span><span class="p">:</span>
+        <span class="c1"># Separately unquoting key/value, so as to not mix querystring separators</span>
+        <span class="c1"># included in query values. See #22267.</span>
+        <span class="n">query_parts</span> <span class="o">=</span> <span class="p">[(</span><span class="n">unquote</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">unquote</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                       <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">parse_qsl</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">keep_blank_values</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
+        <span class="c1"># urlencode will take care of quoting</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">urlencode</span><span class="p">(</span><span class="n">query_parts</span><span class="p">)</span>
+
+    <span class="n">path</span> <span class="o">=</span> <span class="n">unquote_quote</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">fragment</span> <span class="o">=</span> <span class="n">unquote_quote</span><span class="p">(</span><span class="n">fragment</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">urlunsplit</span><span class="p">((</span><span class="n">scheme</span><span class="p">,</span> <span class="n">netloc</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">fragment</span><span class="p">))</span>
+
+
+<span class="nd">@keep_lazy_text</span>
+<span class="k">def</span> <span class="nf">urlize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">trim_url_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nofollow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">autoescape</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert any URLs in text into clickable links.</span>
+
+<span class="sd">    Works on http://, https://, www. links, and also on links ending in one of</span>
+<span class="sd">    the original seven gTLDs (.com, .edu, .gov, .int, .mil, .net, and .org).</span>
+<span class="sd">    Links can have trailing punctuation (periods, commas, close-parens) and</span>
+<span class="sd">    leading punctuation (opening parens) and it&#39;ll still do the right thing.</span>
+
+<span class="sd">    If trim_url_limit is not None, truncate the URLs in the link text longer</span>
+<span class="sd">    than this limit to trim_url_limit-3 characters and append an ellipsis.</span>
+
+<span class="sd">    If nofollow is True, give the links a rel=&quot;nofollow&quot; attribute.</span>
+
+<span class="sd">    If autoescape is True, autoescape the link text and URLs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">safe_input</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">SafeData</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">trim_url</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">trim_url_limit</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">limit</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">[:</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">unescape</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">trail</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If input URL is HTML-escaped, unescape it so that it can be safely fed</span>
+<span class="sd">        to smart_urlquote. For example:</span>
+<span class="sd">        http://example.com?x=1&amp;amp;y=&amp;lt;2&amp;gt; =&gt; http://example.com?x=1&amp;y=&lt;2&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">unescaped</span> <span class="o">=</span> <span class="p">(</span><span class="n">text</span> <span class="o">+</span> <span class="n">trail</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+            <span class="s1">&#39;&amp;amp;&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&amp;lt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+            <span class="s1">&#39;&amp;gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&amp;quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&amp;#39;&#39;</span><span class="p">,</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">trail</span> <span class="ow">and</span> <span class="n">unescaped</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">trail</span><span class="p">):</span>
+            <span class="c1"># Remove trail for unescaped if it was not consumed by unescape</span>
+            <span class="n">unescaped</span> <span class="o">=</span> <span class="n">unescaped</span><span class="p">[:</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">trail</span><span class="p">)]</span>
+        <span class="k">elif</span> <span class="n">trail</span> <span class="o">==</span> <span class="s1">&#39;;&#39;</span><span class="p">:</span>
+            <span class="c1"># Trail was consumed by unescape (as end-of-entity marker), move it to text</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="n">trail</span>
+            <span class="n">trail</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">text</span><span class="p">,</span> <span class="n">unescaped</span><span class="p">,</span> <span class="n">trail</span>
+
+    <span class="k">def</span> <span class="nf">trim_punctuation</span><span class="p">(</span><span class="n">lead</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">trail</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Trim trailing and wrapping punctuation from `middle`. Return the items</span>
+<span class="sd">        of the new state.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Continue trimming until middle remains unchanged.</span>
+        <span class="n">trimmed_something</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">trimmed_something</span><span class="p">:</span>
+            <span class="n">trimmed_something</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="c1"># Trim trailing punctuation.</span>
+            <span class="n">stripped</span> <span class="o">=</span> <span class="n">middle</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="n">TRAILING_PUNCTUATION_CHARS</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">middle</span> <span class="o">!=</span> <span class="n">stripped</span><span class="p">:</span>
+                <span class="n">trail</span> <span class="o">=</span> <span class="n">middle</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">stripped</span><span class="p">):]</span> <span class="o">+</span> <span class="n">trail</span>
+                <span class="n">middle</span> <span class="o">=</span> <span class="n">stripped</span>
+                <span class="n">trimmed_something</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="c1"># Trim wrapping punctuation.</span>
+            <span class="k">for</span> <span class="n">opening</span><span class="p">,</span> <span class="n">closing</span> <span class="ow">in</span> <span class="n">WRAPPING_PUNCTUATION</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">middle</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">opening</span><span class="p">):</span>
+                    <span class="n">middle</span> <span class="o">=</span> <span class="n">middle</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">opening</span><span class="p">):]</span>
+                    <span class="n">lead</span> <span class="o">+=</span> <span class="n">opening</span>
+                    <span class="n">trimmed_something</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="c1"># Keep parentheses at the end only if they&#39;re balanced.</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">middle</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">closing</span><span class="p">)</span> <span class="ow">and</span>
+                        <span class="n">middle</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">closing</span><span class="p">)</span> <span class="o">==</span> <span class="n">middle</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">opening</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="n">middle</span> <span class="o">=</span> <span class="n">middle</span><span class="p">[:</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">closing</span><span class="p">)]</span>
+                    <span class="n">trail</span> <span class="o">=</span> <span class="n">closing</span> <span class="o">+</span> <span class="n">trail</span>
+                    <span class="n">trimmed_something</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">lead</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">trail</span>
+
+    <span class="k">def</span> <span class="nf">is_email_simple</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return True if value looks like an email address.&quot;&quot;&quot;</span>
+        <span class="c1"># An @ must be in the middle of the value.</span>
+        <span class="k">if</span> <span class="s1">&#39;@&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">value</span> <span class="ow">or</span> <span class="n">value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;@&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">value</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;@&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;@&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="c1"># value contains more than one @.</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="c1"># Dot must be in p2 (e.g. example.com)</span>
+        <span class="k">if</span> <span class="s1">&#39;.&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">p2</span> <span class="ow">or</span> <span class="n">p2</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="n">words</span> <span class="o">=</span> <span class="n">word_split_re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;.&#39;</span> <span class="ow">in</span> <span class="n">word</span> <span class="ow">or</span> <span class="s1">&#39;@&#39;</span> <span class="ow">in</span> <span class="n">word</span> <span class="ow">or</span> <span class="s1">&#39;:&#39;</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="c1"># lead: Current punctuation trimmed from the beginning of the word.</span>
+            <span class="c1"># middle: Current state of the word.</span>
+            <span class="c1"># trail: Current punctuation trimmed from the end of the word.</span>
+            <span class="n">lead</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">trail</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+            <span class="c1"># Deal with punctuation.</span>
+            <span class="n">lead</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">trail</span> <span class="o">=</span> <span class="n">trim_punctuation</span><span class="p">(</span><span class="n">lead</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">trail</span><span class="p">)</span>
+
+            <span class="c1"># Make URL we want to point to.</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">nofollow_attr</span> <span class="o">=</span> <span class="s1">&#39; rel=&quot;nofollow&quot;&#39;</span> <span class="k">if</span> <span class="n">nofollow</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">if</span> <span class="n">simple_url_re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">middle</span><span class="p">):</span>
+                <span class="n">middle</span><span class="p">,</span> <span class="n">middle_unescaped</span><span class="p">,</span> <span class="n">trail</span> <span class="o">=</span> <span class="n">unescape</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span> <span class="n">trail</span><span class="p">)</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">smart_urlquote</span><span class="p">(</span><span class="n">middle_unescaped</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">simple_url_2_re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">middle</span><span class="p">):</span>
+                <span class="n">middle</span><span class="p">,</span> <span class="n">middle_unescaped</span><span class="p">,</span> <span class="n">trail</span> <span class="o">=</span> <span class="n">unescape</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span> <span class="n">trail</span><span class="p">)</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">smart_urlquote</span><span class="p">(</span><span class="s1">&#39;http://</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">middle_unescaped</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s1">&#39;:&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">middle</span> <span class="ow">and</span> <span class="n">is_email_simple</span><span class="p">(</span><span class="n">middle</span><span class="p">):</span>
+                <span class="n">local</span><span class="p">,</span> <span class="n">domain</span> <span class="o">=</span> <span class="n">middle</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;@&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">domain</span> <span class="o">=</span> <span class="n">domain</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;idna&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">UnicodeError</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;mailto:</span><span class="si">%s</span><span class="s1">@</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">local</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+                <span class="n">nofollow_attr</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+            <span class="c1"># Make link.</span>
+            <span class="k">if</span> <span class="n">url</span><span class="p">:</span>
+                <span class="n">trimmed</span> <span class="o">=</span> <span class="n">trim_url</span><span class="p">(</span><span class="n">middle</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">autoescape</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">safe_input</span><span class="p">:</span>
+                    <span class="n">lead</span><span class="p">,</span> <span class="n">trail</span> <span class="o">=</span> <span class="n">escape</span><span class="p">(</span><span class="n">lead</span><span class="p">),</span> <span class="n">escape</span><span class="p">(</span><span class="n">trail</span><span class="p">)</span>
+                    <span class="n">trimmed</span> <span class="o">=</span> <span class="n">escape</span><span class="p">(</span><span class="n">trimmed</span><span class="p">)</span>
+                <span class="n">middle</span> <span class="o">=</span> <span class="s1">&#39;&lt;a href=&quot;</span><span class="si">%s</span><span class="s1">&quot;</span><span class="si">%s</span><span class="s1">&gt;</span><span class="si">%s</span><span class="s1">&lt;/a&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">escape</span><span class="p">(</span><span class="n">url</span><span class="p">),</span> <span class="n">nofollow_attr</span><span class="p">,</span> <span class="n">trimmed</span><span class="p">)</span>
+                <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s%s%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lead</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">trail</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">safe_input</span><span class="p">:</span>
+                    <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">autoescape</span><span class="p">:</span>
+                    <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">escape</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">safe_input</span><span class="p">:</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">autoescape</span><span class="p">:</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">escape</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">avoid_wrapping</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Avoid text wrapping in the middle of a phrase by adding non-breaking</span>
+<span class="sd">    spaces where there previously were normal spaces.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\xa0</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="html_safe"><a class="viewcode-back" href="../../../../ref/utils/#django.utils.html.html_safe">[docs]</a><span class="k">def</span> <span class="nf">html_safe</span><span class="p">(</span><span class="n">klass</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A decorator that defines the __html__ method. This helps non-Django</span>
+<span class="sd">    templates to detect classes whose __str__ methods return SafeText.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s1">&#39;__html__&#39;</span> <span class="ow">in</span> <span class="n">klass</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;can&#39;t apply @html_safe to </span><span class="si">%s</span><span class="s2"> because it defines &quot;</span>
+            <span class="s2">&quot;__html__().&quot;</span> <span class="o">%</span> <span class="n">klass</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;__str__&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">klass</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;can&#39;t apply @html_safe to </span><span class="si">%s</span><span class="s2"> because it doesn&#39;t &quot;</span>
+            <span class="s2">&quot;define __str__().&quot;</span> <span class="o">%</span> <span class="n">klass</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="p">)</span>
+    <span class="n">klass_str</span> <span class="o">=</span> <span class="n">klass</span><span class="o">.</span><span class="fm">__str__</span>
+    <span class="n">klass</span><span class="o">.</span><span class="fm">__str__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="n">mark_safe</span><span class="p">(</span><span class="n">klass_str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+    <span class="n">klass</span><span class="o">.</span><span class="n">__html__</span> <span class="o">=</span> <span class="k">lambda</span> <span class="bp">self</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">klass</span></div>
+</pre></div>
+</div>
+
+
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Kevin donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../../">Module code</a>
+      
+      <ul><li><a href="../../">django</a>
+      
+      <ul><li>django.utils.html</li></ul>
+      </li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

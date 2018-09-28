@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Extension Points defined in REST API for Blue Ocean Plugin
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Extension Points defined in REST API for Blue Ocean Plugin' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Extension Points defined in REST API for Blue Ocean Plugin' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Extension Points defined in REST API for Blue Ocean Plugin' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/developer/extensions/blueocean-rest/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Extension Points defined in REST API for Blue Ocean Plugin' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<style>
+  .container .row.body {
+    margin-right: 5em;
+    margin-left: 5em;
+  }
+  .toc {
+      float: right;
+  }
+</style>
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row.body h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-12'>
+<h1>
+Extension Points defined in REST API for Blue Ocean Plugin
+</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#additionalanalyticsproperties">AdditionalAnalyticsProperties</a></li>
+<li><a href="#analytics">Analytics</a></li>
+<li><a href="#apiroutable">ApiRoutable</a></li>
+<li><a href="#blueextensionclasscontainer">BlueExtensionClassContainer</a></li>
+<li><a href="#bluefavoriteresolver">BlueFavoriteResolver</a></li>
+<li><a href="#blueissuefactory">BlueIssueFactory</a></li>
+<li><a href="#blueoceanconfigfactory">BlueOceanConfigFactory</a></li>
+<li><a href="#blueoceanuiprovider">BlueOceanUIProvider</a></li>
+<li><a href="#blueoceanurlmapper">BlueOceanUrlMapper</a></li>
+<li><a href="#blueoceanurlobjectfactory">BlueOceanUrlObjectFactory</a></li>
+<li><a href="#blueorganizationcontainer">BlueOrganizationContainer</a></li>
+<li><a href="#bluepipelinefactory">BluePipelineFactory</a></li>
+<li><a href="#bluerunfactory">BlueRunFactory</a></li>
+<li><a href="#bluetestresultfactory">BlueTestResultFactory</a></li>
+<li><a href="#bluetrendfactory">BlueTrendFactory</a></li>
+<li><a href="#blueusercontainer">BlueUserContainer</a></li>
+<li><a href="#linkresolver">LinkResolver</a></li>
+<li><a href="#omnisearch">OmniSearch</a></li>
+<li><a href="#organizationfactory">OrganizationFactory</a></li>
+<li><a href="#organizationroute">OrganizationRoute</a></li>
+<li><a href="#rootroutable">RootRoutable</a></li>
+<li><a href="#userroute">UserRoute</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://plugins.jenkins.io/blueocean-rest">REST API for Blue Ocean Plugin</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="additionalanalyticsproperties"><a class="anchor" href="#additionalanalyticsproperties"></a>AdditionalAnalyticsProperties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/analytics/AdditionalAnalyticsProperties.html" title="Javadoc for io.jenkins.blueocean.analytics.AdditionalAnalyticsProperties">io.jenkins.blueocean.analytics.AdditionalAnalyticsProperties in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Enhance a request with properties when tracking an analytics event</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>analytics.<wbr/><strong>BrowserAndOperatingSystemAnalyticsProperties</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BrowserAndOperatingSystemAnalyticsProperties&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>analytics.<wbr/><strong>ServerInfoAdditionalAnalyticsProperties</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=ServerInfoAdditionalAnalyticsProperties&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="analytics"><a class="anchor" href="#analytics"></a>Analytics</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/analytics/Analytics.html" title="Javadoc for io.jenkins.blueocean.analytics.Analytics">io.jenkins.blueocean.analytics.Analytics in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Facade for reporting user analytics</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>analytics.<wbr/><strong>AbstractAnalytics</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=AbstractAnalytics&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>analytics.<wbr/><strong>KeenAnalyticsImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=KeenAnalyticsImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>analytics.<wbr/><strong>NullAnalytics</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=NullAnalytics&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="apiroutable"><a class="anchor" href="#apiroutable"></a>ApiRoutable</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/ApiRoutable.html" title="Javadoc for io.jenkins.blueocean.rest.ApiRoutable">io.jenkins.blueocean.rest.ApiRoutable in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Marks the REST API endpoints that are exposed by <a href="http://javadoc.jenkins.io/byShortName/ApiHead" title="Javadoc for ApiHead">ApiHead</a> </p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-editor">Blue Ocean Pipeline Editor Plugin</a>: io.<wbr/>blueocean.<wbr/>rest.<wbr/>pipeline.<wbr/>editor.<wbr/><strong>PipelineMetadataService</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineMetadataService&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-i18n">i18n for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>i18n.<wbr/><strong>BlueI18n</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BlueI18n&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest">REST API for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>analytics.<wbr/><strong>AnalyticsRoute</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=AnalyticsRoute&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest">REST API for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>model.<wbr/><strong>BlueExtensionClassContainer</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BlueExtensionClassContainer&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest">REST API for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>model.<wbr/><strong>BlueOrganizationContainer</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BlueOrganizationContainer&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest">REST API for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>model.<wbr/><strong>BlueUserContainer</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BlueUserContainer&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>ExtensionClassContainerImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=ExtensionClassContainerImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>OrganizationContainerImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=OrganizationContainerImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>UserContainerImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=UserContainerImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blueextensionclasscontainer"><a class="anchor" href="#blueextensionclasscontainer"></a>BlueExtensionClassContainer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/model/BlueExtensionClassContainer.html" title="Javadoc for io.jenkins.blueocean.rest.model.BlueExtensionClassContainer">io.jenkins.blueocean.rest.model.BlueExtensionClassContainer in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Map representation of <a href="http://javadoc.jenkins.io/byShortName/BlueExtensionClass" title="Javadoc for BlueExtensionClass">BlueExtensionClass</a> es</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>ExtensionClassContainerImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=ExtensionClassContainerImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bluefavoriteresolver"><a class="anchor" href="#bluefavoriteresolver"></a>BlueFavoriteResolver</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/factory/BlueFavoriteResolver.html" title="Javadoc for io.jenkins.blueocean.rest.factory.BlueFavoriteResolver">io.jenkins.blueocean.rest.factory.BlueFavoriteResolver in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Resolves favorite for a given model object <a href="http://javadoc.jenkins.io/byShortName/Item" title="Javadoc for Item">Item</a> </p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/><strong>MultiBranchPipelineImpl.<wbr/>FavoriteResolverImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=MultiBranchPipelineImpl.FavoriteResolverImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blueissuefactory"><a class="anchor" href="#blueissuefactory"></a>BlueIssueFactory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/factory/BlueIssueFactory.html" title="Javadoc for io.jenkins.blueocean.rest.factory.BlueIssueFactory">io.jenkins.blueocean.rest.factory.BlueIssueFactory in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p><em>This extension point has no Javadoc documentation.</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-github-pipeline">GitHub Pipeline for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>blueocean_github_pipeline.<wbr/><strong>GithubIssue.<wbr/>FactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=GithubIssue.FactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-jira">JIRA Integration for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>jira.<wbr/><strong>BlueJiraIssue.<wbr/>FactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BlueJiraIssue.FactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blueoceanconfigfactory"><a class="anchor" href="#blueoceanconfigfactory"></a>BlueOceanConfigFactory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/factory/BlueOceanConfigFactory.html" title="Javadoc for io.jenkins.blueocean.rest.factory.BlueOceanConfigFactory">io.jenkins.blueocean.rest.factory.BlueOceanConfigFactory in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Blue Ocean configuration factory which allows different extensions to return configuration values.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-config">Config API for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>config.<wbr/><strong>BlueOceanConfigImpl.<wbr/>BlueOceanConfigFactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BlueOceanConfigImpl.BlueOceanConfigFactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blueoceanuiprovider"><a class="anchor" href="#blueoceanuiprovider"></a>BlueOceanUIProvider</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/BlueOceanUIProvider.html" title="Javadoc for io.jenkins.blueocean.BlueOceanUIProvider">io.jenkins.blueocean.BlueOceanUIProvider in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> BlueOcean UI provider.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/><strong>BlueOceanRootAction.<wbr/>BlueOceanUIProviderImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BlueOceanRootAction.BlueOceanUIProviderImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blueoceanurlmapper"><a class="anchor" href="#blueoceanurlmapper"></a>BlueOceanUrlMapper</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/factory/BlueOceanUrlMapper.html" title="Javadoc for io.jenkins.blueocean.rest.factory.BlueOceanUrlMapper">io.jenkins.blueocean.rest.factory.BlueOceanUrlMapper in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Maps Jenkins <a href="http://javadoc.jenkins.io/byShortName/ModelObject" title="Javadoc for ModelObject">ModelObject</a> to BlueOcean front end URL</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/><strong>BlueOceanUrlMapperImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BlueOceanUrlMapperImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blueoceanurlobjectfactory"><a class="anchor" href="#blueoceanurlobjectfactory"></a>BlueOceanUrlObjectFactory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/factory/BlueOceanUrlObjectFactory.html" title="Javadoc for io.jenkins.blueocean.rest.factory.BlueOceanUrlObjectFactory">io.jenkins.blueocean.rest.factory.BlueOceanUrlObjectFactory in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> <a href="http://javadoc.jenkins.io/hudson/ExtensionPoint.html" title="Javadoc for hudson.ExtensionPoint">hudson.ExtensionPoint</a> to provide <a href="http://javadoc.jenkins.io/byShortName/BlueOceanUrlObject" title="Javadoc for BlueOceanUrlObject">BlueOceanUrlObject</a> for Jenkins model object</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/><strong>BlueOceanUrlObjectFactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BlueOceanUrlObjectFactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blueorganizationcontainer"><a class="anchor" href="#blueorganizationcontainer"></a>BlueOrganizationContainer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/model/BlueOrganizationContainer.html" title="Javadoc for io.jenkins.blueocean.rest.model.BlueOrganizationContainer">io.jenkins.blueocean.rest.model.BlueOrganizationContainer in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Container of BlueOcean <a href="http://javadoc.jenkins.io/byShortName/BlueOrganization" title="Javadoc for BlueOrganization">BlueOrganization</a> s</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>OrganizationContainerImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=OrganizationContainerImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bluepipelinefactory"><a class="anchor" href="#bluepipelinefactory"></a>BluePipelineFactory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/factory/BluePipelineFactory.html" title="Javadoc for io.jenkins.blueocean.rest.factory.BluePipelineFactory">io.jenkins.blueocean.rest.factory.BluePipelineFactory in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Factory that gives instance of <a href="http://javadoc.jenkins.io/byShortName/BluePipeline" title="Javadoc for BluePipeline">BluePipeline</a> </p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-github-pipeline">GitHub Pipeline for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>blueocean_github_pipeline.<wbr/><strong>GithubOrganizationFolder.<wbr/>OrganizationFolderFactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=GithubOrganizationFolder.OrganizationFolderFactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/><strong>BranchImpl.<wbr/>PipelineFactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BranchImpl.PipelineFactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/><strong>MatrixProjectImpl.<wbr/>PipelineFactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=MatrixProjectImpl.PipelineFactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/><strong>MultiBranchPipelineImpl.<wbr/>PipelineFactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=MultiBranchPipelineImpl.PipelineFactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/><strong>OrganizationFolderPipelineImpl.<wbr/>OrganizationFolderFactory</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=OrganizationFolderPipelineImpl.OrganizationFolderFactory&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/><strong>PipelineImpl.<wbr/>PipelineFactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineImpl.PipelineFactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>AbstractPipelineImpl.<wbr/>PipelineFactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=AbstractPipelineImpl.PipelineFactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>FreeStylePipeline.<wbr/>FactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=FreeStylePipeline.FactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>PipelineFolderImpl.<wbr/>PipelineFactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineFolderImpl.PipelineFactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bluerunfactory"><a class="anchor" href="#bluerunfactory"></a>BlueRunFactory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/factory/BlueRunFactory.html" title="Javadoc for io.jenkins.blueocean.rest.factory.BlueRunFactory">io.jenkins.blueocean.rest.factory.BlueRunFactory in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Factory that gives instance of <a href="http://javadoc.jenkins.io/byShortName/BlueRun" title="Javadoc for BlueRun">BlueRun</a> </p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/><strong>PipelineRunImpl.<wbr/>FactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineRunImpl.FactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>DefaultRunImpl.<wbr/>FactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=DefaultRunImpl.FactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>FreeStyleRunImpl.<wbr/>FactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=FreeStyleRunImpl.FactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bluetestresultfactory"><a class="anchor" href="#bluetestresultfactory"></a>BlueTestResultFactory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/factory/BlueTestResultFactory.html" title="Javadoc for io.jenkins.blueocean.rest.factory.BlueTestResultFactory">io.jenkins.blueocean.rest.factory.BlueTestResultFactory in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p><em>This extension point has no Javadoc documentation.</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/>junit.<wbr/><strong>BlueJUnitTestResult.<wbr/>FactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BlueJUnitTestResult.FactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bluetrendfactory"><a class="anchor" href="#bluetrendfactory"></a>BlueTrendFactory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/factory/BlueTrendFactory.html" title="Javadoc for io.jenkins.blueocean.rest.factory.BlueTrendFactory">io.jenkins.blueocean.rest.factory.BlueTrendFactory in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Allows extensions to attach <a href="http://javadoc.jenkins.io/byShortName/BlueTrend" title="Javadoc for BlueTrend">BlueTrend</a> data to a <a href="http://javadoc.jenkins.io/byShortName/BluePipeline" title="Javadoc for BluePipeline">BluePipeline</a> for reports and visualization.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/><strong>StageDurationTrend.<wbr/>FactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=StageDurationTrend.FactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/>junit.<wbr/><strong>BlueJUnitTrend.<wbr/>FactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=BlueJUnitTrend.FactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="blueusercontainer"><a class="anchor" href="#blueusercontainer"></a>BlueUserContainer</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/model/BlueUserContainer.html" title="Javadoc for io.jenkins.blueocean.rest.model.BlueUserContainer">io.jenkins.blueocean.rest.model.BlueUserContainer in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> User API.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>UserContainerImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=UserContainerImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="linkresolver"><a class="anchor" href="#linkresolver"></a>LinkResolver</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/hal/LinkResolver.html" title="Javadoc for io.jenkins.blueocean.rest.hal.LinkResolver">io.jenkins.blueocean.rest.hal.LinkResolver in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p><em>This extension point has no Javadoc documentation.</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/><strong>LinkResolverImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=LinkResolverImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/><strong>LinkResolverImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=LinkResolverImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="omnisearch"><a class="anchor" href="#omnisearch"></a>OmniSearch</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/OmniSearch.html" title="Javadoc for io.jenkins.blueocean.rest.OmniSearch">io.jenkins.blueocean.rest.OmniSearch in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Extension point to contribute the search capability</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/>credential.<wbr/><strong>CredentialSearch</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=CredentialSearch&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>PipelineSearch</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineSearch&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>RunSearch</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=RunSearch&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/>rest.<wbr/><strong>UserSearch</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=UserSearch&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="organizationfactory"><a class="anchor" href="#organizationfactory"></a>OrganizationFactory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/factory/organization/OrganizationFactory.html" title="Javadoc for io.jenkins.blueocean.rest.factory.organization.OrganizationFactory">io.jenkins.blueocean.rest.factory.organization.OrganizationFactory in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Maps BlueOcean organization and <a href="http://javadoc.jenkins.io/byShortName/ItemGroup" title="Javadoc for ItemGroup">ItemGroup</a> s.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest-impl">REST Implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>service.<wbr/>embedded.<wbr/><strong>OrganizationFactoryImpl</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=OrganizationFactoryImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="organizationroute"><a class="anchor" href="#organizationroute"></a>OrganizationRoute</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/OrganizationRoute.html" title="Javadoc for io.jenkins.blueocean.rest.OrganizationRoute">io.jenkins.blueocean.rest.OrganizationRoute in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Route contributing to <a href="http://javadoc.jenkins.io/io/jenkins/blueocean/rest/model/BlueOrganization.html" title="Javadoc for io.jenkins.blueocean.rest.model.BlueOrganization">io.jenkins.blueocean.rest.model.BlueOrganization</a> : url path /organization/:id/:organizationRoute.urlName()</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-executor-info">Blue Ocean Executor Info Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>executor.<wbr/><strong>Computers</strong></p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/>credential.<wbr/><strong>CredentialContainer</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=CredentialContainer&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-pipeline-api-impl">Pipeline implementation for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/>impl.<wbr/>pipeline.<wbr/>scm.<wbr/><strong>ScmContainer</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=ScmContainer&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rootroutable"><a class="anchor" href="#rootroutable"></a>RootRoutable</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/RootRoutable.html" title="Javadoc for io.jenkins.blueocean.RootRoutable">io.jenkins.blueocean.RootRoutable in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Additional <a href="http://javadoc.jenkins.io/byShortName/Routable" title="Javadoc for Routable">Routable</a> s that augment <a href="http://javadoc.jenkins.io/byShortName/BlueOceanUIProvider#getUrlBasePrefix()" title="Javadoc for BlueOceanUIProvider#getUrlBasePrefix()">BlueOceanUIProvider#getUrlBasePrefix()</a> root object.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-git-pipeline">Git Pipeline for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>blueocean_git_pipeline.<wbr/><strong>RepositoryCloneProgressEndpoint</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=RepositoryCloneProgressEndpoint&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-rest">REST API for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>rest.<wbr/><strong>ApiHead</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=ApiHead&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="userroute"><a class="anchor" href="#userroute"></a>UserRoute</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/blueocean-rest/io/jenkins/blueocean/rest/UserRoute.html" title="Javadoc for io.jenkins.blueocean.rest.UserRoute">io.jenkins.blueocean.rest.UserRoute in blueocean-rest</a></code></p>
+</div>
+<div class="paragraph">
+<p> Route contributing to <a href="http://javadoc.jenkins.io/io/jenkins/blueocean/rest/model/BlueUser.html" title="Javadoc for io.jenkins.blueocean.rest.model.BlueUser">io.jenkins.blueocean.rest.model.BlueUser</a> : url path /organization/:id/users/:user/:userRoute.urlName()</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-git-pipeline">Git Pipeline for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>ssh.<wbr/><strong>UserPublicKeyRoute</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=UserPublicKeyRoute&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

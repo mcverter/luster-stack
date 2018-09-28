@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Create a Pipeline in Blue Ocean
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Create a Pipeline in Blue Ocean' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Create a Pipeline in Blue Ocean' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Create a Pipeline in Blue Ocean' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Create a Pipeline in Blue Ocean' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<p>
+<a href="https://jenkins.io/doc" class="">Jenkins User Documentation Home</a>
+</p>
+<h4>
+Guided Tour
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/getting-started" class="">Getting started</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/hello-world" class="">Creating your first Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps" class="">Running multiple steps</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/agents" class="">Defining execution environments</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/environment" class="">Using environment variables</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/tests-and-artifacts" class="">Recording test results and artifacts</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/post" class="">Cleaning up and notifications</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/deployment" class="">Deployment</a>
+</li>
+</ul>
+<h4>
+Tutorials
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/tutorials" class="">Overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-java-app-with-maven" class="">Build a Java app with Maven</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm" class="">Build a Node.js and React app with npm</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller" class="">Build a Python app with PyInstaller</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean" class="active">Create a Pipeline in Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project" class="">End-to-End Multibranch Pipeline Project Creation</a>
+</li>
+</ul>
+<h4>
+User Handbook
+<span style='font-size: 0.6rem; vertical-align: middle;'>
+<a href='/user-handbook.pdf'>
+(PDF)
+</a>
+</span>
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/getting-started" class="">User Handbook overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/installing" class="">Installing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/using" class="">Using Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline" class="">Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean" class="">Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing" class="">Managing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/system-administration" class="">System Administration</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/scaling" class="">Scaling Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/appendix" class="">Appendix</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/glossary" class="">Glossary</a>
+</li>
+</ul>
+<h4>
+Resources
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/steps" class="">Pipeline Steps reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/upgrade-guide" class="">LTS Upgrade Guide</a>
+</li>
+</ul>
+<h5>
+Recent Tutorial Blog Posts
+</h5>
+<ul>
+<li>
+<a href='/blog/2017/11/27/tutorials-in-the-jenkins-user-documentation/'>
+Introducing Tutorials in the Jenkins User Documentation
+</a>
+</li>
+<li>
+<a href='/blog/2017/05/18/pipeline-dev-tools/'>
+Pipeline Development Tools
+</a>
+</li>
+<li>
+<a href='/blog/2017/04/12/welcome-to-blue-ocean-dashboard/'>
+Getting Started with the Blue Ocean Dashboard
+</a>
+</li>
+</ul>
+<div class='small'>
+<a href='/node/tags/tutorial'>
+View all tutorial blog posts
+</a>
+</div>
+<p></p>
+</div>
+</div>
+<div class='col-lg-9'>
+<h1>
+Create a Pipeline in Blue Ocean
+</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel2">
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#run-jenkins-in-docker">Run Jenkins in Docker</a>
+<ul class="sectlevel3">
+<li><a href="#on-macos-and-linux">On macOS and Linux</a></li>
+<li><a href="#on-windows">On Windows</a></li>
+<li><a href="#accessing-the-jenkinsblue-ocean-docker-container">Accessing the Jenkins/Blue Ocean Docker container</a></li>
+<li><a href="#setup-wizard">Setup wizard</a></li>
+<li><a href="#stopping-and-restarting-jenkins">Stopping and restarting Jenkins</a></li>
+</ul>
+</li>
+<li><a href="#fork-sample-repository">Fork the sample repository on GitHub</a></li>
+<li><a href="#create-your-pipeline-project-in-blue-ocean">Create your Pipeline project in Blue Ocean</a></li>
+<li><a href="#create-your-initial-pipeline">Create your initial Pipeline</a></li>
+<li><a href="#add-a-test-stage-to-your-pipeline">Add a test stage to your Pipeline</a></li>
+<li><a href="#add-a-final-deliver-stage-to-your-pipeline">Add a final deliver stage to your Pipeline</a></li>
+<li><a href="#follow-up-optional">Follow up (optional)</a></li>
+<li><a href="#wrapping-up">Wrapping up</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This tutorial shows you how to use the <a href="/doc/book/blueocean/">Blue Ocean</a>
+feature of Jenkins to create a Pipeline that will orchestrate building a simple
+application.</p>
+</div>
+<div class="paragraph">
+<p>Before starting this tutorial, it is recommended that you run through at least
+one of the initial set of tutorials from the <a href="..">Tutorials overview</a> page
+first to familiarize yourself with CI/CD concepts (relevant to a technology
+stack you&#8217;re most familiar with) and how these concepts are implemented in
+Jenkins.</p>
+</div>
+<div class="paragraph">
+<p>This tutorial uses the same application that the
+<a href="../build-a-node-js-and-react-app-with-npm">Build a Node.js and React app
+with npm</a> tutorial is based on. Therefore, you&#8217;ll be building the same
+application although this time, completely through Blue Ocean. Since Blue Ocean
+provides a simplified Git-handling experience, you&#8217;ll be interacting directly
+with the repository on GitHub (as opposed to a local clone of this repository).</p>
+</div>
+<div class="paragraph">
+<p><strong>Duration:</strong> This tutorial takes 20-40 minutes to complete (assuming you&#8217;ve
+already met the <a href="#prerequisites">prerequisites</a> below). The exact duration will
+depend on the speed of your machine and whether or not you&#8217;ve already
+<a href="#run-jenkins-in-docker">run Jenkins in Docker</a> from <a href="..">another tutorial</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can stop this tutorial at any point in time and continue from where you left
+off.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;ve already run though <a href="..">another tutorial</a>, you can skip the
+<a href="#prerequisites">Prerequisites</a> and <a href="#run-jenkins-in-docker">Run Jenkins in
+Docker</a> sections below and proceed on to <a href="#fork-sample-repository">forking the
+sample repository</a>. If you need to restart Jenkins, simply follow the restart
+instructions in <a href="#stopping-and-restarting-jenkins">Stopping and restarting
+Jenkins</a> and then proceed on.</p>
+</div>
+<div class="sect2">
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h3>
+<div class="paragraph">
+<p>For this tutorial, you will require:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A macOS, Linux or Windows machine with:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>256 MB of RAM, although more than 512MB is recommended.</p>
+</li>
+<li>
+<p>10 GB of drive space for Jenkins and your Docker images and containers.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The following software installed:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.docker.com/">Docker</a> - Read more about installing Docker in the
+<a href="/doc/book/installing/#installing-docker">Installing Docker</a> section of
+the <a href="/doc/book/installing/">Installing Jenkins</a> page.<br>
+<strong>Note:</strong> If you use Linux, this tutorial assumes that you are not running
+Docker commands as the root user, but instead with a single user account that
+also has access to the other tools used throughout this tutorial.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="run-jenkins-in-docker"><a class="anchor" href="#run-jenkins-in-docker"></a>Run Jenkins in Docker</h3>
+<div class="paragraph">
+<p>In this tutorial, you&#8217;ll be running Jenkins as a Docker container from the
+<a href="https://hub.docker.com/r/jenkinsci/blueocean/"><code>jenkinsci/blueocean</code></a> Docker
+image.</p>
+</div>
+<div class="paragraph">
+<p>To run Jenkins in Docker, follow the relevant instructions below for either
+<a href="#on-macos-and-linux">macOS and Linux</a> or <a href="#on-windows">Windows</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can read more about Docker container and image concepts in the
+<a href="../../book/installing#docker">Docker</a> and
+<a href="../../book/installing#downloading-and-running-jenkins-in-docker">Downloading and running Jenkins in Docker</a>
+sections of the <a href="../../book/installing">Installing Jenkins</a> page.</p>
+</div>
+<div class="sect3">
+<h4 id="on-macos-and-linux"><a class="anchor" href="#on-macos-and-linux"></a>On macOS and Linux</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open up a terminal window.</p>
+</li>
+<li>
+<p>Run the <code>jenkinsci/blueocean</code> image as a container in Docker using the
+following
+<a href="https://docs.docker.com/engine/reference/commandline/run/"><code>docker run</code></a>
+command (bearing in mind that this command automatically downloads the image
+if this hasn&#8217;t been done):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>docker run \
+  --rm \
+  -u root \
+  -p 8080:8080 \
+  -v jenkins-data:/var/jenkins_home \ <i class="conum" data-value="1"></i><b>(1)</b>
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$HOME":/home \ <i class="conum" data-value="2"></i><b>(2)</b>
+  jenkinsci/blueocean</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Maps the <code>/var/jenkins_home</code> directory in the container to the Docker
+<a href="https://docs.docker.com/engine/admin/volumes/volumes/">volume</a> with the name
+<code>jenkins-data</code>. If this volume does not exist, then this <code>docker run</code> command
+will automatically create the volume for you.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Maps the <code>$HOME</code> directory on the host (i.e. your local) machine (usually
+the <code>/Users/&lt;your-username&gt;</code> directory) to the <code>/home</code> directory in the
+container.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Note:</strong> If copying and pasting the command snippet above doesn&#8217;t work, try
+copying and pasting this annotation-free version here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>docker run \
+  --rm \
+  -u root \
+  -p 8080:8080 \
+  -v jenkins-data:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v "$HOME":/home \
+  jenkinsci/blueocean</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Proceed to the <a href="#setup-wizard">Setup wizard</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="on-windows"><a class="anchor" href="#on-windows"></a>On Windows</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open up a command prompt window.</p>
+</li>
+<li>
+<p>Run the <code>jenkinsci/blueocean</code> image as a container in Docker using the
+following
+<a href="https://docs.docker.com/engine/reference/commandline/run/"><code>docker run</code></a>
+command (bearing in mind that this command automatically downloads the image
+if this hasn&#8217;t been done):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">docker run ^
+  --rm ^
+  -u root ^
+  -p 8080:8080 ^
+  -v jenkins-data:/var/jenkins_home ^
+  -v /var/run/docker.sock:/var/run/docker.sock ^
+  -v "%HOMEPATH%":/home ^
+  jenkinsci/blueocean</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For an explanation of these options, refer to the <a href="#on-macos-and-linux">macOS
+and Linux</a> instructions above.</p>
+</div>
+</li>
+<li>
+<p>Proceed to the <a href="#setup-wizard">Setup wizard</a>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="accessing-the-jenkinsblue-ocean-docker-container"><a class="anchor" href="#accessing-the-jenkinsblue-ocean-docker-container"></a>Accessing the Jenkins/Blue Ocean Docker container</h4>
+<div class="paragraph">
+<p>If you have some experience with Docker and you wish or need to access the
+Jenkins/Blue Ocean Docker container through a terminal/command prompt using the
+<a href="https://docs.docker.com/engine/reference/commandline/exec/"><code>docker exec</code></a>
+command, you can add an option like <code>--name jenkins-tutorials</code> (with the
+<a href="https://docs.docker.com/engine/reference/commandline/run/"><code>docker run</code></a>
+above), which would give the Jenkins/Blue Ocean Docker container the name
+"jenkins-tutorials".</p>
+</div>
+<div class="paragraph">
+<p>This means you could access the Jenkins/Blue Ocean container (through a separate
+terminal/command prompt window) with a <code>docker exec</code> command like:</p>
+</div>
+<div class="paragraph">
+<p><code>docker exec -it jenkins-tutorials bash</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="setup-wizard"><a class="anchor" href="#setup-wizard"></a>Setup wizard</h4>
+<div class="paragraph">
+<p>Before you can access Jenkins, there are a few quick "one-off" steps you&#8217;ll need
+to perform.</p>
+</div>
+<div class="sect4">
+<h5 id="unlocking-jenkins"><a class="anchor" href="#unlocking-jenkins"></a>Unlocking Jenkins</h5>
+<div class="paragraph">
+<p>When you first access a new Jenkins instance, you are asked to unlock it using
+an automatically-generated password.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>After the 2 sets of asterisks appear in the terminal/command prompt window,
+browse to <code>http://localhost:8080</code> and wait until the <strong>Unlock Jenkins</strong> page
+appears.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/setup-jenkins-01-unlock-jenkins-page.jpg" alt="Unlock Jenkins page" width="100%"></span></p>
+</div>
+</li>
+<li>
+<p>From your terminal/command prompt window again, copy the
+automatically-generated alphanumeric password (between the 2 sets of
+asterisks).</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/setup-jenkins-02-copying-initial-admin-password.png" alt="Copying initial admin password" width="100%"></span></p>
+</div>
+</li>
+<li>
+<p>On the <strong>Unlock Jenkins</strong> page, paste this password into the <strong>Administrator
+password</strong> field and click <strong>Continue</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="customizing-jenkins-with-plugins"><a class="anchor" href="#customizing-jenkins-with-plugins"></a>Customizing Jenkins with plugins</h5>
+<div class="paragraph">
+<p>After <a href="#unlocking-jenkins">unlocking Jenkins</a>, the <strong>Customize Jenkins</strong> page
+appears.</p>
+</div>
+<div class="paragraph">
+<p>On this page, click <strong>Install suggested plugins</strong>.</p>
+</div>
+<div class="paragraph">
+<p>The setup wizard shows the progression of Jenkins being configured and the
+suggested plugins being installed. This process may take a few minutes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="creating-the-first-administrator-user"><a class="anchor" href="#creating-the-first-administrator-user"></a>Creating the first administrator user</h5>
+<div class="paragraph">
+<p>Finally, Jenkins asks you to create your first administrator user.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>When the <strong>Create First Admin User</strong> page appears, specify your details in the
+respective fields and click <strong>Save and Finish</strong>.</p>
+</li>
+<li>
+<p>When the <strong>Jenkins is ready</strong> page appears, click <strong>Start using Jenkins</strong>.<br>
+<strong>Notes:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>This page may indicate <strong>Jenkins is almost ready!</strong> instead and if so, click
+<strong>Restart</strong>.</p>
+</li>
+<li>
+<p>If the page doesn&#8217;t automatically refresh after a minute, use your web browser
+to refresh the page manually.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If required, log in to Jenkins with the credentials of the user you just
+created and you&#8217;re ready to start using Jenkins!</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="stopping-and-restarting-jenkins"><a class="anchor" href="#stopping-and-restarting-jenkins"></a>Stopping and restarting Jenkins</h4>
+<div class="paragraph">
+<p>Throughout the remainder of this tutorial, you can stop the Jenkins/Blue Ocean
+Docker container by typing <code>Ctrl-C</code> in the terminal/command prompt window from
+which you ran the <code>docker run &#8230;&#8203;</code> command <a href="#run-jenkins-in-docker">above</a>.</p>
+</div>
+<div class="paragraph">
+<p>To restart the Jenkins/Blue Ocean Docker container:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run the same <code>docker run &#8230;&#8203;</code> command you ran for <a href="#on-macos-and-linux">macOS,
+Linux</a> or <a href="#on-windows">Windows</a> above.<br>
+<strong>Note:</strong> This process also updates the <code>jenkinsci/blueocean</code> Docker image, if
+an updated one is available.</p>
+</li>
+<li>
+<p>Browse to <code>http://localhost:8080</code>.</p>
+</li>
+<li>
+<p>Wait until the log in page appears and log in.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fork-sample-repository"><a class="anchor" href="#fork-sample-repository"></a>Fork the sample repository on GitHub</h3>
+<div class="paragraph">
+<p>Fork the simple "Welcome to React" Node.js and React application on GitHub into
+your own GitHub account.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure you are signed in to your GitHub account. If you don&#8217;t yet have a
+GitHub account, sign up for a free one on the <a href="https://github.com/">GitHub
+website</a>.</p>
+</li>
+<li>
+<p>Fork the
+<a href="https://github.com/jenkins-docs/creating-a-pipeline-in-blue-ocean"><code>creating-a-pipeline-in-blue-ocean</code></a>
+on GitHub into your local GitHub account. If you need help with this process,
+refer to the <a href="https://help.github.com/articles/fork-a-repo/">Fork A Repo</a>
+documentation on the GitHub website for more information.<br>
+<strong>Note:</strong> This is a different repository to the one used in the
+<a href="../build-a-node-js-and-react-app-with-npm">Build a Node.js and React app
+with npm</a> tutorial. Although these repositories contain the same application
+code, ensure you fork and use the correct one before continuing on.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-your-pipeline-project-in-blue-ocean"><a class="anchor" href="#create-your-pipeline-project-in-blue-ocean"></a>Create your Pipeline project in Blue Ocean</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go back to Jenkins and ensure you have accessed the Blue Ocean interface. To
+do this, make sure you:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>have browsed to <code>http://localhost:8080/blue</code> and are logged in<br>
+or</p>
+</li>
+<li>
+<p>have browsed to <code>http://localhost:8080/</code>, are logged in and have clicked <strong>Open
+Blue Ocean</strong> on the left.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>In the <strong>Welcome to Jenkins</strong> box at the center of the Blue Ocean interface,
+click <strong>Create a new Pipeline</strong> to begin the Pipeline creation wizard.<br>
+<strong>Note:</strong> If you don&#8217;t see this box, click <strong>New Pipeline</strong> at the top right.</p>
+</li>
+<li>
+<p>In <strong>Where do you store your code?</strong>, click <strong>GitHub</strong>.</p>
+</li>
+<li>
+<p>In <strong>Connect to GitHub</strong>, click <strong>Create an access key here</strong>. This opens GitHub
+in a new browser tab.<br>
+<strong>Note:</strong> If you previously configured Blue Ocean to connect to GitHub using a
+personal access token, then Blue Ocean takes you directly to step 9
+<a href="#choose-github-account">below</a>.</p>
+</li>
+<li>
+<p>In the new tab, sign in to your GitHub account (if necessary) and on the
+GitHub <strong>New Personal Access Token</strong> page, specify a brief <strong>Token description</strong>
+for your GitHub access token (e.g. <code>Blue Ocean</code>).<br>
+<strong>Note:</strong> An access token is usually an alphanumeric string that respresents
+your GitHub account along with permissions to access various GitHub features
+and areas through your GitHub account. This access token will have the
+appropriate permissions pre-selected, which Blue Ocean requires to access and
+interact with your GitHub account.</p>
+</li>
+<li>
+<p>Scroll down to the end of the page (leaving all other <strong>Select scopes</strong> options
+with their default settings) and click <strong>Generate token</strong>.</p>
+</li>
+<li>
+<p>On the resulting <strong>Personal access tokens</strong> page, copy your newly generated
+access token.</p>
+</li>
+<li>
+<p>Back in Blue Ocean, paste the access token into the <strong>Your GitHub access token</strong>
+field and click <strong>Connect</strong>.<br></p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-01-connecting-to-github.png" alt="Connecting to GitHub" width="80%"></span><br>
+  <a id="choose-github-account"></a>Jenkins now has access to your GitHub account
+  (provided by your access token).</p>
+</div>
+</li>
+<li>
+<p>In <strong>Which organization does the repository belong
+to?</strong>, click your GitHub account (where you forked the repository
+<a href="#fork-sample-repository">above</a>).</p>
+</li>
+<li>
+<p>In <strong>Choose a repository</strong>, click your forked repository
+<strong>creating-a-pipeline-in-blue-ocean</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Create Pipeline</strong>.<br>
+Blue Ocean detects that there is no Jenkinsfile at the root level of the
+repository&#8217;s <code>master</code> branch and proceed to help you create one. (Therefore,
+you&#8217;ll need to click another <strong>Create Pipeline</strong> at the end of the page to
+proceed.)<br>
+<strong>Note:</strong> Under the hood, a Pipeline project created through Blue Ocean is
+actually "multibranch Pipeline". Therefore, Jenkins looks for the presence of
+at least one Jenkinsfile in any branch of your repository.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-your-initial-pipeline"><a class="anchor" href="#create-your-initial-pipeline"></a>Create your initial Pipeline</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Following on from creating your Pipeline project
+(<a href="#create-your-pipeline-project-in-blue-ocean">above</a>), in the Pipeline
+editor, select <strong>docker</strong> from the <strong>Agent</strong> dropdown in the <strong>Pipeline Settings</strong>
+panel on the right.<br></p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-11-initial-pipeline-editor-page.png" alt="Initial to GitHub" width="100%"></span></p>
+</div>
+</li>
+<li>
+<p>In the <strong>Image</strong> and <strong>Args</strong> fields that appear, specify <code>node:6-alpine</code> and
+<code>-p 3000:3000</code> respectively.<br></p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-12-agent-section.png" alt="Configuring the agent" width="50%"></span><br>
+  <strong>Note:</strong> For an explanation of these values, refer to annotations <strong>1</strong> and <strong>2</strong>
+  of the Declarative Pipeline in the
+  <a href="../build-a-node-js-and-react-app-with-npm/#create-your-initial-pipeline-as-a-jenkinsfile">``Create
+  your initial Pipeline&#8230;&#8203;'' section of the Build a Node.js and React app</a>
+  tutorial.</p>
+</div>
+</li>
+<li>
+<p>Back in the main Pipeline editor, click the <strong>+</strong> icon, which opens the new
+stage panel on the right.<br></p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-13-add-build-stage.png" alt="Add 'Build' stage" width="30%"></span></p>
+</div>
+</li>
+<li>
+<p>In this panel, type <code>Build</code> in the <strong>Name your stage</strong> field and then click the
+<strong>Add Step</strong> button below, which opens the <strong>Choose step type</strong> panel.<br></p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-14-adding-the-build-stage.png" alt="Adding the Build stage" width="50%"></span></p>
+</div>
+</li>
+<li>
+<p>In this panel, click <strong>Shell Script</strong> near the top of the list (to choose that
+step type), which opens the <strong>Build / Shell Script</strong> panel, where you can enter
+this step&#8217;s values.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-15-choosing-a-step-type.png" alt="Choosing a step type" width="50%"></span><br>
+  <strong>Tip:</strong> The most commonly used step types appear closest to the top of this
+  list. To find other steps further down this list, you can filter this list
+  using the <strong>Find steps by name</strong> option.</p>
+</div>
+</li>
+<li>
+<p>In the <strong>Build / Shell Script</strong> panel, specify <code>npm
+install</code>.<br></p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-16-specifying-a-shell-step-value.png" alt="Specifying a shell step value" width="80%"></span><br>
+  <strong>Note:</strong> For an explanation of this step, refer to annotation <strong>4</strong> of the
+  Declarative Pipeline in the
+  <a href="../build-a-node-js-and-react-app-with-npm/#create-your-initial-pipeline-as-a-jenkinsfile"><code>Create your initial Pipeline&#8230;&#8203;</code> section of the Build a Node.js and React app</a>
+  tutorial.</p>
+</div>
+</li>
+<li>
+<p>( <em>Optional</em> ) Click the top-left back arrow icon
+<span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-16a-return-from-step-icon.png" alt="Return from step icon" width="3%"></span> to return to the main Pipeline editor.</p>
+</li>
+<li>
+<p>Click the <strong>Save</strong> button at the top right to begin saving your new Pipeline
+with its "Build" stage.</p>
+</li>
+<li>
+<p>In the <strong>Save Pipeline</strong> dialog box, specify the commit message in the
+<strong>Description</strong> field (e.g. <code>Add initial Pipeline (Jenkinsfile)</code>).</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-18-save-pipeline-dialog-box.png" alt="Save Pipeline dialog box" width="70%"></span><br></p>
+</div>
+</li>
+<li>
+<p>Leaving all other options as is, click <strong>Save &amp; run</strong> and Jenkins proceeds to
+build your Pipeline.</p>
+</li>
+<li>
+<p>When the main Blue Ocean interface appears, click the row to see Jenkins build
+your Pipeline project.<br>
+<strong>Note:</strong> You may need to wait several minutes for this first run to complete.
+During this time, Jenkins does the following:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Commits your Pipeline as a <code>Jenkinsfile</code> to the only branch (i.e. <code>master</code>)
+of your repository.</p>
+</li>
+<li>
+<p>Initially queues the project to be built on the agent.</p>
+</li>
+<li>
+<p>Downloads the Node Docker image and runs it in a container on Docker.</p>
+</li>
+<li>
+<p>Executes the <code>Build</code> stage (defined in the <code>Jenkinsfile</code>) on the Node
+container. (During this time, <code>npm</code> downloads many dependencies necessary to
+run your Node.js and React application, which will ultimately be stored in
+the local <code>node_modules</code> directory within the Jenkins home directory).</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-19-initial-pipeline-downloading-npm-dependencies.png" alt="Downloading 'npm' dependencies" width="100%"></span></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The Blue Ocean interface turns green if Jenkins built your application
+successfully.</p>
+</div>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-19a-initial-pipeline-runs-successfully.png" alt="Initial Pipeline runs successfully" width="100%"></span></p>
+</div>
+</li>
+<li>
+<p>Click the <strong>X</strong> at the top-right to return to the main Blue Ocean interface.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-19b-main-blue-ocean-interface.png" alt="Main Blue Ocean interface" width="100%"></span><br>
+  <strong>Note:</strong> Before continuing on, you can check that Jenkins has created a
+  <code>Jenkinsfile</code> for you at the root of your forked GitHub repository (in the
+  repository&#8217;s sole <code>master</code> branch).</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-a-test-stage-to-your-pipeline"><a class="anchor" href="#add-a-test-stage-to-your-pipeline"></a>Add a test stage to your Pipeline</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the main Blue Ocean interface, click <strong>Branches</strong> at the top-right to
+access your respository&#8217;s branches page, where you can access the <code>master</code>
+branch.<br></p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-21-repository-branches-page.png" alt="Repository branches page" width="100%"></span></p>
+</div>
+</li>
+<li>
+<p>Click the <code>master</code> branch&#8217;s "Edit Pipeline" icon
+<span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-21a-edit-pipeline-on-branch.png" alt="Edit Pipeline on branch" width="3%"></span>
+to open the Pipeline editor for this branch.<br></p>
+</li>
+<li>
+<p>In the main Pipeline editor, click the <strong>+</strong> icon to the right of the <strong>Build</strong>
+stage you created <a href="#create-your-initial-pipeline">above</a> to open the new stage
+panel on the right.<br></p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-22-add-test-stage.png" alt="Add 'Test' stage" width="45%"></span></p>
+</div>
+</li>
+<li>
+<p>In this panel, type <code>Test</code> in the <strong>Name your stage</strong> field and then click the
+<strong>Add Step</strong> button below to open the <strong>Choose step type</strong> panel.</p>
+</li>
+<li>
+<p>In this panel, click <strong>Shell Script</strong> near the top of the list.</p>
+</li>
+<li>
+<p>In the resulting <strong>Test / Shell Script</strong> panel, specify
+<code>./jenkins/scripts/test.sh</code> and then click the top-left back arrow icon
+<span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-16a-return-from-step-icon.png" alt="Return from step icon" width="3%"></span> to return to the Pipeline stage editor.<br></p>
+</li>
+<li>
+<p>At the lower-right of the panel, click <strong>Settings</strong> to reveal this section of
+the panel.</p>
+</li>
+<li>
+<p>Click the <strong>+</strong> icon at the right of the <strong>Environment</strong> heading (for which you&#8217;ll
+configure an environment directive).</p>
+</li>
+<li>
+<p>In the <strong>Name</strong> and <strong>Value</strong> fields that appear, specify <code>CI</code> and <code>true</code>,
+respectively.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-23-environment-directive.png" alt="Environment directive" width="50%"></span><br>
+  <strong>Note:</strong> For an explanation of this directive and its step, refer to
+  annotations <strong>1</strong> and <strong>3</strong> of the Declarative Pipeline in the
+  <a href="../build-a-node-js-and-react-app-with-npm/#add-a-test-stage-to-your-pipeline"><code>Add a test stage&#8230;&#8203;</code> section of the Build a Node.js and React app</a>
+  tutorial.</p>
+</div>
+</li>
+<li>
+<p>( <em>Optional</em> ) Click the top-left back arrow icon
+<span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-16a-return-from-step-icon.png" alt="Return from step icon" width="3%"></span> to return to the main Pipeline editor.</p>
+</li>
+<li>
+<p>Click the <strong>Save</strong> button at the top right to begin saving your Pipeline with
+with its new "Test" stage.</p>
+</li>
+<li>
+<p>In the <strong>Save Pipeline</strong> dialog box, specify the commit message in the
+<strong>Description</strong> field (e.g. <code>Add 'Test' stage</code>).</p>
+</li>
+<li>
+<p>Leaving all other options as is, click <strong>Save &amp; run</strong> and Jenkins proceeds to
+build your amended Pipeline.</p>
+</li>
+<li>
+<p>When the main Blue Ocean interface appears, click the <em>top</em> row to see Jenkins
+build your Pipeline project.<br>
+<strong>Note:</strong> You&#8217;ll notice from this run that Jenkins no longer needs to download
+the Node Docker image. Instead, Jenkins only needs to run a new container from
+the Node image downloaded previously. Therefore, running your Pipeline this
+subsequent time should be much faster.<br>
+If your amended Pipeline ran successfully, here&#8217;s what the Blue Ocean
+interface should look like. Notice the additional "Test" stage. You can click
+on the previous "Build" stage circle to access the output from that stage.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-24-test-stage-runs-successfully-with-output.png" alt="Test stage runs successfully (with output)" width="100%"></span></p>
+</div>
+</li>
+<li>
+<p>Click the <strong>X</strong> at the top-right to return to the main Blue Ocean interface.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-a-final-deliver-stage-to-your-pipeline"><a class="anchor" href="#add-a-final-deliver-stage-to-your-pipeline"></a>Add a final deliver stage to your Pipeline</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the main Blue Ocean interface, click <strong>Branches</strong> at the top-right to
+access your respository&#8217;s <code>master</code> branch.</p>
+</li>
+<li>
+<p>Click the <code>master</code> branch&#8217;s "Edit Pipeline" icon
+<span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-21a-edit-pipeline-on-branch.png" alt="Edit Pipeline on branch" width="3%"></span>
+to open the Pipeline editor for this branch.</p>
+</li>
+<li>
+<p>In the main Pipeline editor, click the <strong>+</strong> icon to the right of the <strong>Test</strong>
+stage you created <a href="#add-a-test-stage-to-your-pipeline">above</a> to open the new
+stage panel.<br></p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-31-add-deliver-stage.png" alt="Add 'Deliver' stage" width="60%"></span></p>
+</div>
+</li>
+<li>
+<p>In this panel, type <code>Deliver</code> in the <strong>Name your stage</strong> field and then click
+the <strong>Add Step</strong> button below to open the <strong>Choose step type</strong> panel.</p>
+</li>
+<li>
+<p>In this panel, click <strong>Shell Script</strong> near the top of the list.</p>
+</li>
+<li>
+<p>In the resulting <strong>Deliver / Shell Script</strong> panel, specify
+<code>./jenkins/scripts/deliver.sh</code> and then click the top-left back arrow icon
+<span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-16a-return-from-step-icon.png" alt="Return from step icon" width="3%"></span> to return to the Pipeline stage editor.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-32-add-next-step.png" alt="Add next step" width="50%"></span><br>
+  <strong>Note:</strong> For an explanation of this step, refer to the <code>deliver.sh</code> file itself
+  located in the <code>jenkins/scripts</code> of your forked repository on GitHub.</p>
+</div>
+</li>
+<li>
+<p>Click the <strong>Add Step</strong> button again.</p>
+</li>
+<li>
+<p>In the <strong>Choose step type</strong> panel, type <code>input</code> into the <strong>Find steps by name</strong>
+field.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-33-choosing-input-step-type.png" alt="Choosing the input step type" width="50%"></span></p>
+</div>
+</li>
+<li>
+<p>Click the filtered <strong>Wait for interactive input</strong> step type.</p>
+</li>
+<li>
+<p>In the resulting <strong>Deliver / Wait for interactive input</strong> panel, specify
+<code>Finished using the web site? (Click "Proceed" to continue)</code> in the <strong>Message</strong>
+field and then click the top-left back arrow icon
+<span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-16a-return-from-step-icon.png" alt="Return from step icon" width="3%"></span> to return to the Pipeline stage editor.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-34-specifying-input-step-message-value.png" alt="Specifying input step message value" width="55%"></span><br>
+  <strong>Note:</strong> For an explanation of this step, refer to annotation <strong>4</strong> of the
+  Declarative Pipeline in the
+  <a href="../build-a-node-js-and-react-app-with-npm/#add-a-final-deliver-stage-to-your-pipeline"><code>Add a final deliver stage&#8230;&#8203;</code> section of the Build a Node.js and React app</a>
+  tutorial.</p>
+</div>
+</li>
+<li>
+<p>Click the <strong>Add Step</strong> button (last time).</p>
+</li>
+<li>
+<p>Click <strong>Shell Script</strong> near the top of the list.</p>
+</li>
+<li>
+<p>In the resulting <strong>Deliver / Shell Script</strong> panel, specify
+<code>./jenkins/scripts/kill.sh</code>.<br>
+<strong>Note:</strong> For an explanation of this step, refer to the <code>kill.sh</code> file itself
+located in the <code>jenkins/scripts</code> of your forked repository on GitHub.</p>
+</li>
+<li>
+<p>( <em>Optional</em> ) Click the top-left back arrow icon
+<span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-16a-return-from-step-icon.png" alt="Return from step icon" width="3%"></span> to return to the main Pipeline editor.</p>
+</li>
+<li>
+<p>Click the <strong>Save</strong> button at the top right to begin saving your Pipeline with
+with its new "Deliver" stage.</p>
+</li>
+<li>
+<p>In the <strong>Save Pipeline</strong> dialog box, specify the commit message in the
+<strong>Description</strong> field (e.g. <code>Add 'Deliver' stage</code>).</p>
+</li>
+<li>
+<p>Leaving all other options as is, click <strong>Save &amp; run</strong> and Jenkins proceeds to
+build your amended Pipeline.</p>
+</li>
+<li>
+<p>When the main Blue Ocean interface appears, click the <em>top</em> row to see Jenkins
+build your Pipeline project.<br>
+If your amended Pipeline ran successfully, here&#8217;s what the Blue Ocean
+interface should look like. Notice the additional "Deliver" stage. Click on
+the previous "Test" and "Build" stage circles to access the outputs from those
+stages.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-35-deliver-stage-pauses-for-user-input.png" alt="Deliver stage pauses for user input" width="100%"></span></p>
+</div>
+</li>
+<li>
+<p>Ensure you are viewing the "Deliver" stage (click it if necessary), then click
+the green <strong><code>./jenkins/scripts/deliver.sh</code></strong> step to expand its content and
+scroll down until you see the <code>http://localhost:3000</code> link.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-36-deliver-stage-opened-deliver-sh-step.png" alt="Deliver stage output only" width="100%"></span></p>
+</div>
+</li>
+<li>
+<p>Click the <code>http://localhost:3000</code> link to view your Node.js and React
+application running (in development mode) in a new web browser tab. You should
+see a page/site with the title <strong>Welcome to React</strong> on it.</p>
+</li>
+<li>
+<p>When you are finished viewing the page/site, click the <strong>Proceed</strong> button to
+complete the Pipeline&#8217;s execution.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-37-deliver-stage-runs-successfully.png" alt="Deliver stage runs successfully" width="100%"></span></p>
+</div>
+</li>
+<li>
+<p>Click the <strong>X</strong> at the top-right to return to the main Blue Ocean interface,
+which lists your previous Pipeline runs in reverse chronological order.</p>
+<div class="paragraph boxshadow">
+<p><span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-38-main-blue-ocean-interface-with-all-previous-runs-displayed.png" alt="Main Blue Ocean interface with all previous runs displayed" width="100%"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="follow-up-optional"><a class="anchor" href="#follow-up-optional"></a>Follow up (optional)</h3>
+<div class="paragraph">
+<p>If you check the contents of the <code>Jenkinsfile</code> that Blue Ocean created at the
+root of your forked <code>creating-a-pipeline-in-blue-ocean</code> repository, notice the
+location of the <a href="/doc/book/pipeline/syntax#environment"><code>environment</code></a>
+directive. This directive&#8217;s location within the "Test" stage means that the
+environment variable <code>CI</code> (with its value of <code>true</code>) is only available within
+the scope of this "Test" stage.</p>
+</div>
+<div class="paragraph">
+<p>You can set this directive in Blue Ocean so that its environment variable is
+available globally throughout Pipeline (as is the case in the
+<a href="../build-a-node-js-and-react-app-with-npm/">Build a Node.js and React
+app with npm</a> tutorial). To do this:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the main Blue Ocean interface, click <strong>Branches</strong> at the top-right to
+access your respository&#8217;s <code>master</code> branch.</p>
+</li>
+<li>
+<p>Click the <code>master</code> branch&#8217;s "Edit Pipeline" icon
+<span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-21a-edit-pipeline-on-branch.png" alt="Edit Pipeline on branch" width="3%"></span> to open the Pipeline editor for this branch.</p>
+</li>
+<li>
+<p>In the main Pipeline editor, click the <strong>Test</strong> stage you created
+<a href="#add-a-test-stage-to-your-pipeline">above</a> to begin editing it.</p>
+</li>
+<li>
+<p>In the stage panel on the right, click <strong>Settings</strong> to reveal this section of
+the panel.</p>
+</li>
+<li>
+<p>Click the minus (<strong>-</strong>) icon at the right of the <code>CI</code> environment directive (you
+created earlier) to delete it.</p>
+</li>
+<li>
+<p>Click the top-left back arrow icon
+<span class="image"><img src="../../book/resources/tutorials/pipeline-in-blueocean-16a-return-from-step-icon.png" alt="Return from step icon" width="3%"></span> to return to the main Pipeline editor.</p>
+</li>
+<li>
+<p>In the <strong>Pipeline Settings</strong> panel, click the <strong>+</strong> icon at the right of the
+<strong>Environment</strong> heading (for which you&#8217;ll configure a <em>global</em> environment
+directive).</p>
+</li>
+<li>
+<p>In the <strong>Name</strong> and <strong>Value</strong> fields that appear, specify <code>CI</code> and <code>true</code>,
+respectively.</p>
+</li>
+<li>
+<p>Click the <strong>Save</strong> button at the top right to begin saving your Pipeline with
+with its relocated environment directive.</p>
+</li>
+<li>
+<p>In the <strong>Save Pipeline</strong> dialog box, specify the commit message in the
+<strong>Description</strong> field (e.g. <code>Make environment directive global</code>).</p>
+</li>
+<li>
+<p>Leaving all other options as is, click <strong>Save &amp; run</strong> and Jenkins proceeds to
+build your amended Pipeline.</p>
+</li>
+<li>
+<p>When the main Blue Ocean interface appears, click the <em>top</em> row to see Jenkins
+build your Pipeline project.<br>
+You should see the same build process you saw when you completed adding the
+final deliver stage (<a href="#add-a-final-deliver-stage-to-your-pipeline">above</a>).
+However, when you inspect the <code>Jenkinsfile</code> again, you&#8217;ll notice that the
+<code>environment</code> directive is now a sibling of the <code>agent</code> section.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wrapping-up"><a class="anchor" href="#wrapping-up"></a>Wrapping up</h3>
+<div class="paragraph">
+<p>Well done! You&#8217;ve just used the Blue Ocean feature of Jenkins to build a simple
+Node.js and React application with npm!</p>
+</div>
+<div class="paragraph">
+<p>The "Build", "Test" and "Deliver" stages you created above are the basis for
+building other applications in Jenkins with any technology stack, including
+more complex applications and ones that combine multiple technology stacks
+together.</p>
+</div>
+<div class="paragraph">
+<p>Because Jenkins is extremely extensible, it can be modified and configured to
+handle practically any aspect of build orchestration and automation.</p>
+</div>
+<div class="paragraph">
+<p>To learn more about what Jenkins can do, check out:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="/doc/tutorials">Tutorials overview</a> page for other introductory
+tutorials.</p>
+</li>
+<li>
+<p>The <a href="/doc/book">User Handbook</a> for more detailed information about using
+Jenkins, such as <a href="/doc/book/pipeline">Pipelines</a> (in particular
+<a href="/doc/book/pipeline/syntax">Pipeline syntax</a>) and the
+<a href="/doc/book/blueocean">Blue Ocean</a> interface.</p>
+</li>
+<li>
+<p>The <a href="/node">Jenkins blog</a> for the latest events, other tutorials and
+updates.</p>
+</li>
+</ul>
+</div>
+<hr>
+<!-- HTML inclusion for chapter and section layouts (i.e. as footers) as well as
+     for use in AsciiDoc file inclusions. -->
+
+<!--
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+-->
+
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(window.location.href);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<p><a href="#feedback" data-toggle="collapse">Was this page helpful?</a></p>
+
+<div id="feedback" class="collapse">
+
+<p>Please submit your feedback about this page through this
+<a href="/doc/feedback-form/">quick form</a>.</p>
+
+<p>Alternatively, if you don't wish to complete the quick form, you can simply
+indicate if you found this page helpful?</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the current URL into the form. -->
+<input type="hidden" name="entry.1246830226" id="current-url" value=""/>
+
+<!-- The answer bit -->
+<p><input type="radio" name="entry.790002525" id="h1" value="Yes" required/>
+<label for="h1">Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="entry.790002525" id="h2" value="No"/>
+<label for="h2">No</label></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+</form>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1IIdpVs39JDYKg0sLQIv-MNO928qcGApAIfdW5ohfD78" target="_blank">here</a>.</p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<p class='box'>
+<a href='https://github.com/jenkins-infra/jenkins.io/edit/master/content//doc/tutorials/create-a-pipeline-in-blue-ocean.adoc' title='Edit /doc/tutorials/create-a-pipeline-in-blue-ocean.adoc on GitHub'>
+Improve this page
+</a>
+|
+<a href='https://github.com/jenkins-infra/jenkins.io/commits/master/content//doc/tutorials/create-a-pipeline-in-blue-ocean.adoc' title='View /doc/tutorials/create-a-pipeline-in-blue-ocean.adoc history on GitHub'>
+Page history
+</a>
+</p>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

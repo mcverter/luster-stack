@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Extensibility
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Extensibility' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Extensibility' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Extensibility' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/developer/extensibility/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Extensibility' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<style>
+  ol li i.icon-warning::before {
+    content: "\f071";
+    color: #bf6900;
+    font-family: FontAwesome !important;
+    font-size: 10px;
+    vertical-align: middle;
+  }
+</style>
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row.body h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<h4>
+Topics
+</h4>
+<ol>
+<li>
+<a href="https://jenkins.io/doc/developer/architecture" class="">Architecture</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/initialization" class="">Initialization and Startup</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/extensibility" class="active">Extensibility</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/model" class="">Model</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/handling-requests" class="">Handling Requests</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/security" class="">Security</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/persistence" class="">Persistence</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/scheduling" class="">Scheduling</a>
+<i class='icon-warning' title='Early work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/views" class="">Views</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/forms" class="">Forms</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/internationalization" class="">Internationalization and Localization</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/distributed-builds" class="">Distributed Builds</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/cli" class="">Jenkins CLI</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/testing" class="">Testing</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/plugin-development" class="">Plugin development</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/publishing" class="">Publishing Plugins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/blueocean-plugin-development" class="">Blue Ocean</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/building" class="">Building and Debugging</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+<li>
+<a href="https://jenkins.io/doc/developer/development-environment" class="">Setting up a Development Environment</a>
+<i class='icon-warning' style='opacity: 0.5;' title='Partial work in progress'>
+&nbsp;
+</i>
+</li>
+</ol>
+<h4>
+<a href="https://jenkins.io/doc/developer/guides" class="">How-To Guides</a>
+</h4>
+<h4>
+Resources
+</h4>
+<h5>
+<a href="https://jenkins.io/doc/developer/extensions" class="">Extensions Index</a>
+</h5>
+<h5>
+<a href="https://jenkins.io/doc/developer/javadoc" class="">Javadoc</a>
+</h5>
+<h5>
+Taglibs
+</h5>
+<ul>
+<li>
+<a href='https://reports.jenkins.io/core-taglib/jelly-taglib-ref.html' target='_blank'>
+Core
+</a>
+</li>
+<li>
+<a href='http://stapler.kohsuke.org/jelly-taglib-ref.html' target='_blank'>
+Stapler
+</a>
+</li>
+<li>
+<a href='https://commons.apache.org/proper/commons-jelly/tags.html' target='_blank'>
+Jelly Core
+</a>
+</li>
+</ul>
+<h5>
+Tools
+</h5>
+<ul>
+<li>
+<a href='https://jenkinsci.github.io/maven-hpi-plugin/' target='_blank'>
+Maven HPI Plugin
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='col-lg-9'>
+<h1>
+Extensibility
+</h1>
+<!-- starting partial wip.adoc -->
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This section is a work in progress.
+Want to help?
+Check out the <a href="https://groups.google.com/forum/#!forum/jenkinsci-docs">jenkinsci-docs mailing list</a>.
+For other ways to contribute to the Jenkins project, see <a href="/participate">this page about participating and contributing</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<!-- ending partial wip.adoc -->
+<div class="paragraph">
+<p>Jenkins is designed with extensibility in mind, both internally (core) and with plugins.
+Extensibility in Jenkins is accomplished by combining the concepts discussed below.</p>
+</div>
+<div class="sect1">
+<h2 id="extension-annotation"><a class="anchor" href="#extension-annotation"></a>Extension annotation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/byShortName/Extension" title="Javadoc for Extension">Extension</a></code> is an annotation that allows Jenkins to discover classes, instantiate them, and register them in global lists of implementations of their supertypes and interfaces.
+This works for implementations both directly in core, and contributed by plugins, so that plugins can provide implementations of extension points defined in core (or other plugins).
+Whenever Jenkins needs to provide a list, e.g. of security realm implementations (LDAP, Jenkins user database, etc.) it can query for all subtypes of <code>SecurityRealm</code> that are annotated with <code>@Extension</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="descriptors-and-describables"><a class="anchor" href="#descriptors-and-describables"></a>Descriptors and Describables</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/byShortName/Descriptor" title="Javadoc for Descriptor">Descriptor</a></code> and <code><a href="http://javadoc.jenkins.io/byShortName/Describable" title="Javadoc for Describable">Describable</a></code> (or subtypes thereof) are used whenever multiple instances of a certain extension are needed, for example build steps.
+The <code>Descriptor</code> can be used to store their global configuration, and as a factory, while the <code>Describable</code> is the specific instance with its independent, instance-specific configuration.
+This is similar to class/object in object-oriented programming.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="actionable-and-actions"><a class="anchor" href="#actionable-and-actions"></a>Actionable and Actions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/byShortName/Actionable" title="Javadoc for Actionable">Actionable</a></code> is an abstract class allowing subtypes to be extensible using <code><a href="http://javadoc.jenkins.io/byShortName/Action" title="Javadoc for Action">Action</a></code> implementations.
+<code><a href="http://javadoc.jenkins.io/byShortName/Action" title="Javadoc for Action">Action</a></code> implementations can be used to store arbitrary data with a model object, or contribute additions to its presentation.
+The exact details vary depending on the subtype, but typically, <code><a href="http://javadoc.jenkins.io/byShortName/Actionable" title="Javadoc for Actionable">Actionable</a></code> objects will show actions in the sidepanel, and route requests to the action&#8217;s <code>getUrlName()</code> to the action, allowing it to contribute pages to <code><a href="http://javadoc.jenkins.io/byShortName/Actionable" title="Javadoc for Actionable">Actionable</a></code> objects.</p>
+</div>
+</div>
+</div>
+<h2>
+How-To Guides
+</h2>
+<ul>
+<li><a href='action-for-all-projects/'>How to show a menu item on all projects</a></li>
+</ul>
+
+<h2>
+References
+</h2>
+<ul>
+<li><a href='https://wiki.jenkins-ci.org/display/JENKINS/Dependency+Injection'>Dependency Injection in Jenkins</a></li>
+<li><a href='https://wiki.jenkins-ci.org/display/JENKINS/Participating+to+the+initialization'>Participating to the initialization</a></li>
+<li><a href='https://wiki.jenkins-ci.org/display/JENKINS/Action+and+its+family+of+subtypes'>Action and its family of subtypes</a></li>
+<li><a href='https://wiki.jenkins-ci.org/display/JENKINS/Extension+points'>Generated list of extension points on the wiki</a></li>
+<li><a href='https://wiki.jenkins-ci.org/display/JENKINS/AnnotationExtension'>On @Extension</a></li>
+<li><a href='https://wiki.jenkins-ci.org/display/JENKINS/Plugin+Cookbook'>List of commonly used extension points</a></li>
+<li><a href='https://wiki.jenkins-ci.org/display/JENKINS/Defining+a+new+extension+point'>Defining a new extension point</a></li>
+<li><a href='https://wiki.jenkins-ci.org/display/JENKINS/My+class+is+missing+descriptor'>My class is missing descriptor</a></li>
+<li><a href='https://wiki.jenkins-ci.org/display/JENKINS/Extension+Point+for+Project+Views+Navigation'>Extension Point for Project Views Navigation</a></li>
+<li><a href='https://github.com/jenkinsci/sample-extensions'>Sample extension implementations</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<p class='box'>
+<a href='https://github.com/jenkins-infra/jenkins.io/edit/master/content//doc/developer/extensibility/index.adoc' title='Edit /doc/developer/extensibility/index.adoc on GitHub'>
+Improve this page
+</a>
+|
+<a href='https://github.com/jenkins-infra/jenkins.io/commits/master/content//doc/developer/extensibility/index.adoc' title='View /doc/developer/extensibility/index.adoc history on GitHub'>
+Page history
+</a>
+</p>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

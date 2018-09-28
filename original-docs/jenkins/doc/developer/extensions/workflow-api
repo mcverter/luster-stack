@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+{"Extension Points defined in Pipeline"=>"API Plugin"}
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content-Extension Points defined in Pipeline='API Plugin' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content-Extension Points defined in Pipeline='API Plugin' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content-Extension Points defined in Pipeline='API Plugin' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/developer/extensions/workflow-api/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content-Extension Points defined in Pipeline='API Plugin' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<style>
+  .container .row.body {
+    margin-right: 5em;
+    margin-left: 5em;
+  }
+  .toc {
+      float: right;
+  }
+</style>
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row.body h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-12'>
+<h1>
+{"Extension Points defined in Pipeline"=>"API Plugin"}
+</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#durabilityhintprovider">DurabilityHintProvider</a></li>
+<li><a href="#flowcopier">FlowCopier</a></li>
+<li><a href="#flowdefinition">FlowDefinition</a></li>
+<li><a href="#flowexecutionlistener">FlowExecutionListener</a></li>
+<li><a href="#flownodeviewcolumn">FlowNodeViewColumn</a></li>
+<li><a href="#flownodeviewcolumndescriptor">FlowNodeViewColumnDescriptor</a></li>
+<li><a href="#graphlistener">GraphListener</a></li>
+<li><a href="#picklefactory">PickleFactory</a></li>
+<li><a href="#stashmanager-stashbehavior">StashManager.<wbr/>StashBehavior</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://plugins.jenkins.io/workflow-api">Pipeline: API Plugin</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="durabilityhintprovider"><a class="anchor" href="#durabilityhintprovider"></a>DurabilityHintProvider</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/workflow-api/org/jenkinsci/plugins/workflow/flow/DurabilityHintProvider.html" title="Javadoc for org.jenkinsci.plugins.workflow.flow.DurabilityHintProvider">org.jenkinsci.plugins.workflow.flow.DurabilityHintProvider in workflow-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Provides a way to indirectly register durability settings to apply to pipelines.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-job">Pipeline: Job Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>job.<wbr/>properties.<wbr/><strong>DisableResumeJobProperty.<wbr/>DescriptorImpl</strong> (<a href="https://github.com/jenkinsci/workflow-job-plugin/search?q=DisableResumeJobProperty.DescriptorImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-job">Pipeline: Job Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>job.<wbr/>properties.<wbr/><strong>DurabilityHintJobProperty.<wbr/>DescriptorImpl</strong> (<a href="https://github.com/jenkinsci/workflow-job-plugin/search?q=DurabilityHintJobProperty.DescriptorImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-multibranch">Pipeline: Multibranch Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>multibranch.<wbr/><strong>DurabilityHintBranchProperty.<wbr/>DescriptorImpl</strong> (<a href="https://github.com/jenkinsci/workflow-multibranch-plugin/search?q=DurabilityHintBranchProperty.DescriptorImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="flowcopier"><a class="anchor" href="#flowcopier"></a>FlowCopier</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/workflow-api/org/jenkinsci/plugins/workflow/flow/FlowCopier.html" title="Javadoc for org.jenkinsci.plugins.workflow.flow.FlowCopier">org.jenkinsci.plugins.workflow.flow.FlowCopier in workflow-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> A way for plugins to copy metadata and associated files from one flow execution to another.  Useful when a new execution is not being created from scratch, but is a kind of clone of another.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-api">Pipeline: API Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>flow.<wbr/><strong>FlowCopier.<wbr/>ByRun</strong> (<a href="https://github.com/jenkinsci/workflow-api-plugin/search?q=FlowCopier.ByRun&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-api">Pipeline: API Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>flow.<wbr/><strong>FlowCopier.<wbr/>StandardActions</strong> (<a href="https://github.com/jenkinsci/workflow-api-plugin/search?q=FlowCopier.StandardActions&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-api">Pipeline: API Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>flow.<wbr/><strong>StashManager.<wbr/>CopyStashesAndArtifacts</strong> (<a href="https://github.com/jenkinsci/workflow-api-plugin/search?q=StashManager.CopyStashesAndArtifacts&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-cps">Pipeline: Groovy Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>cps.<wbr/><strong>EnvActionImpl.<wbr/>Copier</strong> (<a href="https://github.com/jenkinsci/workflow-cps-plugin/search?q=EnvActionImpl.Copier&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-job">Pipeline: Job Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>job.<wbr/><strong>WorkflowRun.<wbr/>Checkouts</strong> (<a href="https://github.com/jenkinsci/workflow-job-plugin/search?q=WorkflowRun.Checkouts&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-cps-global-lib">Pipeline: Shared Groovy Libraries Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>libs.<wbr/><strong>LibraryAdder.<wbr/>Copier</strong> (<a href="https://github.com/jenkinsci/workflow-cps-global-lib-plugin/search?q=LibraryAdder.Copier&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="flowdefinition"><a class="anchor" href="#flowdefinition"></a>FlowDefinition</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/workflow-api/org/jenkinsci/plugins/workflow/flow/FlowDefinition.html" title="Javadoc for org.jenkinsci.plugins.workflow.flow.FlowDefinition">org.jenkinsci.plugins.workflow.flow.FlowDefinition in workflow-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Actual executable script.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-cps">Pipeline: Groovy Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>cps.<wbr/><strong>CpsFlowDefinition</strong> (<a href="https://github.com/jenkinsci/workflow-cps-plugin/search?q=CpsFlowDefinition&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-cps">Pipeline: Groovy Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>cps.<wbr/><strong>CpsScmFlowDefinition</strong> (<a href="https://github.com/jenkinsci/workflow-cps-plugin/search?q=CpsScmFlowDefinition&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-multibranch">Pipeline: Multibranch Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>multibranch.<wbr/><strong>SCMBinder</strong> (<a href="https://github.com/jenkinsci/workflow-multibranch-plugin/search?q=SCMBinder&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/pipeline-multibranch-defaults">Pipeline: Multibranch with defaults Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>pipeline.<wbr/>multibranch.<wbr/>defaults.<wbr/><strong>DefaultsBinder</strong> (<a href="https://github.com/jenkinsci/pipeline-multibranch-defaults-plugin/search?q=DefaultsBinder&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/simple-pull-request-job">Simple Pull Request Job Plugin</a>: io.<wbr/>jenkins.<wbr/>plugins.<wbr/>sprp.<wbr/><strong>YAML_FlowDefinition</strong></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="flowexecutionlistener"><a class="anchor" href="#flowexecutionlistener"></a>FlowExecutionListener</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/workflow-api/org/jenkinsci/plugins/workflow/flow/FlowExecutionListener.html" title="Javadoc for org.jenkinsci.plugins.workflow.flow.FlowExecutionListener">org.jenkinsci.plugins.workflow.flow.FlowExecutionListener in workflow-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Listens for significant status updates for a <a href="http://javadoc.jenkins.io/byShortName/FlowExecution" title="Javadoc for FlowExecution">FlowExecution</a> , such as started running or completed.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-events">Events API for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>events.<wbr/><strong>PipelineEventListener.<wbr/>StartPublisher</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineEventListener.StartPublisher&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="flownodeviewcolumn"><a class="anchor" href="#flownodeviewcolumn"></a>FlowNodeViewColumn</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/workflow-api/org/jenkinsci/plugins/workflow/visualization/table/FlowNodeViewColumn.html" title="Javadoc for org.jenkinsci.plugins.workflow.visualization.table.FlowNodeViewColumn">org.jenkinsci.plugins.workflow.visualization.table.FlowNodeViewColumn in workflow-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Extension point for adding a column to a table rendering of <a href="http://javadoc.jenkins.io/byShortName/FlowNode" title="Javadoc for FlowNode">FlowNode</a> s.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-support">Pipeline: Supporting APIs Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>visualization.<wbr/>table.<wbr/><strong>ArgumentsColumn</strong> (<a href="https://github.com/jenkinsci/workflow-support-plugin/search?q=ArgumentsColumn&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-support">Pipeline: Supporting APIs Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>visualization.<wbr/>table.<wbr/><strong>ConsoleColumn</strong> (<a href="https://github.com/jenkinsci/workflow-support-plugin/search?q=ConsoleColumn&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-support">Pipeline: Supporting APIs Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>visualization.<wbr/>table.<wbr/><strong>StatusColumn</strong> (<a href="https://github.com/jenkinsci/workflow-support-plugin/search?q=StatusColumn&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="flownodeviewcolumndescriptor"><a class="anchor" href="#flownodeviewcolumndescriptor"></a>FlowNodeViewColumnDescriptor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/workflow-api/org/jenkinsci/plugins/workflow/visualization/table/FlowNodeViewColumnDescriptor.html" title="Javadoc for org.jenkinsci.plugins.workflow.visualization.table.FlowNodeViewColumnDescriptor">org.jenkinsci.plugins.workflow.visualization.table.FlowNodeViewColumnDescriptor in workflow-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> <a href="http://javadoc.jenkins.io/byShortName/Descriptor" title="Javadoc for Descriptor">Descriptor</a> for <a href="http://javadoc.jenkins.io/byShortName/FlowNodeViewColumn" title="Javadoc for FlowNodeViewColumn">FlowNodeViewColumn</a> .</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-support">Pipeline: Supporting APIs Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>visualization.<wbr/>table.<wbr/><strong>ArgumentsColumn.<wbr/>DescriptorImpl</strong> (<a href="https://github.com/jenkinsci/workflow-support-plugin/search?q=ArgumentsColumn.DescriptorImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-support">Pipeline: Supporting APIs Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>visualization.<wbr/>table.<wbr/><strong>ConsoleColumn.<wbr/>DescriptorImpl</strong> (<a href="https://github.com/jenkinsci/workflow-support-plugin/search?q=ConsoleColumn.DescriptorImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-support">Pipeline: Supporting APIs Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>visualization.<wbr/>table.<wbr/><strong>StatusColumn.<wbr/>DescriptorImpl</strong> (<a href="https://github.com/jenkinsci/workflow-support-plugin/search?q=StatusColumn.DescriptorImpl&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="graphlistener"><a class="anchor" href="#graphlistener"></a>GraphListener</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/workflow-api/org/jenkinsci/plugins/workflow/flow/GraphListener.html" title="Javadoc for org.jenkinsci.plugins.workflow.flow.GraphListener">org.jenkinsci.plugins.workflow.flow.GraphListener in workflow-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> {@code GraphListener}s can be used in two different ways: either as an <a href="http://javadoc.jenkins.io/byShortName/Extension" title="Javadoc for Extension">Extension</a> , which will have its  <a href="http://javadoc.jenkins.io/byShortName/#onNewHead(FlowNode)" title="Javadoc for #onNewHead(FlowNode)">#onNewHead(FlowNode)</a> fired for every <a href="http://javadoc.jenkins.io/byShortName/FlowExecution" title="Javadoc for FlowExecution">FlowExecution</a> , or by instantiation and being passed to  <a href="http://javadoc.jenkins.io/byShortName/FlowExecution#addListener(GraphListener)" title="Javadoc for FlowExecution#addListener(GraphListener)">FlowExecution#addListener(GraphListener)</a> , in which case only events for that specific <a href="http://javadoc.jenkins.io/byShortName/FlowExecution" title="Javadoc for FlowExecution">FlowExecution</a>   will be fired.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/blueocean-events">Events API for Blue Ocean Plugin</a>: io.<wbr/>jenkins.<wbr/>blueocean.<wbr/>events.<wbr/><strong>PipelineEventListener</strong> (<a href="https://github.com/jenkinsci/blueocean-plugin/search?q=PipelineEventListener&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/github-autostatus">Job and Stage monitoring Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>githubautostatus.<wbr/><strong>GithubBuildStatusGraphListener</strong> (<a href="https://github.com/jenkinsci/github-autostatus-plugin/search?q=GithubBuildStatusGraphListener&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-api">Pipeline: API Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>flow.<wbr/><strong>GraphListener.<wbr/>Synchronous</strong> (<a href="https://github.com/jenkinsci/workflow-api-plugin/search?q=GraphListener.Synchronous&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-api">Pipeline: API Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>graph.<wbr/><strong>StandardGraphLookupView</strong> (<a href="https://github.com/jenkinsci/workflow-api-plugin/search?q=StandardGraphLookupView&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/pipeline-model-definition">Pipeline: Declarative Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>pipeline.<wbr/>modeldefinition.<wbr/><strong>SyntheticStageGraphListener</strong> (<a href="https://github.com/jenkinsci/pipeline-model-definition-plugin/search?q=SyntheticStageGraphListener&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-job">Pipeline: Job Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>job.<wbr/><strong>WorkflowRun.<wbr/>FailOnLoadListener</strong> (<a href="https://github.com/jenkinsci/workflow-job-plugin/search?q=WorkflowRun.FailOnLoadListener&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-job">Pipeline: Job Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>job.<wbr/><strong>WorkflowRun.<wbr/>GraphL</strong> (<a href="https://github.com/jenkinsci/workflow-job-plugin/search?q=WorkflowRun.GraphL&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-support">Pipeline: Supporting APIs Plugin</a>: Anonymous class in org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>actions.<wbr/><strong>LogActionImpl</strong> (<a href="https://github.com/jenkinsci/workflow-support-plugin/search?q=LogActionImpl.stream.&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="picklefactory"><a class="anchor" href="#picklefactory"></a>PickleFactory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/workflow-api/org/jenkinsci/plugins/workflow/pickles/PickleFactory.html" title="Javadoc for org.jenkinsci.plugins.workflow.pickles.PickleFactory">org.jenkinsci.plugins.workflow.pickles.PickleFactory in workflow-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Provides a way of converting transient objects into <a href="http://javadoc.jenkins.io/byShortName/Pickle" title="Javadoc for Pickle">Pickle</a> s.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/junit-realtime-test-reporter">JUnit Realtime Test Reporter Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>junitrealtimetestreporter.<wbr/><strong>RealtimeJUnitStep.<wbr/>Pickler</strong> (<a href="https://github.com/jenkinsci/junit-realtime-test-reporter/search?q=RealtimeJUnitStep.Pickler&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-multibranch">Pipeline: Multibranch Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>multibranch.<wbr/><strong>SCMVar.<wbr/>Pickler</strong> (<a href="https://github.com/jenkinsci/workflow-multibranch-plugin/search?q=SCMVar.Pickler&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-durable-task-step">Pipeline: Nodes and Processes Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>pickles.<wbr/><strong>ComputerPickle.<wbr/>Factory</strong> (<a href="https://github.com/jenkinsci/workflow-durable-task-step-plugin/search?q=ComputerPickle.Factory&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-durable-task-step">Pipeline: Nodes and Processes Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>pickles.<wbr/><strong>ExecutorPickle.<wbr/>Factory</strong> (<a href="https://github.com/jenkinsci/workflow-durable-task-step-plugin/search?q=ExecutorPickle.Factory&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-durable-task-step">Pipeline: Nodes and Processes Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>pickles.<wbr/><strong>FilePathPickle.<wbr/>Factory</strong> (<a href="https://github.com/jenkinsci/workflow-durable-task-step-plugin/search?q=FilePathPickle.Factory&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-durable-task-step">Pipeline: Nodes and Processes Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>pickles.<wbr/><strong>WorkspaceListLeasePickle.<wbr/>Factory</strong> (<a href="https://github.com/jenkinsci/workflow-durable-task-step-plugin/search?q=WorkspaceListLeasePickle.Factory&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-support">Pipeline: Supporting APIs Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>pickles.<wbr/><strong>SecretPickle.<wbr/>Factory</strong> (<a href="https://github.com/jenkinsci/workflow-support-plugin/search?q=SecretPickle.Factory&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-support">Pipeline: Supporting APIs Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>pickles.<wbr/><strong>SingleTypedPickleFactory</strong> (<a href="https://github.com/jenkinsci/workflow-support-plugin/search?q=SingleTypedPickleFactory&amp;type=Code">view on GitHub</a>)</p>
+</li>
+<li>
+<p><a href="https://plugins.jenkins.io/workflow-support">Pipeline: Supporting APIs Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>workflow.<wbr/>support.<wbr/>pickles.<wbr/><strong>ThrowablePickle.<wbr/>Factory</strong> (<a href="https://github.com/jenkinsci/workflow-support-plugin/search?q=ThrowablePickle.Factory&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stashmanager-stashbehavior"><a class="anchor" href="#stashmanager-stashbehavior"></a>StashManager.<wbr/>StashBehavior</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code><a href="http://javadoc.jenkins.io/plugin/workflow-api/org/jenkinsci/plugins/workflow/flow/StashManager.StashBehavior.html" title="Javadoc for org.jenkinsci.plugins.workflow.flow.StashManager.StashBehavior">org.jenkinsci.plugins.workflow.flow.StashManager.StashBehavior in workflow-api</a></code></p>
+</div>
+<div class="paragraph">
+<p> Extension point for customizing behavior of stashes from other plugins.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementations:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plugins.jenkins.io/pipeline-model-definition">Pipeline: Declarative Plugin</a>: org.<wbr/>jenkinsci.<wbr/>plugins.<wbr/>pipeline.<wbr/>modeldefinition.<wbr/>properties.<wbr/><strong>PreserveStashesJobProperty.<wbr/>SaveStashes</strong> (<a href="https://github.com/jenkinsci/pipeline-model-definition-plugin/search?q=PreserveStashesJobProperty.SaveStashes&amp;type=Code">view on GitHub</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

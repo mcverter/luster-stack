@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Model _meta API | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/ref/models/meta/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/ref/models/meta/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/ref/models/meta/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/ref/models/meta/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/ref/models/meta/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/ref/models/meta/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/ref/models/meta/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/ref/models/meta/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/ref/models/meta/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/ref/models/meta/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/ref/models/meta/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/ref/models/meta/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/ref/models/meta/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/ref/models/meta/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/ref/models/meta/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/ref/models/meta/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/ref/models/meta/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/ref/models/meta/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/ref/models/meta/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/ref/models/meta/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/ref/models/meta/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/ref/models/meta/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/ref/models/meta/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/ref/models/meta/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/ref/models/meta/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/ref/models/meta/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/ref/models/meta/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-module-django.db.models.options">
+<span id="s-model-meta-api"></span><span id="module-django.db.models.options"></span><span id="model-meta-api"></span><h1>Model <code class="docutils literal notranslate"><span class="pre">_meta</span></code> API<a class="headerlink" href="#module-django.db.models.options" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="django.db.models.options.Options">
+<em class="property">class </em><code class="descname">Options</code><a class="reference internal" href="../../../_modules/django/db/models/options/#Options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.models.options.Options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The model <code class="docutils literal notranslate"><span class="pre">_meta</span></code> API is at the core of the Django ORM. It enables other
+parts of the system such as lookups, queries, forms, and the admin to
+understand the capabilities of each model. The API is accessible through
+the <code class="docutils literal notranslate"><span class="pre">_meta</span></code> attribute of each model class, which is an instance of an
+<code class="docutils literal notranslate"><span class="pre">django.db.models.options.Options</span></code> object.</p>
+<p>Methods that it provides can be used to:</p>
+<ul class="simple">
+<li>Retrieve all field instances of a model</li>
+<li>Retrieve a single field instance of a model by name</li>
+</ul>
+<div class="section" id="s-field-access-api">
+<span id="s-model-meta-field-api"></span><span id="field-access-api"></span><span id="model-meta-field-api"></span><h2>Field access API<a class="headerlink" href="#field-access-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="s-retrieving-a-single-field-instance-of-a-model-by-name">
+<span id="retrieving-a-single-field-instance-of-a-model-by-name"></span><h3>Retrieving a single field instance of a model by name<a class="headerlink" href="#retrieving-a-single-field-instance-of-a-model-by-name" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.models.options.Options.get_field">
+<code class="descclassname">Options.</code><code class="descname">get_field</code>(<em>field_name</em>)<a class="reference internal" href="../../../_modules/django/db/models/options/#Options.get_field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.models.options.Options.get_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the field instance given a name of a field.</p>
+<p><code class="docutils literal notranslate"><span class="pre">field_name</span></code> can be the name of a field on the model, a field
+on an abstract or inherited model, or a field defined on another
+model that points to the model. In the latter case, the <code class="docutils literal notranslate"><span class="pre">field_name</span></code>
+will be (in order of preference) the <a class="reference internal" href="../fields/#django.db.models.ForeignKey.related_query_name" title="django.db.models.ForeignKey.related_query_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">related_query_name</span></code></a>
+set by the user, the <a class="reference internal" href="../fields/#django.db.models.ForeignKey.related_name" title="django.db.models.ForeignKey.related_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">related_name</span></code></a> set by the user, or
+the name automatically generated by Django.</p>
+<p><a class="reference internal" href="../fields/#django.db.models.Field.hidden" title="django.db.models.Field.hidden"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Hidden</span> <span class="pre">fields</span></code></a> cannot be retrieved
+by name.</p>
+<p>If a field with the given name is not found a
+<a class="reference internal" href="../../exceptions/#django.core.exceptions.FieldDoesNotExist" title="django.core.exceptions.FieldDoesNotExist"><code class="xref py py-class docutils literal notranslate"><span class="pre">FieldDoesNotExist</span></code></a> exception will be
+raised.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+
+<span class="go"># A field on the model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">User</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+<span class="go">&lt;django.db.models.fields.CharField: username&gt;</span>
+
+<span class="go"># A field from another model that has a relation with the current model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">User</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="s1">&#39;logentry&#39;</span><span class="p">)</span>
+<span class="go">&lt;ManyToOneRel: admin.logentry&gt;</span>
+
+<span class="go"># A non existent field</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">User</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="s1">&#39;does_not_exist&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">FieldDoesNotExist</span>: <span class="n">User has no field named &#39;does_not_exist&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="s-retrieving-all-field-instances-of-a-model">
+<span id="retrieving-all-field-instances-of-a-model"></span><h3>Retrieving all field instances of a model<a class="headerlink" href="#retrieving-all-field-instances-of-a-model" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="django.db.models.options.Options.get_fields">
+<code class="descclassname">Options.</code><code class="descname">get_fields</code>(<em>include_parents=True</em>, <em>include_hidden=False</em>)<a class="reference internal" href="../../../_modules/django/db/models/options/#Options.get_fields"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.db.models.options.Options.get_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tuple of fields associated with a model. <code class="docutils literal notranslate"><span class="pre">get_fields()</span></code> accepts
+two parameters that can be used to control which fields are returned:</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">include_parents</span></code></dt>
+<dd><code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Recursively includes fields defined on parent
+classes. If set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, <code class="docutils literal notranslate"><span class="pre">get_fields()</span></code> will only search for
+fields declared directly on the current model. Fields from models that
+directly inherit from abstract models or proxy classes are considered
+to be local, not on the parent.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">include_hidden</span></code></dt>
+<dd><code class="docutils literal notranslate"><span class="pre">False</span></code> by default. If set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">get_fields()</span></code> will include
+fields that are used to back other field’s functionality. This will
+also include any fields that have a <code class="docutils literal notranslate"><span class="pre">related_name</span></code> (such
+as <a class="reference internal" href="../fields/#django.db.models.ManyToManyField" title="django.db.models.ManyToManyField"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManyToManyField</span></code></a>, or
+<a class="reference internal" href="../fields/#django.db.models.ForeignKey" title="django.db.models.ForeignKey"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a>) that start with a “+”.</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">User</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()</span>
+<span class="go">(&lt;ManyToOneRel: admin.logentry&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.AutoField: id&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.CharField: password&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.DateTimeField: last_login&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.BooleanField: is_superuser&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.CharField: username&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.CharField: first_name&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.CharField: last_name&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.EmailField: email&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.BooleanField: is_staff&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.BooleanField: is_active&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.DateTimeField: date_joined&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.related.ManyToManyField: groups&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.related.ManyToManyField: user_permissions&gt;)</span>
+
+<span class="go"># Also include hidden fields.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">User</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">(</span><span class="n">include_hidden</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">(&lt;ManyToOneRel: auth.user_groups&gt;,</span>
+<span class="go"> &lt;ManyToOneRel: auth.user_user_permissions&gt;,</span>
+<span class="go"> &lt;ManyToOneRel: admin.logentry&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.AutoField: id&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.CharField: password&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.DateTimeField: last_login&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.BooleanField: is_superuser&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.CharField: username&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.CharField: first_name&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.CharField: last_name&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.EmailField: email&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.BooleanField: is_staff&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.BooleanField: is_active&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.DateTimeField: date_joined&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.related.ManyToManyField: groups&gt;,</span>
+<span class="go"> &lt;django.db.models.fields.related.ManyToManyField: user_permissions&gt;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="s-migrating-from-the-old-api">
+<span id="s-migrating-old-meta-api"></span><span id="migrating-from-the-old-api"></span><span id="migrating-old-meta-api"></span><h2>Migrating from the old API<a class="headerlink" href="#migrating-from-the-old-api" title="Permalink to this headline">¶</a></h2>
+<p>As part of the formalization of the <code class="docutils literal notranslate"><span class="pre">Model._meta</span></code> API (from the
+<a class="reference internal" href="#django.db.models.options.Options" title="django.db.models.options.Options"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.options.Options</span></code></a> class), a number of methods and
+properties have been deprecated and will be removed in Django 1.10.</p>
+<p>These old APIs can be replicated by either:</p>
+<ul class="simple">
+<li>invoking <a class="reference internal" href="#django.db.models.options.Options.get_field" title="django.db.models.options.Options.get_field"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Options.get_field()</span></code></a>, or;</li>
+<li>invoking <a class="reference internal" href="#django.db.models.options.Options.get_fields" title="django.db.models.options.Options.get_fields"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Options.get_fields()</span></code></a> to retrieve a list of all
+fields, and then filtering this list using the <a class="reference internal" href="../fields/#model-field-attributes"><span class="std std-ref">field attributes</span></a> that describe (or retrieve, in the case of
+<code class="docutils literal notranslate"><span class="pre">_with_model</span></code> variants) the properties of the desired fields.</li>
+</ul>
+<p>Although it’s possible to make strictly equivalent replacements of the old
+methods, that might not be the best approach. Taking the time to refactor any
+field loops to make better use of the new API - and possibly include fields
+that were previously excluded - will almost certainly result in better code.</p>
+<p>Assuming you have a model named <code class="docutils literal notranslate"><span class="pre">MyModel</span></code>, the following substitutions
+can be made to convert your code to the new API:</p>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">MyModel._meta.get_field(name)</span></code> becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>then check if:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">f.auto_created</span> <span class="pre">==</span> <span class="pre">False</span></code>, because the new <code class="docutils literal notranslate"><span class="pre">get_field()</span></code>
+API will find “reverse” relations, and:</li>
+<li><code class="docutils literal notranslate"><span class="pre">f.is_relation</span> <span class="pre">and</span> <span class="pre">f.related_model</span> <span class="pre">is</span> <span class="pre">None</span></code>, because the new
+<code class="docutils literal notranslate"><span class="pre">get_field()</span></code> API will find
+<a class="reference internal" href="../../contrib/contenttypes/#django.contrib.contenttypes.fields.GenericForeignKey" title="django.contrib.contenttypes.fields.GenericForeignKey"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenericForeignKey</span></code></a> relations.</li>
+</ul>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">MyModel._meta.get_field_by_name(name)</span></code> returns a tuple of these four
+values with the following replacements:</p>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">field</span></code> can be found by <code class="docutils literal notranslate"><span class="pre">MyModel._meta.get_field(name)</span></code></p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">model</span></code> can be found through the
+<a class="reference internal" href="../fields/#django.db.models.Field.model" title="django.db.models.Field.model"><code class="xref py py-attr docutils literal notranslate"><span class="pre">model</span></code></a> attribute on the field.</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">direct</span></code> can be found by: <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">field.auto_created</span> <span class="pre">or</span> <span class="pre">field.concrete</span></code></p>
+<p>The <a class="reference internal" href="../fields/#django.db.models.Field.auto_created" title="django.db.models.Field.auto_created"><code class="xref py py-attr docutils literal notranslate"><span class="pre">auto_created</span></code></a> check excludes
+all “forward” and “reverse” relations that are created by Django, but
+this also includes <code class="docutils literal notranslate"><span class="pre">AutoField</span></code> and <code class="docutils literal notranslate"><span class="pre">OneToOneField</span></code> on proxy models.
+We avoid filtering out these attributes using the
+<a class="reference internal" href="../fields/#django.db.models.Field.concrete" title="django.db.models.Field.concrete"><code class="xref py py-attr docutils literal notranslate"><span class="pre">concrete</span></code></a> attribute.</p>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">m2m</span></code> can be found through the
+<a class="reference internal" href="../fields/#django.db.models.Field.many_to_many" title="django.db.models.Field.many_to_many"><code class="xref py py-attr docutils literal notranslate"><span class="pre">many_to_many</span></code></a> attribute on the field.</p>
+</li>
+</ul>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">MyModel._meta.get_fields_with_model()</span></code> becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">model</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">model</span> <span class="o">!=</span> <span class="n">MyModel</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">is_relation</span>
+        <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">one_to_one</span>
+        <span class="ow">or</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">many_to_one</span> <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">related_model</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">MyModel._meta.get_concrete_fields_with_model()</span></code> becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">model</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">model</span> <span class="o">!=</span> <span class="n">MyModel</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">concrete</span> <span class="ow">and</span> <span class="p">(</span>
+        <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">is_relation</span>
+        <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">one_to_one</span>
+        <span class="ow">or</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">many_to_one</span> <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">related_model</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">MyModel._meta.get_m2m_with_model()</span></code> becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">model</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">model</span> <span class="o">!=</span> <span class="n">MyModel</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">many_to_many</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">auto_created</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">MyModel._meta.get_all_related_objects()</span></code> becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">one_to_many</span> <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">one_to_one</span><span class="p">)</span>
+    <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">auto_created</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">concrete</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">MyModel._meta.get_all_related_objects_with_model()</span></code> becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">model</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">model</span> <span class="o">!=</span> <span class="n">MyModel</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">one_to_many</span> <span class="ow">or</span> <span class="n">f</span><span class="o">.</span><span class="n">one_to_one</span><span class="p">)</span>
+    <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">auto_created</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">concrete</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">MyModel._meta.get_all_related_many_to_many_objects()</span></code> becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">(</span><span class="n">include_hidden</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">many_to_many</span> <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">auto_created</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">MyModel._meta.get_all_related_m2m_objects_with_model()</span></code> becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">model</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">model</span> <span class="o">!=</span> <span class="n">MyModel</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">(</span><span class="n">include_hidden</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">many_to_many</span> <span class="ow">and</span> <span class="n">f</span><span class="o">.</span><span class="n">auto_created</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">MyModel._meta.get_all_field_names()</span></code> becomes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">chain</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">attname</span><span class="p">)</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="s1">&#39;attname&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">,)</span>
+    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()</span>
+    <span class="c1"># For complete backwards compatibility, you may want to exclude</span>
+    <span class="c1"># GenericForeignKey from the results.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">many_to_one</span> <span class="ow">and</span> <span class="n">field</span><span class="o">.</span><span class="n">related_model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
+<span class="p">)))</span>
+</pre></div>
+</div>
+<p>This provides a 100% backwards compatible replacement, ensuring that both
+field names and attribute names <code class="docutils literal notranslate"><span class="pre">ForeignKey</span></code>s are included, but fields
+associated with <code class="docutils literal notranslate"><span class="pre">GenericForeignKey</span></code>s are not. A simpler version would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()]</span>
+</pre></div>
+</div>
+<p>While this isn’t 100% backwards compatible, it may be sufficient in many
+situations.</p>
+</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../indexes/"><i class="icon icon-chevron-left"></i> Model index reference</a></div>
+  
+  
+  <div class="right"><a href="../relations/">Related objects reference <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Marek Belski donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Model <code class="docutils literal notranslate"><span class="pre">_meta</span></code> API</a><ul>
+<li><a class="reference internal" href="#field-access-api">Field access API</a><ul>
+<li><a class="reference internal" href="#retrieving-a-single-field-instance-of-a-model-by-name">Retrieving a single field instance of a model by name</a></li>
+<li><a class="reference internal" href="#retrieving-all-field-instances-of-a-model">Retrieving all field instances of a model</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#migrating-from-the-old-api">Migrating from the old API</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../indexes/">Model index reference</a></li>
+    
+    
+    <li>Next: <a href="../relations/">Related objects reference</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../">API Reference</a>
+      
+      <ul><li><a href="../">Models</a>
+      
+      <ul><li>Model <code class="docutils literal notranslate"><span class="pre">_meta</span></code> API</li></ul>
+      </li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

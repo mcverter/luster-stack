@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Pipeline: AWS Steps
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Pipeline: AWS Steps' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Pipeline: AWS Steps' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Pipeline: AWS Steps' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/pipeline/steps/pipeline-aws/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Pipeline: AWS Steps' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<p>
+<a href="https://jenkins.io/doc" class="">Jenkins User Documentation Home</a>
+</p>
+<h4>
+Guided Tour
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/getting-started" class="">Getting started</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/hello-world" class="">Creating your first Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps" class="">Running multiple steps</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/agents" class="">Defining execution environments</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/environment" class="">Using environment variables</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/tests-and-artifacts" class="">Recording test results and artifacts</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/post" class="">Cleaning up and notifications</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/deployment" class="">Deployment</a>
+</li>
+</ul>
+<h4>
+Tutorials
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/tutorials" class="">Overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-java-app-with-maven" class="">Build a Java app with Maven</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm" class="">Build a Node.js and React app with npm</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller" class="">Build a Python app with PyInstaller</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean" class="">Create a Pipeline in Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project" class="">End-to-End Multibranch Pipeline Project Creation</a>
+</li>
+</ul>
+<h4>
+User Handbook
+<span style='font-size: 0.6rem; vertical-align: middle;'>
+<a href='/user-handbook.pdf'>
+(PDF)
+</a>
+</span>
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/getting-started" class="">User Handbook overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/installing" class="">Installing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/using" class="">Using Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline" class="">Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean" class="">Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing" class="">Managing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/system-administration" class="">System Administration</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/scaling" class="">Scaling Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/appendix" class="">Appendix</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/glossary" class="">Glossary</a>
+</li>
+</ul>
+<h4>
+Resources
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/steps" class="">Pipeline Steps reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/upgrade-guide" class="">LTS Upgrade Guide</a>
+</li>
+</ul>
+<h5>
+Recent Tutorial Blog Posts
+</h5>
+<ul>
+<li>
+<a href='/blog/2017/11/27/tutorials-in-the-jenkins-user-documentation/'>
+Introducing Tutorials in the Jenkins User Documentation
+</a>
+</li>
+<li>
+<a href='/blog/2017/05/18/pipeline-dev-tools/'>
+Pipeline Development Tools
+</a>
+</li>
+<li>
+<a href='/blog/2017/04/12/welcome-to-blue-ocean-dashboard/'>
+Getting Started with the Blue Ocean Dashboard
+</a>
+</li>
+</ul>
+<div class='small'>
+<a href='/node/tags/tutorial'>
+View all tutorial blog posts
+</a>
+</div>
+<p></p>
+</div>
+</div>
+<div class='col-lg-9'>
+<p>
+The following plugin provides functionality available through
+Pipeline-compatible steps. Read more about how to integrate steps into your
+Pipeline in the
+<a href='https://jenkins.io/doc/book/pipeline/syntax/#declarative-steps'>Steps</a>
+section of the
+<a href='https://jenkins.io/doc/book/pipeline/syntax'>Pipeline Syntax</a>
+page.
+</p>
+<p>
+For a list of other such plugins, see the
+<a href='https://jenkins.io/doc/pipeline/steps/'>Pipeline Steps Reference</a>
+page.
+</p>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#pipeline-aws-steps">Pipeline: AWS Steps</a>
+<ul class="sectlevel2">
+<li><a href="#awaitdeploymentcompletion-wait-for-aws-codedeploy-deployment-completion"><code>awaitDeploymentCompletion</code>: Wait for AWS CodeDeploy deployment completion</a></li>
+<li><a href="#awsidentity-print-and-return-the-aws-identity"><code>awsIdentity</code>: Print and return the AWS identity</a></li>
+<li><a href="#cfinvalidate-invalidate-given-paths-in-cloudfront-distribution"><code>cfInvalidate</code>: Invalidate given paths in CloudFront distribution</a></li>
+<li><a href="#cfncreatechangeset-create-cloudformation-change-set"><code>cfnCreateChangeSet</code>: Create CloudFormation change set</a></li>
+<li><a href="#cfndelete-delete-cloudformation-stack"><code>cfnDelete</code>: Delete CloudFormation stack</a></li>
+<li><a href="#cfndeletestackset-delete-cloudformation-stack-set"><code>cfnDeleteStackSet</code>: Delete CloudFormation Stack Set</a></li>
+<li><a href="#cfndescribe-describe-outputs-of-cloudformation-stack"><code>cfnDescribe</code>: Describe outputs of CloudFormation stack</a></li>
+<li><a href="#cfnexecutechangeset-execute-cloudformation-change-set"><code>cfnExecuteChangeSet</code>: Execute CloudFormation change set</a></li>
+<li><a href="#cfnexports-describe-cloudformation-global-exports"><code>cfnExports</code>: Describe CloudFormation global exports</a></li>
+<li><a href="#cfnupdate-create-or-update-cloudformation-stack"><code>cfnUpdate</code>: Create or Update CloudFormation stack</a></li>
+<li><a href="#cfnupdatestackset-create-or-update-cloudformation-stack-set"><code>cfnUpdateStackSet</code>: Create or Update CloudFormation Stack Set</a></li>
+<li><a href="#cfnvalidate-validate-cloudformation-template"><code>cfnValidate</code>: Validate CloudFormation template</a></li>
+<li><a href="#deployapi-deploy-the-given-api-gateway-api"><code>deployAPI</code>: Deploy the given API Gateway API</a></li>
+<li><a href="#ec2shareami-share-an-ami-with-other-accounts"><code>ec2ShareAmi</code>: Share an AMI with other accounts</a></li>
+<li><a href="#ecrlogin-create-and-return-the-ecr-login-string"><code>ecrLogin</code>: Create and return the ECR login string</a></li>
+<li><a href="#invokelambda-invoke-a-given-lambda-function"><code>invokeLambda</code>: Invoke a given Lambda function</a></li>
+<li><a href="#listawsaccounts-list-all-aws-accounts-of-the-organization"><code>listAWSAccounts</code>: List all AWS accounts of the organization</a></li>
+<li><a href="#s3copy-copy-file-between-s3-buckets"><code>s3Copy</code>: Copy file between S3 buckets</a></li>
+<li><a href="#s3delete-delete-file-from-s3"><code>s3Delete</code>: Delete file from S3</a></li>
+<li><a href="#s3download-copy-file-from-s3"><code>s3Download</code>: Copy file from S3</a></li>
+<li><a href="#s3findfiles-find-files-in-s3"><code>s3FindFiles</code>: Find files in S3</a></li>
+<li><a href="#s3presignurl-presign-file-in-s3"><code>s3PresignURL</code>: Presign file in S3</a></li>
+<li><a href="#s3upload-copy-file-to-s3"><code>s3Upload</code>: Copy file to S3</a></li>
+<li><a href="#setaccountalias-set-the-aws-account-alias"><code>setAccountAlias</code>: Set the AWS account alias</a></li>
+<li><a href="#snspublish-publish-notification-to-sns"><code>snsPublish</code>: Publish notification to SNS</a></li>
+<li><a href="#updateidp-update-thirdparty-identity-provider"><code>updateIdP</code>: Update thirdparty Identity Provider</a></li>
+<li><a href="#updatetrustpolicy-update-trust-policy-of-iam-roles"><code>updateTrustPolicy</code>: Update trust policy of IAM roles</a></li>
+<li><a href="#withaws-set-aws-settings-for-nested-block"><code>withAWS</code>: set AWS settings for nested block</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="pipeline-aws-steps"><a class="anchor" href="#pipeline-aws-steps"></a>Pipeline: AWS Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://plugins.jenkins.io/pipeline-aws">View this plugin on the Plugins Index</a></p>
+</div>
+<div class="sect2">
+<h3 id="awaitdeploymentcompletion-wait-for-aws-codedeploy-deployment-completion"><a class="anchor" href="#awaitdeploymentcompletion-wait-for-aws-codedeploy-deployment-completion"></a><code>awaitDeploymentCompletion</code>: Wait for AWS CodeDeploy deployment completion</h3>
+<ul><li><code>deploymentId</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="awsidentity-print-and-return-the-aws-identity"><a class="anchor" href="#awsidentity-print-and-return-the-aws-identity"></a><code>awsIdentity</code>: Print and return the AWS identity</h3>
+<ul></ul>
+</div>
+<div class="sect2">
+<h3 id="cfinvalidate-invalidate-given-paths-in-cloudfront-distribution"><a class="anchor" href="#cfinvalidate-invalidate-given-paths-in-cloudfront-distribution"></a><code>cfInvalidate</code>: Invalidate given paths in CloudFront distribution</h3>
+<ul><li><code>distribution</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>paths</code>
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>waitForCompletion</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="cfncreatechangeset-create-cloudformation-change-set"><a class="anchor" href="#cfncreatechangeset-create-cloudformation-change-set"></a><code>cfnCreateChangeSet</code>: Create CloudFormation change set</h3>
+<ul><li><code>changeSet</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>stack</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</div>
+<div class="sect2">
+<h3 id="cfndelete-delete-cloudformation-stack"><a class="anchor" href="#cfndelete-delete-cloudformation-stack"></a><code>cfnDelete</code>: Delete CloudFormation stack</h3>
+<ul><li><code>stack</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pollInterval</code> (optional)
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+<li><code>timeoutInMinutes</code> (optional)
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="cfndeletestackset-delete-cloudformation-stack-set"><a class="anchor" href="#cfndeletestackset-delete-cloudformation-stack-set"></a><code>cfnDeleteStackSet</code>: Delete CloudFormation Stack Set</h3>
+<ul><li><code>stackSet</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pollInterval</code> (optional)
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="cfndescribe-describe-outputs-of-cloudformation-stack"><a class="anchor" href="#cfndescribe-describe-outputs-of-cloudformation-stack"></a><code>cfnDescribe</code>: Describe outputs of CloudFormation stack</h3>
+<ul><li><code>stack</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="cfnexecutechangeset-execute-cloudformation-change-set"><a class="anchor" href="#cfnexecutechangeset-execute-cloudformation-change-set"></a><code>cfnExecuteChangeSet</code>: Execute CloudFormation change set</h3>
+<ul><li><code>changeSet</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>stack</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pollInterval</code> (optional)
+<ul><li><b>Type:</b> <code>long</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="cfnexports-describe-cloudformation-global-exports"><a class="anchor" href="#cfnexports-describe-cloudformation-global-exports"></a><code>cfnExports</code>: Describe CloudFormation global exports</h3>
+<ul></ul>
+</div>
+<div class="sect2">
+<h3 id="cfnupdate-create-or-update-cloudformation-stack"><a class="anchor" href="#cfnupdate-create-or-update-cloudformation-stack"></a><code>cfnUpdate</code>: Create or Update CloudFormation stack</h3>
+<ul><li><code>stack</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</div>
+<div class="sect2">
+<h3 id="cfnupdatestackset-create-or-update-cloudformation-stack-set"><a class="anchor" href="#cfnupdatestackset-create-or-update-cloudformation-stack-set"></a><code>cfnUpdateStackSet</code>: Create or Update CloudFormation Stack Set</h3>
+<ul><li><code>stackSet</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</div>
+<div class="sect2">
+<h3 id="cfnvalidate-validate-cloudformation-template"><a class="anchor" href="#cfnvalidate-validate-cloudformation-template"></a><code>cfnValidate</code>: Validate CloudFormation template</h3>
+<ul><li><code>file</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>url</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="deployapi-deploy-the-given-api-gateway-api"><a class="anchor" href="#deployapi-deploy-the-given-api-gateway-api"></a><code>deployAPI</code>: Deploy the given API Gateway API</h3>
+<ul><li><code>api</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>stage</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>description</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>variables</code> (optional)
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="ec2shareami-share-an-ami-with-other-accounts"><a class="anchor" href="#ec2shareami-share-an-ami-with-other-accounts"></a><code>ec2ShareAmi</code>: Share an AMI with other accounts</h3>
+<ul><li><code>accountIds</code> (optional)
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>amiId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="ecrlogin-create-and-return-the-ecr-login-string"><a class="anchor" href="#ecrlogin-create-and-return-the-ecr-login-string"></a><code>ecrLogin</code>: Create and return the ECR login string</h3>
+<ul><li><code>email</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="invokelambda-invoke-a-given-lambda-function"><a class="anchor" href="#invokelambda-invoke-a-given-lambda-function"></a><code>invokeLambda</code>: Invoke a given Lambda function</h3>
+<ul><li><code>functionName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</div>
+<div class="sect2">
+<h3 id="listawsaccounts-list-all-aws-accounts-of-the-organization"><a class="anchor" href="#listawsaccounts-list-all-aws-accounts-of-the-organization"></a><code>listAWSAccounts</code>: List all AWS accounts of the organization</h3>
+<ul></ul>
+</div>
+<div class="sect2">
+<h3 id="s3copy-copy-file-between-s3-buckets"><a class="anchor" href="#s3copy-copy-file-between-s3-buckets"></a><code>s3Copy</code>: Copy file between S3 buckets</h3>
+<div><div>
+ <p> Copy file between S3 buckets. </p>
+</div></div>
+<ul><li><code>fromBucket</code>
+<div><div>
+  This is the bucket of the existing file.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>fromPath</code>
+<div><div>
+  This is the file path in the source bucket.
+ <i>Do not begin with a leading "/".</i>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>toBucket</code>
+<div><div>
+  This is the bucket of the new file.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>toPath</code>
+<div><div>
+  This is the file path in the destination bucket.
+ <i>Do not begin with a leading "/".</i>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pathStyleAccessEnabled</code> (optional)
+<div><div>
+  Enabled/Disable Path-style Access for AWS S3.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>payloadSigningEnabled</code> (optional)
+<div><div>
+  Enabled/Disable Payload Signing for AWS S3.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>acl</code> (optional)
+<div><div>
+ <p> Canned ACL to add to the new file. </p>
+ <ul>
+  <li>Private : Specifies the owner is granted Full Control. No one else has access rights. This is the default access control policy for any new buckets or objects.</li>
+  <li>PublicRead : Specifies the owner is granted Full Control and to the All Users group grantee is granted Read access.</li>
+  <li>PublicReadWrite: Specifies the owner is granted Full Control and to the All Users group grantee is granted Read and Write access.</li>
+  <li>AuthenticatedRead: Specifies the owner is granted Full Control and to the Authenticated Users group grantee is granted Read access.</li>
+  <li>LogDeliveryWrite: Specifies the owner is granted Full Control and to the Log Delivery group grantee is granted Write access.</li>
+  <li>BucketOwnerRead: Specifies the owner of the bucket, but not necessarily the same as the owner of the object, is granted Read access.</li>
+  <li>BucketOwnerFullControl: Specifies the owner of the bucket, but not necessarily the same as the owner of the object, is granted Full Control.</li>
+  <li>AwsExecRead: Specifies the owner is granted Full Control and Amazon EC2 is granted {@link Permission#Read} access to GET an Amazon Machine Image (AMI) bundle from Amazon S3.</li>
+ </ul>
+ <p></p>
+</div></div>
+
+<ul><li><b>Values:</b> <code>Private</code>, <code>PublicRead</code>, <code>PublicReadWrite</code>, <code>AuthenticatedRead</code>, <code>LogDeliveryWrite</code>, <code>BucketOwnerRead</code>, <code>BucketOwnerFullControl</code>, <code>AwsExecRead</code></li></ul></li>
+<li><code>cacheControl</code> (optional)
+<div><div>
+  Cache control to add to the HTTP request.
+ <i>Sample : "public,max-age=31536000"</i>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>contentType</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>kmsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>metadatas</code> (optional)
+<div><div>
+  Metadatas to add to the new file. Multiple metadatas must be separated with a ';' and name and value separated by a ':'.
+ <i>Sample : "Content-Type:image/svg+xml;Another:AnotherValue"</i>
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sseAlgorithm</code> (optional)
+<div><div>
+  Server Side Encryption Algorithm to add to the new file.
+ <i>Sample : "AES256"</i>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="s3delete-delete-file-from-s3"><a class="anchor" href="#s3delete-delete-file-from-s3"></a><code>s3Delete</code>: Delete file from S3</h3>
+<div><div>
+ <p> Delete a file/folder from S3. If the path ends in a "/", then the path will be interpreted to be a folder, and all of its contents will be removed. </p>
+</div></div>
+<ul><li><code>bucket</code>
+<div><div>
+  This is the bucket to use.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>path</code>
+<div><div>
+ <p> This is the path inside the bucket to delete. If this ends in a "/", then the path will be interpreted to be a folder, and all of its contents will be removed. </p>
+ <p> <i>Do not begin with a leading "/".</i> </p>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pathStyleAccessEnabled</code> (optional)
+<div><div>
+  Enabled/Disable Path-style Access for AWS S3.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>payloadSigningEnabled</code> (optional)
+<div><div>
+  Enabled/Disable Payload Signing for AWS S3.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="s3download-copy-file-from-s3"><a class="anchor" href="#s3download-copy-file-from-s3"></a><code>s3Download</code>: Copy file from S3</h3>
+<div><div>
+ <p> Download a file/folder from S3 to the local workspace. Set optional parameter force to true to overwrite any existing files in workspace. If the path ends with a /, then the complete virtual directory will be downloaded. </p>
+</div></div>
+<ul><li><code>file</code>
+<div><div>
+  This is the local target file to download into.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>bucket</code>
+<div><div>
+  This is the bucket to use.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pathStyleAccessEnabled</code> (optional)
+<div><div>
+  Enabled/Disable Path-style Access for AWS S3.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>payloadSigningEnabled</code> (optional)
+<div><div>
+  Enabled/Disable Payload Signing for AWS S3.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>force</code> (optional)
+<div><div>
+  Set this to true to overwrite local workspace files.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>path</code> (optional)
+<div><div>
+  This is the path inside the bucket to use.
+ <i>Do not begin with a leading "/".</i>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="s3findfiles-find-files-in-s3"><a class="anchor" href="#s3findfiles-find-files-in-s3"></a><code>s3FindFiles</code>: Find files in S3</h3>
+<div><div>
+ <p> Return a list of all of the files/folders in the bucket. If path is given, then it will be used as the root of the search. Results are returned <i>relative</i> to path; if path is not given, then the results will contain the full S3 path. </p>
+ <p> The following all ultimately return one item referring to "path/to/my/file.ext"; however, by limiting the scope via path, the results are different. </p>
+ <ul>
+  <li> files = s3FindFiles bucket: "my-bucket", glob: "path/to/my/file.ext"<br> // files[0].name = "file.ext"<br> // files[0].path = "path/to/my/file.ext" </li>
+  <li> files = s3FindFiles bucket: "my-bucket", path: "path/to/", glob: "my/file.ext"<br> // files[0].name = "file.ext"<br> // files[0].path = "my/file.ext" </li>
+  <li> files = s3FindFiles bucket: "my-bucket", path: "path/to/my/", glob: "file.ext"<br> // files[0].name = "file.ext"<br> // files[0].path = "file.ext" </li>
+ </ul>
+ <p></p>
+ <p> List every file in the bucket: </p>
+ <ul>
+  <li>s3FindFiles bucket: "my-bucket", glob: "**", onlyFiles: true</li>
+ </ul>
+ <p></p>
+ <p> The return format is identical to that of the findFiles step. This will return an array of FileWrapper instances with the following properties: </p>
+ <ul>
+  <li>name: the filename portion of the path (for "path/to/my/file.ext", this would be "file.ext")</li>
+  <li>path: the full path of the file, <i>relative</i> to the path specified (for path="path/to/", this property of the file "path/to/my/file.ext" would be "my/file.ext")</li>
+  <li>directory: true if this is a directory; false otherwise</li>
+  <li>length: the length of the file (this is always "0" for directories)</li>
+  <li>lastModified: the last modification timestamp, in milliseconds since the Unix epoch (this is always "0" for directories)</li>
+ </ul> When used in a string context, a FileWrapper object returns the value of its path.
+ <p></p>
+</div></div>
+<ul><li><code>bucket</code>
+<div><div>
+  This is the bucket to use.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pathStyleAccessEnabled</code> (optional)
+<div><div>
+  Enabled/Disable Path-style Access for AWS S3.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>payloadSigningEnabled</code> (optional)
+<div><div>
+  Enabled/Disable Payload Signing for AWS S3.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>glob</code> (optional)
+<div><div>
+ <p> This is the glob to use to match files/folders. You may use a full file name/path (for example "path/to/file.ext"), but you may also use a glob (for example, "path/t*/file.*"). </p>
+ <p> If left blank, this will perform the equivalent function of "*". </p>
+ <p> To list absolutely everything, use "**". </p>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>onlyFiles</code> (optional)
+<div><div>
+  Set this to true to only return actual files. Otherwise, by default, this will return both files and folders.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>path</code> (optional)
+<div><div>
+  This is the path inside the bucket to use as the root of the search.
+ <i>Do not begin with a leading "/".</i>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="s3presignurl-presign-file-in-s3"><a class="anchor" href="#s3presignurl-presign-file-in-s3"></a><code>s3PresignURL</code>: Presign file in S3</h3>
+<ul><li><code>bucket</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>key</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>httpMethod</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>durationInSeconds</code>
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>pathStyleAccessEnabled</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>payloadSigningEnabled</code> (optional)
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="s3upload-copy-file-to-s3"><a class="anchor" href="#s3upload-copy-file-to-s3"></a><code>s3Upload</code>: Copy file to S3</h3>
+<div><div>
+ <p> Upload a file/folder from the workspace to an S3 bucket. If the file parameter denotes a directory, then the complete directory (including all subfolders) will be uploaded. </p>
+</div></div>
+<ul><li><code>bucket</code>
+<div><div>
+  This is the bucket to use.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>pathStyleAccessEnabled</code> (optional)
+<div><div>
+  Enabled/Disable Path-style Access for AWS S3.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>payloadSigningEnabled</code> (optional)
+<div><div>
+  Enabled/Disable Payload Signing for AWS S3.
+</div></div>
+
+<ul><li><b>Type:</b> <code>boolean</code></li></ul></li>
+<li><code>acl</code> (optional)
+<div><div>
+ <p> Canned ACL to add to the upload request. </p>
+ <ul>
+  <li>Private : Specifies the owner is granted Full Control. No one else has access rights. This is the default access control policy for any new buckets or objects.</li>
+  <li>PublicRead : Specifies the owner is granted Full Control and to the All Users group grantee is granted Read access.</li>
+  <li>PublicReadWrite: Specifies the owner is granted Full Control and to the All Users group grantee is granted Read and Write access.</li>
+  <li>AuthenticatedRead: Specifies the owner is granted Full Control and to the Authenticated Users group grantee is granted Read access.</li>
+  <li>LogDeliveryWrite: Specifies the owner is granted Full Control and to the Log Delivery group grantee is granted Write access.</li>
+  <li>BucketOwnerRead: Specifies the owner of the bucket, but not necessarily the same as the owner of the object, is granted Read access.</li>
+  <li>BucketOwnerFullControl: Specifies the owner of the bucket, but not necessarily the same as the owner of the object, is granted Full Control.</li>
+  <li>AwsExecRead: Specifies the owner is granted Full Control and Amazon EC2 is granted {@link Permission#Read} access to GET an Amazon Machine Image (AMI) bundle from Amazon S3.</li>
+ </ul>
+ <p></p>
+</div></div>
+
+<ul><li><b>Values:</b> <code>Private</code>, <code>PublicRead</code>, <code>PublicReadWrite</code>, <code>AuthenticatedRead</code>, <code>LogDeliveryWrite</code>, <code>BucketOwnerRead</code>, <code>BucketOwnerFullControl</code>, <code>AwsExecRead</code></li></ul></li>
+<li><code>cacheControl</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>contentEncoding</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>contentType</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>excludePathPattern</code> (optional)
+<div><div>
+  This is the pattern to use to exclude files
+ <i>Sample : "*.svg"</i>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>file</code> (optional)
+<div><div>
+  This is the local file to upload from the workspace.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>includePathPattern</code> (optional)
+<div><div>
+  This is the pattern to use to find files to push to S3
+ <i>Sample : "dist/**"</i>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>kmsId</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>metadatas</code> (optional)
+<div><div>
+  Metadatas to add to push file. Multiple metadatas must be separated with a ';' and name and value separated by a ':'.
+ <i>Sample : "Content-Type:image/svg+xml;Another:AnotherValue"</i>
+</div></div>
+
+<ul><b>Array/List</b><br/>
+<li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>path</code> (optional)
+<div><div>
+  This is the path inside the bucket to use.
+ <i>Do not begin with a leading "/".</i>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>sseAlgorithm</code> (optional)
+<div><div>
+  Server Side Encryption Algorithm to add to push file.
+ <i>Sample : "AES256"</i>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>workingDir</code> (optional)
+<div><div>
+  Working directories for s3Upload plugin
+ <i>Sample : "dist"</i>
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="setaccountalias-set-the-aws-account-alias"><a class="anchor" href="#setaccountalias-set-the-aws-account-alias"></a><code>setAccountAlias</code>: Set the AWS account alias</h3>
+<div><div>
+ <p> The <code>setAccountAlias</code> step set the given name as AWS account alias. </p>
+</div></div>
+<ul><li><code>name</code>
+<div><div>
+  Name to use as account alias.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="snspublish-publish-notification-to-sns"><a class="anchor" href="#snspublish-publish-notification-to-sns"></a><code>snsPublish</code>: Publish notification to SNS</h3>
+<ul><li><code>topicArn</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>subject</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>message</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>messageAttributes</code> (optional)
+<ul><code>java.lang.String></code>
+</ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="updateidp-update-thirdparty-identity-provider"><a class="anchor" href="#updateidp-update-thirdparty-identity-provider"></a><code>updateIdP</code>: Update thirdparty Identity Provider</h3>
+<ul><li><code>name</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>metadata</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="updatetrustpolicy-update-trust-policy-of-iam-roles"><a class="anchor" href="#updatetrustpolicy-update-trust-policy-of-iam-roles"></a><code>updateTrustPolicy</code>: Update trust policy of IAM roles</h3>
+<ul><li><code>roleName</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>policyFile</code>
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="withaws-set-aws-settings-for-nested-block"><a class="anchor" href="#withaws-set-aws-settings-for-nested-block"></a><code>withAWS</code>: set AWS settings for nested block</h3>
+<div><div>
+ <p> The <code>withAWS</code> step provides authorization for the nested steps. You can provide region and profile information or let Jenkins assume a role in another or the same AWS account. You can mix all parameters in one <code>withAWS</code> block. </p>
+</div></div>
+<ul><li><code>credentials</code> (optional)
+<div><div>
+  Use standard Jenkins UsernamePassword credentials. Note: the username should be your Access Key ID, and the password should be the Secret Access Key.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>duration</code> (optional)
+<ul><li><b>Type:</b> <code>int</code></li></ul></li>
+<li><code>endpointUrl</code> (optional)
+<div><div>
+  The AWS endpoint-url.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>externalId</code> (optional)
+<div><div>
+  (optional) The external ID.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>federatedUserId</code> (optional)
+<div><div>
+  (optional) The federated user ID. It generates a set of temporary credentials and allows you to push a federated user id into cloud trail for auditing.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>iamMfaToken</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>policy</code> (optional)
+<div><div>
+  (optional) An additional policy that is to be combined with the policy associated with the role.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>profile</code> (optional)
+<div><div>
+  Use this profile information from ~/.aws/config.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>region</code> (optional)
+<div><div>
+  The AWS region.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>role</code> (optional)
+<div><div>
+  Assume role information (
+ <i>Role Account</i> is optional; it uses current account as default,
+ <i>External ID</i> is optional).
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>roleAccount</code> (optional)
+<div><div>
+  (optional) The account to use. This uses current account by default.
+</div></div>
+
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+<li><code>roleSessionName</code> (optional)
+<ul><li><b>Type:</b> <code>String</code></li></ul></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'></div>
+<!-- starting partial _feedback-footer.html -->
+<!-- HTML inclusion for chapter and section layouts (i.e. as footers) as well as
+     for use in AsciiDoc file inclusions. -->
+
+<!--
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+-->
+
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(window.location.href);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<p><a href="#feedback" data-toggle="collapse">Was this page helpful?</a></p>
+
+<div id="feedback" class="collapse">
+
+<p>Please submit your feedback about this page through this
+<a href="/doc/feedback-form/">quick form</a>.</p>
+
+<p>Alternatively, if you don't wish to complete the quick form, you can simply
+indicate if you found this page helpful?</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the current URL into the form. -->
+<input type="hidden" name="entry.1246830226" id="current-url" value=""/>
+
+<!-- The answer bit -->
+<p><input type="radio" name="entry.790002525" id="h1" value="Yes" required/>
+<label for="h1">Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="entry.790002525" id="h2" value="No"/>
+<label for="h2">No</label></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+</form>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1IIdpVs39JDYKg0sLQIv-MNO928qcGApAIfdW5ohfD78" target="_blank">here</a>.</p>
+
+</div>
+
+<!-- ending partial _feedback-footer.html -->
+
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>

@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Organization of the Django Project | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+     
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/dev/internals/organization/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/internals/organization/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/internals/organization/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/internals/organization/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/internals/organization/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/internals/organization/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/internals/organization/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/internals/organization/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/internals/organization/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/internals/organization/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/internals/organization/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/internals/organization/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/internals/organization/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/internals/organization/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/internals/organization/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/internals/organization/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/internals/organization/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/internals/organization/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/internals/organization/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/internals/organization/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/internals/organization/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/internals/organization/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/internals/organization/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/internals/organization/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/internals/organization/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/internals/organization/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/internals/organization/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-organization-of-the-django-project">
+<span id="organization-of-the-django-project"></span><h1>Organization of the Django Project<a class="headerlink" href="#organization-of-the-django-project" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="s-principles">
+<span id="principles"></span><h2>Principles<a class="headerlink" href="#principles" title="Permalink to this headline">¶</a></h2>
+<p>The Django Project is managed by a team of volunteers pursuing three goals:</p>
+<ul class="simple">
+<li>Driving the development of the Django Web Framework,</li>
+<li>Fostering the ecosystem of Django-related software,</li>
+<li>Leading the Django community in accordance with the values described in the
+<a class="reference external" href="https://www.djangoproject.com/conduct/">Django Code of Conduct</a>.</li>
+</ul>
+<p>The Django Project isn’t a legal entity. The <a class="reference external" href="https://www.djangoproject.com/foundation/">Django Software Foundation</a>, a
+non-profit organization, handles financial and legal matters related to the
+Django Project. Other than that, the Django Software Foundation lets the
+Django Project manage the development of the Django framework, its ecosystem
+and its community.</p>
+<p>The Django core team makes the decisions, nominates its new members, and
+elects its technical board. While it holds decision power in theory, it aims
+at using it as rarely as possible in practice. Rough consensus should be the
+norm and formal voting an exception.</p>
+</div>
+<div class="section" id="s-core-team">
+<span id="s-id1"></span><span id="core-team"></span><span id="id1"></span><h2>Core team<a class="headerlink" href="#core-team" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="s-role">
+<span id="role"></span><h3>Role<a class="headerlink" href="#role" title="Permalink to this headline">¶</a></h3>
+<p>The core team is the group of trusted volunteers who manage the Django
+Project. They assume many roles required to achieve the project’s goals,
+especially those that require a high level of trust. They make the decisions
+that shape the future of the project.</p>
+<p>Core team members are expected to act as role models for the community and
+custodians of the project, on behalf of the community and all those who rely
+on Django.</p>
+<p>They will intervene, where necessary, in online discussions or at official
+Django events on the rare occasions that a situation arises that requires
+intervention.</p>
+<p>They have authority over the Django Project infrastructure, including the
+Django Project website itself, the Django GitHub organization and
+repositories, the Trac bug tracker, the mailing lists, IRC channels, etc.</p>
+</div>
+<div class="section" id="s-prerogatives">
+<span id="prerogatives"></span><h3>Prerogatives<a class="headerlink" href="#prerogatives" title="Permalink to this headline">¶</a></h3>
+<p>Core team members may participate in formal votes, typically to nominate new
+team members and to elect the technical board.</p>
+<p>Some contributions don’t require commit access. Depending on the reasons why a
+contributor joins the team, they may or may not have commit permissions to the
+Django code repository.</p>
+<p>However, should the need arise, any team member may ask for commit access by
+writing to the core team’s mailing list. Access will be granted unless the
+person withdraws their request or the technical board vetoes the proposal.</p>
+<p>Core team members who have commit access are referred to as “committers” or
+“core developers”.</p>
+<p>Other permissions, such as access to the servers, are granted to those who
+need them through the same process.</p>
+</div>
+<div class="section" id="s-membership">
+<span id="membership"></span><h3>Membership<a class="headerlink" href="#membership" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.djangoproject.com/foundation/teams/">Django team members</a>
+demonstrate:</p>
+<ul class="simple">
+<li>a good grasp of the philosophy of the Django Project</li>
+<li>a solid track record of being constructive and helpful</li>
+<li>significant contributions to the project’s goals, in any form</li>
+<li>willingness to dedicate some time to improving Django</li>
+</ul>
+<p>As the project matures, contributions go way beyond code. Here’s an incomplete
+list of areas where contributions may be considered for joining the core team,
+in no particular order:</p>
+<ul class="simple">
+<li>Working on community management and outreach</li>
+<li>Providing support on the mailing-lists and on IRC</li>
+<li>Triaging tickets</li>
+<li>Writing patches (code, docs, or tests)</li>
+<li>Reviewing patches (code, docs, or tests)</li>
+<li>Participating in design decisions</li>
+<li>Providing expertise in a particular domain (security, i18n, etc.)</li>
+<li>Managing the continuous integration infrastructure</li>
+<li>Managing the servers (website, tracker, documentation, etc.)</li>
+<li>Maintaining related projects (djangoproject.com site, ex-contrib apps, etc.)</li>
+<li>Creating visual designs</li>
+</ul>
+<p>Very few areas are reserved to core team members:</p>
+<ul class="simple">
+<li>Reviewing security reports</li>
+<li>Merging patches (code, docs, or tests)</li>
+<li>Packaging releases</li>
+</ul>
+<p>Core team membership acknowledges sustained and valuable efforts that align
+well with the philosophy and the goals of the Django Project.</p>
+<p>It is granted by a four fifths majority of votes cast in a core team vote and
+no veto by the technical board.</p>
+<p>Core team members are always looking for promising contributors, teaching them
+how the project is managed, and submitting their names to the core team’s vote
+when they’re ready. If you would like to join the core team, you can contact a
+core team member privately or ask for guidance on the <a class="reference internal" href="../mailing-lists/#django-core-mentorship-mailing-list"><span class="std std-ref">Django Core
+Mentorship mailing-list</span></a>.</p>
+<p>There’s no time limit on core team membership. However, in order to provide
+the general public with a reasonable idea of how many people maintain Django,
+core team members who have stopped contributing are encouraged to declare
+themselves as “past team members”. Those who haven’t made any non-trivial
+contribution in two years may be asked to move themselves to this category,
+and moved there if they don’t respond. Past team members lose their privileges
+such as voting rights and commit access.</p>
+</div>
+</div>
+<div class="section" id="s-technical-board">
+<span id="s-id2"></span><span id="technical-board"></span><span id="id2"></span><h2>Technical board<a class="headerlink" href="#technical-board" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="s-id3">
+<span id="id3"></span><h3>Role<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>The technical board is a group of experienced and active committers who steer
+technical choices. Their main concern is to maintain the quality and stability
+of the Django Web Framework.</p>
+</div>
+<div class="section" id="s-id4">
+<span id="id4"></span><h3>Prerogatives<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>The technical board holds two prerogatives:</p>
+<ul class="simple">
+<li>Making major technical decisions when no consensus is found otherwise. This
+happens on the <a class="reference internal" href="../mailing-lists/#django-developers-mailing-list"><span class="std std-ref">django-developers</span></a> mailing-list.</li>
+<li>Veto a grant of commit access or remove commit access. This happens on the
+<code class="docutils literal notranslate"><span class="pre">django-core</span></code> mailing-list.</li>
+</ul>
+<p>In both cases, the technical board is a last resort. In these matters, it
+fulfills a similar function to the former Benevolent Dictators For Life.</p>
+<p>When the board wants to exercise one of these prerogatives, it must hold a
+private, simple majority vote on the resolution. The quorum is the full
+committee — each member must cast a vote or abstain explicitly. Then the board
+communicates the result, and if possible the reasons, on the appropriate
+mailing-list. There’s no appeal for such decisions.</p>
+<p>In addition, at its discretion, the technical board may act in an advisory
+capacity on non-technical decisions.</p>
+</div>
+<div class="section" id="s-id5">
+<span id="id5"></span><h3>Membership<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.djangoproject.com/foundation/teams/#technical-board-team">The technical board</a> is an elected group of five committers. They’re expected
+to be experienced but there’s no formal seniority requirement.</p>
+<p>A new board is elected after each feature release of Django. The election
+process is managed by a returns officer nominated by the outgoing technical
+board. The election process works as follows:</p>
+<ol class="arabic">
+<li><p class="first">Candidates advertise their application for the technical board to the team.</p>
+<p>They must be committers already. There’s no term limit for technical board
+members.</p>
+</li>
+<li><p class="first">Each team member can vote for zero to five people among the candidates.
+Candidates are ranked by the total number of votes they received.</p>
+<p>In case of a tie, the person who joined the core team earlier wins.</p>
+</li>
+</ol>
+<p>Both the application and the voting period last between one and two weeks, at
+the outgoing board’s discretion.</p>
+</div>
+</div>
+<div class="section" id="s-changing-the-organization">
+<span id="changing-the-organization"></span><h2>Changing the organization<a class="headerlink" href="#changing-the-organization" title="Permalink to this headline">¶</a></h2>
+<p>Changes to this document require a four fifths majority of votes cast in a
+core team vote and no veto by the technical board.</p>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../mailing-lists/"><i class="icon icon-chevron-left"></i> Mailing lists</a></div>
+  
+  
+  <div class="right"><a href="../security/">Django’s security policies <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          YiJie Wang donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">Organization of the Django Project</a><ul>
+<li><a class="reference internal" href="#principles">Principles</a></li>
+<li><a class="reference internal" href="#core-team">Core team</a><ul>
+<li><a class="reference internal" href="#role">Role</a></li>
+<li><a class="reference internal" href="#prerogatives">Prerogatives</a></li>
+<li><a class="reference internal" href="#membership">Membership</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#technical-board">Technical board</a><ul>
+<li><a class="reference internal" href="#id3">Role</a></li>
+<li><a class="reference internal" href="#id4">Prerogatives</a></li>
+<li><a class="reference internal" href="#id5">Membership</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#changing-the-organization">Changing the organization</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../mailing-lists/">Mailing lists</a></li>
+    
+    
+    <li>Next: <a href="../security/">Django’s security policies</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../">Django internals</a>
+      
+      <ul><li>Organization of the Django Project</li></ul>
+      </li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

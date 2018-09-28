@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>django.db.transaction | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/_modules/django/db/transaction/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/_modules/django/db/transaction/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/_modules/django/db/transaction/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/_modules/django/db/transaction/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/_modules/django/db/transaction/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/_modules/django/db/transaction/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/_modules/django/db/transaction/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/_modules/django/db/transaction/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/_modules/django/db/transaction/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/_modules/django/db/transaction/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/_modules/django/db/transaction/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/_modules/django/db/transaction/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/_modules/django/db/transaction/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/_modules/django/db/transaction/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/_modules/django/db/transaction/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/_modules/django/db/transaction/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/_modules/django/db/transaction/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/_modules/django/db/transaction/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/_modules/django/db/transaction/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/_modules/django/db/transaction/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/_modules/django/db/transaction/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.7/_modules/django/db/transaction/">1.7</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.8/_modules/django/db/transaction/">1.8</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.9/_modules/django/db/transaction/">1.9</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/_modules/django/db/transaction/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/_modules/django/db/transaction/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/_modules/django/db/transaction/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/_modules/django/db/transaction/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<h1>Source code for django.db.transaction</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">contextlib</span> <span class="k">import</span> <span class="n">ContextDecorator</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">DEFAULT_DB_ALIAS</span><span class="p">,</span> <span class="n">DatabaseError</span><span class="p">,</span> <span class="n">Error</span><span class="p">,</span> <span class="n">ProgrammingError</span><span class="p">,</span> <span class="n">connections</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="TransactionManagementError"><a class="viewcode-back" href="../../../../ref/exceptions/#django.db.transaction.TransactionManagementError">[docs]</a><span class="k">class</span> <span class="nc">TransactionManagementError</span><span class="p">(</span><span class="n">ProgrammingError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Transaction management is used improperly.&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<span class="k">def</span> <span class="nf">get_connection</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get a database connection by name, or the default database connection</span>
+<span class="sd">    if no name is provided. This is a private API.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">using</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">using</span> <span class="o">=</span> <span class="n">DEFAULT_DB_ALIAS</span>
+    <span class="k">return</span> <span class="n">connections</span><span class="p">[</span><span class="n">using</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="get_autocommit"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.get_autocommit">[docs]</a><span class="k">def</span> <span class="nf">get_autocommit</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the autocommit status of the connection.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_connection</span><span class="p">(</span><span class="n">using</span><span class="p">)</span><span class="o">.</span><span class="n">get_autocommit</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="set_autocommit"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.set_autocommit">[docs]</a><span class="k">def</span> <span class="nf">set_autocommit</span><span class="p">(</span><span class="n">autocommit</span><span class="p">,</span> <span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Set the autocommit status of the connection.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_connection</span><span class="p">(</span><span class="n">using</span><span class="p">)</span><span class="o">.</span><span class="n">set_autocommit</span><span class="p">(</span><span class="n">autocommit</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="commit"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.commit">[docs]</a><span class="k">def</span> <span class="nf">commit</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Commit a transaction.&quot;&quot;&quot;</span>
+    <span class="n">get_connection</span><span class="p">(</span><span class="n">using</span><span class="p">)</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="rollback"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.rollback">[docs]</a><span class="k">def</span> <span class="nf">rollback</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Roll back a transaction.&quot;&quot;&quot;</span>
+    <span class="n">get_connection</span><span class="p">(</span><span class="n">using</span><span class="p">)</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="savepoint"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.savepoint">[docs]</a><span class="k">def</span> <span class="nf">savepoint</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a savepoint (if supported and required by the backend) inside the</span>
+<span class="sd">    current transaction. Return an identifier for the savepoint that will be</span>
+<span class="sd">    used for the subsequent rollback or commit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_connection</span><span class="p">(</span><span class="n">using</span><span class="p">)</span><span class="o">.</span><span class="n">savepoint</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="savepoint_rollback"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.savepoint_rollback">[docs]</a><span class="k">def</span> <span class="nf">savepoint_rollback</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span> <span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Roll back the most recent savepoint (if one exists). Do nothing if</span>
+<span class="sd">    savepoints are not supported.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">get_connection</span><span class="p">(</span><span class="n">using</span><span class="p">)</span><span class="o">.</span><span class="n">savepoint_rollback</span><span class="p">(</span><span class="n">sid</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="savepoint_commit"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.savepoint_commit">[docs]</a><span class="k">def</span> <span class="nf">savepoint_commit</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span> <span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Commit the most recent savepoint (if one exists). Do nothing if</span>
+<span class="sd">    savepoints are not supported.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">get_connection</span><span class="p">(</span><span class="n">using</span><span class="p">)</span><span class="o">.</span><span class="n">savepoint_commit</span><span class="p">(</span><span class="n">sid</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="clean_savepoints"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.clean_savepoints">[docs]</a><span class="k">def</span> <span class="nf">clean_savepoints</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reset the counter used to generate unique savepoint ids in this thread.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">get_connection</span><span class="p">(</span><span class="n">using</span><span class="p">)</span><span class="o">.</span><span class="n">clean_savepoints</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_rollback"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.get_rollback">[docs]</a><span class="k">def</span> <span class="nf">get_rollback</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the &quot;needs rollback&quot; flag -- for *advanced use* only.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_connection</span><span class="p">(</span><span class="n">using</span><span class="p">)</span><span class="o">.</span><span class="n">get_rollback</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="set_rollback"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.set_rollback">[docs]</a><span class="k">def</span> <span class="nf">set_rollback</span><span class="p">(</span><span class="n">rollback</span><span class="p">,</span> <span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set or unset the &quot;needs rollback&quot; flag -- for *advanced use* only.</span>
+
+<span class="sd">    When `rollback` is `True`, trigger a rollback when exiting the innermost</span>
+<span class="sd">    enclosing atomic block that has `savepoint=True` (that&#39;s the default). Use</span>
+<span class="sd">    this to force a rollback without raising an exception.</span>
+
+<span class="sd">    When `rollback` is `False`, prevent such a rollback. Use this only after</span>
+<span class="sd">    rolling back to a known-good state! Otherwise, you break the atomic block</span>
+<span class="sd">    and data corruption may occur.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">get_connection</span><span class="p">(</span><span class="n">using</span><span class="p">)</span><span class="o">.</span><span class="n">set_rollback</span><span class="p">(</span><span class="n">rollback</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="on_commit"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.on_commit">[docs]</a><span class="k">def</span> <span class="nf">on_commit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Register `func` to be called when the current transaction is committed.</span>
+<span class="sd">    If the current transaction is rolled back, `func` will not be called.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">get_connection</span><span class="p">(</span><span class="n">using</span><span class="p">)</span><span class="o">.</span><span class="n">on_commit</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></div>
+
+
+<span class="c1">#################################</span>
+<span class="c1"># Decorators / context managers #</span>
+<span class="c1">#################################</span>
+
+<span class="k">class</span> <span class="nc">Atomic</span><span class="p">(</span><span class="n">ContextDecorator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Guarantee the atomic execution of a given block.</span>
+
+<span class="sd">    An instance can be used either as a decorator or as a context manager.</span>
+
+<span class="sd">    When it&#39;s used as a decorator, __call__ wraps the execution of the</span>
+<span class="sd">    decorated function in the instance itself, used as a context manager.</span>
+
+<span class="sd">    When it&#39;s used as a context manager, __enter__ creates a transaction or a</span>
+<span class="sd">    savepoint, depending on whether a transaction is already in progress, and</span>
+<span class="sd">    __exit__ commits the transaction or releases the savepoint on normal exit,</span>
+<span class="sd">    and rolls back the transaction or to the savepoint on exceptions.</span>
+
+<span class="sd">    It&#39;s possible to disable the creation of savepoints if the goal is to</span>
+<span class="sd">    ensure that some code runs within a transaction without creating overhead.</span>
+
+<span class="sd">    A stack of savepoints identifiers is maintained as an attribute of the</span>
+<span class="sd">    connection. None denotes the absence of a savepoint.</span>
+
+<span class="sd">    This allows reentrancy even if the same AtomicWrapper is reused. For</span>
+<span class="sd">    example, it&#39;s possible to define `oa = atomic(&#39;other&#39;)` and use `@oa` or</span>
+<span class="sd">    `with oa:` multiple times.</span>
+
+<span class="sd">    Since database connections are thread-local, this is thread-safe.</span>
+
+<span class="sd">    This is a private API.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">using</span><span class="p">,</span> <span class="n">savepoint</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">using</span> <span class="o">=</span> <span class="n">using</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">savepoint</span> <span class="o">=</span> <span class="n">savepoint</span>
+
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">connection</span> <span class="o">=</span> <span class="n">get_connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">using</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">connection</span><span class="o">.</span><span class="n">in_atomic_block</span><span class="p">:</span>
+            <span class="c1"># Reset state when entering an outermost atomic block.</span>
+            <span class="n">connection</span><span class="o">.</span><span class="n">commit_on_exit</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">connection</span><span class="o">.</span><span class="n">needs_rollback</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">connection</span><span class="o">.</span><span class="n">get_autocommit</span><span class="p">():</span>
+                <span class="c1"># Some database adapters (namely sqlite3) don&#39;t handle</span>
+                <span class="c1"># transactions and savepoints properly when autocommit is off.</span>
+                <span class="c1"># Turning autocommit back on isn&#39;t an option; it would trigger</span>
+                <span class="c1"># a premature commit. Give up if that happens.</span>
+                <span class="k">if</span> <span class="n">connection</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">autocommits_when_autocommit_is_off</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">TransactionManagementError</span><span class="p">(</span>
+                        <span class="s2">&quot;Your database backend doesn&#39;t behave properly when &quot;</span>
+                        <span class="s2">&quot;autocommit is off. Turn it on before using &#39;atomic&#39;.&quot;</span><span class="p">)</span>
+                <span class="c1"># Pretend we&#39;re already in an atomic block to bypass the code</span>
+                <span class="c1"># that disables autocommit to enter a transaction, and make a</span>
+                <span class="c1"># note to deal with this case in __exit__.</span>
+                <span class="n">connection</span><span class="o">.</span><span class="n">in_atomic_block</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">connection</span><span class="o">.</span><span class="n">commit_on_exit</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">connection</span><span class="o">.</span><span class="n">in_atomic_block</span><span class="p">:</span>
+            <span class="c1"># We&#39;re already in a transaction; create a savepoint, unless we</span>
+            <span class="c1"># were told not to or we&#39;re already waiting for a rollback. The</span>
+            <span class="c1"># second condition avoids creating useless savepoints and prevents</span>
+            <span class="c1"># overwriting needs_rollback until the rollback is performed.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">savepoint</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">connection</span><span class="o">.</span><span class="n">needs_rollback</span><span class="p">:</span>
+                <span class="n">sid</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">savepoint</span><span class="p">()</span>
+                <span class="n">connection</span><span class="o">.</span><span class="n">savepoint_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sid</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">connection</span><span class="o">.</span><span class="n">savepoint_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">connection</span><span class="o">.</span><span class="n">set_autocommit</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_begin_transaction_with_broken_autocommit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">connection</span><span class="o">.</span><span class="n">in_atomic_block</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+        <span class="n">connection</span> <span class="o">=</span> <span class="n">get_connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">using</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">connection</span><span class="o">.</span><span class="n">savepoint_ids</span><span class="p">:</span>
+            <span class="n">sid</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">savepoint_ids</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Prematurely unset this flag to allow using commit or rollback.</span>
+            <span class="n">connection</span><span class="o">.</span><span class="n">in_atomic_block</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">connection</span><span class="o">.</span><span class="n">closed_in_transaction</span><span class="p">:</span>
+                <span class="c1"># The database will perform a rollback by itself.</span>
+                <span class="c1"># Wait until we exit the outermost block.</span>
+                <span class="k">pass</span>
+
+            <span class="k">elif</span> <span class="n">exc_type</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">connection</span><span class="o">.</span><span class="n">needs_rollback</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">connection</span><span class="o">.</span><span class="n">in_atomic_block</span><span class="p">:</span>
+                    <span class="c1"># Release savepoint if there is one</span>
+                    <span class="k">if</span> <span class="n">sid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">connection</span><span class="o">.</span><span class="n">savepoint_commit</span><span class="p">(</span><span class="n">sid</span><span class="p">)</span>
+                        <span class="k">except</span> <span class="n">DatabaseError</span><span class="p">:</span>
+                            <span class="k">try</span><span class="p">:</span>
+                                <span class="n">connection</span><span class="o">.</span><span class="n">savepoint_rollback</span><span class="p">(</span><span class="n">sid</span><span class="p">)</span>
+                                <span class="c1"># The savepoint won&#39;t be reused. Release it to</span>
+                                <span class="c1"># minimize overhead for the database server.</span>
+                                <span class="n">connection</span><span class="o">.</span><span class="n">savepoint_commit</span><span class="p">(</span><span class="n">sid</span><span class="p">)</span>
+                            <span class="k">except</span> <span class="n">Error</span><span class="p">:</span>
+                                <span class="c1"># If rolling back to a savepoint fails, mark for</span>
+                                <span class="c1"># rollback at a higher level and avoid shadowing</span>
+                                <span class="c1"># the original exception.</span>
+                                <span class="n">connection</span><span class="o">.</span><span class="n">needs_rollback</span> <span class="o">=</span> <span class="kc">True</span>
+                            <span class="k">raise</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Commit transaction</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+                    <span class="k">except</span> <span class="n">DatabaseError</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">connection</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+                        <span class="k">except</span> <span class="n">Error</span><span class="p">:</span>
+                            <span class="c1"># An error during rollback means that something</span>
+                            <span class="c1"># went wrong with the connection. Drop it.</span>
+                            <span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                        <span class="k">raise</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># This flag will be set to True again if there isn&#39;t a savepoint</span>
+                <span class="c1"># allowing to perform the rollback at this level.</span>
+                <span class="n">connection</span><span class="o">.</span><span class="n">needs_rollback</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">if</span> <span class="n">connection</span><span class="o">.</span><span class="n">in_atomic_block</span><span class="p">:</span>
+                    <span class="c1"># Roll back to savepoint if there is one, mark for rollback</span>
+                    <span class="c1"># otherwise.</span>
+                    <span class="k">if</span> <span class="n">sid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">connection</span><span class="o">.</span><span class="n">needs_rollback</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">connection</span><span class="o">.</span><span class="n">savepoint_rollback</span><span class="p">(</span><span class="n">sid</span><span class="p">)</span>
+                            <span class="c1"># The savepoint won&#39;t be reused. Release it to</span>
+                            <span class="c1"># minimize overhead for the database server.</span>
+                            <span class="n">connection</span><span class="o">.</span><span class="n">savepoint_commit</span><span class="p">(</span><span class="n">sid</span><span class="p">)</span>
+                        <span class="k">except</span> <span class="n">Error</span><span class="p">:</span>
+                            <span class="c1"># If rolling back to a savepoint fails, mark for</span>
+                            <span class="c1"># rollback at a higher level and avoid shadowing</span>
+                            <span class="c1"># the original exception.</span>
+                            <span class="n">connection</span><span class="o">.</span><span class="n">needs_rollback</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Roll back transaction</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">connection</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+                    <span class="k">except</span> <span class="n">Error</span><span class="p">:</span>
+                        <span class="c1"># An error during rollback means that something</span>
+                        <span class="c1"># went wrong with the connection. Drop it.</span>
+                        <span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="c1"># Outermost block exit when autocommit was enabled.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">connection</span><span class="o">.</span><span class="n">in_atomic_block</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">connection</span><span class="o">.</span><span class="n">closed_in_transaction</span><span class="p">:</span>
+                    <span class="n">connection</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">connection</span><span class="o">.</span><span class="n">set_autocommit</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># Outermost block exit when autocommit was disabled.</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">connection</span><span class="o">.</span><span class="n">savepoint_ids</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">connection</span><span class="o">.</span><span class="n">commit_on_exit</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">connection</span><span class="o">.</span><span class="n">closed_in_transaction</span><span class="p">:</span>
+                    <span class="n">connection</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">connection</span><span class="o">.</span><span class="n">in_atomic_block</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+<div class="viewcode-block" id="atomic"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.atomic">[docs]</a><span class="k">def</span> <span class="nf">atomic</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">savepoint</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># Bare decorator: @atomic -- although the first argument is called</span>
+    <span class="c1"># `using`, it&#39;s actually the function being decorated.</span>
+    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">using</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Atomic</span><span class="p">(</span><span class="n">DEFAULT_DB_ALIAS</span><span class="p">,</span> <span class="n">savepoint</span><span class="p">)(</span><span class="n">using</span><span class="p">)</span>
+    <span class="c1"># Decorator: @atomic(...) or context manager: with atomic(...): ...</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Atomic</span><span class="p">(</span><span class="n">using</span><span class="p">,</span> <span class="n">savepoint</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_non_atomic_requests</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">using</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">_non_atomic_requests</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">using</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">_non_atomic_requests</span> <span class="o">=</span> <span class="p">{</span><span class="n">using</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">view</span>
+
+
+<div class="viewcode-block" id="non_atomic_requests"><a class="viewcode-back" href="../../../../topics/db/transactions/#django.db.transaction.non_atomic_requests">[docs]</a><span class="k">def</span> <span class="nf">non_atomic_requests</span><span class="p">(</span><span class="n">using</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">using</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_non_atomic_requests</span><span class="p">(</span><span class="n">using</span><span class="p">,</span> <span class="n">DEFAULT_DB_ALIAS</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">using</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">using</span> <span class="o">=</span> <span class="n">DEFAULT_DB_ALIAS</span>
+        <span class="k">return</span> <span class="k">lambda</span> <span class="n">view</span><span class="p">:</span> <span class="n">_non_atomic_requests</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">using</span><span class="p">)</span></div>
+</pre></div>
+</div>
+
+
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Joshua B. Smith donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../../">Module code</a>
+      
+      <ul><li><a href="../../">django</a>
+      
+      <ul><li>django.db.transaction</li></ul>
+      </li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1648 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Amazon Linux - Amazon Elastic Compute Cloud</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="home" href="#top" />
+      <link rel="up" href="AMIs.html" title="Amazon Machine Images (AMI)" />
+      <link rel="prev" href="deregister-ami.html" title="Deregistering Your Linux AMI" />
+      <link rel="next" href="amazon-linux-2-virtual-machine.html" title="Running Amazon Linux 2 as a Virtual Machine On-Premises" />
+      <meta name="description" content="Amazon Linux is a Linux image provided by AWS for use on Amazon EC2." />
+      <meta name="keywords" content="EC2,Amazon EC2,EC2 instance,instance,VM,virtual machine" />
+      <meta name="deployment_region" content="IAD" />
+      <meta name="product" content="Amazon Elastic Compute Cloud" />
+      <meta name="guide" content="User Guide for Linux Instances" />
+      <meta name="guide-locale" content="en_us" />
+      <link rel="icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+      <link rel="canonical" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css" />
+      <link rel="stylesheet" type="text/css" href="/font/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="/css/google-font.css" />
+      <link id="code-style" rel="stylesheet" type="text/css" href="/css/code/light.css" />
+      <link rel="stylesheet" type="text/css" href="/css/jquery-ui.theme.css" />
+      <link rel="stylesheet" type="text/css" href="/css/colorbox.css" />
+      <link rel="stylesheet" type="text/css" href="/css/awsdocs.css?v=20170615" /><script type="text/javascript" src="/js/highlight.pack.js"></script><script type="text/javascript" src="/js/jquery.min.js"></script><script type="text/javascript" src="/js/jquery-ui.min.js"></script><script type="text/javascript" src="/js/handlebars.js"></script><script type="text/javascript" src="/js/jquery.colorbox.js"></script><script type="text/javascript" src="/js/awsdocs.min.js?v=20170615"></script></head>
+   <body id="top">
+      <div xmlns:db="http://docbook.org/ns/docbook" id="aws-nav" class="aws-nav-header">
+         <div class="aws-nav-header-left">
+            <div id="aws-nav-flyout-trigger" class="aws-nav-flyout-trigger"><i class="fa fa-bars fa-2x"></i></div>
+            <div class="aws-nav-logo">
+               <!--aws_logo_105x39.png--><a href="http://aws.amazon.com"><img src="/images/aws_logo_105x39.png" alt="Amazon Web Services" /></a></div>
+         </div>
+         <div id="aws-nav-header-right" class="aws-nav-header-right">
+            <div class="aws-nav-cta-button-outer"><a id="aws-nav-cta-button" class="aws-nav-button" href="https://console.aws.amazon.com/console/home">Sign In to the Console</a></div>
+            <div class="aws-nav-popover-trigger" data-dropdown="aws-nav-dropdown-lang"><select id="languageSelection" onchange="SelectLanguage()">
+                  <option value="/de_de/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html">Deutsch</option>
+                  <option value="/en_us/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html" selected="selected">English</option>
+                  <option value="/es_es/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html">Español</option>
+                  <option value="/fr_fr/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html">Français</option>
+                  <option value="/it_it/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html">Italiano</option>
+                  <option value="/ja_jp/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html">日本語</option>
+                  <option value="/ko_kr/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html">한국어</option>
+                  <option value="/pt_br/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html">Português</option>
+                  <option value="/zh_cn/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html">中文 (简体)</option>
+                  <option value="/zh_tw/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html">中文 (繁體)</option></select></div><a class="btn btn-rss-link" id="rss-link-top" target="_blank" href="amazon-ec2-release-notes.rss" title="View RSS Feed"></a><a class="btn btn-kindle-link" id="kindle-link-top" target="_blank" href="http://www.amazon.com/dp/B076452RSZ" title="Open Kindle"></a><a class="btn btn-pdf-link" id="pdf-link-top" href="ec2-ug.pdf#amazon-linux-ami-basics" target="_blank" title="Open PDF"></a><a class="btn btn-github-link" id="github-link-top" href="https://github.com/awsdocs/amazon-ec2-user-guide/tree/master/doc_source/amazon-linux-ami-basics.md" target="_blank" title="Edit on GitHub"></a><div id="aws-nav-quicklinks-separator" class="aws-nav-quicklinks-separator">
+               <div class="aws-nav-left"></div>
+               <div class="aws-nav-right"></div>
+            </div>
+         </div>
+         <div xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" id="topnav-flyout-menu-container">
+            <ul id="topnav-flyout-menu"><script id="flyout-item-template" type="text/x-handlebars-template">
+                    {{#flyoutList}}
+
+                        {{#if topTarget}}
+                            <li class="awsdocs-flyout-link-wrapper"><a href="{{topTarget}}">{{listItem}}</a></li>
+                        {{else}}
+                            <li>{{listItem}}
+                                {{#if subList}}
+                                <ul>
+                                    {{#subList}}
+                                    <li class="awsdocs-flyout-link-wrapper"><a href="{{target}}">{{text}}</a></li>
+                                    {{/subList}}
+                                </ul>
+                                {{/if}}
+                            </li>
+                        {{/if}}
+
+                    {{/flyoutList}}
+                </script></ul>
+            <div id="topnav-flyout-menu-spacer"></div>
+         </div>
+      </div>
+      <div id="content-container">
+         <div id="left-column">
+            <div id="left-col-header">
+               <div xmlns:db="http://docbook.org/ns/docbook" id="left-col-top-content">
+                  <div id="service-name">Amazon Elastic Compute Cloud </div>
+                  <div id="search"><i id="search-icon" class="fa fa-search fa-2x"></i></div>
+                  <div id="guide-info">User Guide for Linux Instances
+                     <div id="content-button"><i id="toggle-contents" class="fa fa-bars"></i></div>
+                  </div>
+               </div>
+               <form id="finegrainedSearch" method="get" onsubmit="return searchFormSubmit(this);" action="/search/doc-search.html">
+                  <div id="search-form"><select id="search-select" name="searchPath">
+                        <option value="all">Entire Site</option>
+                        <option value="AWSMarketplace">AMIs from AWS Marketplace</option>
+                        <option value="amis">AMIs from All Sources</option>
+                        <option value="articles">Articles &amp; Tutorials</option>
+                        <option value="products_and_info">AWS Product Information</option>
+                        <option value="case_studies">Case Studies</option>
+                        <option value="customerapps">Customer Apps</option>
+                        <option value="documentation">Documentation</option>
+                        <option value="documentation-product">Documentation - This Product</option>
+                        <option value="documentation-guide" selected="selected">Documentation - This Guide</option>
+                        <option value="datasets">Public Data Sets</option>
+                        <option value="releasenotes">Release Notes</option>
+                        <option value="solution_providers">Partners</option>
+                        <option value="code">Sample Code &amp; Libraries</option></select><br /><input id="search-query" name="searchQuery" type="text" placeholder="Search" /><input id="search-button" src="/images/search-button.png" alt="Go" type="image" /></div><input type="hidden" name="this_doc_product" id="this_doc_product" value="Amazon Elastic Compute Cloud" /><input type="hidden" name="this_doc_guide" id="this_doc_guide" value="User Guide for Linux Instances" /><input type="hidden" name="doc_locale" value="en_us" /></form>
+            </div>
+            <div id="toc">
+               <ul class="awstoc">
+                  <li class="awstoc closed"><a class="awstoc" href="concepts.html">What Is Amazon EC2?</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-instances-and-amis.html">Instances and AMIs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-regions-availability-zones.html">Regions and Availability Zones</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="RootDeviceStorage.html">Root Device Volume</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="get-set-up-for-amazon-ec2.html">Setting Up</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="EC2_GetStarted.html">Getting Started</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="ec2-best-practices.html">Best Practices</a></li>
+                  <li class="awstoc closed"><a class="awstoc" href="ec2-tutorials.html">Tutorials</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-lamp-amazon-linux-2.html">Install a LAMP Server (Amazon Linux 2)</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="install-LAMP.html">Install a LAMP Server (Amazon Linux AMI)</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="hosting-wordpress.html">Tutorial: Hosting a WordPress Blog</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="SSL-on-an-instance.html">Tutorial: Configure Apache Web Server on Amazon Linux 2 to Use SSL/TLS</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-increase-availability.html">Tutorial: Increase the Availability of Your Application</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="tutorial_run_command.html">Tutorial: Remotely Manage Your Instances</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc opened"><a class="awstoc" href="AMIs.html">Amazon Machine Images</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ComponentsAMIs.html">AMI Types</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="virtualization_types.html">Virtualization Types</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="finding-an-ami.html">Finding a Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="sharing-amis.html">Shared AMIs</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="usingsharedamis-finding.html">Finding Shared AMIs</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="sharingamis-intro.html">Making an AMI Public</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="sharingamis-explicit.html">Sharing an AMI with Specific AWS Accounts</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="using-bookmarks.html">Using Bookmarks</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="building-shared-amis.html">Guidelines for Shared Linux AMIs</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="paid-amis.html">Paid AMIs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="creating-an-ami-ebs.html">Creating an Amazon EBS-Backed Linux AMI</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="creating-an-ami-instance-store.html">Creating an Instance Store-Backed Linux AMI</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="set-up-ami-tools.html">Setting Up the AMI Tools</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="create-instance-store-ami.html">Creating an AMI from an Instance Store-Backed Instance</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="Using_ConvertingS3toEBS.html">Converting to an Amazon EBS-Backed AMI</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ami-tools-commands.html">AMI Tools Reference</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AMIEncryption.html">AMIs with Encrypted Snapshots</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="CopyingAMIs.html">Copying an AMI</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="deregister-ami.html">Deregistering Your Linux AMI</a></li>
+                        <li class="awstoc opened"><a class="awstoc selected" href="amazon-linux-ami-basics.html">Amazon Linux</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="amazon-linux-2-virtual-machine.html">Running Amazon Linux 2 as a Virtual Machine On-Premises</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="UserProvidedKernels.html">User Provided Kernels</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Instances.html">Instances</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="instance-types.html">Instance Types</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances.html">Burstable Performance Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-credits-baseline-concepts.html">CPU Credits and Baseline Performance</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances-unlimited-mode.html">Unlimited Mode</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="unlimited-mode-examples.html">Examples</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="burstable-performance-instances-standard-mode.html">Standard Mode</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="standard-mode-examples.html">Examples</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-performance-instances-how-to.html">Working with Burstable Performance Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="burstable-performance-instances-monitoring-cpu-credits.html">Monitoring Your CPU Credits</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="general-purpose-instances.html">General Purpose Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="compute-optimized-instances.html">Compute Optimized Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="memory-optimized-instances.html">Memory Optimized Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="storage-optimized-instances.html">Storage Optimized Instances</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="accelerated-computing-instances.html">Accelerated Computing Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-nvidia-driver.html">Installing the NVIDIA Driver on Linux Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="activate_grid.html">Activate NVIDIA GRID Virtual Applications (G3 Instances Only)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="optimize_gpu.html">Optimizing GPU Settings (P2, P3, and G3 Instances)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="fpga-getting-started.html">Getting Started with FPGA Development</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="concepts_micro_instances.html">T1 Micro Instances</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-resize.html">Changing the Instance Type</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-optimize-cpu.html">Optimizing CPU Options</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="instance-purchasing-options.html">Instance Purchasing Options</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="ec2-reserved-instances.html">Reserved Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="reserved-instances-types.html">Types of Reserved Instances (Offering Classes)</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="apply_ri.html">How Reserved Instances Are Applied</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="concepts-reserved-instances-application.html">How You Are Billed</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-market-concepts-buying.html">Buying Reserved Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-market-general.html">Selling on the Reserved Instance Marketplace</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-modifying.html">Modifying Reserved Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ri-convertible-exchange.html">Exchanging Convertible Reserved Instances</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-scheduled-instances.html">Scheduled Instances</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="using-spot-instances.html">Spot Instances</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="how-spot-instances-work.html">How Spot Instances Work</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-fleet.html">How Spot Fleet Works</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="using-spot-instances-history.html">Spot Instance Pricing History</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-requests.html">Spot Instance Requests</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-request-examples.html">Example Launch Specifications</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-fleet-requests.html">Spot Fleet Requests</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-examples.html">Example Configurations</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-cloudwatch-metrics.html">CloudWatch Metrics for Spot Fleet</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="spot-fleet-automatic-scaling.html">Automatic Scaling for Spot Fleet</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-target-tracking.html">Target Tracking Scaling Policies</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-step-scaling.html">Step Scaling Policies</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="spot-fleet-scheduled-scaling.html">Scheduled Scaling</a></li>
+                                       </ul>
+                                    </li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-bid-status.html">Spot Request Status</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-interruptions.html">Spot Instance Interruptions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="spot-data-feeds.html">Spot Instance Data Feed</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="using-spot-limits.html">Spot Instance Limits</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="dedicated-hosts-overview.html">Dedicated Hosts</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="how-dedicated-hosts-work.html">Working with Dedicated Hosts</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="dedicated-hosts-aws-config.html">Tracking Configuration Changes</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="dedicated-instance.html">Dedicated Instances</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="ec2-instance-lifecycle.html">Instance Lifecycle</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="LaunchingAndUsingInstances.html">Launch</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="launching-instance.html">Launching an Instance Using the Launch Instance Wizard</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ec2-launch-templates.html">Launching an Instance from a Launch Template</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="launch-more-like-this.html">Launching an Instance From an Existing Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="instance-launch-snapshot.html">Launching a Linux Instance from a Backup</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="launch-marketplace-console.html">Launching an AWS Marketplace Instance</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ec2-fleet.html">Launching an EC2 Fleet</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="ec2-fleet-configuration-strategies.html">EC2 Fleet Configuration Strategies</a></li>
+                                          <li class="awstoc closed"><a class="awstoc" href="manage-ec2-fleet.html">Managing an EC2 Fleet</a><ul class="awstoc">
+                                                <li class="awstoc leaf"><a class="awstoc" href="ec2-fleet-examples.html">Example Configurations</a></li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="AccessingInstances.html">Connect</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="AccessingInstancesLinux.html">Connect Using SSH</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="putty.html">Connect Using PuTTY</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="WSL.html">Connect Using WSL</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="mindterm.html">Connect Using MindTerm</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="Stop_Start.html">Stop and Start</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-reboot.html">Reboot</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-retirement.html">Retire</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="terminating-instances.html">Terminate</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ec2-instance-recover.html">Recover</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="Configure_Instance.html">Configure Instances</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="managing-software.html">Managing Software</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-updates.html">Updating Instance Software</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="add-repositories.html">Adding Repositories</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="find-software.html">Finding Software Packages</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="install-software.html">Installing Software Packages</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="compile-software.html">Preparing to Compile Software</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="managing-users.html">Managing Users</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="processor_state_control.html">Processor State Control</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="set-time.html">Setting the Time</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="set-hostname.html">Changing the Hostname</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="dynamic-dns.html">Setting Up Dynamic DNS</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="user-data.html">Running Commands at Launch</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="ec2-instance-metadata.html">Instance Metadata and User Data</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="instance-identity-documents.html">Instance Identity Documents</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="identify_ec2_instances.html">Identify Instances</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="monitoring_ec2.html">Monitoring</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="monitoring_automated_manual.html">Automated and Manual Monitoring</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="monitoring_best_practices.html">Best Practices for Monitoring</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="monitoring-instances-status-check.html">Monitoring the Status of Your Instances</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="monitoring-system-instance-status-check.html">Instance Status Checks</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="monitoring-instances-status-check_sched.html">Scheduled Events</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-cloudwatch.html">Monitoring Your Instances Using CloudWatch</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="using-cloudwatch-new.html">Enable Detailed Monitoring</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="viewing_metrics_with_cloudwatch.html">List Available Metrics</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="monitoring_get_statistics.html">Get Statistics for Metrics</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="US_SingleMetricPerInstance.html">Get Statistics for a Specific Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="GetSingleMetricAllDimensions.html">Aggregate Statistics Across Instances</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="GetMetricAutoScalingGroup.html">Aggregate Statistics by Auto Scaling Group</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="US_SingleMetricPerAMI.html">Aggregate Statistics by AMI</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="graphs-in-the-aws-management-console.html">Graph Metrics</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="using-cloudwatch-createalarm.html">Create an Alarm</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="UsingAlarmActions.html">Create Alarms That Stop, Terminate, Reboot, or Recover an Instance</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="automating_with_cloudwatch_events.html">Automating Amazon EC2 with CloudWatch Events</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="mon-scripts.html">Monitoring Memory and Disk Metrics</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="EC2_Network_and_Security.html">Network and Security</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-key-pairs.html">Key Pairs</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-network-security.html">Security Groups</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="security-group-rules-reference.html">Security Group Rules Reference</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="UsingIAM.html">Controlling Access</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="iam-policies-for-amazon-ec2.html">IAM Policies</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="iam-policy-structure.html">Policy Structure</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ec2-supported-iam-actions-resources.html">Supported Resource-Level Permissions</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ExamplePolicies_EC2.html">Example Policies for CLI or SDK</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="iam-policies-ec2-console.html">Example Policies for the Console</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="iam-roles-for-amazon-ec2.html">IAM Roles</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="authorizing-access-to-an-instance.html">Network Access</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-instance-addressing.html">Instance IP Addressing</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="MultipleIP.html">Multiple IP Addresses</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="elastic-ip-addresses-eip.html">Elastic IP Addresses</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="using-eni.html">Network Interfaces</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="requester-managed-eni.html">Requester-Managed Network Interfaces</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="enhanced-networking.html">Enhanced Networking</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="sriov-networking.html">Enhanced Networking: Intel 82599 VF</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="enhanced-networking-ena.html">Enhanced Networking: ENA</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="troubleshooting-ena.html">Troubleshooting ENA</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="placement-groups.html">Placement Groups</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="network_mtu.html">Network MTU</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-vpc.html">Virtual Private Clouds</a></li>
+                        <li class="awstoc closed"><a class="awstoc" href="ec2-classic-platform.html">EC2-Classic</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="vpc-classiclink.html">ClassicLink</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="vpc-migrate.html">Migrating from EC2-Classic to a VPC</a></li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Storage.html">Storage</a><ul class="awstoc">
+                        <li class="awstoc closed"><a class="awstoc" href="AmazonEBS.html">Amazon EBS</a><ul class="awstoc">
+                              <li class="awstoc closed"><a class="awstoc" href="EBSVolumes.html">EBS Volumes</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="EBSVolumeTypes.html">EBS Volume Types</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-creating-volume.html">Creating a Volume</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-restoring-volume.html">Restoring from a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-attaching-volume.html">Attaching a Volume to an Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-using-volumes.html">Making a Volume Available for Use</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-describing-volumes.html">Volume Information</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="monitoring-volume-status.html">Monitoring the Status of Your Volumes</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-detaching-volume.html">Detaching a Volume from an Instance</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-deleting-volume.html">Deleting a Volume</a></li>
+                                    <li class="awstoc closed"><a class="awstoc" href="ebs-modify-volume.html">Modifying a Volume</a><ul class="awstoc">
+                                          <li class="awstoc leaf"><a class="awstoc" href="volume_constraints.html">Volume Size Constraints</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="console-modify.html">Using the Console</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="cli-modify.html">Using the CLI</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="monitoring_mods.html">Monitoring Progress</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="expand-linux-partition.html">Expanding a Linux Partition</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="recognize-expanded-volume-linux.html">Extending Linux File Systems</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="limitations.html">Limitations</a></li>
+                                          <li class="awstoc leaf"><a class="awstoc" href="stop-start.html">Appendix: Manual Stop/Start Modification</a></li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc closed"><a class="awstoc" href="EBSSnapshots.html">EBS Snapshots</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-creating-snapshot.html">Creating a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-deleting-snapshot.html">Deleting a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-copy-snapshot.html">Copying a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-describing-snapshots.html">Viewing Snapshot Information</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-modifying-snapshot-permissions.html">Sharing a Snapshot</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="snapshot-lifecycle.html">Automating Snapshots</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="EBSOptimized.html">EBS Optimization</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="EBSEncryption.html">EBS Encryption</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="nvme-ebs-volumes.html">EBS Volumes and NVMe</a></li>
+                              <li class="awstoc closed"><a class="awstoc" href="EBSPerformance.html">EBS Performance</a><ul class="awstoc">
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-ec2-config.html">EC2 Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-io-characteristics.html">I/O Characteristics and Monitoring</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="ebs-initialize.html">Initialize Volumes</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="raid-config.html">RAID Configuration</a></li>
+                                    <li class="awstoc leaf"><a class="awstoc" href="benchmark_procedures.html">Benchmark EBS Volumes</a></li>
+                                 </ul>
+                              </li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ebs-cloud-watch-events.html">EBS CloudWatch Events</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc closed"><a class="awstoc" href="InstanceStorage.html">Instance Store</a><ul class="awstoc">
+                              <li class="awstoc leaf"><a class="awstoc" href="add-instance-store-volumes.html">Add Instance Store Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="ssd-instance-store.html">SSD Instance Store Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="instance-store-swap-volumes.html">Instance Store Swap Volumes</a></li>
+                              <li class="awstoc leaf"><a class="awstoc" href="disk-performance.html">Optimizing Disk Performance</a></li>
+                           </ul>
+                        </li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AmazonEFS.html">Amazon EFS</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="AmazonS3.html">Amazon S3</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="volume_limits.html">Instance Volume Limits</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="device_naming.html">Device Naming</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="block-device-mapping-concepts.html">Block Device Mapping</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="using-public-data-sets.html">Using Public Data Sets</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="EC2_Resources.html">Resources and Tags</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="resources.html">Resource Locations</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="resource-ids.html">Resource IDs</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="Using_Filtering.html">Listing and Filtering Your Resources</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="Using_Tags.html">Tagging Your Resources</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2-resource-limits.html">Service Limits</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="usage-reports.html">Usage Reports</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="Linux-Server-EC2Rescue.html">EC2Rescue for Linux</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_install.html">Installing EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_verify.html">(Optional) Verify the Signature of EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_working.html">Working with EC2Rescue for Linux</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="ec2rl_moduledev.html">Developing EC2Rescue Modules</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc closed"><a class="awstoc" href="ec2-instance-troubleshoot.html">Troubleshooting</a><ul class="awstoc">
+                        <li class="awstoc leaf"><a class="awstoc" href="troubleshooting-launch.html">Troubleshooting Launch Issues</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesConnecting.html">Connecting to Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesStopping.html">Stopping Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstancesShuttingDown.html">Terminating Your Instance</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstanceRecovery.html">Instance Recovery Failures</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="TroubleshootingInstances.html">Failed Status Checks</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="instance-console.html">Getting Console Output and Rebooting Instances</a></li>
+                        <li class="awstoc leaf"><a class="awstoc" href="instance-booting-from-wrong-volume.html">Booting from the Wrong Volume</a></li>
+                     </ul>
+                  </li>
+                  <li class="awstoc leaf"><a class="awstoc" href="DocumentHistory.html">Document History</a></li>
+                  <li class="awstoc leaf"><a class="awstoc" href="glossary.html">AWS Glossary</a></li>
+                  <li id="toc-additional-links"><a class="btn btn-pdf-link" id="pdf-link-alt" href="ec2-ug.pdf#top" target="_blank" title="Open PDF"></a><a class="btn btn-kindle-link" id="kindle-link-alt" target="_blank" href="http://www.amazon.com/dp/B076452RSZ" title="Open Kindle"></a><a class="btn btn-rss-link" id="rss-link-alt" target="_blank" href="amazon-ec2-release-notes.rss" title="View RSS Feed"></a></li>
+               </ul>
+            </div>
+         </div>
+         <div id="main-column">
+            <div id="main">
+               <div id="main-content">
+                  <div id="main-col-body">
+                     <table summary="Breadcrumbs">
+                        <tr>
+                           <td>
+                              <div class="breadcrumb"><a href="/index.html">AWS Documentation</a> » <a href="/ec2/index.html">Amazon EC2</a> » <a href="index.html">User Guide for Linux Instances</a> » <a href="AMIs.html">Amazon Machine Images (AMI)</a> » <span class="breadcrumb">Amazon Linux</span></div>
+                           </td>
+                        </tr>
+                     </table>
+                     <div></div>
+                     <h1 class="topictitle" id="amazon-linux-ami-basics">Amazon Linux</h1>
+                     <p>Amazon Linux is provided by Amazon Web Services (AWS). It is designed to provide a
+                        stable,
+                        		secure, and high-performance execution environment for applications running on Amazon
+                        EC2. It
+                        		also includes packages that enable easy integration with AWS, including launch
+                        		configuration tools and many popular AWS libraries and tools. AWS provides ongoing
+                        		security and maintenance updates for all instances running Amazon Linux. Many applications
+                        developed
+                        		on CentOS (and similar distributions) run on Amazon Linux.
+                     </p>
+                     <p>AWS provides two versions of Amazon Linux: Amazon Linux 2 and the Amazon Linux AMI.
+                        For more information, 
+                        including the complete list of AMIs, see <a href="https://aws.amazon.com/amazon-linux-2/" target="_blank">Amazon Linux 2</a> 
+                        and <a href="https://aws.amazon.com/amazon-linux-ami/" target="_blank">Amazon Linux AMI</a>. For Amazon Linux Docker 
+                        container images, see <a href="https://hub.docker.com/_/amazonlinux/" target="_blank">amazonlinux</a>
+                        on Docker Hub.
+                     </p>
+                     <p>If you are migrating from another Linux distribution to Amazon Linux, we recommend
+                        that you migrate to Amazon Linux 2. 
+                        If you are currently using the Amazon Linux AMI, we recommend that you migrate to
+                        Amazon Linux 2. 
+                        To migrate to Amazon Linux 2, launch an instance or create a virtual machine using
+                        the current image.
+                        Install your application on Amazon Linux 2, plus any packages required by your application.
+                        Test your 
+                        application, and make any changes required for it to run on Amazon Linux 2. For more
+                        information 
+                        about running Amazon Linux outside AWS, see <a href="amazon-linux-2-virtual-machine.html">Running Amazon Linux 2 as a Virtual Machine On-Premises</a>.
+                     </p>
+                     <div class="highlights">
+                        <p><strong>Contents</strong></p>
+                        <ul>
+                           <li><a href="#connect-to-amazon-linux-limits">Connecting to an Amazon Linux Instance</a></li>
+                           <li><a href="#amazon-linux-image-id">Identifying Amazon Linux Images</a></li>
+                           <li><a href="#amazon-linux-aws-command-line-tools">AWS Command Line Tools</a></li>
+                           <li><a href="#package-repository">Package Repository</a></li>
+                           <li><a href="#extras-library">Extras Library (Amazon Linux 2)</a></li>
+                           <li><a href="#amazon-linux-source-packages">Accessing Source Packages for Reference</a></li>
+                           <li><a href="#amazon-linux-cloud-init">cloud-init</a></li>
+                           <li><a href="#linux-ami-notifications">Subscribing to Amazon Linux Notifications</a></li>
+                           <li><a href="amazon-linux-2-virtual-machine.html">Running Amazon Linux 2 as a Virtual Machine On-Premises</a></li>
+                        </ul>
+                     </div>
+                     
+                     <h2 id="connect-to-amazon-linux-limits">Connecting to an Amazon Linux Instance</h2>
+                     
+                     
+                     <p>Amazon Linux does not allow remote root SSH by default. Also, password authentication
+                        is
+                        disabled to prevent brute-force password attacks. To enable SSH logins to an Amazon
+                        Linux
+                        instance, you must provide your key pair to the instance at launch. You must also
+                        set
+                        the security group used to launch your instance to allow SSH access. By default, the
+                        only account that can log in remotely using SSH is ec2-user; this account also has
+                        <b>sudo</b> privileges. If you enable remote root log in, be aware that
+                        it is less secure than relying on key pairs and a secondary user.
+                     </p>
+                     
+                     
+                     
+                     <h2 id="amazon-linux-image-id">Identifying Amazon Linux Images</h2>
+                     
+                     
+                     <p>Each image contains a unique <code>/etc/image-id</code> file that identifies 
+                        it. This file contains the following information about the image:
+                     </p>
+                     
+                     <div class="itemizedlist">
+                        
+                        
+                        
+                        
+                        
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              
+                              <p><code class="code">image_name</code>, <code class="code">image_version</code>, <code class="code">image_arch</code>
+                                 					— Values from the build recipe that Amazon used to construct the
+                                 					image.
+                              </p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p><code class="code">image_stamp</code> — A unique, random hex value generated during
+                                 					image creation.
+                              </p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p><code class="code">image_date</code> — The UTC time of image creation, in <em>YYYYMMDDhhmmss</em> format
+                              </p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p><code class="code">recipe_name</code>, <code class="code">recipe_id</code> — The name and ID of
+                                 					the build recipe Amazon used to construct the image.
+                              </p>                
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     
+                     <p>Amazon Linux contains an <code>/etc/system-release</code> file that specifies the
+                        current release that is installed. This file is updated using <b>yum</b>
+                        and is part of the <code>system-release</code> RPM.
+                     </p>
+                     
+                     
+                     <p>Amazon Linux also contains a machine-readable version of 
+                        <code>/etc/system-release</code> that follows the
+                        CPE specification; see <code>/etc/system-release-cpe</code>.
+                     </p>
+                     
+                     
+                     
+                     <h3 id="image-id-amazon-linux-2">Amazon Linux 2</h3>
+                     
+                     <p>The following is an example of <code>/etc/image-id</code>
+                        for the current version of Amazon Linux 2:
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>cat /etc/image-id</code></strong><code class="computeroutput" copy="false">
+image_name="amzn2-ami-hvm"
+image_version="2"
+image_arch="x86_64"
+image_file="amzn2-ami-hvm-2.0.20180810-x86_64.xfs.gpt"
+image_stamp="8008-2abd"
+image_date="20180811020321"
+recipe_name="amzn2 ami"
+recipe_id="c652686a-2415-9819-65fb-4dee-9792-289d-1e2846bd"</code></code></pre>
+                     <p>The following is an example of <code>/etc/system-release</code>
+                        for the current version of Amazon Linux 2:
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>cat /etc/system-release</code></strong>
+<code class="computeroutput" copy="false">Amazon Linux 2</code></code></pre>
+                     
+                     <p>The following is an example of <code>/etc/os-release</code> for Amazon Linux 2:
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>cat /etc/os-release</code></strong><code class="computeroutput" copy="false">
+NAME="Amazon Linux"
+VERSION="2"
+ID="amzn"
+ID_LIKE="centos rhel fedora"
+VERSION_ID="2"
+PRETTY_NAME="Amazon Linux 2"
+ANSI_COLOR="0;33"
+CPE_NAME="cpe:2.3:o:amazon:amazon_linux:2"
+HOME_URL="https://amazonlinux.com/"</code></code></pre>
+                     
+                     
+                     
+                     <h3 id="image-id-amazon-linux-ami">Amazon Linux AMI</h3>
+                     
+                     <p>The following is an example of <code>/etc/image-id</code> 
+                        for the current Amazon Linux AMI:
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>cat /etc/image-id</code></strong><code class="computeroutput" copy="false">
+image_name="amzn-ami-hvm"
+image_version="2018.03"
+image_arch="x86_64"
+image_file="amzn-ami-hvm-2018.03.0.20180811-x86_64.ext4.gpt"
+image_stamp="cc81-f2f3"
+image_date="20180811012746"
+recipe_name="amzn ami"
+recipe_id="5b283820-dc60-a7ea-d436-39fa-439f-02ea-5c802dbd"</code></code></pre>
+                     
+                     <p>The following is an example of <code>/etc/system-release</code>
+                        for the current Amazon Linux AMI:
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>cat /etc/system-release</code></strong>
+<code class="computeroutput" copy="false">Amazon Linux AMI release 2018.03</code></code></pre>
+                     
+                     
+                     
+                     <h2 id="amazon-linux-aws-command-line-tools">AWS Command Line Tools</h2>
+                     
+                     
+                     <p>The following command line tools for AWS integration and usage are included in the
+                        Amazon Linux AMI, or in the default repositories for Amazon Linux 2. For the complete
+                        list of packages
+                        in the Amazon Linux AMI, see <a href="https://aws.amazon.com/amazon-linux-ami/2017.09-packages/" target="_blank">Amazon Linux AMI 2017.09 Packages</a>.
+                     </p>
+                     
+                     <div class="itemizedlist">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              
+                              <p>aws-amitools-ec2</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>aws-apitools-as</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>aws-apitools-cfn</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>aws-apitools-ec2</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>aws-apitools-elb</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>aws-apitools-mon</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>aws-cfn-bootstrap</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>aws-cli</p>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     
+                     <p>Amazon Linux 2 and the minimal versions of Amazon Linux (<code>amzn-ami-minimal-*</code> and
+                        <code>amzn2-ami-minimal-*</code>) do not always contain all of these
+                        packages; however, you can install them from the default repositories using the
+                        following command:
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>sudo yum install -y <em class="replaceable"><code>package_name</code></em></code></strong></code></pre>
+                     
+                     <p>For instances launched using IAM roles, a simple script has been included to prepare
+                        <code class="code">AWS_CREDENTIAL_FILE</code>, <code class="code">JAVA_HOME</code>, <code class="code">AWS_PATH</code>,
+                        <code class="code">PATH</code>, and product-specific environment variables after a credential
+                        file has been installed to simplify the configuration of these tools.
+                     </p>
+                     
+                     
+                     <p>Also, to allow the installation of multiple versions of the API and AMI tools, we
+                        have
+                        placed symbolic links to the desired versions of these tools in
+                        <code>/opt/aws</code>, as described here:
+                     </p>
+                     
+                     <div class="variablelist">
+                        
+                        
+                        
+                        
+                        <dl>
+                           
+                           <dt><span class="term"><code>/opt/aws/bin</code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Symbolic links to <code>/bin</code> directories in each of the
+                                 installed tools directories.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code>/opt/aws/{apitools|amitools}</code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Products are installed in directories of the form
+                                 <em class="replaceable"><code>name</code></em>-<em class="replaceable"><code>version</code></em> and a
+                                 symbolic link <em class="replaceable"><code>name</code></em> that is attached to the most
+                                 recently installed version.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code>/opt/aws/{apitools|amitools}/<em class="replaceable"><code>name</code></em>/environment.sh</code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Used by <code>/etc/profile.d/aws-apitools-common.sh</code> to set
+                                 product-specific environment variables, such as <code class="code">EC2_HOME</code>.
+                              </p>
+                              
+                           </dd>
+                           
+                        </dl>
+                     </div>
+                     
+                     
+                     <h2 id="package-repository">Package Repository</h2>
+                     
+                     
+                     <p>Amazon Linux 2 and the Amazon Linux AMI are designed to be used with online package
+                        repositories
+                        hosted in each Amazon EC2 region. These repositories provide ongoing updates to packages
+                        in
+                        Amazon Linux 2 and the Amazon Linux AMI, as well as access to hundreds of additional
+                        common open-source
+                        server applications. The repositories are available in all regions and are accessed
+                        using <b>yum</b> update tools. Hosting repositories in each region enables
+                        us to deploy updates quickly and without any data transfer charges.
+                     </p> 
+                     
+                     
+                     <p>Amazon Linux 2 and the Amazon Linux AMI are updated regularly with security and feature
+                        enhancements.
+                        If you do not need to preserve data or customizations for your instances, you can
+                        simply
+                        launch new instances using the current AMI. If you need to preserve data or
+                        customizations for your instances, you can maintain those instances through the Amazon
+                        Linux
+                        package repositories. These repositories contain all the updated packages. You can
+                        choose to apply these updates to your running instances. Older versions of the AMI
+                        and
+                        update packages continue to be available for use, even as new versions are
+                        released.
+                     </p>
+                     
+                     
+                     <div class="aws-note">
+                        <p class="aws-note">Important</p>
+                        <p>Your instance must have access to the internet in order to access the 
+                           repository.
+                        </p>
+                     </div>
+                     
+                     
+                     <p>To install packages, use the following command:</p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>sudo yum install </code></strong><em class="replaceable"><code>package</code></em></code></pre>
+                     
+                     <p>For the Amazon Linux AMI, access to the Extra Packages for Enterprise Linux (EPEL)
+                        repository is configured, but it is not enabled by default. Amazon Linux 2 is not
+                        configured to
+                        use the EPEL repository. EPEL provides third-party packages in addition to those that
+                        are in the repositories. The third-party packages are not supported by AWS. You can
+                        enable the EPEL repository with the following commands:
+                     </p>
+                     
+                     <div class="itemizedlist">
+                        
+                        
+                        
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              
+                              <p>For Amazon Linux 2:</p>
+                              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</code></strong></code></pre>
+                              </li>
+                           <li class="listitem">
+                              
+                              <p>For the Amazon Linux AMI:</p>
+                              <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>sudo yum-config-manager --enable epel</code></strong></code></pre>
+                              </li>
+                        </ul>
+                     </div>
+                     
+                     
+                     <p>If you find that Amazon Linux does not contain an application you need, you can simply
+                        install
+                        the application directly on your Amazon Linux instance. Amazon Linux uses RPMs and
+                        <b>yum</b> for package management, and that is likely the simplest way
+                        to install new applications. You should always check to see if an application is
+                        available in our central Amazon Linux repository first, because many applications
+                        are available
+                        there. These applications can easily be added to your Amazon Linux instance.
+                     </p>
+                     
+                     
+                     <p>To upload your applications onto a running Amazon Linux instance, use <b>scp</b> or
+                        <b>sftp</b> and then configure the application by logging on to your instance.
+                        Your applications can also be uploaded during the instance launch by using the
+                        <b>PACKAGE_SETUP</b> action from the built-in cloud-init package.
+                        For more information, see <a href="amazon-linux-ami-basics.html#amazon-linux-cloud-init">cloud-init</a>. 
+                     </p>
+                     
+                     
+                     
+                     <h3 id="security-updates">Security Updates</h3>
+                     
+                     
+                     <p>Security updates are provided using the package repositories as well as updated AMIs
+                        Security alerts are published in the <a href="https://alas.aws.amazon.com" target="_blank">Amazon Linux Security Center</a>. 
+                        For more information about AWS security policies or to report a security problem,
+                        go to the 
+                        <a href="https://aws.amazon.com/security/" target="_blank">AWS Security Center</a>.
+                     </p>
+                     
+                     
+                     <p>Amazon Linux is configured to download and install security updates at launch time.
+                        This is controlled using the following cloud-init setting: <code class="code">repo_upgrade</code>. 
+                        The following snippet of cloud-init
+                        configuration shows how you can change the settings in the user data text you pass
+                        to
+                        your instance initialization:
+                     </p>
+                     
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">#cloud-config
+repo_upgrade: security</code></pre>
+                     
+                     <p>The possible values for <code class="code">repo_upgrade</code> are as follows:
+                     </p>
+                     
+                     <div class="variablelist">
+                        
+                        
+                        
+                        
+                        
+                        <dl>
+                           
+                           <dt><span class="term"><code class="code">security</code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Apply outstanding updates that Amazon marks as security updates.</p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">bugfix</code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Apply updates that Amazon marks as bug fixes. Bug fixes are a larger set
+                                 of updates, which include security updates and fixes for various other minor
+                                 bugs.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">all</code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Apply all applicable available updates, regardless of their
+                                 classification.
+                              </p>
+                              
+                           </dd>
+                           
+                           
+                           <dt><span class="term"><code class="code">none</code></span></dt>
+                           
+                           <dd>
+                              
+                              <p>Do not apply any updates to the instance on startup.</p>
+                              
+                           </dd>
+                           
+                        </dl>
+                     </div>
+                     
+                     <p>The default setting for <code class="code">repo_upgrade</code> is security. That is, if you don't
+                        specify a different value in your user data, by default, Amazon Linux performs the
+                        security upgrades at launch for any packages installed at that time. Amazon Linux
+                        also
+                        notifies you of any updates to the installed packages by listing the number of available
+                        updates upon login using the <code>/etc/motd</code> file. To install these
+                        updates, you need to run <b>sudo yum upgrade</b> on the instance. 
+                     </p>
+                     
+                     
+                     
+                     
+                     <h3 id="repository-config">Repository Configuration</h3>
+                     
+                     
+                     <p>With Amazon Linux, AMIs are treated as snapshots in time, with a repository and update
+                        structure 
+                        that always gives you the latest packages when you run <b>yum update -y</b>.
+                     </p>
+                     
+                     <p>The repository structure is configured to deliver a continuous flow of updates that
+                        enable you to roll from one version of Amazon Linux to the next. For example, if you
+                        launch an
+                        instance from an older version of the Amazon Linux AMI (such as 2017.09 or
+                        earlier) and run <b>yum update -y</b>, you end up with the latest packages.
+                     </p>
+                     
+                     <p>You can disable rolling updates by enabling the <em>lock-on-launch</em>
+                        feature. The lock-on-launch feature locks your instance to
+                        receive updates only from the specified release of the AMI. For example, you can launch
+                        a 2017.09 AMI and have it receive only the updates that were released
+                        prior to the 2018.03 AMI, until you are ready to migrate to the
+                        2018.03 AMI.
+                     </p>
+                     
+                     <div class="aws-note">
+                        <p class="aws-note">Important</p>
+                        <p>If you lock to a version of the repositories that is not the latest,
+                           you do not receive further updates. To receive a continuous flow of updates, you must
+                           
+                           use the latest AMI, or consistently update your AMI with the repositories pointed
+                           to
+                           latest.
+                        </p>
+                     </div>
+                     
+                     <p>To enable lock-on-launch in new instances, launch it with the following user data
+                        
+                        passed to cloud-init:
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">#cloud-config
+repo_releasever: 2017.09</code></pre>
+                     
+                     <p class="title"><b>To lock existing instances to their current AMI version</b></p>
+                     <ol>
+                        <li>
+                           
+                           <p>Edit <code>/etc/yum.conf</code>.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>Comment out <code class="code">releasever=latest</code>.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>To clear the cache, run <b>yum clean all</b> .
+                           </p>
+                           
+                        </li>
+                     </ol>
+                     
+                     
+                     
+                     
+                     
+                     <h2 id="extras-library">Extras Library (Amazon Linux 2)</h2>
+                     
+                     
+                     <p>With Amazon Linux 2, you can use the Extras Library to install application and software
+                        updates
+                        on your instances. These software updates are known as <em>topics</em>.
+                        You can install a specific version of a topic or omit the version information to use
+                        
+                        the most recent version.
+                     </p>
+                     
+                     
+                     <p>To list the available topics, use the following command:</p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>amazon-linux-extras list</code></strong></code></pre>
+                     
+                     <p>To enable a topic and install the latest version of its package to ensure freshness,
+                        use the following command:
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>sudo amazon-linux-extras install </code></strong><em class="replaceable"><code>topic</code></em></code></pre>
+                     
+                     <p>To enable topics and install specific versions of their packages to ensure stability,
+                        use the following command:
+                     </p>
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>sudo amazon-linux-extras install </code></strong><em class="replaceable"><code>topic</code></em>=<em class="replaceable"><code>version</code></em> <em class="replaceable"><code>topic</code></em>=<em class="replaceable"><code>version</code></em></code></pre>
+                     
+                     
+                     <h2 id="amazon-linux-source-packages">Accessing Source Packages for Reference</h2>
+                     
+                     
+                     <p>You can view the source of packages you have installed on your instance for reference
+                        purposes by using tools provided in Amazon Linux. Source packages are available for
+                        all of the
+                        packages included in Amazon Linux and the online package repository. Simply determine
+                        the
+                        package name for the source package you want to install and use the
+                        <b>yumdownloader --source</b> command to view source within your running
+                        instance. For example:
+                     </p>
+                     
+                     <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"></div><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight"><code class="prompt" copy="false">[ec2-user ~]$ </code><strong class="userinput"><code>yumdownloader --source bash</code></strong></code></pre>
+                     
+                     <p>The source RPM can be unpacked, and, for reference, you can view the
+                        source tree using standard RPM tools. After you finish debugging, the package is
+                        available for use.
+                     </p>
+                     
+                     
+                     
+                     <h2 id="amazon-linux-cloud-init">cloud-init</h2>
+                     
+                     
+                     <p>The cloud-init package is an open-source application built by Canonical that is used
+                        to bootstrap Linux images in a cloud computing environment, such as Amazon EC2. Amazon
+                        Linux contains
+                        a customized version of cloud-init. It enables you to specify actions that should
+                        happen
+                        to your instance at boot time. You can pass desired actions to cloud-init through
+                        the
+                        user data fields when launching an instance. This means you can use common AMIs for
+                        many
+                        use cases and configure them dynamically at startup. Amazon Linux also uses cloud-init
+                        to
+                        perform initial configuration of the ec2-user account.
+                     </p>
+                     
+                     
+                     <p>For more information, see the <a href="http://cloudinit.readthedocs.org/en/latest/" target="_blank">cloud-init documentation</a>.
+                     </p>
+                     
+                     
+                     <p>Amazon Linux uses the cloud-init actions found in
+                        <code>/etc/cloud/cloud.cfg.d</code> and
+                        <code>/etc/cloud/cloud.cfg</code>. You can create your own
+                        cloud-init action files in <code>/etc/cloud/cloud.cfg.d</code>.
+                        All files in this directory are read by cloud-init. They are read in
+                        lexical order, and later files overwrite values in earlier files.
+                     </p>
+                     
+                     <p>The cloud-init package performs these (and other) common configuration
+                        tasks for instances at boot:
+                     </p>
+                     
+                     <div class="itemizedlist">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              
+                              <p>Set the default locale.</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Set the hostname.</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Parse and handle user data.</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Generate host private SSH keys.</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Add a user's public SSH keys to <code>.ssh/authorized_keys</code> for
+                                 					easy login and administration.
+                              </p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Prepare the repositories for package management.</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Handle package actions defined in user data.</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Execute user scripts found in user data.</p>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Mount instance store volumes, if applicable.</p>
+                              
+                              <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+                                       
+                                       <p>By default, the <code>ephemeral0</code> instance store volume is
+                                          mounted at <code>/media/ephemeral0</code> if it is present and
+                                          contains a valid file system; otherwise, it is not mounted.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p>By default, any swap volumes associated with the instance are mounted
+                                          (only for <code class="code">m1.small</code> and <code class="code">c1.medium</code> instance
+                                          types).
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p>You can override the default instance store volume mount with the
+                                          following cloud-init directive:
+                                       </p>
+                                       <pre class="programlisting"><div class="code-btn-container"><div class="btn-dark-theme" title="Dark theme" title-dark="Dark theme" title-light="Light theme"></div></div><code class="nohighlight ">#cloud-config
+mounts:
+- [ ephemeral0 ]</code></pre>
+                                       <p>For more control over mounts, see <a href="http://cloudinit.readthedocs.io/en/latest/topics/modules.html#mounts" target="_blank">Mounts</a> in the cloud-init documentation.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p>Instance store volumes that support TRIM are not formatted when an instance launches,
+                                          
+                                          so you must partition and format them before you can mount them. For more information,
+                                          
+                                          see <a href="ssd-instance-store.html#InstanceStoreTrimSupport">Instance Store Volume TRIM Support</a>. 
+                                          You can use the <code class="code">disk_setup</code> module to partition and format your instance
+                                          store volumes at boot. For more information, see <a href="http://cloudinit.readthedocs.io/en/latest/topics/modules.html#disk-setup" target="_blank">Disk Setup</a> in the cloud-init documentation.
+                                       </p>
+                                       
+                                    </li>
+                                 </ul>
+                              </div>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     
+                     
+                     <h3 id="supported-user-data-formats">Supported User-Data Formats</h3>
+                     
+                     
+                     <p>The cloud-init package supports user-data handling of a variety of formats:</p>
+                     
+                     <div class="itemizedlist">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <ul class="itemizedlist" type="disc">
+                           <li class="listitem">
+                              
+                              <p>Gzip</p>
+                              
+                              <div class="itemizedlist">
+                                 
+                                 
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+                                       
+                                       <p>If user-data is gzip compressed, cloud-init
+                                          decompresses the data and handles it appropriately.
+                                       </p>
+                                       
+                                    </li>
+                                 </ul>
+                              </div>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>MIME multipart</p>
+                              
+                              <div class="itemizedlist">
+                                 
+                                 
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+                                       
+                                       <p>Using a MIME multipart file, you can specify more than one type of
+                                          data. For example, you could specify both a user-data script and a
+                                          cloud-config type. Each part of the multipart file can be handled by
+                                          cloud-init if it is one of the supported formats.
+                                       </p>
+                                       
+                                    </li>
+                                 </ul>
+                              </div>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Base64 decoding</p>
+                              
+                              <div class="itemizedlist">
+                                 
+                                 
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+                                       
+                                       <p> If user-data is base64-encoded, cloud-init
+                                          determines if it can understand the decoded data as one of the
+                                          supported types. If it understands the decoded data, it decodes the
+                                          data and handles it appropriately. If not, it returns the base64
+                                          data intact.
+                                       </p>
+                                       
+                                    </li>
+                                 </ul>
+                              </div>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>User-Data script</p>
+                              
+                              <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+                                       
+                                       <p>Begins with <code class="code">#!</code> or <code class="code">Content-Type:
+                                             text/x-shellscript</code>.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p>The script is executed by
+                                          <code>/etc/init.d/cloud-init-user-scripts</code> during
+                                          the first boot cycle. This occurs late in the boot process (after
+                                          the initial configuration actions are performed).
+                                       </p>
+                                       
+                                    </li>
+                                 </ul>
+                              </div>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Include file</p>
+                              
+                              <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+                                       
+                                       <p>Begins with <code class="code">#include</code> or <code class="code">Content-Type:
+                                             text/x-include-url</code>.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p>This content is an include file. The file contains a list of URLs,
+                                          one per line. Each of the URLs is read, and their content passed
+                                          through this same set of rules. The content read from the URL can be
+                                          gzipped, MIME-multi-part, or plaintext.
+                                       </p>
+                                       
+                                    </li>
+                                 </ul>
+                              </div>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Cloud Config Data</p>
+                              
+                              <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+                                       
+                                       <p>Begins with <code class="code">#cloud-config</code> or <code class="code">Content-Type:
+                                             text/cloud-config</code>.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p>This content is cloud-config data. For a commented example of
+                                          								supported configuration formats, see the examples .
+                                       </p>
+                                       
+                                    </li>
+                                 </ul>
+                              </div>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Upstart job</p>
+                              
+                              <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+                                       
+                                       <p>Begins with <code class="code">#upstart-job</code> or <code class="code">Content-Type:
+                                             text/upstart-job</code>.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p>This content is stored in a file in <code class="code">/etc/init</code>, and
+                                          upstart consumes the content as per other upstart jobs.
+                                       </p>
+                                       
+                                    </li>
+                                 </ul>
+                              </div>
+                              
+                           </li>
+                           <li class="listitem">
+                              
+                              <p>Cloud Boothook</p>
+                              
+                              <div class="itemizedlist">
+                                 
+                                 
+                                 
+                                 
+                                 <ul class="itemizedlist" type="disc">
+                                    <li class="listitem">
+                                       
+                                       <p>Begins with <code class="code">#cloud-boothook</code> or <code class="code">Content-Type:
+                                             text/cloud-boothook</code>.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p>This content is boothook data. It is stored in a file under
+                                          <code>/var/lib/cloud</code> and then executed
+                                          immediately.
+                                       </p>
+                                       
+                                    </li>
+                                    <li class="listitem">
+                                       
+                                       <p> This is the earliest "hook" available. There is no mechanism
+                                          provided for running it only one time. The boothook must take care
+                                          of this itself. It is provided with the instance ID in the
+                                          environment variable <code class="code">INSTANCE_ID</code>. Use this variable to
+                                          provide a once-per-instance set of boothook data.
+                                       </p>
+                                       
+                                    </li>
+                                 </ul>
+                              </div>
+                              
+                           </li>
+                        </ul>
+                     </div>
+                     
+                     
+                     
+                     <h2 id="linux-ami-notifications">Subscribing to Amazon Linux Notifications</h2>
+                     
+                     <p>To be notified when new AMIs are released, you can subscribe using Amazon SNS.</p>
+                     
+                     <p class="title"><b>To subscribe to Amazon Linux notifications</b></p>
+                     <ol>
+                        <li>
+                           <p>Open the Amazon SNS console at
+                              <a href="https://console.aws.amazon.com/sns/v2/home" target="_blank">https://console.aws.amazon.com/sns/v2/home</a>.
+                           </p>
+                        </li>
+                        <li>
+                           				
+                           <p>In the navigation bar, change the Region to
+                              						<b>US East (N. Virginia)</b>, if necessary. You must select the
+                              					Region in which the SNS notification that you are subscribing to was
+                              					created.
+                           </p>
+                           			
+                        </li>
+                        <li>
+                           				
+                           <p>In the navigation pane, choose <b>Subscriptions</b>,
+                              						<b>Create subscription</b>.
+                           </p>
+                           			
+                        </li>
+                        <li>
+                           				
+                           <p>For the <b>Create subscription</b> dialog box, do the
+                              					following:
+                           </p>
+                           				
+                           <ol>
+                              <li>
+                                 						
+                                 <p>[Amazon Linux 2] For <b>Topic ARN</b>, copy and paste the
+                                    							following Amazon Resource Name (ARN):
+                                    								<strong class="userinput"><code>arn:aws:sns:us-east-1:137112412989:amazon-linux-2-ami-updates</code></strong>.
+                                 </p>
+                                 					
+                              </li>
+                              <li>
+                                 						
+                                 <p>[Amazon Linux] For <b>Topic ARN</b>, copy and paste the
+                                    							following Amazon Resource Name (ARN):
+                                    								<strong class="userinput"><code>arn:aws:sns:us-east-1:137112412989:amazon-linux-ami-updates</code></strong>.
+                                 </p>
+                                 					
+                              </li>
+                              <li>
+                                 						
+                                 <p>For <b>Protocol</b>, choose
+                                    							<b>Email</b>.
+                                 </p>
+                                 					
+                              </li>
+                              <li>
+                                 						
+                                 <p>For <b>Endpoint</b>, type an email address that you can
+                                    							use to receive the notifications.
+                                 </p>
+                                 					
+                              </li>
+                              <li>
+                                 						
+                                 <p>Choose <b>Create subscription</b>.
+                                 </p>
+                                 					
+                              </li>
+                           </ol>
+                           			
+                        </li>
+                        <li>
+                           				
+                           <p>You receive a confirmation email with the subject line "AWS Notification -
+                              					Subscription Confirmation". Open the email and choose <b>Confirm
+                                 						subscription</b> to complete your subscription.
+                           </p>
+                           			
+                        </li>
+                     </ol>
+                     
+                     
+                     <p>Whenever AMIs are released, we send notifications to the subscribers of the
+                        			corresponding topic. To stop receiving these notifications, use the following procedure
+                        			to unsubscribe.
+                     </p>
+                     
+                     
+                     <p class="title"><b>To unsubscribe from Amazon Linux notifications</b></p>
+                     <ol>
+                        <li>
+                           
+                           <p>Open the Amazon SNS console at
+                              <a href="https://console.aws.amazon.com/sns/v2/home" target="_blank">https://console.aws.amazon.com/sns/v2/home</a>.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>In the navigation bar, change the Region to
+                              						<b>US East (N. Virginia)</b>, if necessary. You must use the
+                              					Region in which the SNS notification was created.
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>In the navigation pane, choose <b>Subscriptions</b>, select the
+                              					subscription, and choose <b>Actions</b>, <b>Delete
+                                 						subscriptions</b>. .
+                           </p>
+                           
+                        </li>
+                        <li>
+                           
+                           <p>When prompted for confirmation, choose <b>Delete</b>.
+                           </p>
+                           
+                        </li>
+                     </ol>
+                     
+                  </div>
+                  <noscript>
+                     <div>
+                        <div>
+                           <div>
+                              <div id="js_error_message">
+                                 <p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p>
+                                 <p>To use the AWS Documentation, Javascript must be enabled. Please refer to your browser's
+                                    Help pages for instructions.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </noscript>
+                  <div id="main-col-footer">
+                     <div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div>
+                     <div id="next"><a class="awstoc" accesskey="p" href="deregister-ami.html">« Previous </a><a class="awstoc" accesskey="n" href="amazon-linux-2-virtual-machine.html">Next »</a></div>
+                     <div id="copyright-main-footer">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+                  </div>
+               </div>
+            </div>
+            <div id="right-expanded">
+               <div id="right-content-wrapper">
+                  <div id="pagetoc">
+                     <p>On this page:</p>
+                     <ul class="pagetoc">
+                        <li class="pagetoc" name="Connecting to an Amazon Linux Instance"><a class="pagetoc" href="#connect-to-amazon-linux-limits">Connecting to an Amazon Linux Instance</a></li>
+                        <li class="pagetoc" name="Identifying Amazon Linux Images"><a class="pagetoc" href="#amazon-linux-image-id">Identifying Amazon Linux Images</a></li>
+                        <li class="pagetoc" name="AWS Command Line Tools"><a class="pagetoc" href="#amazon-linux-aws-command-line-tools">AWS Command Line Tools</a></li>
+                        <li class="pagetoc" name="Package Repository"><a class="pagetoc" href="#package-repository">Package Repository</a></li>
+                        <li class="pagetoc" name="Extras Library (Amazon Linux 2)"><a class="pagetoc" href="#extras-library">Extras Library (Amazon Linux 2)</a></li>
+                        <li class="pagetoc" name="Accessing Source Packages for Reference"><a class="pagetoc" href="#amazon-linux-source-packages">Accessing Source Packages for Reference</a></li>
+                        <li class="pagetoc" name="cloud-init"><a class="pagetoc" href="#amazon-linux-cloud-init">cloud-init</a></li>
+                        <li class="pagetoc" name="Subscribing to Amazon Linux Notifications"><a class="pagetoc" href="#linux-ami-notifications">Subscribing to Amazon Linux Notifications</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="cookie-notice">
+         <div class="cookie-notice-text">We use cookies to provide and improve our services. By using our site, you consent
+            to cookies. <a href="http://aws.amazon.com/legal/cookies">Learn more</a></div>
+      </div>
+      <div id="footer">
+         <div id="footer_short_fb" class="hide" title="Feedback"><a target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2&amp;topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html&amp;hidden_guide_name=User Guide for Linux Instances&amp;hidden_api_version=&amp;hidden_file_name=amazon-linux-ami-basics"><i class="awsdocs-footer-text fa fa-envelope-o"></i></a></div>
+         <div id="footer_toggle" class="mediaobject">
+            <div id="footer_toggle_img" class="awsdocs-footer-text fa fa-caret-down"></div>
+            <div id="footer_toggle_img_collapse" class="hide awsdocs-footer-text fa fa-caret-right"></div>
+         </div>
+         <div id="footer-left"><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/terms">Terms of Use</a><span class="awsdocs-footer-text"> | </span><a class="awsdocs-footer-text" target="_top" href="http://aws.amazon.com/privacy">Privacy</a><span class="awsdocs-footer-text"> | </span><span class="awsdocs-footer-text">© 2018, Amazon Web Services, Inc. or its affiliates. All rights reserved.</span></div>
+         <div id="footer-right">
+            <div id="feedback">
+               <div id="forums"><a id="forum_link" target="_blank" href="http://forums.aws.amazon.com/forum.jspa?forumID=30" class="awsdocs-footer-text">Have a question? Try the Forums.</a></div>
+               <div id="feedback-message" class="awsdocs-footer-text">Did this page help you?</div>
+               <div id="feedback-yesno-buttons"><a class="awstoc btn btn-default" target="_blank" href="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html">Yes</a><a class="awstoc btn btn-default" target="_blank" href="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html">No</a></div>
+               <div id="feedback-feedback-button"><a class="awstoc btn btn-default" target="_blank" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=EC2&amp;topic_url=http://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html&amp;hidden_guide_name=User Guide for Linux Instances&amp;hidden_api_version=&amp;hidden_file_name=amazon-linux-ami-basics">Feedback</a></div>
+            </div>
+         </div>
+      </div>
+      <!-- SiteCatalyst code version: H.25.2.
+            Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+            More info available at http://www.omniture.com --><script language="JavaScript" type="text/javascript" src="https://a0.awsstatic.com/s_code/js/1.0/awshome_s_code.js"></script><script language="JavaScript" type="text/javascript">
+         <!--
+
+            // Documentation Service Name
+            s.prop66='Amazon Elastic Compute Cloud';
+            s.eVar66='D=c66';
+  
+            // Documentation Guide Name                                                                 
+            s.prop65='User Guide for Linux Instances';
+            s.eVar65='D=c65';
+
+            var s_code=s.t();if(s_code)document.write(s_code)//--></script><script language="JavaScript" type="text/javascript">
+         <!--
+                if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+                //--></script><noscript><img src="https://amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.2--NS/0" height="1" width="1" border="0" alt="" /></noscript>
+      <!--/DO NOT REMOVE/-->
+      <!-- End SiteCatalyst code version: H.25.2. -->
+   </body>
+</html>

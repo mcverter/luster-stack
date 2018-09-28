@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="Copyright" content="Django Software Foundation" />
+    <meta name="keywords" content="Python, Django, framework, open-source" />
+    <meta name="description" content="" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="/s/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="/s/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="/s/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>The form rendering API | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="/s/css/output.beb34528fd55.css" >
+    <script src="/s/js/lib/webfontloader/webfontloader.e75218f5f090.js"></script>
+    <script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="/s/js/lib/modernizr.3b36762e418a.js"></script>
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/2.1/ref/forms/renderers/">
+  
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="el"
+           href="https://docs.djangoproject.com/el/2.1/ref/forms/renderers/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="x-default"
+           href="https://docs.djangoproject.com/en/2.1/ref/forms/renderers/">
+        
+        <link rel="alternate"
+           hreflang="en"
+           href="https://docs.djangoproject.com/en/2.1/ref/forms/renderers/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="es"
+           href="https://docs.djangoproject.com/es/2.1/ref/forms/renderers/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="fr"
+           href="https://docs.djangoproject.com/fr/2.1/ref/forms/renderers/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="id"
+           href="https://docs.djangoproject.com/id/2.1/ref/forms/renderers/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ja"
+           href="https://docs.djangoproject.com/ja/2.1/ref/forms/renderers/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="ko"
+           href="https://docs.djangoproject.com/ko/2.1/ref/forms/renderers/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pl"
+           href="https://docs.djangoproject.com/pl/2.1/ref/forms/renderers/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="pt-br"
+           href="https://docs.djangoproject.com/pt-br/2.1/ref/forms/renderers/">
+    
+        
+          
+        
+        
+        <link rel="alternate"
+           hreflang="zh-hans"
+           href="https://docs.djangoproject.com/zh-hans/2.1/ref/forms/renderers/">
+    
+  
+
+  <link rel="search"
+        type="application/opensearchdescription+xml"
+        href="https://docs.djangoproject.com/en/2.1/search/description/"
+        title="Django documentation">
+
+  </head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div role="navigation">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Code</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">&#9829; Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container">
+        
+  <h1><a href="https://docs.djangoproject.com/en/2.1/">Documentation</a></h1>
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/2.1/ref/forms/renderers/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/2.1/ref/forms/renderers/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/2.1/ref/forms/renderers/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/2.1/ref/forms/renderers/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/2.1/ref/forms/renderers/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/2.1/ref/forms/renderers/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/2.1/ref/forms/renderers/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/2.1/ref/forms/renderers/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/2.1/ref/forms/renderers/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current"
+        title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/ref/forms/renderers/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/ref/forms/renderers/">2.0</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/ref/forms/renderers/">dev</a>
+    </li>
+    
+    
+    <li class="current"
+        title="This document describes Django 2.1. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>2.1</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-module-django.forms.renderers">
+<span id="s-the-form-rendering-api"></span><span id="module-django.forms.renderers"></span><span id="the-form-rendering-api"></span><h1>The form rendering API<a class="headerlink" href="#module-django.forms.renderers" title="Permalink to this headline">¶</a></h1>
+<p>Django’s form widgets are rendered using Django’s <a class="reference internal" href="../../../topics/templates/"><span class="doc">template engines
+system</span></a>.</p>
+<p>The form rendering process can be customized at several levels:</p>
+<ul class="simple">
+<li>Widgets can specify custom template names.</li>
+<li>Forms and widgets can specify custom renderer classes.</li>
+<li>A widget’s template can be overridden by a project. (Reusable applications
+typically shouldn’t override built-in templates because they might conflict
+with a project’s custom templates.)</li>
+</ul>
+<div class="section" id="s-the-low-level-render-api">
+<span id="s-low-level-widget-render-api"></span><span id="the-low-level-render-api"></span><span id="low-level-widget-render-api"></span><h2>The low-level render API<a class="headerlink" href="#the-low-level-render-api" title="Permalink to this headline">¶</a></h2>
+<p>The rendering of form templates is controlled by a customizable renderer class.
+A custom renderer can be specified by updating the <a class="reference internal" href="../../settings/#std:setting-FORM_RENDERER"><code class="xref std std-setting docutils literal notranslate"><span class="pre">FORM_RENDERER</span></code></a>
+setting. It defaults to
+<code class="docutils literal notranslate"><span class="pre">'</span></code><a class="reference internal" href="#django.forms.renderers.DjangoTemplates" title="django.forms.renderers.DjangoTemplates"><code class="xref py py-class docutils literal notranslate"><span class="pre">django.forms.renderers.DjangoTemplates</span></code></a><code class="docutils literal notranslate"><span class="pre">'</span></code>.</p>
+<p>You can also provide a custom renderer by setting the
+<a class="reference internal" href="../api/#django.forms.Form.default_renderer" title="django.forms.Form.default_renderer"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Form.default_renderer</span></code></a> attribute or by using the <code class="docutils literal notranslate"><span class="pre">renderer</span></code> argument
+of <a class="reference internal" href="../widgets/#django.forms.Widget.render" title="django.forms.Widget.render"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Widget.render()</span></code></a>.</p>
+<p>Use one of the <a class="reference internal" href="#built-in-template-form-renderers"><span class="std std-ref">built-in template form renderers</span></a> or implement your own. Custom renderers
+must implement a <code class="docutils literal notranslate"><span class="pre">render(template_name,</span> <span class="pre">context,</span> <span class="pre">request=None)</span></code> method. It
+should return a rendered templates (as a string) or raise
+<a class="reference internal" href="../../../topics/templates/#django.template.TemplateDoesNotExist" title="django.template.TemplateDoesNotExist"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TemplateDoesNotExist</span></code></a>.</p>
+</div>
+<div class="section" id="s-built-in-template-form-renderers">
+<span id="s-id1"></span><span id="built-in-template-form-renderers"></span><span id="id1"></span><h2>Built-in-template form renderers<a class="headerlink" href="#built-in-template-form-renderers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="s-djangotemplates">
+<span id="djangotemplates"></span><h3><code class="docutils literal notranslate"><span class="pre">DjangoTemplates</span></code><a class="headerlink" href="#djangotemplates" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.forms.renderers.DjangoTemplates">
+<em class="property">class </em><code class="descname">DjangoTemplates</code><a class="reference internal" href="../../../_modules/django/forms/renderers/#DjangoTemplates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.forms.renderers.DjangoTemplates" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>This renderer uses a standalone
+<a class="reference internal" href="../../../topics/templates/#django.template.backends.django.DjangoTemplates" title="django.template.backends.django.DjangoTemplates"><code class="xref py py-class docutils literal notranslate"><span class="pre">DjangoTemplates</span></code></a>
+engine (unconnected to what you might have configured in the
+<a class="reference internal" href="../../settings/#std:setting-TEMPLATES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">TEMPLATES</span></code></a> setting). It loads templates first from the built-in form
+templates directory in <code class="docutils literal notranslate"><span class="pre">django/forms/templates</span></code> and then from the installed
+apps’ templates directories using the <a class="reference internal" href="../../templates/api/#django.template.loaders.app_directories.Loader" title="django.template.loaders.app_directories.Loader"><code class="xref py py-class docutils literal notranslate"><span class="pre">app_directories</span></code></a> loader.</p>
+<p>If you want to render templates with customizations from your
+<a class="reference internal" href="../../settings/#std:setting-TEMPLATES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">TEMPLATES</span></code></a> setting, such as context processors for example, use the
+<a class="reference internal" href="#django.forms.renderers.TemplatesSetting" title="django.forms.renderers.TemplatesSetting"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemplatesSetting</span></code></a> renderer.</p>
+</div>
+<div class="section" id="s-jinja2">
+<span id="jinja2"></span><h3><code class="docutils literal notranslate"><span class="pre">Jinja2</span></code><a class="headerlink" href="#jinja2" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.forms.renderers.Jinja2">
+<em class="property">class </em><code class="descname">Jinja2</code><a class="reference internal" href="../../../_modules/django/forms/renderers/#Jinja2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.forms.renderers.Jinja2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>This renderer is the same as the <a class="reference internal" href="#django.forms.renderers.DjangoTemplates" title="django.forms.renderers.DjangoTemplates"><code class="xref py py-class docutils literal notranslate"><span class="pre">DjangoTemplates</span></code></a> renderer except that
+it uses a <a class="reference internal" href="../../../topics/templates/#django.template.backends.jinja2.Jinja2" title="django.template.backends.jinja2.Jinja2"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jinja2</span></code></a> backend. Templates
+for the built-in widgets are located in <code class="docutils literal notranslate"><span class="pre">django/forms/jinja2</span></code> and installed
+apps can provide templates in a <code class="docutils literal notranslate"><span class="pre">jinja2</span></code> directory.</p>
+<p>To use this backend, all the widgets in your project and its third-party apps
+must have Jinja2 templates. Unless you provide your own Jinja2 templates for
+widgets that don’t have any, you can’t use this renderer. For example,
+<a class="reference internal" href="../../contrib/admin/#module-django.contrib.admin" title="django.contrib.admin: Django's admin site."><code class="xref py py-mod docutils literal notranslate"><span class="pre">django.contrib.admin</span></code></a> doesn’t include Jinja2 templates for its widgets
+due to their usage of Django template tags.</p>
+</div>
+<div class="section" id="s-templatessetting">
+<span id="templatessetting"></span><h3><code class="docutils literal notranslate"><span class="pre">TemplatesSetting</span></code><a class="headerlink" href="#templatessetting" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="django.forms.renderers.TemplatesSetting">
+<em class="property">class </em><code class="descname">TemplatesSetting</code><a class="reference internal" href="../../../_modules/django/forms/renderers/#TemplatesSetting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#django.forms.renderers.TemplatesSetting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>This renderer gives you complete control of how widget templates are sourced.
+It uses <a class="reference internal" href="../../../topics/templates/#django.template.loader.get_template" title="django.template.loader.get_template"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_template()</span></code></a> to find widget
+templates based on what’s configured in the <a class="reference internal" href="../../settings/#std:setting-TEMPLATES"><code class="xref std std-setting docutils literal notranslate"><span class="pre">TEMPLATES</span></code></a> setting.</p>
+<p>Using this renderer along with the built-in widget templates requires either:</p>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">'django.forms'</span></code> in <a class="reference internal" href="../../settings/#std:setting-INSTALLED_APPS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code></a> and at least one engine
+with <a class="reference internal" href="../../settings/#std:setting-TEMPLATES-APP_DIRS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">APP_DIRS=True</span></code></a>.</p>
+</li>
+<li><p class="first">Adding the built-in widgets templates directory in <a class="reference internal" href="../../settings/#std:setting-TEMPLATES-DIRS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DIRS</span></code></a> of one of your template engines. To generate that path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">django</span>
+<span class="n">django</span><span class="o">.</span><span class="n">__path__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/forms/templates&#39;</span>  <span class="c1"># or &#39;/forms/jinja2&#39;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Using this renderer requires you to make sure the form templates your project
+needs can be located.</p>
+</div>
+</div>
+<div class="section" id="s-context-available-in-widget-templates">
+<span id="context-available-in-widget-templates"></span><h2>Context available in widget templates<a class="headerlink" href="#context-available-in-widget-templates" title="Permalink to this headline">¶</a></h2>
+<p>Widget templates receive a context from <a class="reference internal" href="../widgets/#django.forms.Widget.get_context" title="django.forms.Widget.get_context"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Widget.get_context()</span></code></a>. By
+default, widgets receive a single value in the context, <code class="docutils literal notranslate"><span class="pre">widget</span></code>. This is a
+dictionary that contains values like:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">name</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">value</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">attrs</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">is_hidden</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">template_name</span></code></li>
+</ul>
+<p>Some widgets add further information to the context. For instance, all widgets
+that subclass <code class="docutils literal notranslate"><span class="pre">Input</span></code> defines <code class="docutils literal notranslate"><span class="pre">widget['type']</span></code> and <a class="reference internal" href="../widgets/#django.forms.MultiWidget" title="django.forms.MultiWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiWidget</span></code></a>
+defines <code class="docutils literal notranslate"><span class="pre">widget['subwidgets']</span></code> for looping purposes.</p>
+</div>
+<div class="section" id="s-overriding-built-in-widget-templates">
+<span id="s-id2"></span><span id="overriding-built-in-widget-templates"></span><span id="id2"></span><h2>Overriding built-in widget templates<a class="headerlink" href="#overriding-built-in-widget-templates" title="Permalink to this headline">¶</a></h2>
+<p>Each widget has a <code class="docutils literal notranslate"><span class="pre">template_name</span></code> attribute with a value such as
+<code class="docutils literal notranslate"><span class="pre">input.html</span></code>. Built-in widget templates are stored in the
+<code class="docutils literal notranslate"><span class="pre">django/forms/widgets</span></code> path. You can provide a custom template for
+<code class="docutils literal notranslate"><span class="pre">input.html</span></code> by defining <code class="docutils literal notranslate"><span class="pre">django/forms/widgets/input.html</span></code>, for example.
+See <a class="reference internal" href="../widgets/#built-in-widgets"><span class="std std-ref">Built-in widgets</span></a> for the name of each widget’s template.</p>
+<p>To override widget templates, you must use the <a class="reference internal" href="#django.forms.renderers.TemplatesSetting" title="django.forms.renderers.TemplatesSetting"><code class="xref py py-class docutils literal notranslate"><span class="pre">TemplatesSetting</span></code></a>
+renderer. Then overriding widget templates works <a class="reference internal" href="../../../howto/overriding-templates/"><span class="doc">the same as</span></a> overriding any other template in your project.</p>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="../formsets/"><i class="icon icon-chevron-left"></i> Formset Functions</a></div>
+  
+  
+  <div class="right"><a href="../widgets/">Widgets <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+  
+  
+
+<form action="https://docs.djangoproject.com/en/2.1/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="news-search">Search:</label>
+    <input type="search" name="q" placeholder="Search 2.1 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+  
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="/s/img/small-fundraising-heart.d255f6e934e5.png" alt="Support Django!" />
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          Hetdev donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="#">The form rendering API</a><ul>
+<li><a class="reference internal" href="#the-low-level-render-api">The low-level render API</a></li>
+<li><a class="reference internal" href="#built-in-template-form-renderers">Built-in-template form renderers</a><ul>
+<li><a class="reference internal" href="#djangotemplates"><code class="docutils literal notranslate"><span class="pre">DjangoTemplates</span></code></a></li>
+<li><a class="reference internal" href="#jinja2"><code class="docutils literal notranslate"><span class="pre">Jinja2</span></code></a></li>
+<li><a class="reference internal" href="#templatessetting"><code class="docutils literal notranslate"><span class="pre">TemplatesSetting</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#context-available-in-widget-templates">Context available in widget templates</a></li>
+<li><a class="reference internal" href="#overriding-built-in-widget-templates">Overriding built-in widget templates</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="../formsets/">Formset Functions</a></li>
+    
+    
+    <li>Next: <a href="../widgets/">Widgets</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/2.1/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/2.1/">Django 2.1 documentation</a>
+      
+      <ul><li><a href="../../">API Reference</a>
+      
+      <ul><li><a href="../">Forms</a>
+      
+      <ul><li>The form rendering API</li></ul>
+      </li></ul></li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/2.1/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="/en/stable/genindex/">Index</a>, <a href="/en/stable/py-modindex/">Module Index</a>, or <a href="/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 2.1):
+    <a href="/m/docs/django-docs-2.1-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/2.1.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/2.1.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/"></a></li>
+      </ul>
+      <p class="copyright">&copy; 2005-2018
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("/s/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("/s/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("/s/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("/s/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("/s/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("/s/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("/s/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("/s/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("/s/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("/s/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("/s/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("/s/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-custom-checkout": extless("/s/js/mod/stripe-custom-checkout.aac1352045b7.js"),
+            "mod/stripe-change-card": extless("/s/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("/s/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v2/?"  // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="/s/js/main.07884ebc4865.js" src="/s/js/lib/require.177879fbe7dd.js"></script>
+    
+
+
+
+  </body>
+</html>

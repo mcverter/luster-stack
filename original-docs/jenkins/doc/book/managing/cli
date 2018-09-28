@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+Jenkins CLI
+</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<meta content='Jenkins is an open source automation server' name='description'>
+<link href='https://jenkins.io/sites/default/files/jenkins_favicon.ico' rel='shortcut icon' type='image/x-icon'>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta content='ie=edge' http-equiv='x-ua-compatible'>
+<link href='https://jenkins.io/img/favicon.ico' rel='icon' sizes='32x32' type='img/png'>
+<link href='https://jenkins.io/img/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png'>
+<link href='https://jenkins.io/img/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png'>
+<link href='https://jenkins.io/img/apple-touch-icon-76x76.png' rel='apple-touch-icon' sizes='76x76'>
+<link href='https://jenkins.io/img/apple-touch-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='https://jenkins.io/img/apple-touch-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+<meta content='Jenkins CLI' name='apple-mobile-web-app-title'>
+<!-- Twitter Card data -->
+<meta content='summary_large_image' name='twitter:card'>
+<meta content='@JenkinsCI' name='twitter:site'>
+<meta content='Jenkins CLI' name='twitter:title'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='twitter:description'>
+<meta content='@JenkinsCI' name='twitter:creator'>
+<!-- Twitter Summary card images must be at least 120x120px -->
+<!-- Open Graph data -->
+<meta content='Jenkins CLI' property='og:title'>
+<meta content='article' property='og:type'>
+<meta content='https://jenkins.io/doc/book/managing/cli/index.html' property='og:url'>
+<meta content='Jenkins – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.' name='og:description'>
+<meta content='Jenkins CLI' property='og:site_name'>
+<link href='https://jenkins.io/assets/bower/bootstrap/css/bootstrap.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/assets/bower/tether/css/tether.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-icons.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/jenkins.css' media='screen' rel='stylesheet'>
+<!-- Non-obtrusive CSS styles -->
+<link href='https://jenkins.io/assets/bower/ionicons/css/ionicons.min.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/footer.css' media='screen' rel='stylesheet'>
+<link href='https://jenkins.io/css/font-awesome.min.css' media='screen' rel='stylesheet'>
+</head>
+<body>
+<script src='https://jenkins.io/assets/bower/jquery/jquery.js'></script>
+<!-- starting partial toptoolbar.html.haml -->
+<nav class='navbar navbar-toggleable-md navbar-inverse top bg-inverse fixed-top' id='ji-toolbar'>
+<div class='container'>
+<button class='navbar-toggler navbar-toggler-rght hidden-lg-up float-right' data-target='#CollapsingNavbar' data-toggle='collapse' type='button'>
+<i class='ion-navicon'></i>
+</button>
+<a class='navbar-brand' href='https://jenkins.io'>
+Jenkins
+</a>
+<div class='collapse navbar-collapse' id='CollapsingNavbar'>
+<ul class='nav navbar-nav ml-auto'>
+<li class='nav-item'>
+<a class='nav-link' href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Documentation
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/doc'>
+Use Jenkins
+</a>
+<a class='dropdown-item' href='https://jenkins.io/doc/developer'>
+Extend Jenkins
+</a>
+<span class='dropdown-item'>
+<strong>
+Use-cases
+</strong>
+</span>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/android'>
+&nbsp;-&nbsp;Android
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/c'>
+&nbsp;-&nbsp;C/C++
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/docker'>
+&nbsp;-&nbsp;Docker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/embedded'>
+&nbsp;-&nbsp;Embedded
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/github'>
+&nbsp;-&nbsp;GitHub
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/java'>
+&nbsp;-&nbsp;Java
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/php'>
+&nbsp;-&nbsp;PHP
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/pipeline'>
+&nbsp;-&nbsp;Continuous Delivery
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/python'>
+&nbsp;-&nbsp;Python
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/solutions/ruby'>
+&nbsp;-&nbsp;Ruby
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link' href='https://plugins.jenkins.io/'>
+Plugins
+</a>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+Community
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/participate'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/chat' title='Chat with the rest of the Jenkins community on IRC'>
+Chat
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam'>
+Meet
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/events'>
+Events
+</a>
+<a class='dropdown-item feature' href='https://issues.jenkins-ci.org/'>
+Issue Tracker
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/mailing-lists' title='Browse Jenkins mailing list archives and/or subscribe to lists'>
+Mailing Lists
+</a>
+<a class='dropdown-item feature' href='https://wiki.jenkins.io/'>
+Wiki
+</a>
+<a class='dropdown-item feature' href='https://accounts.jenkins.io/' title='Create/manage your account for accessing wiki, issue tracker, etc'>
+Account Management
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/'>
+<strong>
+Special Interest Groups
+</strong>
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/chinese-localization/'>
+&nbsp;-&nbsp;Chinese Localization
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/cloud-native/'>
+&nbsp;-&nbsp;Cloud Native
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/gsoc/'>
+&nbsp;-&nbsp;Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/sigs/platform/'>
+&nbsp;-&nbsp;Platform
+</a>
+</div>
+</li>
+<li class='dropdown nav-item'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>Sub-projects</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/'>
+Overview
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/blueocean/'>
+Blue Ocean
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/evergreen/'>
+Evergreen
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/gsoc/'>
+Google Summer of Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/infrastructure/'>
+Infrastructure
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jam/'>
+Jenkins Area Meetups
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jcasc/'>
+Jenkins Configuration as Code
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/jenkins-x/'>
+Jenkins X
+</a>
+<a class='dropdown-item feature' href='https://jenkins.io/projects/remoting/'>
+Jenkins Remoting
+</a>
+</div>
+</li>
+<li class='nav-item dropdown'>
+<div aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle' data-toggle='dropdown' role='button'>
+About
+</div>
+<div class='dropdown-menu'>
+<a class='dropdown-item' href='https://jenkins.io/security'>
+Security
+</a>
+<a class='dropdown-item' href='https://jenkins.io/press'>
+Press
+</a>
+<a class='dropdown-item' href='https://jenkins.io/awards'>
+Awards
+</a>
+<a class='dropdown-item' href='https://jenkins.io/project/conduct'>
+Conduct
+</a>
+<a class='dropdown-item' href='https://jenkins.io/artwork'>
+Artwork
+</a>
+</div>
+</li>
+<li class='nav-item'>
+<a class='nav-link btn btn-outline-secondary' href='https://jenkins.io/download'>
+Download
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Spacing to make the fixed-top sticky navbar not occlude any content below it -->
+<div class='pt-4'>
+&nbsp;
+</div>
+
+<!-- ending partial toptoolbar.html.haml -->
+<script>
+  $(function () {
+    for (var i = 1 ; i <= 6 ; i ++) {
+      anchors.add('.container .row .col-lg-9 h' + i);
+    }
+  })
+</script>
+<div class='container'>
+<div class='row body'>
+<div class='col-lg-3'>
+<div class='sidebar-nav tour'>
+<p>
+<a href="https://jenkins.io/doc" class="">Jenkins User Documentation Home</a>
+</p>
+<h4>
+Guided Tour
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/getting-started" class="">Getting started</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/hello-world" class="">Creating your first Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/running-multiple-steps" class="">Running multiple steps</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/agents" class="">Defining execution environments</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/environment" class="">Using environment variables</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/tests-and-artifacts" class="">Recording test results and artifacts</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/post" class="">Cleaning up and notifications</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/tour/deployment" class="">Deployment</a>
+</li>
+</ul>
+<h4>
+Tutorials
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/tutorials" class="">Overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-java-app-with-maven" class="">Build a Java app with Maven</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm" class="">Build a Node.js and React app with npm</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller" class="">Build a Python app with PyInstaller</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean" class="">Create a Pipeline in Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project" class="">End-to-End Multibranch Pipeline Project Creation</a>
+</li>
+</ul>
+<h4>
+User Handbook
+<span style='font-size: 0.6rem; vertical-align: middle;'>
+<a href='/user-handbook.pdf'>
+(PDF)
+</a>
+</span>
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/getting-started" class="">User Handbook overview</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/installing" class="">Installing Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/using" class="">Using Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline" class="">Pipeline</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/blueocean" class="">Blue Ocean</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing" class="active">Managing Jenkins</a>
+<small>
+<ul style='padding-left: 1rem;'>
+<li>
+<a href="https://jenkins.io/doc/book/managing/system-configuration" class="">Configuring the System</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing/security" class="">Managing Security</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing/tools" class="">Managing Tools</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing/plugins" class="">Managing Plugins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing/cli" class="active">Jenkins CLI</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing/script-console" class="">Script Console</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing/nodes" class="">Managing Nodes</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing/script-approval" class="">In-process Script Approval</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/managing/users" class="">Managing Users</a>
+</li>
+</ul>
+</small>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/system-administration" class="">System Administration</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/scaling" class="">Scaling Jenkins</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/appendix" class="">Appendix</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/book/glossary" class="">Glossary</a>
+</li>
+</ul>
+<h4>
+Resources
+</h4>
+<ul>
+<li>
+<a href="https://jenkins.io/doc/book/pipeline/syntax" class="">Pipeline Syntax reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/pipeline/steps" class="">Pipeline Steps reference</a>
+</li>
+<li>
+<a href="https://jenkins.io/doc/upgrade-guide" class="">LTS Upgrade Guide</a>
+</li>
+</ul>
+<h5>
+Recent Tutorial Blog Posts
+</h5>
+<ul>
+<li>
+<a href='/blog/2017/11/27/tutorials-in-the-jenkins-user-documentation/'>
+Introducing Tutorials in the Jenkins User Documentation
+</a>
+</li>
+<li>
+<a href='/blog/2017/05/18/pipeline-dev-tools/'>
+Pipeline Development Tools
+</a>
+</li>
+<li>
+<a href='/blog/2017/04/12/welcome-to-blue-ocean-dashboard/'>
+Getting Started with the Blue Ocean Dashboard
+</a>
+</li>
+</ul>
+<div class='small'>
+<a href='/node/tags/tutorial'>
+View all tutorial blog posts
+</a>
+</div>
+<p></p>
+</div>
+</div>
+<div class='col-lg-9'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='row'>
+<a class='prev doc-page-link' href='../plugins'>
+⇐ Managing Plugins
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='up doc-page-link' href='../'>
+⇑ Managing Jenkins
+</a>
+</div>
+<div class='row'>
+<a class='index doc-page-link' href='../../'>
+Index
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='next doc-page-link' href='../script-console'>
+Script Console ⇒
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class='container'>
+<div class='row body'>
+<div class='section'>
+<h1>
+Jenkins CLI
+</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#ssh">Using the CLI over SSH</a>
+<ul class="sectlevel2">
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#common-commands">Common Commands</a></li>
+</ul>
+</li>
+<li><a href="#using-the-cli-client">Using the CLI client</a>
+<ul class="sectlevel2">
+<li><a href="#downloading-the-client">Downloading the client</a></li>
+<li><a href="#using-the-client">Using the client</a></li>
+<li><a href="#client-connection-modes">Client connection modes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jenkins has a built-in command line interface that allows users and
+administrators to access Jenkins from a script or shell environment. This can
+be convenient for scripting of routine tasks, bulk updates, troubleshooting,
+and more.</p>
+</div>
+<div class="paragraph">
+<p>The command line interface can be accessed over SSH or with the Jenkins CLI
+client, a <code>.jar</code> file distributed with Jenkins.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Use of the CLI client distributed with Jenkins 2.53 and older and Jenkins LTS 2.46.1 and older
+is <strong>not recommended</strong> for security reasons:
+while there are no currently known vulnerabilities,
+several have been reported and patched in the past,
+and the Jenkins Remoting protocol it uses is inherently vulnerable to remote code execution bugs,
+even “preauthentication” exploits (by anonymous users able to physically access the Jenkins network).</p>
+</div>
+<div class="paragraph">
+<p>The client distributed with Jenkins 2.54 and newer and Jenkins LTS 2.46.2 and newer
+is considered secure in its default (<code>-http</code>) or <code>-ssh</code> modes,
+as is using the standard <code>ssh</code> command.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ssh"><a class="anchor" href="#ssh"></a>Using the CLI over SSH</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In a new Jenkins installation, the SSH service is disabled by default.
+Administrators may choose to set a specific port or ask Jenkins to pick a random port
+in the <a href="../security/#ssh-server">Configure Global Security</a> page.
+In order to determine the randomly assigned SSH port,
+inspect the headers returned on a Jenkins URL, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>% curl -Lv https://JENKINS_URL/login 2&gt;&amp;1 | grep 'X-SSH-Endpoint'
+&lt; X-SSH-Endpoint: localhost:53801
+%</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the random SSH port (<code>53801</code> in this example), and <a href="#authentication">Authentication</a>
+configured, any modern SSH client may securely execute CLI commands.</p>
+</div>
+<div class="sect2">
+<h3 id="authentication"><a class="anchor" href="#authentication"></a>Authentication</h3>
+<div class="paragraph">
+<p>Whichever user used for authentication with the Jenkins master must have the
+<code>Overall/Read</code> permission in order to <em>access</em> the CLI. The user may require
+additional permissions depending on the commands executed.</p>
+</div>
+<div class="paragraph">
+<p>Authentication relies on
+SSH-based public/private key authentication. In order to add an SSH public key
+for the appropriate user, navigate to
+<code><a href="https://JENKINS_URL/user/USERNAME/configure" class="bare">JENKINS_URL/user/USERNAME/configure</a></code> and paste an SSH public key
+into the appropriate text area.</p>
+</div>
+<div class="imageblock center">
+<div class="content">
+<img src="../../resources/managing/cli-adding-ssh-public-keys.png" alt="Adding public SSH keys for a user">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="common-commands"><a class="anchor" href="#common-commands"></a>Common Commands</h3>
+<div class="paragraph">
+<p>Jenkins has a number of built-in CLI commands which can be found in every
+Jenkins environment, such as <code>build</code> or <code>list-jobs</code>. Plugins may also provide
+CLI commands; in order to determine the full list of commands available
+in a given Jenkins environment, execute the CLI <code>help</code> command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>% ssh -l kohsuke -p 53801 localhost help</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following list of commands is not comprehensive, but it is a useful
+starting point for Jenkins CLI usage.</p>
+</div>
+<div class="sect3">
+<h4 id="build"><a class="anchor" href="#build"></a>build</h4>
+<div class="paragraph">
+<p>One of the most common and useful CLI commands is <code>build</code>, which allows the
+user to trigger any job or Pipeline for which they have permission.</p>
+</div>
+<div class="paragraph">
+<p>The most basic invocation will simply trigger the job or Pipeline and exit, but
+with the additional options a user may also pass parameters, poll SCM, or even
+follow the console output of the triggered build or Pipeline run.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>% ssh -l kohsuke -p 53801 localhost help build
+
+java -jar jenkins-cli.jar build JOB [-c] [-f] [-p] [-r N] [-s] [-v] [-w]
+Starts a build, and optionally waits for a completion.  Aside from general
+scripting use, this command can be used to invoke another job from within a
+build of one job.  With the -s option, this command changes the exit code based
+on the outcome of the build (exit code 0 indicates a success) and interrupting
+the command will interrupt the job.  With the -f option, this command changes
+the exit code based on the outcome of the build (exit code 0 indicates a
+success) however, unlike -s, interrupting the command will not interrupt the
+job (exit code 125 indicates the command was interrupted).  With the -c option,
+a build will only run if there has been an SCM change.
+ JOB : Name of the job to build
+ -c  : Check for SCM changes before starting the build, and if there's no
+       change, exit without doing a build
+ -f  : Follow the build progress. Like -s only interrupts are not passed
+       through to the build.
+ -p  : Specify the build parameters in the key=value format.
+ -s  : Wait until the completion/abortion of the command. Interrupts are passed
+       through to the build.
+ -v  : Prints out the console output of the build. Use with -s
+ -w  : Wait until the start of the command
+% ssh -l kohsuke -p 53801 localhost build build-all-software -f -v
+Started build-all-software #1
+Started from command line by admin
+Building in workspace /tmp/jenkins/workspace/build-all-software
+[build-all-software] $ /bin/sh -xe /tmp/hudson1100603797526301795.sh
++ echo hello world
+hello world
+Finished: SUCCESS
+Completed build-all-software #1 : SUCCESS
+%</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="console"><a class="anchor" href="#console"></a>console</h4>
+<div class="paragraph">
+<p>Similarly useful is the <code>console</code> command, which retrieves the console output
+for the specified build or Pipeline run. When no build number is provided, the
+<code>console</code> command will output the last completed build&#8217;s console output.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>% ssh -l kohsuke -p 53801 localhost help console
+
+java -jar jenkins-cli.jar console JOB [BUILD] [-f] [-n N]
+Produces the console output of a specific build to stdout, as if you are doing 'cat build.log'
+ JOB   : Name of the job
+ BUILD : Build number or permalink to point to the build. Defaults to the last
+         build
+ -f    : If the build is in progress, stay around and append console output as
+         it comes, like 'tail -f'
+ -n N  : Display the last N lines
+% ssh -l kohsuke -p 53801 localhost console build-all-software
+Started from command line by kohsuke
+Building in workspace /tmp/jenkins/workspace/build-all-software
+[build-all-software] $ /bin/sh -xe /tmp/hudson1100603797526301795.sh
++ echo hello world
+yes
+Finished: SUCCESS
+%</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="who-am-i"><a class="anchor" href="#who-am-i"></a>who-am-i</h4>
+<div class="paragraph">
+<p>The <code>who-am-i</code> command is helpful for listing the current user&#8217;s credentials
+and permissions available to the user. This can be useful when debugging the
+absence of CLI commands due to the lack of certain permissions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>% ssh -l kohsuke -p 53801 localhost help who-am-i
+
+java -jar jenkins-cli.jar who-am-i
+Reports your credential and permissions.
+% ssh -l kohsuke -p 53801 localhost who-am-i
+Authenticated as: kohsuke
+Authorities:
+  authenticated
+%</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-the-cli-client"><a class="anchor" href="#using-the-cli-client"></a>Using the CLI client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While the SSH-based CLI is fast and covers most needs, there may be situations where the CLI
+client distributed with Jenkins is a better fit. For example, the default transport for the CLI client
+is HTTP which means no additional ports need to be opened in a firewall for its
+use.</p>
+</div>
+<div class="sect2">
+<h3 id="downloading-the-client"><a class="anchor" href="#downloading-the-client"></a>Downloading the client</h3>
+<div class="paragraph">
+<p>The CLI client can be downloaded directly from a Jenkins master at the URL
+<code>/jnlpJars/jenkins-cli.jar</code>, in effect  <code><a href="https://JENKINS_URL/jnlpJars/jenkins-cli.jar" class="bare">JENKINS_URL/jnlpJars/jenkins-cli.jar</a></code></p>
+</div>
+<div class="paragraph">
+<p>While a CLI <code>.jar</code> can be used against different versions of Jenkins, should
+any compatibility issues arise during use, please re-download the latest <code>.jar</code>
+file from the Jenkins master.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-the-client"><a class="anchor" href="#using-the-client"></a>Using the client</h3>
+<div class="paragraph">
+<p>The general syntax for invoking the client is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>java -jar jenkins-cli.jar [-s JENKINS_URL] [global options...] command [command options...] [arguments...]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>JENKINS_URL</code> can be specified via the environment variable <code>$JENKINS_URL</code>.
+Summaries of other general options can be displayed by running the client with no arguments at all.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="client-connection-modes"><a class="anchor" href="#client-connection-modes"></a>Client connection modes</h3>
+<div class="paragraph">
+<p>There are three basic modes in which the 2.54+ / 2.46.2+ client may be used, selectable by global option:
+<code>-http</code>; <code>-ssh</code>; and <code>-remoting</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="http-connection-mode"><a class="anchor" href="#http-connection-mode"></a>HTTP connection mode</h4>
+<div class="paragraph">
+<p>This is the default mode as of 2.54 and 2.46.2, though you may pass the <code>-http</code> option explicitly for clarity.</p>
+</div>
+<div class="paragraph">
+<p>Authentication is preferably with an <code>-auth</code> option, which takes a <code>username:apitoken</code> argument.
+Get your API token from <code>/me/configure</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>java -jar jenkins-cli.jar [-s JENKINS_URL] -auth kohsuke:abc1234ffe4a command ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(Actual passwords are also accepted, but this is discouraged.)</p>
+</div>
+<div class="paragraph">
+<p>You can also precede the argument with <code>@</code> to load the same content from a file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>java -jar jenkins-cli.jar [-s JENKINS_URL] -auth @/home/kohsuke/.jenkins-cli command ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Generally no special system configuration need be done to enable HTTP-based CLI connections.
+If you are running Jenkins behind an HTTP(S) reverse proxy,
+ensure it does not buffer request or response bodies.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The HTTP(S) connection mode of the CLI in Jenkins 2.54 and newer does not work
+correctly behind an Apache HTTP reverse proxy server using mod_proxy. Workarounds include using
+a different reverse proxy such as Nginx or HAProxy, or using the SSH connection
+mode where possible. See
+<a href="https://issues.jenkins-ci.org/browse/JENKINS-47279">JENKINS-47279</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ssh-connection-mode"><a class="anchor" href="#ssh-connection-mode"></a>SSH connection mode</h4>
+<div class="paragraph">
+<p>Authentication is via SSH keypair.
+You must select the Jenkins user ID as well:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>java -jar jenkins-cli.jar [-s JENKINS_URL] -ssh -user kohsuke command ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this mode, the client acts essentially like a native <code>ssh</code> command.</p>
+</div>
+<div class="paragraph">
+<p>By default the client will try to connect to an SSH port on the same host as is used in the <code>JENKINS_URL</code>.
+If Jenkins is behind an HTTP reverse proxy, this will not generally work,
+so run Jenkins with the system property <code>-Dorg.jenkinsci.main.modules.sshd.SSHD.hostName=ACTUALHOST</code>
+to define a hostname or IP address for the SSH endpoint.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remoting-connection-mode"><a class="anchor" href="#remoting-connection-mode"></a>Remoting connection mode</h4>
+<div class="paragraph">
+<p>This was the only mode supported by clients downloaded from a pre-2.54 / pre-2.46.2 Jenkins server
+(prior to the introduction of the <code>-remoting</code> option).
+Its use is deprecated for security and performance reasons.
+That said, certain commands or command modes can <em>only</em> run in Remoting mode,
+typically because the command functionality involves running server-supplied code on the client machine.</p>
+</div>
+<div class="paragraph">
+<p>This mode is disabled on the server side for new installations of 2.54+ and 2.46.2.
+If you must use it, and accept the risks, it may be enabled in <a href="#security">Configure Global Security</a>.</p>
+</div>
+<div class="paragraph">
+<p>Authentication is preferably via SSH keypair.
+A <code>login</code> command and <code>--username</code> / <code>--password</code> command (note: <strong>not global</strong>) options are also available;
+these are discouraged since they cannot work with a non-password-based security realm,
+certain command arguments will not be properly parsed if anonymous users lack overall or job read access,
+and saving human-chosen passwords for use in scripts is considered insecure.</p>
+</div>
+<div class="paragraph">
+<p>Note that there are two transports available for this mode: over HTTP, or over a dedicated TCP socket.
+If the <a href="../security/#jnlp-tcp-port">TCP port is enabled</a> and seems to work, the client will use this transport.
+If the TCP port is disabled, or such a port is advertised but does not accept connections
+(for example because you are using an HTTP reverse proxy with a firewall),
+the client will automatically fall back to the less efficient HTTP transport.</p>
+</div>
+<div class="sect4">
+<h5 id="common-problems-with-the-remoting-based-client"><a class="anchor" href="#common-problems-with-the-remoting-based-client"></a>Common Problems with the Remoting-based client</h5>
+<div class="paragraph">
+<p>There are a number of common problems that may be experienced when running the
+CLI client.</p>
+</div>
+<div class="sect5">
+<h6 id="operation-timed-out"><a class="anchor" href="#operation-timed-out"></a>Operation timed out</h6>
+<div class="paragraph">
+<p>Check that the HTTP or TCP port is opened if you are using a firewall on your
+server.  You can configure its value in Jenkins configuration. By default it is
+set to use a random port.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>% java -jar jenkins-cli.jar -s JENKINS_URL help
+Exception in thread "main" java.net.ConnectException: Operation timed out
+    at java.net.PlainSocketImpl.socketConnect(Native Method)
+    at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:351)
+    at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:213)
+    at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:200)
+    at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:432)
+    at java.net.Socket.connect(Socket.java:529)
+    at java.net.Socket.connect(Socket.java:478)
+    at java.net.Socket.&lt;init&gt;(Socket.java:375)
+    at java.net.Socket.&lt;init&gt;(Socket.java:189)
+    at hudson.cli.CLI.&lt;init&gt;(CLI.java:97)
+    at hudson.cli.CLI.&lt;init&gt;(CLI.java:82)
+    at hudson.cli.CLI._main(CLI.java:250)
+    at hudson.cli.CLI.main(CLI.java:199)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="no-x-jenkins-cli2-port"><a class="anchor" href="#no-x-jenkins-cli2-port"></a>No X-Jenkins-CLI2-Port</h6>
+<div class="paragraph">
+<p>Go to <strong>Manage Jenkins</strong> &gt; <strong>Configure Global Security</strong> and choose "Fixed" or
+"Random" under <strong>TCP port for JNLP agents</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>java.io.IOException: No X-Jenkins-CLI2-Port among [X-Jenkins, null, Server, X-Content-Type-Options, Connection,
+        X-You-Are-In-Group, X-Hudson, X-Permission-Implied-By, Date, X-Jenkins-Session, X-You-Are-Authenticated-As,
+        X-Required-Permission, Set-Cookie, Expires, Content-Length, Content-Type]
+    at hudson.cli.CLI.getCliTcpPort(CLI.java:284)
+    at hudson.cli.CLI.&lt;init&gt;(CLI.java:128)
+    at hudson.cli.CLIConnectionFactory.connect(CLIConnectionFactory.java:72)
+    at hudson.cli.CLI._main(CLI.java:473)
+    at hudson.cli.CLI.main(CLI.java:384)
+    Suppressed: java.io.IOException: Server returned HTTP response code: 403 for URL: http://citest.gce.px/cli
+        at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1840)
+        at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1441)
+        at hudson.cli.FullDuplexHttpStream.&lt;init&gt;(FullDuplexHttpStream.java:78)
+        at hudson.cli.CLI.connectViaHttp(CLI.java:152)
+        at hudson.cli.CLI.&lt;init&gt;(CLI.java:132)
+        ... 3 more</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="server-key-did-not-validate"><a class="anchor" href="#server-key-did-not-validate"></a>Server key did not validate</h6>
+<div class="paragraph">
+<p>You may get the error below and find a log entry just below that concerning <code>mismatched keys</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>org.apache.sshd.common.SshException: Server key did not validate
+    at org.apache.sshd.client.session.AbstractClientSession.checkKeys(AbstractClientSession.java:523)
+    at org.apache.sshd.common.session.helpers.AbstractSession.handleKexMessage(AbstractSession.java:616)
+    ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This means your SSH configuration does not recognize the public key presented by the server.
+It&#8217;s often the case when you run Jenkins in dev mode and multiple instances
+of the application are run under the same SSH port over time.</p>
+</div>
+<div class="paragraph">
+<p>In a development context, access your <code>~/.ssh/known_hosts</code> (or in <code>C:/Users/&lt;your_name&gt;/.ssh/known_hosts</code> for Windows)
+and remove the line corresponding to your current SSH port (e.g. <code>[localhost]:3485</code>).
+In a production context, check with the Jenkins administrator if the public key of the server changed recently.
+If so, ask the administrator to do the the steps described above.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="usernamenotfoundexception"><a class="anchor" href="#usernamenotfoundexception"></a>UsernameNotFoundException</h6>
+<div class="paragraph">
+<p>If your client displays a stacktrace that looks like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight nowrap"><code>org.acegisecurity.userdetails.UsernameNotFoundException: &lt;name_you_used&gt;
+    ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This means your SSH keys were recognized and validated against the stored users but the username is not valid for the security realm your application is using at the moment.
+This could occur when you were using the Jenkins database initially, configured your users, and then switched to another security realm (like LDAP, etc.) where the defined users do not exist yet.</p>
+</div>
+<div class="paragraph">
+<p>To solve the problem, ensure your users exist in your configured security realm.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="troubleshooting-logs"><a class="anchor" href="#troubleshooting-logs"></a>Troubleshooting logs</h6>
+<div class="paragraph">
+<p>To get more information about the authentication process:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go into <strong>Manage Jenkins</strong> &gt; <strong>System Log</strong> &gt; <strong>Add new log recorder</strong>.</p>
+</li>
+<li>
+<p>Enter any name you want and click on <strong>Ok</strong>.</p>
+</li>
+<li>
+<p>Click on <strong>Add</strong></p>
+</li>
+<li>
+<p>Type <code>org.jenkinsci.main.modules.sshd.PublicKeyAuthenticatorImpl</code> (or type <code>PublicKeyAuth</code> and then select the full name)</p>
+</li>
+<li>
+<p>Set the level to <strong>ALL</strong>.</p>
+</li>
+<li>
+<p>Repeat the previous three steps for <code>hudson.model.User</code></p>
+</li>
+<li>
+<p>Click on <strong>Save</strong></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When you try to authenticate, you can then refresh the page and see what happen internally.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<div class='row'>
+<a class='prev doc-page-link' href='../plugins'>
+⇐ Managing Plugins
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='up doc-page-link' href='../'>
+⇑ Managing Jenkins
+</a>
+</div>
+<div class='row'>
+<a class='index doc-page-link' href='../../'>
+Index
+</a>
+</div>
+</div>
+<div class='col-md-4'>
+<div class='row'>
+<a class='next doc-page-link' href='../script-console'>
+Script Console ⇒
+</a>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<div class='container'></div>
+<!-- starting partial _feedback-footer.html -->
+<!-- HTML inclusion for chapter and section layouts (i.e. as footers) as well as
+     for use in AsciiDoc file inclusions. -->
+
+<!--
+This feedback form was prepared from a Google Form, based on the techniques in
+the following documentation sources:
+https://codepen.io/learningcode/post/customize-a-google-form-for-your-website,
+http://mrhaki.blogspot.com.au/2014/06/awesome-asciidoc-include-raw-html.html,
+http://www.freshtechtips.com/2013/05/custom-google-drive-contact-form.html,
+https://stackoverflow.com/questions/24436165/set-value-of-hidden-input-inside-form
+-->
+
+<!-- Feedback form functionality in JavaScript - refer to comments in this file
+     for details on the functionality. -->
+<script>
+var feedbackForm = {
+    formKey : 'e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w'
+};
+$(document).ready(function() {
+    window.onload = feedbackForm.start(window.location.href);
+});
+</script>
+<script src="/js/feedback-form-functionality.js"></script>
+
+<p><a href="#feedback" data-toggle="collapse">Was this page helpful?</a></p>
+
+<div id="feedback" class="collapse">
+
+<p>Please submit your feedback about this page through this
+<a href="/doc/feedback-form/">quick form</a>.</p>
+
+<p>Alternatively, if you don't wish to complete the quick form, you can simply
+indicate if you found this page helpful?</p>
+
+<!-- Redirects to custom "thank you" page once form is submitted. -->
+<script type="text/javascript">
+var submitted=false;
+</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+onload="if(submitted) {window.location='/doc/thank-you-for-your-feedback/';}">
+</iframe>
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfCEexH09x_-ytEyE7wetizqOvE_-06WkK89dpBLEJcYnOp8w/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+
+<!-- Set the value of the current URL into the form. -->
+<input type="hidden" name="entry.1246830226" id="current-url" value=""/>
+
+<!-- The answer bit -->
+<p><input type="radio" name="entry.790002525" id="h1" value="Yes" required/>
+<label for="h1">Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" name="entry.790002525" id="h2" value="No"/>
+<label for="h2">No</label></p>
+
+<!-- The CAPTCHA bit -->
+
+<p><label id="ssTestLabel" for="ssTestValue"></label><br/>
+<input type="text" name="ssTestValue" value="" id="ssTestValue"/></p>
+
+<!-- Submit button -->
+
+<p><input class="button" type="submit" value="Submit"/></p>
+
+</form>
+
+<p>See existing feedback <a href="https://docs.google.com/spreadsheets/d/1IIdpVs39JDYKg0sLQIv-MNO928qcGApAIfdW5ohfD78" target="_blank">here</a>.</p>
+
+</div>
+
+<!-- ending partial _feedback-footer.html -->
+
+</div>
+</div>
+</div>
+
+
+<script src='https://jenkins.io/assets/bower/anchor-js/anchor.min.js'></script>
+<script src='https://jenkins.io/assets/bower/tether/js/tether.min.js'></script>
+<script src='https://jenkins.io/assets/bower/bootstrap/js/bootstrap.min.js'></script>
+<footer id='footer'>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<p class='box'>
+<a href='https://github.com/jenkins-infra/jenkins.io/edit/master/content//doc/book/managing/cli.adoc' title='Edit /doc/book/managing/cli.adoc on GitHub'>
+Improve this page
+</a>
+|
+<a href='https://github.com/jenkins-infra/jenkins.io/commits/master/content//doc/book/managing/cli.adoc' title='View /doc/book/managing/cli.adoc history on GitHub'>
+Page history
+</a>
+</p>
+<div class='license-box'>
+<div id='creativecommons'>
+<a href='https://creativecommons.org/licenses/by-sa/4.0/'>
+<p>
+<img src='https://licensebuttons.net/l/by-sa/4.0/88x31.png'>
+</p>
+</a>
+<p>
+The content driving this site is licensed under the Creative
+Commons Attribution-ShareAlike 4.0 license.
+</p>
+</div>
+</div>
+</div>
+<div class='links col-md-8'>
+<div class='container'>
+<div class='row'>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Resources</h5>
+<ul class='resources'>
+<li>
+<a href='https://jenkins.io/events'>
+Events
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/doc'>
+Documentation
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/node'>
+Blog
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Solutions</h5>
+<ul>
+<li>
+<a href='https://jenkins.io/solutions/android'>
+Android
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/c'>
+C/C++
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/docker'>
+Docker
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/embedded'>
+Embedded
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/github'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/java'>
+Java
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/php'>
+PHP
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/pipeline'>
+Continuous Delivery
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/python'>
+Python
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/solutions/ruby'>
+Ruby
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Project</h5>
+<ul class='project'>
+<li>
+<a href='https://issues.jenkins-ci.org'>
+Issue tracker
+</a>
+</li>
+<li>
+<a href='https://wiki.jenkins.io'>
+Wiki
+</a>
+</li>
+<li>
+<a href='https://github.com/jenkinsci'>
+GitHub
+</a>
+</li>
+<li>
+<a href='https://ci.jenkins.io'>
+Jenkins on Jenkins
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class='area col-md-3'>
+<div class='div-mar'>
+<h5>Community</h5>
+<ul class='community'>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-users'>
+Users mailing list
+</a>
+</li>
+<li>
+<a href='https://groups.google.com/forum/#!forum/jenkinsci-dev'>
+Developers mailing list
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/sigs'>
+Special Interest Groups
+</a>
+</li>
+<li>
+<a href='https://twitter.com/jenkinsci'>
+Twitter
+</a>
+</li>
+<li>
+<a href='https://reddit.com/r/jenkinsci'>
+Reddit
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/merchandise'>
+Merchandise
+</a>
+</li>
+<li>
+<a href='https://jenkins.io/awards'>
+Awards
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ga('create', 'UA-4216293-5', 'auto');
+ga('send', 'pageview');
+ga('set', 'anonymizeIp', true);
+
+</script>
+
+<script>
+  !function(d,s,id) {
+    var js, fjs=d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id=id;
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    }
+  }(document,"script","twitter-wjs");
+</script>
+</body>
+</html>
